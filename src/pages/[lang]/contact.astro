@@ -1,0 +1,200 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { useTranslations, getStaticPaths } from '../../i18n/utils';
+
+export { getStaticPaths };
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as 'es' | 'en');
+---
+
+<Layout title={t('contact.title')} description={t('contact.subtitle')}>
+  <Header />
+  
+  <main class="py-16 bg-gray-50 min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">{t('contact.title')}</h1>
+        <p class="text-xl text-gray-600">
+          {t('contact.subtitle')}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Contact Form -->
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <h2 class="text-2xl font-semibold mb-6">{t('contact.form.title')}</h2>
+          <form id="contact-form" class="space-y-6">
+            <input type="hidden" name="language" value={lang} />
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                {t('contact.form.name')} *
+              </label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              />
+            </div>
+            
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                {t('contact.form.email')} *
+              </label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              />
+            </div>
+            
+            <div>
+              <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+                {t('contact.form.phone')}
+              </label>
+              <input 
+                type="tel" 
+                id="phone" 
+                name="phone"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              />
+            </div>
+            
+            <div>
+              <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
+                {t('contact.form.subject')} *
+              </label>
+              <select 
+                id="subject" 
+                name="subject" 
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              >
+                <option value="">{t('contact.form.subject.placeholder')}</option>
+                <option value="ceremony">{t('contact.form.subject.ceremony')}</option>
+                <option value="retreat">{t('contact.form.subject.retreat')}</option>
+                <option value="integration">{t('contact.form.subject.integration')}</option>
+                <option value="other">{t('contact.form.subject.other')}</option>
+              </select>
+            </div>
+            
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+                {t('contact.form.message')} *
+              </label>
+              <textarea 
+                id="message" 
+                name="message" 
+                rows="5" 
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                placeholder={t('contact.form.message.placeholder')}
+              ></textarea>
+            </div>
+            
+            <button 
+              type="submit"
+              class="w-full bg-green-700 text-white py-3 px-6 rounded-lg hover:bg-green-800 transition-colors font-medium"
+            >
+              {t('contact.form.submit')}
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="space-y-8">
+          <div class="bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-2xl font-semibold mb-6">{t('contact.info.title')}</h2>
+            <div class="space-y-4">
+              <div class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-green-700 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <div>
+                  <p class="font-medium">Email</p>
+                  <p class="text-gray-600">info@casadeljaguar.com</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-green-700 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <div>
+                  <p class="font-medium">{t('contact.form.phone')}</p>
+                  <p class="text-gray-600">+1 (555) 123-4567</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-green-700 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <div>
+                  <p class="font-medium">{t('contact.info.location')}</p>
+                  <p class="text-gray-600" set:html={t('contact.info.location.desc')}></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-green-50 rounded-lg p-6">
+            <h3 class="text-lg font-semibold text-green-800 mb-3">{t('contact.info.hours')}</h3>
+            <div class="space-y-2 text-green-700">
+              <p>{t('contact.hours.weekdays')}</p>
+              <p>{t('contact.hours.saturday')}</p>
+              <p>{t('contact.hours.sunday')}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  // Contact form handling
+  document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      
+      if (response.ok) {
+        const lang = (data.language as string) || 'es';
+        const message = lang === 'es' 
+          ? '¡Mensaje enviado correctamente! Te contactaremos pronto.'
+          : 'Message sent successfully! We will contact you soon.';
+        alert(message);
+        form.reset();
+      } else {
+        throw new Error('Error sending message');
+      }
+    } catch (error) {
+      const lang = document.querySelector('input[name="language"]')?.getAttribute('value') || 'es';
+      const message = lang === 'es'
+        ? 'Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.'
+        : 'There was an error sending the message. Please try again.';
+      alert(message);
+    }
+  });
+</script>

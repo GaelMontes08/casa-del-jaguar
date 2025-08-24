@@ -1,10 +1,13 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { useTranslations } from '../i18n/utils';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { useTranslations, getStaticPaths } from '../../i18n/utils';
 
-const t = useTranslations('es'); // Default Spanish for root pages
+export { getStaticPaths };
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as 'es' | 'en');
 ---
 
 <Layout title={t('home.title')} description={t('home.subtitle')}>
@@ -21,10 +24,10 @@ const t = useTranslations('es'); // Default Spanish for root pages
           {t('home.subtitle')}
         </p>
         <div class="space-x-4">
-          <a href="/contact" class="bg-green-700 text-white px-8 py-3 rounded-lg hover:bg-green-800 transition-colors">
+          <a href={`/${lang === 'es' ? '' : lang + '/'}contact`} class="bg-green-700 text-white px-8 py-3 rounded-lg hover:bg-green-800 transition-colors">
             {t('home.cta.contact')}
           </a>
-          <a href="/about" class="border border-green-700 text-green-700 px-8 py-3 rounded-lg hover:bg-green-50 transition-colors">
+          <a href={`/${lang === 'es' ? '' : lang + '/'}about`} class="border border-green-700 text-green-700 px-8 py-3 rounded-lg hover:bg-green-50 transition-colors">
             {t('home.cta.learn')}
           </a>
         </div>

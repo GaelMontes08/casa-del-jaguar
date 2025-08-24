@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations('es'); // Default Spanish for root pages
+---
+
+<Layout title={t('about.title')} description={t('about.subtitle')}>
+  <Header />
+  
+  <main class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">Nosotros</h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Conoce nuestra historia, filosofía y compromiso con la medicina tradicional.
+        </p>
+      </div>
+
+      <section class="mb-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Nuestra Misión</h2>
+            <p class="text-gray-600 mb-4">
+              Casa del Jaguar es un centro dedicado a la medicina tradicional amazónica, 
+              donde ofrecemos ceremonias de ayahuasca en un ambiente seguro, sagrado y 
+              respetuoso de las tradiciones ancestrales.
+            </p>
+            <p class="text-gray-600">
+              Nuestro propósito es acompañar a las personas en sus procesos de sanación 
+              y crecimiento espiritual, honrando siempre la sabiduría de los pueblos 
+              originarios y la naturaleza.
+            </p>
+          </div>
+          <div class="bg-green-50 p-8 rounded-lg">
+            <h3 class="text-xl font-semibold text-green-800 mb-4">Nuestros Valores</h3>
+            <ul class="space-y-2 text-green-700">
+              <li>• Respeto por las tradiciones ancestrales</li>
+              <li>• Seguridad y bienestar de los participantes</li>
+              <li>• Conexión profunda con la naturaleza</li>
+              <li>• Crecimiento espiritual auténtico</li>
+              <li>• Comunidad y apoyo mutuo</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-16">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Nuestros Maestros</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4"></div>
+            <h3 class="text-xl font-semibold mb-2">Maestro Carlos</h3>
+            <p class="text-gray-600">25 años de experiencia en medicina tradicional amazónica</p>
+          </div>
+          <div class="text-center">
+            <div class="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4"></div>
+            <h3 class="text-xl font-semibold mb-2">Maestra María</h3>
+            <p class="text-gray-600">Especialista en cantos sagrados y sanación femenina</p>
+          </div>
+          <div class="text-center">
+            <div class="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4"></div>
+            <h3 class="text-xl font-semibold mb-2">Maestro José</h3>
+            <p class="text-gray-600">Curandero tradicional con profundo conocimiento de plantas</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-gray-50 p-8 rounded-lg">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Nuestra Filosofía</h2>
+        <div class="max-w-4xl mx-auto text-center">
+          <p class="text-lg text-gray-600 mb-6">
+            Creemos en el poder sanador de la ayahuasca como medicina sagrada que nos 
+            conecta con nuestra esencia más profunda y con la sabiduría ancestral de 
+            los pueblos amazónicos.
+          </p>
+          <p class="text-lg text-gray-600">
+            Cada ceremonia es un espacio sagrado donde se honra tanto la tradición como 
+            las necesidades individuales de sanación, siempre en un ambiente de respeto, 
+            seguridad y amor incondicional.
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

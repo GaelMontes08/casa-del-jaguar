@@ -1,0 +1,47 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Casa del Jaguar - Medicina Ayahuasca" } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+
+import '../styles/global.css';
+import { SEO } from 'astro-seo';
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <SEO
+      title={title}
+      description={description}
+      openGraph={{
+        basic: {
+          title: title,
+          type: "website",
+          image: "/og-image.jpg",
+        }
+      }}
+      twitter={{
+        creator: "@casadeljaguar"
+      }}
+      extend={{
+        link: [{ rel: "icon", href: "/favicon.svg" }],
+        meta: [
+          { name: "viewport", content: "width=device-width, initial-scale=1" },
+          { name: "generator", content: Astro.generator },
+        ],
+      }}
+    />
+  </head>
+  <body class="bg-white text-gray-900">
+    <slot />
+  </body>
+</html>
