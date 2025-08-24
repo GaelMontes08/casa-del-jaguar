@@ -6,7 +6,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<header class="bg-white shadow-sm border-b pt-12 sm:pt-10 md:pt-9">
+<header class="bg-white shadow-sm border-b header-with-banner">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <div class="flex items-center">
@@ -37,3 +37,21 @@ const t = useTranslations(lang);
     </div>
   </nav>
 </header>
+
+<style>
+  .header-with-banner {
+    padding-top: 64px; /* Mobile: matches banner min-height */
+  }
+  
+  @media (min-width: 640px) {
+    .header-with-banner {
+      padding-top: 48px; /* Tablet: matches banner min-height */
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .header-with-banner {
+      padding-top: 36px; /* Desktop: matches banner height */
+    }
+  }
+</style>

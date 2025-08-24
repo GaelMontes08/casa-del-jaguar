@@ -20,22 +20,22 @@ const discountCode = `${currentMonth}${currentYear}`;
 
 <div 
   id="discount-banner" 
-  class="bg-brand-light text-brand-dark text-center py-2 sm:py-2 md:h-9 min-h-[36px] flex items-center justify-center fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out"
+  class="bg-brand-light text-brand-dark text-center discount-banner flex items-center justify-center fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out"
 >
-  <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 w-full">
-    <p class="text-xs sm:text-sm font-medium font-gotham leading-tight">
+  <div class="max-w mx-auto px-2 sm:px-4 lg:px-8 w-full">
+    <div class="text-xs sm:text-sm font-medium font-gotham leading-tight py-2">
       {lang === 'es' ? (
         <>
-          <span class="block sm:inline">Este mes, ahorre <span class="font-bold">$1250</span> con el código: <span class="font-bold bg-white text-brand-dark px-1 sm:px-2 py-1 rounded mx-1 inline-block">{discountCode}</span></span>
-          <span class="block sm:inline mt-1 sm:mt-0">Llame hoy mismo al <span class="font-bold">+51 928-105-750</span>.</span>
+          <div class="block sm:inline">Este mes, ahorre <span class="font-bold">$1250</span> con el código: <span class="font-bold bg-white text-brand-dark px-1 sm:px-2 py-1 rounded mx-1 inline-block">{discountCode}</span></div>
+          <div class="block sm:inline mt-1 sm:mt-0">Llame hoy mismo al <span class="font-bold">+51 928-105-750</span>.</div>
         </>
       ) : (
         <>
-          <span class="block sm:inline">This month, save <span class="font-bold">$1250</span> with code: <span class="font-bold bg-white text-brand-dark px-1 sm:px-2 py-1 rounded mx-1 inline-block">{discountCode}</span></span>
-          <span class="block sm:inline mt-1 sm:mt-0">Call <span class="font-bold">+51 928-105-750</span> today.</span>
+          <div class="block sm:inline">This month, save <span class="font-bold">$1250</span> with code: <span class="font-bold bg-white text-brand-dark px-1 sm:px-2 py-1 rounded mx-1 inline-block">{discountCode}</span></div>
+          <div class="block sm:inline mt-1 sm:mt-0">Call <span class="font-bold">+51 928-105-750</span> today.</div>
         </>
       )}
-    </p>
+    </div>
   </div>
 </div>
 
@@ -70,3 +70,23 @@ const discountCode = `${currentMonth}${currentYear}`;
     });
   }
 </script>
+
+<style>
+  .discount-banner {
+    min-height: 64px; /* Mobile: 4rem */
+    height: auto;
+  }
+  
+  @media (min-width: 640px) {
+    .discount-banner {
+      min-height: 48px; /* Tablet: 3rem */
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .discount-banner {
+      min-height: 36px; /* Desktop: 2.25rem */
+      height: 36px;
+    }
+  }
+</style>
