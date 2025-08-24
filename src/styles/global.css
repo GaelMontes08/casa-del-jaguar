@@ -1,1 +1,39 @@
 @import "tailwindcss";
+
+/* Custom CSS Variables for Casa del Jaguar */
+:root {
+  --color-brand-cream: #F2E8D5;
+  --color-brand-light: #F2CF8D;
+  --color-brand-gold: #F2AB27;
+  --color-brand-brown: #D99D55;
+  --color-brand-dark: #402A1E;
+}
+
+/* Custom utility classes */
+.text-brand-gold {
+  color: var(--color-brand-gold);
+}
+
+.bg-brand-gold {
+  background-color: var(--color-brand-gold);
+}
+
+.text-brand-dark {
+  color: var(--color-brand-dark);
+}
+
+.bg-brand-dark {
+  background-color: var(--color-brand-dark);
+}
+
+.bg-brand-cream {
+  background-color: var(--color-brand-cream);
+}
+
+.bg-brand-light {
+  background-color: var(--color-brand-light);
+}
+
+.border-brand-gold {
+  border-color: var(--color-brand-gold);
+}

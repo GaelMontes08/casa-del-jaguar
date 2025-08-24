@@ -14,19 +14,19 @@ const t = useTranslations(lang as 'es' | 'en');
   <Header />
   
   <main>
-    <section class="bg-gradient-to-b from-green-50 to-white py-20">
+    <section class="bg-gradient-to-b from-brand-light to-white py-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-          Casa del <span class="text-green-700">Jaguar</span>
+        <h1 class="text-4xl md:text-6xl font-bold text-brand-dark mb-6">
+          Casa del <span class="text-brand-primary">Jaguar</span>
         </h1>
-        <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+        <p class="text-xl text-brand-secondary mb-8 max-w-3xl mx-auto">
           {t('home.subtitle')}
         </p>
         <div class="space-x-4">
-          <a href={`/${lang === 'es' ? '' : lang + '/'}contact`} class="bg-green-700 text-white px-8 py-3 rounded-lg hover:bg-green-800 transition-colors">
+          <a href={`/${lang === 'es' ? '' : lang + '/'}contact`} class="bg-brand-primary text-brand-dark px-8 py-3 rounded-lg hover:bg-brand-accent transition-colors font-medium">
             {t('home.cta.contact')}
           </a>
-          <a href={`/${lang === 'es' ? '' : lang + '/'}about`} class="border border-green-700 text-green-700 px-8 py-3 rounded-lg hover:bg-green-50 transition-colors">
+          <a href={`/${lang === 'es' ? '' : lang + '/'}about`} class="border border-brand-primary text-brand-primary px-8 py-3 rounded-lg hover:bg-brand-light transition-colors font-medium">
             {t('home.cta.learn')}
           </a>
         </div>
@@ -35,19 +35,19 @@ const t = useTranslations(lang as 'es' | 'en');
 
     <section class="py-16 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-center mb-12">{t('home.services.title')}</h2>
+        <h2 class="text-3xl font-bold text-center mb-12 text-brand-dark">{t('home.services.title')}</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center p-6 border rounded-lg">
-            <h3 class="text-xl font-semibold mb-4">{t('home.services.ceremonies.title')}</h3>
-            <p class="text-gray-600">{t('home.services.ceremonies.desc')}</p>
+          <div class="text-center p-6 border border-brand-accent rounded-lg hover:shadow-lg transition-shadow">
+            <h3 class="text-xl font-semibold mb-4 text-brand-dark">{t('home.services.ceremonies.title')}</h3>
+            <p class="text-brand-secondary">{t('home.services.ceremonies.desc')}</p>
           </div>
-          <div class="text-center p-6 border rounded-lg">
-            <h3 class="text-xl font-semibold mb-4">{t('home.services.retreats.title')}</h3>
-            <p class="text-gray-600">{t('home.services.retreats.desc')}</p>
+          <div class="text-center p-6 border border-brand-accent rounded-lg hover:shadow-lg transition-shadow">
+            <h3 class="text-xl font-semibold mb-4 text-brand-dark">{t('home.services.retreats.title')}</h3>
+            <p class="text-brand-secondary">{t('home.services.retreats.desc')}</p>
           </div>
-          <div class="text-center p-6 border rounded-lg">
-            <h3 class="text-xl font-semibold mb-4">{t('home.services.support.title')}</h3>
-            <p class="text-gray-600">{t('home.services.support.desc')}</p>
+          <div class="text-center p-6 border border-brand-accent rounded-lg hover:shadow-lg transition-shadow">
+            <h3 class="text-xl font-semibold mb-4 text-brand-dark">{t('home.services.support.title')}</h3>
+            <p class="text-brand-secondary">{t('home.services.support.desc')}</p>
           </div>
         </div>
       </div>

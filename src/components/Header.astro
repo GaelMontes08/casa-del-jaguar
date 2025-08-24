@@ -11,23 +11,23 @@ const t = useTranslations(lang);
     <div class="flex justify-between items-center h-16">
       <div class="flex items-center">
         <a href={translatePath('/', lang)} class="flex items-center space-x-2">
-          <span class="text-2xl font-bold text-green-700">Casa del Jaguar</span>
+          <span class="text-2xl font-bold text-brand-dark">Casa del Jaguar</span>
         </a>
       </div>
       
       <div class="hidden md:block">
         <div class="ml-10 flex items-baseline space-x-4">
-          <a href={translatePath('/', lang)} class="text-gray-700 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">{t('nav.home')}</a>
-          <a href={translatePath('/about', lang)} class="text-gray-700 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">{t('nav.about')}</a>
-          <a href={translatePath('/services', lang)} class="text-gray-700 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">{t('nav.services')}</a>
-          <a href={translatePath('/contact', lang)} class="text-gray-700 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">{t('nav.contact')}</a>
+          <a href={translatePath('/', lang)} class="text-brand-secondary hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">{t('nav.home')}</a>
+          <a href={translatePath('/about', lang)} class="text-brand-secondary hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">{t('nav.about')}</a>
+          <a href={translatePath('/services', lang)} class="text-brand-secondary hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">{t('nav.services')}</a>
+          <a href={translatePath('/contact', lang)} class="text-brand-secondary hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">{t('nav.contact')}</a>
         </div>
       </div>
       
       <div class="flex items-center space-x-4">
         <LanguageSwitcher />
         <div class="md:hidden">
-          <button type="button" class="text-gray-700 hover:text-green-700">
+          <button type="button" class="text-brand-secondary hover:text-brand-primary">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>

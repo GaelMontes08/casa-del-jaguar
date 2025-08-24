@@ -99,7 +99,7 @@ const t = useTranslations(lang as 'es' | 'en');
             
             <button 
               type="submit"
-              class="w-full bg-green-700 text-white py-3 px-6 rounded-lg hover:bg-green-800 transition-colors font-medium"
+              class="w-full bg-brand-primary text-brand-dark py-3 px-6 rounded-lg hover:bg-brand-accent transition-colors font-medium"
             >
               {t('contact.form.submit')}
             </button>
@@ -108,15 +108,15 @@ const t = useTranslations(lang as 'es' | 'en');
 
         <div class="space-y-8">
           <div class="bg-white rounded-lg shadow-lg p-8">
-            <h2 class="text-2xl font-semibold mb-6">{t('contact.info.title')}</h2>
+            <h2 class="text-2xl font-semibold mb-6 text-brand-dark">{t('contact.info.title')}</h2>
             <div class="space-y-4">
               <div class="flex items-start space-x-3">
-                <svg class="w-6 h-6 text-green-700 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-6 h-6 text-brand-primary mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
                 <div>
-                  <p class="font-medium">Email</p>
-                  <p class="text-gray-600">info@casadeljaguar.com</p>
+                  <p class="font-medium text-brand-dark">Email</p>
+                  <p class="text-brand-secondary">info@casadeljaguar.com</p>
                 </div>
               </div>
               
