@@ -1,7 +1,7 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
 ---
 
 <Layout title="Contacto - Casa del Jaguar" description="Contáctanos para más información sobre nuestras ceremonias de ayahuasca y retiros espirituales.">
@@ -153,11 +153,11 @@ import Footer from '../components/Footer.astro';
   <Footer />
 </Layout>
 
-<script>
+<script is:inline>
   document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    const form = e.target as HTMLFormElement;
+    const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
     

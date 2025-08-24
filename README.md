@@ -56,17 +56,42 @@ El sitio web soporta múltiples idiomas:
 2. Las páginas usan el sistema de routing dinámico `[lang]`
 3. El componente `LanguageSwitcher` permite cambiar entre idiomas
 
-## 📁 Estructura del Proyecto
+## � Alias de Rutas
 
-Inside of your Astro project, you'll see the following folders and files:
+El proyecto usa alias de rutas para imports más limpios:
+
+```typescript
+// En lugar de imports relativos:
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+
+// Usa alias @:
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+```
+
+**Alias disponibles:**
+- `@/*` → `src/*`
+- `@/components/*` → `src/components/*`
+- `@/layouts/*` → `src/layouts/*`
+- `@/pages/*` → `src/pages/*`
+- `@/i18n/*` → `src/i18n/*`
+- `@/styles/*` → `src/styles/*`
+
+## 📁 Estructura del Proyecto
 
 ```text
 /
-├── public/
+├── public/             # Archivos estáticos
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/     # Componentes reutilizables
+│   ├── layouts/        # Layouts de página
+│   ├── pages/          # Páginas del sitio
+│   │   └── api/        # Endpoints de API
+│   ├── i18n/           # Archivos de internacionalización
+│   └── styles/         # Estilos CSS
+├── astro.config.mjs    # Configuración de Astro
+└── tailwind.config.cjs # Configuración de Tailwind
 ```
 
 Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.

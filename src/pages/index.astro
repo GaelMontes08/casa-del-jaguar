@@ -1,17 +1,16 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { useTranslations } from '../i18n/utils';
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { useTranslations } from '@/i18n/utils';
 
-const t = useTranslations('es'); // Default Spanish for root pages
+const t = useTranslations('es');
 ---
 
 <Layout title={t('home.title')} description={t('home.subtitle')}>
   <Header />
   
   <main>
-    <!-- Hero Section -->
     <section class="bg-gradient-to-b from-green-50 to-white py-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
@@ -31,7 +30,6 @@ const t = useTranslations('es'); // Default Spanish for root pages
       </div>
     </section>
 
-    <!-- Services Preview -->
     <section class="py-16 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-3xl font-bold text-center mb-12">{t('home.services.title')}</h2>
