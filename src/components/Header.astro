@@ -6,28 +6,99 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<header class="bg-white shadow-sm border-b header-with-banner">
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<header class="bg-transparent absolute top-0 left-0 right-0 z-40 header-with-banner w-full max-w-[1920px] mx-auto">
+  <nav class="w-full px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <div class="flex items-center">
         <a href={translatePath('/', lang)} class="flex items-center space-x-2">
-          <span class="text-2xl font-bold text-brand-dark font-georgia">Casa del Jaguar</span>
+          <span class="text-2xl font-bold text-brand-cream font-georgia">Casa del Jaguar</span>
         </a>
       </div>
       
-      <div class="hidden md:block">
-        <div class="ml-10 flex items-baseline space-x-4">
-          <a href={translatePath('/', lang)} class="text-brand-secondary hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium font-gotham">{t('nav.home')}</a>
-          <a href={translatePath('/about', lang)} class="text-brand-secondary hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium font-gotham">{t('nav.about')}</a>
-          <a href={translatePath('/services', lang)} class="text-brand-secondary hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium font-gotham">{t('nav.services')}</a>
-          <a href={translatePath('/contact', lang)} class="text-brand-secondary hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium font-gotham">{t('nav.contact')}</a>
+      <div class="hidden lg:block">
+        <div class="ml-10 flex items-baseline space-x-6">
+          <!-- Experiencias Dropdown -->
+          <div class="relative group">
+            <button class="text-brand-cream hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium font-gotham flex items-center">
+              {lang === 'es' ? 'Experiencias' : 'Experiences'}
+              <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 absolute top-full left-0 mt-2 w-64 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50">
+              <div class="py-2">
+                <a href={translatePath('/experiences', lang)} class="block px-4 py-2 text-sm text-brand-dark hover:bg-brand-light font-gotham">
+                  {lang === 'es' ? 'La forma de la Casa del Jaguar' : 'The Casa del Jaguar Way'}
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <a href={translatePath('/resort', lang)} class="text-brand-cream hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium font-gotham">
+            {lang === 'es' ? 'Centro Ceremonial' : 'Resort'}
+          </a>
+          
+          <a href={translatePath('/pricing', lang)} class="text-brand-cream hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium font-gotham">
+            {lang === 'es' ? 'Precios' : 'Pricing'}
+          </a>
+          
+          <a href={translatePath('/calendar', lang)} class="text-brand-cream hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium font-gotham">
+            {lang === 'es' ? 'Calendario' : 'Calendar'}
+          </a>
+          
+          <a href={translatePath('/testimonials', lang)} class="text-brand-cream hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium font-gotham">
+            {lang === 'es' ? 'Testimonios' : 'Testimonials'}
+          </a>
+
+          <!-- Saber Más Dropdown -->
+          <div class="relative group">
+            <button class="text-brand-cream hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium font-gotham flex items-center">
+              {lang === 'es' ? 'Saber Más' : 'Learn More'}
+              <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 absolute top-full left-0 mt-2 w-56 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50">
+              <div class="py-2">
+                <a href={translatePath('/about', lang)} class="block px-4 py-2 text-sm text-brand-dark hover:bg-brand-light font-gotham">
+                  {lang === 'es' ? 'Sobre Nosotros' : 'About Us'}
+                </a>
+                <a href={translatePath('/team', lang)} class="block px-4 py-2 text-sm text-brand-dark hover:bg-brand-light font-gotham">
+                  {lang === 'es' ? 'Equipo' : 'Team'}
+                </a>
+                <a href={translatePath('/faq', lang)} class="block px-4 py-2 text-sm text-brand-dark hover:bg-brand-light font-gotham">
+                  {lang === 'es' ? 'Preguntas Frecuentes' : 'FAQ'}
+                </a>
+                <a href={translatePath('/blog', lang)} class="block px-4 py-2 text-sm text-brand-dark hover:bg-brand-light font-gotham">
+                  Blog
+                </a>
+                <a href={translatePath('/contact', lang)} class="block px-4 py-2 text-sm text-brand-dark hover:bg-brand-light font-gotham">
+                  {lang === 'es' ? 'Contáctanos' : 'Contact Us'}
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       
       <div class="flex items-center space-x-4">
+        <!-- Call Button -->
+        <a href="tel:+51928105750" class="hidden md:flex items-center bg-brand-primary text-brand-dark px-4 py-2 rounded-lg hover:bg-brand-accent transition-colors font-gotham font-medium">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          +51 928-105-750
+        </a>
+
+        <!-- Book Now Button -->
+        <a href={translatePath('/booking', lang)} class="hidden md:block bg-brand-secondary text-white px-6 py-2 rounded-lg hover:bg-brand-dark transition-colors font-gotham font-medium">
+          {lang === 'es' ? 'Reserva Ahora' : 'Book Now'}
+        </a>
+
         <LanguageSwitcher />
-        <div class="md:hidden">
-          <button type="button" class="text-brand-secondary hover:text-brand-primary">
+        
+        <div class="lg:hidden">
+          <button type="button" class="text-brand-cream hover:text-brand-primary" id="mobile-menu-button">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -35,8 +106,78 @@ const t = useTranslations(lang);
         </div>
       </div>
     </div>
+
+    <!-- Mobile Menu -->
+    <div class="lg:hidden hidden" id="mobile-menu">
+      <div class="px-2 pt-2 pb-3 space-y-1 bg-white rounded-lg mt-2 shadow-lg">
+        <div class="border-b border-brand-light pb-2 mb-2">
+          <p class="px-3 py-2 text-sm font-medium text-brand-dark font-gotham">{lang === 'es' ? 'Experiencias' : 'Experiences'}</p>
+          <a href={translatePath('/experiences', lang)} class="block px-6 py-2 text-sm text-brand-secondary hover:bg-brand-light font-gotham">
+            {lang === 'es' ? 'La forma de la Casa del Jaguar' : 'The Casa del Jaguar Way'}
+          </a>
+        </div>
+        
+        <a href={translatePath('/resort', lang)} class="block px-3 py-2 text-sm text-brand-dark hover:bg-brand-light font-gotham">
+          {lang === 'es' ? 'Centro Ceremonial' : 'Resort'}
+        </a>
+        <a href={translatePath('/pricing', lang)} class="block px-3 py-2 text-sm text-brand-dark hover:bg-brand-light font-gotham">
+          {lang === 'es' ? 'Precios' : 'Pricing'}
+        </a>
+        <a href={translatePath('/calendar', lang)} class="block px-3 py-2 text-sm text-brand-dark hover:bg-brand-light font-gotham">
+          {lang === 'es' ? 'Calendario' : 'Calendar'}
+        </a>
+        <a href={translatePath('/testimonials', lang)} class="block px-3 py-2 text-sm text-brand-dark hover:bg-brand-light font-gotham">
+          {lang === 'es' ? 'Testimonios' : 'Testimonials'}
+        </a>
+        
+        <div class="border-b border-brand-light pb-2 mb-2">
+          <p class="px-3 py-2 text-sm font-medium text-brand-dark font-gotham">{lang === 'es' ? 'Saber Más' : 'Learn More'}</p>
+          <a href={translatePath('/about', lang)} class="block px-6 py-2 text-sm text-brand-secondary hover:bg-brand-light font-gotham">
+            {lang === 'es' ? 'Sobre Nosotros' : 'About Us'}
+          </a>
+          <a href={translatePath('/team', lang)} class="block px-6 py-2 text-sm text-brand-secondary hover:bg-brand-light font-gotham">
+            {lang === 'es' ? 'Equipo' : 'Team'}
+          </a>
+          <a href={translatePath('/faq', lang)} class="block px-6 py-2 text-sm text-brand-secondary hover:bg-brand-light font-gotham">
+            {lang === 'es' ? 'Preguntas Frecuentes' : 'FAQ'}
+          </a>
+          <a href={translatePath('/blog', lang)} class="block px-6 py-2 text-sm text-brand-secondary hover:bg-brand-light font-gotham">
+            Blog
+          </a>
+          <a href={translatePath('/contact', lang)} class="block px-6 py-2 text-sm text-brand-secondary hover:bg-brand-light font-gotham">
+            {lang === 'es' ? 'Contáctanos' : 'Contact Us'}
+          </a>
+        </div>
+
+        <div class="pt-2 space-y-2">
+          <a href="tel:+51928105750" class="block bg-brand-primary text-brand-dark px-4 py-2 rounded-lg text-center font-gotham font-medium">
+            <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            +51 928-105-750
+          </a>
+          <a href={translatePath('/booking', lang)} class="block bg-brand-secondary text-white px-6 py-2 rounded-lg text-center font-gotham font-medium">
+            {lang === 'es' ? 'Reserva Ahora' : 'Book Now'}
+          </a>
+        </div>
+      </div>
+    </div>
   </nav>
 </header>
+
+<script>
+  // Mobile menu toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  });
+</script>
 
 <style>
   .header-with-banner {
@@ -53,5 +194,13 @@ const t = useTranslations(lang);
     .header-with-banner {
       padding-top: 36px; /* Desktop: matches banner height */
     }
+  }
+
+  /* Dropdown hover effects */
+  .group:hover .group-hover\:opacity-100 {
+    opacity: 1;
+  }
+  .group:hover .group-hover\:visible {
+    visibility: visible;
   }
 </style>
