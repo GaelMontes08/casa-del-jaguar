@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl } from '@/i18n/utils';
+import DiscountBanner from '@/components/DiscountBanner.astro';
 
 export interface Props {
   title: string;
@@ -42,6 +43,7 @@ import { SEO } from 'astro-seo';
     />
   </head>
   <body class="bg-white text-gray-900">
+    <DiscountBanner />
     <slot />
   </body>
 </html>

@@ -1,0 +1,74 @@
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Generate current month and year for discount code
+const now = new Date();
+const monthNames = {
+  es: ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 
+       'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'],
+  en: ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE',
+       'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER']
+};
+
+const currentMonth = monthNames[lang][now.getMonth()];
+const currentYear = now.getFullYear();
+const discountCode = `${currentMonth}${currentYear}`;
+---
+
+<div 
+  id="discount-banner" 
+  class="bg-green-700 text-white text-center py-2 h-9 flex items-center justify-center fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <p class="text-sm font-medium">
+      {lang === 'es' ? (
+        <>
+          Este mes, ahorre <span class="font-bold">$1250</span> con el código: 
+          <span class="font-bold bg-white text-green-700 px-2 py-1 rounded mx-1">{discountCode}</span>. 
+          Llame hoy mismo al <span class="font-bold">+51 928-105-750</span>.
+        </>
+      ) : (
+        <>
+          This month, save <span class="font-bold">$1250</span> with code: 
+          <span class="font-bold bg-white text-green-700 px-2 py-1 rounded mx-1">{discountCode}</span>. 
+          Call today at <span class="font-bold">+51 928-105-750</span>.
+        </>
+      )}
+    </p>
+  </div>
+</div>
+
+<script>
+  // Scroll behavior for discount banner
+  let lastScrollTop = 0;
+  let isScrolling = false;
+  
+  const banner = document.getElementById('discount-banner');
+  if (banner) {
+    // Add padding to body to account for fixed banner
+    document.body.style.paddingTop = '36px';
+    
+    window.addEventListener('scroll', () => {
+      if (!isScrolling) {
+        window.requestAnimationFrame(() => {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          
+          if (scrollTop > lastScrollTop && scrollTop > 50) {
+            // Scrolling down - hide banner
+            banner.style.transform = 'translateY(-100%)';
+          } else {
+            // Scrolling up or at top - show banner
+            banner.style.transform = 'translateY(0)';
+          }
+          
+          lastScrollTop = scrollTop;
+          isScrolling = false;
+        });
+      }
+      isScrolling = true;
+    });
+  }
+</script>

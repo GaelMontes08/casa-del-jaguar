@@ -7,6 +7,11 @@ export const defaultLang = 'es';
 
 export const ui = {
   es: {
+    // Discount Banner
+    'discount.text': 'Este mes, ahorre $1250 con el código:',
+    'discount.call': 'Llame hoy mismo al',
+    'discount.phone': '+51 928-105-750',
+    
     // Navigation
     'nav.home': 'Inicio',
     'nav.about': 'Nosotros',
@@ -74,6 +79,11 @@ export const ui = {
     'footer.copyright': '© 2025 Casa del Jaguar. Todos los derechos reservados.',
   },
   en: {
+    // Discount Banner
+    'discount.text': 'This month, save $1250 with code:',
+    'discount.call': 'Call today at',
+    'discount.phone': '+51 928-105-750',
+    
     // Navigation
     'nav.home': 'Home',
     'nav.about': 'About',
