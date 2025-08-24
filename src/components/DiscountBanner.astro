@@ -20,21 +20,21 @@ const discountCode = `${currentMonth}${currentYear}`;
 
 <div 
   id="discount-banner" 
-  class="bg-brand-primary text-brand-dark text-center py-2 h-9 flex items-center justify-center fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out"
+  class="bg-brand-light text-brand-dark text-center py-2 h-9 flex items-center justify-center fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out"
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-    <p class="text-sm font-medium">
+    <p class="text-sm font-medium font-gotham">
       {lang === 'es' ? (
         <>
           Este mes, ahorre <span class="font-bold">$1250</span> con el código: 
-          <span class="font-bold bg-white text-green-700 px-2 py-1 rounded mx-1">{discountCode}</span>. 
+          <span class="font-bold bg-white text-brand-dark px-2 py-1 rounded mx-1">{discountCode}</span>. 
           Llame hoy mismo al <span class="font-bold">+51 928-105-750</span>.
         </>
       ) : (
         <>
           This month, save <span class="font-bold">$1250</span> with code: 
-          <span class="font-bold bg-white text-green-700 px-2 py-1 rounded mx-1">{discountCode}</span>. 
-          Call today at <span class="font-bold">+51 928-105-750</span>.
+          <span class="font-bold bg-white text-brand-dark px-2 py-1 rounded mx-1">{discountCode}</span>. 
+          Call <span class="font-bold">+51 928-105-750</span> today.
         </>
       )}
     </p>

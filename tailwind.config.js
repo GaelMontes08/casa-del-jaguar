@@ -13,14 +13,18 @@ export default {
         },
         brand: {
           cream: '#F2E8D5',
-          light: '#F2CF8D',
-          gold: '#F2AB27',
-          brown: '#D99D55',
-          dark: '#402A1E',
+          light: '#F2E8D5',    // Light cream
+          accent: '#F2CF8D',   // Light golden yellow
+          primary: '#F2AB27',  // Main golden yellow
+          secondary: '#D99D55', // Golden brown
+          dark: '#402A1E',     // Dark brown
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['gotham', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        serif: ['Georgia', 'serif'],
+        gotham: ['gotham', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        georgia: ['Georgia', 'serif'],
       },
     },
   },

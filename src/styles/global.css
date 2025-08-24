@@ -9,7 +9,24 @@
   --color-brand-dark: #402A1E;
 }
 
+/* Typography Settings */
+body {
+  font-family: 'gotham', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Georgia', serif;
+}
+
 /* Custom utility classes */
+.font-gotham {
+  font-family: 'gotham', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.font-georgia {
+  font-family: 'Georgia', serif;
+}
+
 .text-brand-gold {
   color: var(--color-brand-gold);
 }

@@ -9,31 +9,31 @@ const t = useTranslations(lang);
   <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
       <div class="col-span-1 md:col-span-2">
-        <h3 class="text-lg font-semibold mb-4 text-brand-primary">Casa del Jaguar</h3>
-        <p class="text-brand-light opacity-90 mb-4">
+        <h3 class="text-lg font-semibold mb-4 text-brand-primary font-georgia">Casa del Jaguar</h3>
+        <p class="text-brand-light opacity-90 mb-4 font-gotham">
           {t('footer.description')}
         </p>
       </div>
       
       <div>
-        <h4 class="text-md font-semibold mb-4 text-brand-primary">{t('footer.links')}</h4>
+        <h4 class="text-md font-semibold mb-4 text-brand-primary font-georgia">{t('footer.links')}</h4>
         <ul class="space-y-2">
-          <li><a href={translatePath('/', lang)} class="text-brand-light opacity-90 hover:text-brand-primary hover:opacity-100 transition-colors">{t('nav.home')}</a></li>
-          <li><a href={translatePath('/about', lang)} class="text-brand-light opacity-90 hover:text-brand-primary hover:opacity-100 transition-colors">{t('nav.about')}</a></li>
-          <li><a href={translatePath('/services', lang)} class="text-brand-light opacity-90 hover:text-brand-primary hover:opacity-100 transition-colors">{t('nav.services')}</a></li>
-          <li><a href={translatePath('/contact', lang)} class="text-brand-light opacity-90 hover:text-brand-primary hover:opacity-100 transition-colors">{t('nav.contact')}</a></li>
+          <li><a href={translatePath('/', lang)} class="text-brand-light opacity-90 hover:text-brand-primary hover:opacity-100 transition-colors font-gotham">{t('nav.home')}</a></li>
+          <li><a href={translatePath('/about', lang)} class="text-brand-light opacity-90 hover:text-brand-primary hover:opacity-100 transition-colors font-gotham">{t('nav.about')}</a></li>
+          <li><a href={translatePath('/services', lang)} class="text-brand-light opacity-90 hover:text-brand-primary hover:opacity-100 transition-colors font-gotham">{t('nav.services')}</a></li>
+          <li><a href={translatePath('/contact', lang)} class="text-brand-light opacity-90 hover:text-brand-primary hover:opacity-100 transition-colors font-gotham">{t('nav.contact')}</a></li>
         </ul>
       </div>
       
       <div>
-        <h4 class="text-md font-semibold mb-4 text-brand-primary">{t('footer.contact')}</h4>
-        <p class="text-brand-light opacity-90">Email: info@casadeljaguar.com</p>
-        <p class="text-brand-light opacity-90">Tel: +1 (555) 123-4567</p>
+        <h4 class="text-md font-semibold mb-4 text-brand-primary font-georgia">{t('footer.contact')}</h4>
+        <p class="text-brand-light opacity-90 font-gotham">Email: info@casadeljaguar.com</p>
+        <p class="text-brand-light opacity-90 font-gotham">Tel: +1 (555) 123-4567</p>
       </div>
     </div>
     
     <div class="mt-8 pt-8 border-t border-brand-secondary border-opacity-50 text-center">
-      <p class="text-brand-light opacity-75">{t('footer.copyright')}</p>
+      <p class="text-brand-light opacity-75 font-gotham">{t('footer.copyright')}</p>
     </div>
   </div>
 </footer>
