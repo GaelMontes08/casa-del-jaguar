@@ -26,7 +26,7 @@ const t = useTranslations('es');
           </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20 scroll-animate">
           <div class="bg-brand-gold rounded-2xl px-8 pt-2 pb-4 shadow-lg hover:shadow-xl transition-shadow duration-300">
             <div class="text-4xl md:text-5xl font-bold text-white mb-4 font-georgia">
               1,000+
@@ -57,19 +57,16 @@ const t = useTranslations('es');
       </div>
     </section>
 
-    <!-- Testimonial Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 px-4 md:px-8">
-        <!-- Portrait with gradient background -->
-        <div class="relative w-full md:w-1/2 flex justify-center items-center">
-          <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-brand-gold/30 to-brand-dark/10 blur-2xl scale-110 z-0"></div>
-          <img src="/img/maestro-chaman-denis-montes.webp" alt="Maestro Chaman Denis Montes" class="relative z-10 rounded-3xl shadow-xl w-72 h-72 object-cover object-top border-4 border-white" loading="lazy" />
+        <section class="py-15 bg-brand-cream relative overflow-hidden scroll-animate">
+      <div class="absolute top-1/2 left-0 w-[600px] h-[600px] bg-gradient-to-br from-[#F2CF8D] to-[#ffefbb] rounded-full transform translate-x-[610px] -translate-y-[500px]"></div>
+      
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-end gap-16 px-4 md:px-8 relative z-10">
+        <div class="w-full md:w-1/2 flex justify-end items-end">
+          <img src="/img/maestro-chaman-denis-montes.webp" alt="Maestro Chaman Denis Montes" class="w-full h-[500px] object-cover transform translate-y-[60px]" loading="lazy" />
         </div>
-        <!-- Testimonial Text -->
         <div class="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left">
-          <svg class="w-10 h-10 text-brand-gold mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M7.17 6A5.001 5.001 0 002 11c0 2.21 1.79 4 4 4h.17A3.001 3.001 0 019 18v1a1 1 0 01-1 1H5a1 1 0 01-1-1v-1c0-3.31 2.69-6 6-6h1a1 1 0 011 1v1a1 1 0 01-1 1h-1c-1.1 0-2 .9-2 2v1a1 1 0 001 1h2a1 1 0 001-1v-1c0-2.21-1.79-4-4-4H7.17z"/></svg>
           <blockquote class="text-2xl md:text-3xl font-georgia text-brand-dark mb-6 font-semibold leading-snug">
-            “Llegué a Casa del Jaguar buscando sanar heridas profundas y encontré mucho más: libertad, paz y una nueva alegría de vivir. Aquí, junto a cientos de almas, he sido testigo de verdaderas transformaciones. Si buscas un cambio real, este es el lugar donde renace el espíritu.”
+            “Fui sanado de una vida de sufrimiento. Hoy soy feliz y libre. Casa del Jaguar ha ayudado a más de 1,000 almas a recibir su milagro.”
           </blockquote>
           <div class="text-brand-dark text-base md:text-lg font-gotham mb-8 opacity-70">
             Casa del Jaguar ha acompañado a cientos de personas en su propio proceso de sanación y transformación.
@@ -77,7 +74,7 @@ const t = useTranslations('es');
           <div class="text-sm text-brand-dark opacity-60 mb-8 font-gotham">
             — Denis Montes, Maestro Chaman & Ingeniero Químico
           </div>
-          <a href="/about" class="inline-block bg-brand-gold text-brand-dark px-8 py-3 rounded-full font-bold text-lg shadow-lg hover:bg-brand-dark hover:text-white transition-all duration-300 font-gotham uppercase tracking-wide">
+          <a href="/about" class="button-story inline-block bg-brand-gold text-brand-dark px-8 py-3 rounded-full font-bold text-lg shadow-lg font-gotham uppercase tracking-wide hover:scale-110">
             Nuestra Historia
           </a>
         </div>
@@ -86,3 +83,11 @@ const t = useTranslations('es');
     
   </main>
 </Layout>
+
+<style>
+  .button-story:hover {
+    background-color: #402A1E;
+    color: white;
+    transition: all 0.2s ease;
+  }
+</style>

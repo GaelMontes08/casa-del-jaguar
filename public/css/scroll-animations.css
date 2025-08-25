@@ -1,0 +1,62 @@
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-animate.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.grid > div {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.grid.animate-in > div:nth-child(1) {
+  animation: slideInUp 0.6s ease-out 0.1s forwards;
+}
+
+.grid.animate-in > div:nth-child(2) {
+  animation: slideInUp 0.6s ease-out 0.3s forwards;
+}
+
+.grid.animate-in > div:nth-child(3) {
+  animation: slideInUp 0.6s ease-out 0.5s forwards;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Testimonial section animations */
+.testimonial-image {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.testimonial-text {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.testimonial-image.animate-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.testimonial-text.animate-in {
+  opacity: 1;
+  transform: translateX(0);
+}
