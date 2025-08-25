@@ -5,23 +5,20 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<section class="hero-section h-[665px] z-10">
+<section class="hero-section relative h-[665px] -mt-16 pt-16 overflow-hidden bg-gradient-to-r from-brand-dark to-brand-brown">
   <video 
-    class="object-cover overflow-hidden"
+    id="hero-video"
+    class="hero-video"
     autoplay 
     muted 
     loop
     playsinline
     preload="auto"
-    poster=""
   >
     <source src="/hero.mp4" type="video/mp4">
-    Your browser does not support the video tag.
   </video>
 
-  <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-
-  <div class="relative flex items-center justify-center h-full">
+  <div class="relative z-20 flex items-center justify-center h-full">
     <div class="text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-georgia leading-tight">
         {lang === 'es' ? 'Ábrete a los milagros' : 'Awaken to miracles'}
@@ -56,25 +53,35 @@ const t = useTranslations(lang);
   </div>
 </section>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('hero-video') as HTMLVideoElement;
+    if (video) {
+      video.play().catch(function(error: any) {
+        console.log('Video autoplay failed, trying to play manually:', error);
+      });
+    }
+  });
+</script>
+
 <style>
   .hero-section {
     position: relative;
     width: 100%;
-    height: 665px;
+    height: 550px;
+    overflow: hidden;
   }
 
-  .hero-section video {
+  .hero-video {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    z-index: 1;
   }
-  /* Content animation */
+
   @keyframes fadeInUp {
     from {
       opacity: 0;
