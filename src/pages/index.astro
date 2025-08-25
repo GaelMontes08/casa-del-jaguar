@@ -1,14 +1,11 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import Header from '@/components/Header.astro';
-import Footer from '@/components/Footer.astro';
 import { useTranslations } from '@/i18n/utils';
 
 const t = useTranslations('es');
 ---
 
 <Layout title={t('home.title')} description={t('home.subtitle')}>
-  <Header />
   
   <main>
     <section class="bg-gradient-to-b from-brand-light to-white py-20">
@@ -50,6 +47,4 @@ const t = useTranslations('es');
       </div>
     </section>
   </main>
-
-  <Footer />
 </Layout>

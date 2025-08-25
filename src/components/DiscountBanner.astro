@@ -4,7 +4,6 @@ import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// Generate current month and year for discount code
 const now = new Date();
 const monthNames = {
   es: ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 
@@ -20,7 +19,7 @@ const discountCode = `${currentMonth}${currentYear}`;
 
 <div 
   id="discount-banner" 
-  class="bg-brand-light text-brand-dark text-center discount-banner flex items-center justify-center fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out"
+  class="bg-brand-light text-brand-dark text-center discount-banner flex items-center justify-center relative z-50 transition-all duration-300 ease-in-out"
 >
   <div class="w-full max-w-[1920px] mx-auto px-2 sm:px-4 lg:px-8">
     <div class="text-xs sm:text-sm font-medium font-gotham leading-tight py-2">
@@ -45,21 +44,53 @@ const discountCode = `${currentMonth}${currentYear}`;
   let isScrolling = false;
   
   const banner = document.getElementById('discount-banner');
-  if (banner) {
-    // Add padding to body to account for fixed banner
-    document.body.style.paddingTop = '36px';
+  const header = document.getElementById('main-header');
+  
+  if (banner && header) {
+    // Get banner height for calculations
+    const getBannerHeight = () => banner.getBoundingClientRect().height;
     
     window.addEventListener('scroll', () => {
       if (!isScrolling) {
         window.requestAnimationFrame(() => {
           const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const bannerHeight = getBannerHeight();
           
           if (scrollTop > lastScrollTop && scrollTop > 50) {
             // Scrolling down - hide banner
             banner.style.transform = 'translateY(-100%)';
+            banner.style.position = 'fixed';
+            banner.style.top = '0';
+            banner.style.left = '0';
+            banner.style.right = '0';
+            banner.style.zIndex = '50';
+            
+            // Header sticks to top when banner is hidden
+            header.style.top = '0';
           } else {
             // Scrolling up or at top - show banner
             banner.style.transform = 'translateY(0)';
+            
+            if (scrollTop <= 50) {
+              // Return to normal block position when near top
+              banner.style.position = 'relative';
+              banner.style.top = 'auto';
+              banner.style.left = 'auto';
+              banner.style.right = 'auto';
+              
+              // Header should be pushed down by banner height
+              header.style.top = 'auto';
+            } else {
+              // Keep fixed position when scrolling up but not at top
+              banner.style.position = 'fixed';
+              banner.style.top = '0';
+              banner.style.left = '0';
+              banner.style.right = '0';
+              banner.style.zIndex = '50';
+              
+              // Header should stick below the banner
+              header.style.top = `${bannerHeight}px`;
+            }
           }
           
           lastScrollTop = scrollTop;
@@ -68,6 +99,12 @@ const discountCode = `${currentMonth}${currentYear}`;
       }
       isScrolling = true;
     });
+    
+    // Initial setup
+    const initialBannerHeight = getBannerHeight();
+    if (window.pageYOffset <= 50) {
+      header.style.top = 'auto';
+    }
   }
 </script>
 
