@@ -1,11 +1,13 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Hero from '@/components/Hero.astro';
 import { useTranslations } from '@/i18n/utils';
 
 const t = useTranslations('es');
 ---
 
 <Layout title={t('home.title')} description={t('home.subtitle')}>
+  <Hero />
   
   <main>
     <section class="bg-gradient-to-b from-brand-light to-white py-20">

@@ -1,0 +1,92 @@
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section class="hero-section h-[665px] z-10">
+  <video 
+    class="object-cover overflow-hidden"
+    autoplay 
+    muted 
+    loop
+    playsinline
+    preload="auto"
+    poster=""
+  >
+    <source src="/hero.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+
+  <div class="relative flex items-center justify-center h-full">
+    <div class="text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-georgia leading-tight">
+        {lang === 'es' ? 'Ábrete a los milagros' : 'Awaken to miracles'}
+      </h1>
+
+      <p class="text-lg md:text-xl lg:text-2xl mb-8 font-gotham leading-relaxed opacity-90">
+        {lang === 'es' 
+          ? 'La Casa del Jaguar es un exclusivo retiro de lujo con todo incluido de medicina ancestral' 
+          : 'Casa del Jaguar is a leading all-inclusive luxury plant medicine retreat'
+        }
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a 
+          href="/booking" 
+          class="bg-brand-gold text-brand-dark px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-light transition-colors duration-300 font-gotham shadow-lg"
+        >
+          {lang === 'es' ? 'Reserva Ahora' : 'Book Now'}
+        </a>
+        
+        <button 
+          id="watch-video-btn"
+          class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-brand-dark transition-all duration-300 font-gotham flex items-center gap-2"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+          </svg>
+          {lang === 'es' ? 'Mira el video' : 'Watch the Video'}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    width: 100%;
+    height: 665px;
+  }
+
+  .hero-section video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  /* Content animation */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero-content {
+    animation: fadeInUp 1s ease-out;
+  }
+</style>
