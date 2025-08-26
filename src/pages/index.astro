@@ -11,7 +11,7 @@ const t = useTranslations('es');
   <Hero />
   <main>
     <section class="py-20 bg-gradient-to-b from-brand-cream to-white">
-      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div class="max-w-4xl mx-auto mb-16">
           <h2 class="text-4xl md:text-5xl font-bold text-brand-dark mb-8 font-georgia leading-tight">
             Únete a un viaje transformador que <span class="text-brand-gold">cambiará tu vida</span>
@@ -57,15 +57,15 @@ const t = useTranslations('es');
       </div>
     </section>
 
-    <section class="pt-15 md:py-15 bg-brand-cream relative overflow-hidden scroll-animate">
+    <section class="pt-15 md:py-15 bg-gradient-to-r from-[#fdf6e7] to-[#fdf9f1] relative overflow-hidden scroll-animate">
       <div class="absolute top-1/2 left-0 w-[600px] h-[600px] bg-gradient-to-br from-[#F2CF8D] to-[#ffefbb] rounded-full transform -translate-x-[20px] -translate-y-[800px] md:translate-x-[610px] md:-translate-y-[500px]"></div>
       
-      <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-end gap-16 px-4 md:px-8 relative z-10">
+      <div class="max-w-[1500px] mx-auto flex flex-col md:flex-row items-end gap-16 px-4 md:px-8 relative z-10">
         <div class="w-full md:w-1/2 flex justify-end items-end order-2 md:order-1">
           <img src="/img/maestro-chaman-denis-montes.webp" alt="Maestro Chaman Denis Montes" class="w-full h-[500px] object-cover transform md:translate-y-[60px]" loading="lazy" />
         </div>
         <div class="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left order-1 md:order-2">
-          <blockquote class="text-2xl md:text-3xl font-georgia text-brand-dark mb-6 font-semibold leading-snug">
+          <blockquote class="text-2xl md:text-4xl font-georgia text-brand-dark mb-6 font-semibold leading-snug">
             “Fui sanado de una vida de sufrimiento. Hoy soy feliz y libre. Casa del Jaguar ha ayudado a más de 1,000 almas a recibir su milagro.”
           </blockquote>
           <div class="text-brand-dark text-base md:text-lg font-gotham mb-8 opacity-70">
@@ -74,13 +74,87 @@ const t = useTranslations('es');
           <div class="text-sm text-brand-dark opacity-60 mb-8 font-gotham">
             — Denis Montes, Maestro Chaman & Ingeniero Químico
           </div>
-          <a href="/about" class="button-story inline-block bg-brand-gold text-brand-dark px-8 py-3 rounded-full font-bold text-lg shadow-lg font-gotham uppercase tracking-wide hover:scale-110">
+          <a href="/about" class="button-story inline-block bg-brand-gold text-brand-dark px-8 py-3 rounded-full font-bold text-lg shadow-lg font-gotham uppercase tracking-wide hover:scale-110 transition-all">
             Nuestra Historia
           </a>
         </div>
       </div>
     </section>
-    
+
+    <section class="py-20 bg-gradient-to-l from-[#fdf6e7] to-[#fdf9f1] scroll-animate relative overflow-hidden">
+      
+      <div class="absolute top-1/2 right-0 w-[600px] h-[600px] bg-gradient-to-br from-[#F2CF8D] to-[#ffefbb] rounded-full transform -translate-x-[20px] -translate-y-[800px] md:-translate-x-[150px] md:-translate-y-[220px]"></div>
+
+      <div class="max-w-[1500px] mx-auto flex flex-col md:flex-row items-center gap-16 px-4 md:px-8 relative z-10">
+        <div class="w-full md:w-1/2 space-y-8">
+          <h2 class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia leading-tight">
+            Sana tu <span class="text-brand-gold">mente</span>, <span class="text-brand-gold">cuerpo</span> y <span class="text-brand-gold">alma</span>
+          </h2>
+          
+          <div class="text-lg md:text-[19px] text-brand-dark font-gotham leading-relaxed space-y-4">
+            <p>
+              Nuestro programa está diseñado para <strong>acelerar el autodescubrimiento</strong> y proporcionar a los huéspedes las herramientas necesarias para comprender e integrar sus experiencias transformadoras.
+            </p>
+            
+            <p>
+              Las <strong>ceremonias con medicina ancestral</strong> se complementan con prácticas modernas como <strong>yoga, respiración consciente, meditación, Hemy-Sync</strong> y talleres integrativos que profundizan el proceso de sanación.
+            </p>
+
+            <p class="text-base opacity-70">
+              Nuestros retiros se realizan regularmente, ofreciendo flexibilidad para que puedas unirte cuando mejor se adapte a tu horario.
+            </p>
+          </div>
+          
+          <div class="pt-4">
+            <a href="/casa-del-jaguar-way" class="inline-block bg-brand-dark text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl font-gotham uppercase tracking-wide hover:bg-brand-gold hover:text-brand-dark transition-all duration-300 transform hover:scale-105">
+              Descubre el Camino
+            </a>
+          </div>
+        </div>
+        
+        <div class="w-full md:w-1/2 flex justify-center">
+          <img src="/img/ayahuasca-cabeza-clava.webp" alt="Medicina Ancestral - Cabeza Clava" class="w-[500px] max-w-lg h-[600px] object-cover rounded-md shadow-black shadow-lg" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 bg-gradient-to-r from-[#fdf6e7] to-[#fdf9f1] scroll-animate relative overflow-hidden">
+      
+      <div class="absolute top-1/2 left-0 w-[600px] h-[600px] bg-gradient-to-bl from-[#F2CF8D] to-[#ffefbb] rounded-full transform translate-x-[20px] -translate-y-[800px] md:translate-x-[150px] md:-translate-y-[250px]"></div>
+      
+      <div class="max-w-[1500px] mx-auto flex flex-col md:flex-row items-center gap-16 px-4 md:px-8 relative z-10">
+        <div class="w-full md:w-1/2 flex justify-center order-2 md:order-1">
+          <img src="/img/maloca-ceremonial.webp" alt="Maloca Ceremonial - Casa del Jaguar" class="w-full max-w-lg h-[600px] object-cover rounded-md shadow-black shadow-lg" loading="lazy" />
+        </div>
+        
+        <div class="w-full md:w-1/2 space-y-8 order-1 md:order-2">
+          <h2 class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia leading-tight">
+            Un <span class="text-brand-gold">santuario</span> en el corazón de la <span class="text-brand-gold">Amazonía</span>
+          </h2>
+          
+          <div class="text-lg md:text-[19px] text-brand-dark font-gotham leading-relaxed space-y-4">
+            <p>
+              Nuestro resort de lujo está diseñado como un <strong>santuario sagrado</strong> donde la naturaleza y la comodidad se encuentran en perfecta armonía, creando el ambiente ideal para tu transformación personal.
+            </p>
+            
+            <p>
+              La <strong>Maloca ceremonial</strong> es el corazón espiritual de Casa del Jaguar, un espacio sagrado construido con materiales naturales donde se realizan las ceremonias de medicina ancestral bajo la guía de nuestros maestros experimentados.
+            </p>
+            
+            <p class="text-base opacity-70">
+              Alojamiento exclusivo, gastronomía consciente y espacios diseñados para la contemplación y el crecimiento personal.
+            </p>
+          </div>
+          
+          <div class="pt-4">
+            <a href="/resort" class="inline-block bg-brand-dark text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl font-gotham uppercase tracking-wide hover:bg-brand-gold hover:text-brand-dark transition-all duration-300 transform hover:scale-105">
+              Conoce el Resort
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 </Layout>
 
@@ -88,6 +162,6 @@ const t = useTranslations('es');
   .button-story:hover {
     background-color: #402A1E;
     color: white;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease-in-out;
   }
 </style>
