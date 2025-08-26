@@ -1,0 +1,169 @@
+---
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  buttonText?: string;
+  className?: string;
+  labels?: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    submit: string;
+    privacy: string;
+    firstNamePlaceholder: string;
+    lastNamePlaceholder: string;
+    emailPlaceholder: string;
+    phonePlaceholder: string;
+  };
+}
+
+const { 
+  title = "Reserva tu experiencia",
+  subtitle = "Completa el formulario y nos pondremos en contacto contigo para confirmar tu reserva",
+  buttonText = "Enviar solicitud",
+  className = "",
+  labels = {
+    firstName: "Nombre *",
+    lastName: "Apellido *", 
+    email: "Correo electrónico *",
+    phone: "Número de teléfono *",
+    submit: "Enviar solicitud",
+    privacy: "Al enviar este formulario, aceptas que nos pongamos en contacto contigo para procesar tu reserva.",
+    firstNamePlaceholder: "Tu nombre",
+    lastNamePlaceholder: "Tu apellido",
+    emailPlaceholder: "tu@email.com",
+    phonePlaceholder: "123456789"
+  }
+} = Astro.props;
+---
+
+<div class={`booking-form-container ${className}`}>
+  {title && (
+    <div class="text-center mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold text-brand-dark font-georgia mb-4 leading-tight">
+        {title}
+      </h2>
+      {subtitle && (
+        <p class="text-gray-600 text-lg font-gotham max-w-2xl mx-auto">
+          {subtitle}
+        </p>
+      )}
+    </div>
+  )}
+
+  <form class="booking-form max-w-2xl mx-auto bg-white rounded-2xl shadow-xl p-8 border border-gray-100 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div class="form-group">
+        <label for="firstName" class="block text-sm font-semibold text-brand-dark mb-2 font-gotham">
+          {labels.firstName}
+        </label>
+        <input
+          type="text"
+          id="firstName"
+          name="firstName"
+          required
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F2AB27] focus:border-transparent transition-all duration-200 font-gotham text-gray-700 bg-gray-50 focus:bg-white"
+          placeholder={labels.firstNamePlaceholder}
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="lastName" class="block text-sm font-semibold text-brand-dark mb-2 font-gotham">
+          {labels.lastName}
+        </label>
+        <input
+          type="text"
+          id="lastName"
+          name="lastName"
+          required
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F2AB27] focus:border-transparent transition-all duration-200 font-gotham text-gray-700 bg-gray-50 focus:bg-white"
+          placeholder={labels.lastNamePlaceholder}
+        />
+      </div>
+    </div>
+
+    <div class="form-group mb-6">
+      <label for="email" class="block text-sm font-semibold text-brand-dark mb-2 font-gotham">
+        {labels.email}
+      </label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F2AB27] focus:border-transparent transition-all duration-200 font-gotham text-gray-700 bg-gray-50 focus:bg-white"
+        placeholder={labels.emailPlaceholder}
+      />
+    </div>
+
+    <div class="form-group mb-8">
+      <label for="phone" class="block text-sm font-semibold text-brand-dark mb-2 font-gotham">
+        {labels.phone}
+      </label>
+      <div class="flex gap-3">
+        <select
+          id="countryCode"
+          name="countryCode"
+          required
+          class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F2AB27] focus:border-transparent transition-all duration-200 font-gotham text-gray-700 bg-gray-50 focus:bg-white min-w-[120px]"
+        >
+          <option value="+51">🇵🇪 +51</option>
+          <option value="+1">🇺🇸 +1</option>
+          <option value="+44">🇬🇧 +44</option>
+          <option value="+34">🇪🇸 +34</option>
+          <option value="+33">🇫🇷 +33</option>
+          <option value="+49">🇩🇪 +49</option>
+          <option value="+39">🇮🇹 +39</option>
+          <option value="+55">🇧🇷 +55</option>
+          <option value="+52">🇲🇽 +52</option>
+          <option value="+54">🇦🇷 +54</option>
+          <option value="+56">🇨🇱 +56</option>
+          <option value="+57">🇨🇴 +57</option>
+          <option value="+593">🇪🇨 +593</option>
+          <option value="+58">🇻🇪 +58</option>
+          <option value="+506">🇨🇷 +506</option>
+          <option value="+507">🇵🇦 +507</option>
+        </select>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          required
+          class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F2AB27] focus:border-transparent transition-all duration-200 font-gotham text-gray-700 bg-gray-50 focus:bg-white"
+          placeholder={labels.phonePlaceholder}
+        />
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="w-full bg-brand-dark hover:bg-opacity-90 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-[1.02] focus:ring-4 focus:ring-[#F2AB27] focus:ring-opacity-50 font-gotham text-lg shadow-lg hover:shadow-xl"
+    >
+      {labels.submit}
+    </button>
+
+    <p class="text-xs text-gray-500 text-center mt-4 font-gotham">
+      {labels.privacy}
+    </p>
+  </form>
+</div>
+
+<style>
+  .booking-form-container {
+    @apply relative;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus {
+  }
+
+  .form-group input::placeholder {
+  }
+
+  /* Custom styles for better mobile experience */
+  @media (max-width: 768px) {
+    .booking-form {
+    }
+  }
+</style>
