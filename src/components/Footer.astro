@@ -3,37 +3,386 @@ import { getLangFromUrl, useTranslations, translatePath } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+export interface Props {
+  className?: string;
+}
+
+const { className = "" } = Astro.props;
+
+const footerContent = {
+  es: {
+    mainMenu: "Menú Principal",
+    help: "Ayuda",
+    callToday: "Llama Hoy",
+    newsletter: "Suscríbete",
+    mainMenuLinks: [
+      { href: '/', label: 'Inicio' },
+      { href: '/experiencia', label: 'Experiencia' },
+      { href: '/retiro', label: 'Retiro' },
+      { href: '/historia', label: 'Nuestra Historia' },
+      { href: '/testimonios', label: 'Testimonios' },
+      { href: '/blog', label: 'Blog' },
+      { href: '/galeria', label: 'Galería' },
+      { href: '/seguridad', label: 'Seguridad' }
+    ],
+    helpLinks: [
+      { href: '/reservar', label: 'Reservar Ahora' },
+      { href: '/contacto', label: 'Contáctanos' },
+      { href: '/preguntas', label: 'Preguntas Frecuentes' },
+      { href: '/afiliados', label: 'Afiliados' },
+      { href: '/prensa', label: 'En los Medios' },
+      { href: '/preparacion', label: 'Preparación' },
+      { href: '/soporte', label: 'Soporte' }
+    ],
+    businessHours: {
+      weekdays: "Lunes–Viernes:",
+      weekend: "Sábado–Domingo:"
+    },
+    newsletterForm: {
+      firstName: "Nombre",
+      lastName: "Apellido",
+      email: "Correo Electrónico",
+      consent: "Acepto recibir correos de marketing y acepto los",
+      terms: "Términos",
+      privacy: "Política de Privacidad",
+      subscribe: "Suscribirse"
+    },
+    copyright: "© 2025 Casa del Jaguar. Todos los derechos reservados.",
+    legal: {
+      terms: "Términos de Servicio",
+      privacy: "Política de Privacidad"
+    }
+  },
+  en: {
+    mainMenu: "Main Menu",
+    help: "Help",
+    callToday: "Call Today",
+    newsletter: "Newsletter Sign-Up",
+    mainMenuLinks: [
+      { href: '/en/', label: 'Home' },
+      { href: '/en/experience', label: 'Experience' },
+      { href: '/en/retreat', label: 'Retreat' },
+      { href: '/en/our-story', label: 'Our Story' },
+      { href: '/en/testimonials', label: 'Testimonials' },
+      { href: '/en/blog', label: 'Blog' },
+      { href: '/en/gallery', label: 'Gallery' },
+      { href: '/en/safety', label: 'Safety' }
+    ],
+    helpLinks: [
+      { href: '/en/book-now', label: 'Book Now' },
+      { href: '/en/contact', label: 'Contact Us' },
+      { href: '/en/faq', label: 'FAQ' },
+      { href: '/en/affiliates', label: 'Affiliates' },
+      { href: '/en/media', label: 'In the Media' },
+      { href: '/en/preparation', label: 'Preparation' },
+      { href: '/en/support', label: 'Support' }
+    ],
+    businessHours: {
+      weekdays: "Monday–Friday:",
+      weekend: "Saturday–Sunday:"
+    },
+    newsletterForm: {
+      firstName: "First Name",
+      lastName: "Last Name",
+      email: "Email Address",
+      consent: "I agree to receive marketing emails and accept the",
+      terms: "Terms",
+      privacy: "Privacy Policy",
+      subscribe: "Subscribe"
+    },
+    copyright: "© 2025 Casa del Jaguar. All rights reserved.",
+    legal: {
+      terms: "Terms of Service",
+      privacy: "Privacy Policy"
+    }
+  }
+};
+
+const content = footerContent[lang] || footerContent.es;
 ---
 
-<footer class="bg-brand-dark text-brand-light">
-  <div class="w-full max-w-[1920px] mx-auto py-12 px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-      <div class="col-span-1 md:col-span-2">
-        <h3 class="text-lg font-semibold mb-4 text-brand-primary font-georgia">Casa del Jaguar</h3>
-        <p class="text-brand-light opacity-90 mb-4 font-gotham">
-          {t('footer.description')}
-        </p>
-      </div>
-      
-      <div>
-        <h4 class="text-md font-semibold mb-4 text-brand-primary font-georgia">{t('footer.links')}</h4>
-        <ul class="space-y-2">
-          <li><a href={translatePath('/', lang)} class="text-brand-light opacity-90 hover:text-brand-primary hover:opacity-100 transition-colors font-gotham">{t('nav.home')}</a></li>
-          <li><a href={translatePath('/about', lang)} class="text-brand-light opacity-90 hover:text-brand-primary hover:opacity-100 transition-colors font-gotham">{t('nav.about')}</a></li>
-          <li><a href={translatePath('/services', lang)} class="text-brand-light opacity-90 hover:text-brand-primary hover:opacity-100 transition-colors font-gotham">{t('nav.services')}</a></li>
-          <li><a href={translatePath('/contact', lang)} class="text-brand-light opacity-90 hover:text-brand-primary hover:opacity-100 transition-colors font-gotham">{t('nav.contact')}</a></li>
-        </ul>
-      </div>
-      
-      <div>
-        <h4 class="text-md font-semibold mb-4 text-brand-primary font-georgia">{t('footer.contact')}</h4>
-        <p class="text-brand-light opacity-90 font-gotham">Email: info@casadeljaguar.com</p>
-        <p class="text-brand-light opacity-90 font-gotham">Tel: +1 (555) 123-4567</p>
+<footer class={`bg-brand-dark text-brand-light ${className} scroll-animate`}>
+  <div class="w-full max-w-[1500px] mx-auto py-12 px-6 lg:px-8">
+    <div class="max-w-[1500px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        
+        <div class="footer-column" data-accordion="main-menu">
+          <h3 class="footer-title font-georgia text-lg font-semibold mb-6 text-[#F2CF8D] lg:cursor-default cursor-pointer flex items-center justify-between">
+            {content.mainMenu}
+            <span class="lg:hidden accordion-icon transition-transform duration-300">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </h3>
+          <div class="footer-content max-h-0 lg:max-h-none overflow-hidden lg:overflow-visible transition-all duration-300">
+            <ul class="space-y-3">
+              {content.mainMenuLinks.map(link => (
+                <li><a href={link.href} class="footer-link">{link.label}</a></li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-column" data-accordion="help">
+          <h3 class="footer-title font-georgia text-lg font-semibold mb-6 text-[#F2CF8D] lg:cursor-default cursor-pointer flex items-center justify-between">
+            {content.help}
+            <span class="lg:hidden accordion-icon transition-transform duration-300">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </h3>
+          <div class="footer-content max-h-0 lg:max-h-none overflow-hidden lg:overflow-visible transition-all duration-300">
+            <ul class="space-y-3">
+              {content.helpLinks.map(link => (
+                <li><a href={link.href} class="footer-link">{link.label}</a></li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-column" data-accordion="contact">
+          <h3 class="footer-title font-georgia text-lg font-semibold mb-6 text-[#F2CF8D] lg:cursor-default cursor-pointer flex items-center justify-between">
+            {content.callToday}
+            <span class="lg:hidden accordion-icon transition-transform duration-300">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </h3>
+          <div class="footer-content max-h-0 lg:max-h-none overflow-hidden lg:overflow-visible transition-all duration-300">
+            <div class="space-y-4">
+              <div>
+                <a href="tel:+51917811803" class="text-[#F2CF8D] hover:text-[#F2E8D5] transition-colors text-2xl font-semibold font-gotham">
+                  +51 917-811-803
+                </a>
+              </div>
+              <div class="text-sm font-gotham text-[#F2E8D5] space-y-2">
+                <p><strong>{content.businessHours.weekdays}</strong><br>6 am–8 pm PT / 9 am–11 pm ET</p>
+                <p><strong>{content.businessHours.weekend}</strong><br>6 am–5 pm PT / 9 am–8 pm ET</p>
+              </div>
+              <div class="pt-2">
+                <a href="mailto:info@casadeljaguar.com" class="footer-link text-sm">
+                  info@casadeljaguar.com
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-column scroll-animate" data-accordion="newsletter">
+          <h3 class="footer-title font-georgia text-lg font-semibold mb-6 text-[#F2CF8D] lg:cursor-default cursor-pointer flex items-center justify-between">
+            {content.newsletter}
+            <span class="lg:hidden accordion-icon transition-transform duration-300">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </h3>
+          <div class="footer-content max-h-0 lg:max-h-none overflow-hidden lg:overflow-visible transition-all duration-300">
+            <form class="newsletter-form space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-3">
+                <div>
+                  <label for="newsletter-first-name" class="block text-sm font-gotham text-[#F2E8D5] mb-1">{content.newsletterForm.firstName}</label>
+                  <input 
+                    type="text" 
+                    id="newsletter-first-name" 
+                    name="firstName" 
+                    required
+                    class="w-full px-3 py-2 text-sm bg-brand-light text-brand-dark rounded border border-transparent focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary transition-colors"
+                    placeholder={content.newsletterForm.firstName}
+                  >
+                </div>
+                <div>
+                  <label for="newsletter-last-name" class="block text-sm font-gotham text-[#F2E8D5] mb-1">{content.newsletterForm.lastName}</label>
+                  <input 
+                    type="text" 
+                    id="newsletter-last-name" 
+                    name="lastName" 
+                    required
+                    class="w-full px-3 py-2 text-sm bg-brand-light text-brand-dark rounded border border-transparent focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary transition-colors"
+                    placeholder={content.newsletterForm.lastName}
+                  >
+                </div>
+              </div>
+              <div>
+                <label for="newsletter-email" class="block text-sm font-gotham text-[#F2E8D5] mb-1">{content.newsletterForm.email}</label>
+                <input 
+                  type="email" 
+                  id="newsletter-email" 
+                  name="email" 
+                  required
+                  class="w-full px-3 py-2 text-sm bg-[#F2CF8D] text-brand-dark rounded border border-transparent focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary transition-colors"
+                  placeholder="your@email.com"
+                >
+              </div>
+              <div class="flex items-start space-x-2">
+                <input 
+                  type="checkbox" 
+                  id="newsletter-consent" 
+                  name="consent" 
+                  required
+                  class="mt-1 w-4 h-4 text-brand-primary bg-[#F2CF8D] border-gray-300 rounded focus:ring-[#402A1E] focus:ring-2"
+                >
+                <label for="newsletter-consent" class="text-xs font-gotham text-[#F2CF8D] opacity-90 leading-relaxed">
+                  {content.newsletterForm.consent} 
+                  <a href={lang === 'en' ? '/en/terms' : '/terms'} class="text-brand-primary hover:text-[#F2CF8D] underline">{content.newsletterForm.terms}</a> & 
+                  <a href={lang === 'en' ? '/en/privacy' : '/privacy'} class="text-brand-primary hover:text-[#F2CF8D] underline">{content.newsletterForm.privacy}</a>
+                </label>
+              </div>
+              <button 
+                type="submit" 
+                class="w-full bg-[#F2E8D5] text-brand-dark px-4 py-2 rounded font-semibold font-gotham text-sm hover:bg-brand-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-light focus:ring-offset-2 focus:ring-offset-brand-dark"
+              >
+                {content.newsletterForm.subscribe}
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-    
-    <div class="mt-8 pt-8 border-t border-brand-secondary border-opacity-50 text-center">
-      <p class="text-brand-light opacity-75 font-gotham">{t('footer.copyright')}</p>
+
+    <div class="max-w-[1500px] mx-auto mt-12 mb-8">
+      <div class="h-px bg-brand-light opacity-20"></div>
+    </div>
+
+    <div class="max-w-[1500px] mx-auto">
+      <div class="flex flex-col lg:flex-row items-center justify-between space-y-6 lg:space-y-0">
+        
+        <div class="flex space-x-6 order-1 lg:order-1">
+          <a href="https://facebook.com/casadeljaguar" target="_blank" rel="noopener noreferrer" 
+             class="social-icon" 
+             aria-label="Facebook">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="https://instagram.com/casadeljaguar" target="_blank" rel="noopener noreferrer" 
+             class="social-icon" 
+             aria-label="Instagram">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="https://twitter.com/casadeljaguar" target="_blank" rel="noopener noreferrer" 
+             class="social-icon" 
+             aria-label="Twitter">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+            </svg>
+          </a>
+          <a href="https://youtube.com/casadeljaguar" target="_blank" rel="noopener noreferrer" 
+             class="social-icon" 
+             aria-label="YouTube">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="text-sm font-gotham text-brand-cream opacity-90 text-center order-3 lg:order-2">
+          {content.copyright}
+        </div>
+
+        <div class="flex space-x-6 text-sm font-gotham order-2 lg:order-3">
+          <a href={lang === 'en' ? '/en/terms' : '/terms'} class="footer-link">{content.legal.terms}</a>
+          <a href={lang === 'en' ? '/en/privacy' : '/privacy'} class="footer-link">{content.legal.privacy}</a>
+        </div>
+      </div>
     </div>
   </div>
 </footer>
+
+<style>
+  .footer-link {
+    color: #F2E8D5;
+    font-family: 'Gotham', sans-serif;
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+  }
+  
+  .footer-link:hover {
+    color: #F2AB27;
+  }
+  
+  .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #F2E8D5;
+    background-color: transparent;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+  
+  .social-icon:hover {
+    background-color: rgba(242, 171, 39, 0.2);
+    color: #F2AB27;
+    border-color: #F2AB27;
+  }
+
+  @media (max-width: 1023px) {
+    .footer-column[data-expanded="true"] .footer-content {
+      max-height: 384px;
+      padding-bottom: 16px;
+    }
+    
+    .footer-column[data-expanded="true"] .accordion-icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .accordion-icon {
+      display: none;
+    }
+  }
+</style>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.innerWidth < 1024) {
+    const columns = document.querySelectorAll('.footer-column');
+    
+    columns.forEach(column => {
+      const title = column.querySelector('.footer-title');
+      const content = column.querySelector('.footer-content');
+      
+      if (title && content) {
+        title.addEventListener('click', () => {
+          const isExpanded = column.getAttribute('data-expanded') === 'true';
+          
+          columns.forEach(otherColumn => {
+            if (otherColumn !== column) {
+              otherColumn.setAttribute('data-expanded', 'false');
+            }
+          });
+          
+          column.setAttribute('data-expanded', isExpanded ? 'false' : 'true');
+        });
+      }
+    });
+  }
+
+  const newsletterForm = document.querySelector('.newsletter-form');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      console.log('Newsletter form submitted');
+    });
+  }
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024) {
+      document.querySelectorAll('.footer-column').forEach(column => {
+        column.removeAttribute('data-expanded');
+      });
+    }
+  });
+});
+</script>
