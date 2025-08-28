@@ -13,7 +13,7 @@ const { lang } = Astro.params;
 const t = useTranslations(lang as 'es' | 'en');
 ---
 
-<Layout title={t('home.title')} description={t('home.subtitle')}>
+<Layout title={t('home.title')} description={t('home.subtitle')} keywords={"ayahuasca, retreat, casa del jaguar, amazon, plant medicine, healing, transformation"}>
   <Hero />
   <main>
     <section class="py-20 bg-gradient-to-b from-brand-cream to-white">
@@ -160,7 +160,7 @@ const t = useTranslations(lang as 'es' | 'en');
       </div>
     </section>
     
-    <Services/>
+    <Services showCta={true}/>
     
     <section class="scroll-animate">
         <ImageSlider 

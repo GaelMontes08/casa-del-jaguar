@@ -1,0 +1,242 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Services from '@/components/Services.astro';
+import { useTranslations, getStaticPaths } from '@/i18n/utils';
+
+export { getStaticPaths };
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as 'es' | 'en');
+
+const pageTitle = lang === 'es' 
+  ? "El Camino Casa del Jaguar - Proceso de Transformación"
+  : "The Casa del Jaguar Way - Transformation Process";
+
+const pageDescription = lang === 'es'
+  ? "Descubre el proceso completo de transformación en Casa del Jaguar. Desde la preparación hasta la integración, te acompañamos en cada paso de tu viaje de sanación con ayahuasca."
+  : "Discover the complete transformation process at Casa del Jaguar. From preparation to integration, we accompany you at every step of your ayahuasca healing journey.";
+
+const pageKeywords = lang === 'es'
+  ? "casa del jaguar way, proceso ayahuasca, preparación ceremonia, integración espiritual, transformación personal, medicina ancestral"
+  : "casa del jaguar way, ayahuasca process, ceremony preparation, spiritual integration, personal transformation, ancestral medicine";
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+>
+  <section class="relative h-[500px] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="/img/maloca-ceremonial.webp" 
+        alt="Casa del Jaguar ceremonial maloca"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-4 md:px-8 text-center">
+      <h1 class="scroll-animate text-5xl md:text-7xl font-bold text-white font-georgia mb-8 leading-tight">
+           The Casa del Jaguar Way
+      </h1>
+
+      <p class="scroll-animate text-xl md:text-[19px] text-white brand-cream mb-12 max-w-4xl mx-auto font-gotham leading-relaxed">
+        Awaken your full potential with the Casa del Jaguar Way program. Transform your life with ayahuasca ceremonies, yoga, metaphysics classes, flower baths, personal coaching, Hemy-Sinc, massages, and organic food at a luxury, medically licensed, all-inclusive plant medicine center located in Iquitos, Peru.
+      </p>
+    </div>
+  </section>
+
+  <Services showCta={false} />
+
+  <section class="py-24 bg-white section-left">
+    <div class="max-w-[1500px] mx-auto px-6 scroll-animate">
+      <div class="two-column-grid flex items-center gap-16">
+        <div class="flex-1 min-w-0">
+
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-8 h-8 bg-brand-primary rounded-full flex items-center justify-center ml-6 mr-6">
+             <div class="w-15 h-15 bg-brand-cream rounded-full flex items-center justify-center mb-2">
+                <svg class="w-[160px] h-[160px] text-black" xmlns="http://www.w3.org/2000/svg" data-name="ayahuasca" viewBox="0 0 24 24" fill="currentColor"><path d="M23.181 9.655a2.538 2.538 0 0 0-1.809-.652 2.496 2.496 0 0 0-1.739.818l-3.732 4.102A2.648 2.648 0 0 0 13.358 12H2.5A2.502 2.502 0 0 0 0 14.5v7C0 22.879 1.121 24 2.5 24h11.225l9.638-10.817a2.52 2.52 0 0 0-.182-3.528Zm-.564 2.862L13.276 23H2.5c-.827 0-1.5-.673-1.5-1.5v-7c0-.827.673-1.5 1.5-1.5h10.857c.905 0 1.643.737 1.643 1.643 0 .812-.605 1.511-1.403 1.624l-5.661.737.129.992 5.667-.738a2.66 2.66 0 0 0 2.146-1.823l4.496-4.941a1.5 1.5 0 0 1 1.046-.492c.402-.02.79.12 1.088.393.609.555.658 1.507.109 2.123ZM.854 3.089c.768 1.555 1.723 3.49 3.472 4.45.558.306 1.175.46 1.894.46.281 0 1.055-.026 2.041-.664.539 1.03.741 1.992.741 2.665h1c0-.732.353-2.203 1.592-3.155a2.84 2.84 0 0 0 2.262 1.153c.471 0 .947-.116 1.386-.361 1.312-.734 2.519-2.103 3.584-4.068l.235-.434-.431-.241c-.135-.075-3.322-1.821-6.17-.23a2.831 2.831 0 0 0-1.338 3.292 4.977 4.977 0 0 0-1.564 1.85 8.446 8.446 0 0 0-.523-1.121c.166-.186.322-.397.465-.639a3.6 3.6 0 0 0 .368-2.805A3.751 3.751 0 0 0 8.036.935C4.102-1.225.55 1.155.4 1.257l-.378.26s.622 1.15.831 1.572Zm11.217 1.558c.134-.475.445-.87.877-1.11.706-.396 1.454-.534 2.155-.534 1.074 0 2.04.325 2.582.551-.679 1.156-1.679 2.509-2.933 3.21a1.852 1.852 0 0 1-2.517-.711c-.241-.431-.3-.93-.165-1.405ZM7.556 1.812c.67.367 1.148.969 1.348 1.694a2.61 2.61 0 0 1-.265 2.033c-.054.092-.117.162-.176.243-.903-1.246-2.277-2.48-4.305-3.416l-.418.908c1.925.888 3.19 2.055 3.999 3.21a3.128 3.128 0 0 1-1.527.515 2.928 2.928 0 0 1-1.406-.337C3.333 5.854 2.493 4.15 1.75 2.646c-.136-.274-.267-.54-.396-.789.945-.497 3.493-1.532 6.202-.045Z"/></svg>
+              </div>
+            </div>
+            <span class="text-sm font-gotham text-brand-dark/70 uppercase tracking-wider">
+              {lang === 'es' ? 'OBTIENES' : 'YOU GET'}
+            </span>
+          </div>
+          
+          <div class="mb-8">
+            <div class="flex items-baseline gap-4 mb-4">
+              <span class="text-8xl font-bold text-brand-dark font-georgia leading-none">4</span>
+              <h2 class="text-3xl md:text-4xl font-bold text-brand-dark font-georgia leading-tight">
+                {lang === 'es' 
+                  ? <>Ceremonias de Ayahuasca</> 
+                  : <>Ayahuasca Ceremonies</>
+                }
+              </h2>
+            </div>
+          </div>
+          
+          <div class="space-y-6 mb-8">
+            <p class="text-[17px] text-brand-dark font-gotham leading-relaxed">
+              {lang === 'es'
+                ? <>Nuestras ceremonias de ayahuasca son el <strong>corazón de la experiencia</strong> en Casa del Jaguar. Cada ceremonia es un encuentro sagrado con la medicina ancestral.</>
+                : <>Our ayahuasca ceremonies are <strong>the heart of the experience</strong> at Casa del Jaguar. Each ceremony is a sacred encounter with ancestral medicine.</>
+              }
+            </p>
+            <p class="text-[17px] text-brand-dark font-gotham leading-relaxed">
+              {lang === 'es'
+                ? <>Durante tu estadía, participarás en <strong>4 ceremonias cuidadosamente espaciadas</strong> para permitir la integración adecuada entre cada experiencia transformadora.</>
+                : <>During your stay, you will participate in <strong>4 carefully spaced ceremonies</strong> to allow for proper integration between each transformative experience.</>
+              }
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Guiadas por facilitadores experimentados' : 'Guided by experienced facilitators'}
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Apoyo de integración personalizado' : 'Personalized integration support'}
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Ambiente sagrado y protegido' : 'Sacred and protected environment'}
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex-1">
+          <div class="masonry-grid">
+            <div class="masonry-item relative overflow-hidden rounded-2xl shadow-lg group">
+              <img 
+                src="/img/maestro-chaman-denis-montes-selva.webp"
+                alt={lang === 'es' 
+                  ? "Maestro chamán Denis Montes en la selva" 
+                  : "Master shaman Denis Montes in the jungle"
+                }
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="masonry-item relative overflow-hidden rounded-xl shadow-md group">
+              <img 
+                src="/img/ayahuasca-cabeza-clava.webp"
+                alt={lang === 'es' 
+                  ? "Ayahuasca medicina ancestral" 
+                  : "Ayahuasca ancestral medicine"
+                }
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="masonry-item relative overflow-hidden rounded-xl shadow-md group">
+              <img 
+                src="/img/centro-maloca.webp"
+                alt={lang === 'es' 
+                  ? "Centro Casa del Jaguar" 
+                  : "Casa del Jaguar Center"
+                }
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="masonry-item relative overflow-hidden rounded-xl shadow-md group">
+              <img 
+                src="/img/maloca-ceremonial.webp"
+                alt={lang === 'es' 
+                  ? "Maloca ceremonial Casa del Jaguar" 
+                  : "Casa del Jaguar ceremonial maloca"
+                }
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+.masonry-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 16px;
+  height: 600px;
+}
+
+.masonry-item:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1 / -1;
+}
+
+.masonry-item:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.masonry-item:nth-child(3) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.masonry-item:nth-child(4) {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+@media (max-width: 768px) {
+  .masonry-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 12px;
+  }
+  
+  .masonry-item:nth-child(1),
+  .masonry-item:nth-child(2),
+  .masonry-item:nth-child(3),
+  .masonry-item:nth-child(4) {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  
+  .masonry-item {
+    height: 250px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .masonry-grid {
+    height: 500px;
+  }
+  
+  .masonry-item {
+    height: 200px !important;
+  }
+}
+
+.section-left .two-column-grid {
+  flex-direction: row;
+}
+
+.section-right .two-column-grid {
+  flex-direction: row-reverse;
+}
+
+@media (max-width: 768px) {
+  .section-left .two-column-grid,
+  .section-right .two-column-grid {
+    flex-direction: column;
+  }
+}
+</style>

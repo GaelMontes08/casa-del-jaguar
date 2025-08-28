@@ -10,7 +10,7 @@ import Services from '@/components/Services.astro';
 const t = useTranslations('es');
 ---
 
-<Layout title={t('home.title')} description={t('home.subtitle')}>
+<Layout title={t('home.title')} description={t('home.subtitle')} keywords="medicina ancestral, ayahuasca, retiro, Amazonía, sanación, transformación, Casa del Jaguar">
   
   <Hero />
   <main>
@@ -159,7 +159,7 @@ const t = useTranslations('es');
       </div>
     </section>
 
-    <Services />
+    <Services showCta={true} />
 
     <section class="scroll-animate">
         <ImageSlider 
