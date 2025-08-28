@@ -5,6 +5,7 @@ import ImageSlider from '@/components/ImageSlider.astro';
 import GoogleReviews from '@/components/GoogleReviews.astro';
 import { useTranslations } from '@/i18n/utils';
 import BookingForm from '@/components/BookingForm.astro';
+import Services from '@/components/Services.astro';
 
 const t = useTranslations('es');
 ---
@@ -158,79 +159,7 @@ const t = useTranslations('es');
       </div>
     </section>
 
-    <section class="py-20">
-      <div class="max-w-6xl mx-auto px-4 md:px-8 text-center">
-        <h2 class="scroll-animate text-4xl md:text-5xl font-bold text-brand-dark font-georgia mb-16 leading-tight">
-          Tu estadía de <span class="text-brand-gold">7 noches</span> incluye
-        </h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-          <div class="scroll-animate flex flex-col items-center space-y-4">
-            <div class="w-15 h-15 bg-brand-cream rounded-full flex items-center justify-center mb-2">
-              <svg class="w-[160px] h-[160px] text-black" xmlns="http://www.w3.org/2000/svg" data-name="ayahuasca" viewBox="0 0 24 24" fill="currentColor"><path d="M23.181 9.655a2.538 2.538 0 0 0-1.809-.652 2.496 2.496 0 0 0-1.739.818l-3.732 4.102A2.648 2.648 0 0 0 13.358 12H2.5A2.502 2.502 0 0 0 0 14.5v7C0 22.879 1.121 24 2.5 24h11.225l9.638-10.817a2.52 2.52 0 0 0-.182-3.528Zm-.564 2.862L13.276 23H2.5c-.827 0-1.5-.673-1.5-1.5v-7c0-.827.673-1.5 1.5-1.5h10.857c.905 0 1.643.737 1.643 1.643 0 .812-.605 1.511-1.403 1.624l-5.661.737.129.992 5.667-.738a2.66 2.66 0 0 0 2.146-1.823l4.496-4.941a1.5 1.5 0 0 1 1.046-.492c.402-.02.79.12 1.088.393.609.555.658 1.507.109 2.123ZM.854 3.089c.768 1.555 1.723 3.49 3.472 4.45.558.306 1.175.46 1.894.46.281 0 1.055-.026 2.041-.664.539 1.03.741 1.992.741 2.665h1c0-.732.353-2.203 1.592-3.155a2.84 2.84 0 0 0 2.262 1.153c.471 0 .947-.116 1.386-.361 1.312-.734 2.519-2.103 3.584-4.068l.235-.434-.431-.241c-.135-.075-3.322-1.821-6.17-.23a2.831 2.831 0 0 0-1.338 3.292 4.977 4.977 0 0 0-1.564 1.85 8.446 8.446 0 0 0-.523-1.121c.166-.186.322-.397.465-.639a3.6 3.6 0 0 0 .368-2.805A3.751 3.751 0 0 0 8.036.935C4.102-1.225.55 1.155.4 1.257l-.378.26s.622 1.15.831 1.572Zm11.217 1.558c.134-.475.445-.87.877-1.11.706-.396 1.454-.534 2.155-.534 1.074 0 2.04.325 2.582.551-.679 1.156-1.679 2.509-2.933 3.21a1.852 1.852 0 0 1-2.517-.711c-.241-.431-.3-.93-.165-1.405ZM7.556 1.812c.67.367 1.148.969 1.348 1.694a2.61 2.61 0 0 1-.265 2.033c-.054.092-.117.162-.176.243-.903-1.246-2.277-2.48-4.305-3.416l-.418.908c1.925.888 3.19 2.055 3.999 3.21a3.128 3.128 0 0 1-1.527.515 2.928 2.928 0 0 1-1.406-.337C3.333 5.854 2.493 4.15 1.75 2.646c-.136-.274-.267-.54-.396-.789.945-.497 3.493-1.532 6.202-.045Z"/></svg>
-            </div>
-            <div class="text-3xl font-bold text-brand-dark font-gotham">4</div>
-            <p class="text-brand-dark font-gotham text-sm">Ceremonias de Ayahuasca</p>
-          </div>
-
-          <div class="scroll-animate flex flex-col items-center space-y-4">
-            <div class="w-15 h-15 bg-brand-cream rounded-full flex items-center justify-center mb-2">
-              <svg class="w-[160px] h-[160px] text-black" xmlns="http://www.w3.org/2000/svg" data-name="bed" viewBox="0 0 24 24" fill="currentColor"><path d="M21.5 2h-19A2.503 2.503 0 0 0 0 4.5V22h1v-3h22v3h1V4.5C24 3.122 22.879 2 21.5 2Zm-19 1h19c.827 0 1.5.673 1.5 1.5V13h-2v-1.5c0-1.378-1.121-2.5-2.5-2.5H14c-.817 0-1.544.394-2 1.002A2.497 2.497 0 0 0 10 9H5.5A2.503 2.503 0 0 0 3 11.5V13H1V4.5C1 3.673 1.673 3 2.5 3Zm9 10H4v-1.5c0-.827.673-1.5 1.5-1.5H10c.827 0 1.5.673 1.5 1.5V13Zm8.5 0h-7.5v-1.5c0-.827.673-1.5 1.5-1.5h4.5c.827 0 1.5.673 1.5 1.5V13ZM1 18v-4h22v4H1Z"/></svg>
-            </div>
-            <div class="text-3xl font-bold text-brand-dark font-gotham">7</div>
-            <p class="text-brand-dark font-gotham text-sm">Noches en Alojamiento de Lujo</p>
-          </div>
-
-          <div class="scroll-animate flex flex-col items-center space-y-4">
-            <div class="w-15 h-15 bg-brand-cream rounded-full flex items-center justify-center mb-2">
-              <svg class="w-[160px] h-[160px] text-black" xmlns="http://www.w3.org/2000/svg" data-name="organic-meals" viewBox="0 0 24 24" fill="currentColor"><path d="M22.02 11.06c.63-.87.98-1.94.98-3.06 0-2.55-1.87-4.73-4.16-4.98.09-.07.18-.15.27-.23.63-.63.83-1.51.89-2.12a.615.615 0 0 0-.67-.67c-.61.06-1.49.27-2.12.89-.28.28-.48.62-.62.96-.64-1.17-1.8-1.76-1.87-1.8a.511.511 0 0 0-.67.22c-.12.25-.03.55.22.67.01 0 1.38.72 1.67 2.05h-1.36c-.92 0-1.83.32-2.6.9-.63-.48-1.37-.79-2.16-.87.09-.07.18-.15.27-.23.63-.63.83-1.51.89-2.12a.615.615 0 0 0-.67-.67C9.7.06 8.82.27 8.19.89c-.28.28-.48.62-.62.96C6.95.68 5.79.09 5.72.05a.511.511 0 0 0-.67.22c-.12.25-.03.55.22.67.01 0 1.38.72 1.67 2.05H5.58C3.1 3 1 5.29 1 8c0 1.11.35 2.18.98 3.06A2.507 2.507 0 0 0 0 13.5v6C0 21.98 2.02 24 4.5 24h15c2.48 0 4.5-2.02 4.5-4.5v-6c0-1.2-.85-2.2-1.98-2.44ZM18.41 4C20.36 4 22 5.83 22 8c0 1.13-.46 2.23-1.24 3h-7.69c.6-.86.94-1.91.94-3 0-1.3-.49-2.51-1.26-3.41.56-.39 1.2-.59 1.86-.59h3.82ZM5.59 4h3.82C11.36 4 13 5.83 13 8c0 1.14-.45 2.23-1.24 3H3.24C2.45 10.23 2 9.14 2 8c0-2.17 1.64-4 3.59-4ZM23 19.5c0 1.93-1.57 3.5-3.5 3.5h-15c-1.76 0-3.22-1.31-3.46-3H19.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5H1v-3h18.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5H1v-1.5c0-.83.67-1.5 1.5-1.5h19c.83 0 1.5.67 1.5 1.5v6Z"/></svg>
-            </div>
-            <div class="text-3xl font-bold text-brand-dark font-gotham">21</div>
-            <p class="text-brand-dark font-gotham text-sm">Comidas Orgánicas</p>
-          </div>
-
-          <div class="scroll-animate flex flex-col items-center space-y-4">
-            <div class="w-15 h-15 bg-brand-cream rounded-full flex items-center justify-center mb-2">
-              <svg class="w-[160px] h-[160px] text-black" xmlns="http://www.w3.org/2000/svg" data-name="medical" viewBox="0 0 24 24" fill="currentColor"><path d="M16 10a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-7 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm3 9c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8Zm7-8c0-3.86-3.141-7-7-7s-7 3.14-7 7 3.141 7 7 7 7-3.14 7-7Zm-3.853 1.646C15.133 13.66 13.759 15 12 15s-3.134-1.341-3.147-1.354a.501.501 0 0 0-.706.708C8.214 14.421 9.819 16 12.001 16s3.786-1.579 3.854-1.646a.5.5 0 0 0-.706-.708ZM7.5 23h-3C2.57 23 1 21.43 1 19.5v-3a.5.5 0 0 0-1 0v3C0 21.981 2.019 24 4.5 24h3a.5.5 0 0 0 0-1Zm16-7a.5.5 0 0 0-.5.5v3c0 1.93-1.57 3.5-3.5 3.5h-3a.5.5 0 0 0 0 1h3c2.481 0 4.5-2.019 4.5-4.5v-3a.5.5 0 0 0-.5-.5Zm-4-16h-3a.5.5 0 0 0 0 1h3C21.43 1 23 2.57 23 4.5v3a.5.5 0 0 0 1 0v-3C24 2.019 21.981 0 19.5 0ZM.5 8a.5.5 0 0 0 .5-.5v-3C1 2.57 2.57 1 4.5 1h3a.5.5 0 0 0 0-1h-3A4.505 4.505 0 0 0 0 4.5v3a.5.5 0 0 0 .5.5Z"/></svg>
-            </div>
-            <div class="text-3xl font-bold text-brand-dark font-gotham">2</div>
-            <p class="text-brand-dark font-gotham text-sm">Evaluaciones Médicas</p>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 max-w-4xl mx-auto">
-          <div class="scroll-animate flex flex-col items-center space-y-4">
-            <div class="w-15 h-15 bg-brand-cream rounded-full flex items-center justify-center mb-2">
-              <svg class="w-[160px] h-[160px] text-black" xmlns="http://www.w3.org/2000/svg" data-name="massage" viewBox="0 0 24 24" fill="currentColor"><path d="M8.5 7C9.878 7 11 5.878 11 4.5 11 3.284 9.245.995 8.893.548L8.5.05l-.393.498C7.755.995 6 3.283 6 4.5 6 5.878 7.122 7 8.5 7Zm0-5.312C9.217 2.676 10 3.96 10 4.5 10 5.327 9.327 6 8.5 6S7 5.327 7 4.5c0-.54.783-1.824 1.5-2.812ZM20.5 17c-.862 0-1.691.316-2.333.892l.667.745A2.492 2.492 0 0 1 20.501 18c1.378 0 2.5 1.122 2.5 2.5s-1.122 2.5-2.5 2.5h-6.5V10.5c0-1.378-1.122-2.5-2.5-2.5h-6a2.503 2.503 0 0 0-2.5 2.5V23H0v1h20.5c1.93 0 3.5-1.57 3.5-3.5S22.43 17 20.5 17ZM4 10.5C4 9.673 4.673 9 5.5 9h6c.827 0 1.5.673 1.5 1.5V23H4V10.5Z"/></svg>
-            </div>
-            <div class="text-3xl font-bold text-brand-dark font-gotham">1</div>
-            <p class="text-brand-dark font-gotham text-sm">Masaje de Sanación</p>
-          </div>
-
-          <div class="scroll-animate flex flex-col items-center space-y-4">
-            <div class="w-15 h-15 bg-brand-cream rounded-full flex items-center justify-center mb-2">
-              <svg class="w-[160px] h-[160px] text-black" xmlns="http://www.w3.org/2000/svg" data-name="floral-bath" viewBox="0 0 24 24" fill="currentColor"><path d="M17.015 5 12-.015 6.985 5 12 10.015 17.015 5ZM12 1.399 15.601 5 12 8.601 8.399 5 12 1.399ZM24 5.5v13.231c0 .618-.229 1.214-.645 1.676L20.158 24h-1.344l3.799-4.263A1.5 1.5 0 0 0 23 18.731V5.5c0-.827-.673-1.5-1.5-1.5S20 4.673 20 5.5v9h-.004c0 .57-.193 1.14-.58 1.601l-3.099 3.206-.719-.695 3.075-3.179c.219-.262.326-.579.326-.981s-.139-.682-.382-.953a1.492 1.492 0 0 0-1.032-.496 1.533 1.533 0 0 0-1.08.38l-3.849 3.541c.222.38.343.815.343 1.262V24h-1v-5.814c0-.418-.177-.821-.484-1.104l-4.026-3.704a1.509 1.509 0 0 0-1.075-.375 1.486 1.486 0 0 0-1.032.496 1.502 1.502 0 0 0-.032 1.96l3.052 3.153-.719.695-3.075-3.179a2.541 2.541 0 0 1-.6-1.627h-.007V5.5c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v13.231c0 .371.137.729.387 1.006L5.187 24H3.843L.646 20.407a2.503 2.503 0 0 1-.645-1.676V5.5c0-1.378 1.121-2.5 2.5-2.5s2.5 1.122 2.5 2.5v6.998a2.501 2.501 0 0 1 3.162.139l3.838 3.531 3.833-3.527a2.448 2.448 0 0 1 1.808-.637c.5.027.969.199 1.359.493V5.5c0-1.378 1.121-2.5 2.5-2.5s2.5 1.122 2.5 2.5Z"/></svg>
-            </div>
-            <div class="text-3xl font-bold text-brand-dark font-gotham">1</div>
-            <p class="text-brand-dark font-gotham text-sm">Baño de Florecimiento</p>
-          </div>
-
-          <div class="scroll-animate flex flex-col items-center space-y-4">
-            <div class="w-15 h-15 bg-brand-cream rounded-full flex items-center justify-center mb-2">
-              <svg class="w-[160px] h-[160px] text-black" xmlns="http://www.w3.org/2000/svg" data-name="yoga" viewBox="0 0 24 24" fill="currentColor"><path d="M11.992 6c1.657 0 2.955-1.318 2.955-3s-1.298-3-2.955-3c-1.679 0-3.045 1.346-3.045 3s1.366 3 3.045 3Zm0-5c1.096 0 1.955.878 1.955 2s-.859 2-1.955 2c-1.127 0-2.045-.897-2.045-2s.917-2 2.045-2Zm10.936 15.759a.5.5 0 0 1-.686.169l-3.5-2.115a.496.496 0 0 1-.187-.201l-1.609-3.156A4.49 4.49 0 0 0 16 10.214v8.968l5.342 2.499c.528.3.761.856.615 1.403a1.217 1.217 0 0 1-1.19.916H9.5a.5.5 0 0 1 0-1h11.268c.155 0 .207-.107.224-.172.017-.064.025-.183-.109-.26l-5.594-2.616a.5.5 0 0 1-.288-.453v-9.99A4.49 4.49 0 0 0 12.938 9h-1.873c-.737 0-1.437.186-2.063.509V19.5a.5.5 0 0 1-.288.453l-5.63 2.635c-.098.058-.09.177-.073.241s.069.172.224.172h3.268a.5.5 0 0 1 0 1H3.232a1.217 1.217 0 0 1-1.19-.916 1.214 1.214 0 0 1 .579-1.384l5.378-2.518v-8.969a4.514 4.514 0 0 0-.946 1.242l-1.609 3.156a.496.496 0 0 1-.187.201l-3.5 2.115a.5.5 0 0 1-.518-.856l3.378-2.042 1.544-3.029a5.474 5.474 0 0 1 4.9-3.002h1.873a5.474 5.474 0 0 1 4.9 3.002l1.544 3.029 3.378 2.042a.5.5 0 0 1 .169.687Z"/></svg>
-            </div>
-            <div class="text-3xl font-bold text-brand-dark font-gotham">6</div>
-            <p class="text-brand-dark font-gotham text-sm">Clases de Yoga</p>
-          </div>
-        </div>
-
-        <div class="scroll-animate text-center">
-          <a href="/casa-del-jaguar-way" class="inline-block bg-brand-dark text-white px-12 py-4 rounded-full font-bold text-xl shadow-xl font-gotham uppercase tracking-wide hover:bg-brand-gold hover:text-brand-dark transition-all duration-300 transform hover:scale-105">
-            Comienza tu Viaje
-          </a>
-        </div>
-      </div>
-    </section>
+    <Services />
 
     <section class="scroll-animate">
         <ImageSlider 
