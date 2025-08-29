@@ -38,7 +38,10 @@ import { SEO } from 'astro-seo';
         creator: "@casadeljaguar"
       }}
       extend={{
-        link: [{ rel: "icon", href: "/cj-icon-light.webp" }],
+        link: [
+          { rel: "icon", href: "/cj-icon-light.webp", type: "image/webp" },
+          { rel: "apple-touch-icon", href: "/cj-icon-light.webp" },
+        ],
         meta: [
           { name: "viewport", content: "width=device-width, initial-scale=1" },
           { name: "generator", content: Astro.generator },
