@@ -1,0 +1,210 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Separator from '@/components/Separator.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+export async function getStaticPaths() {
+  return [
+    {params: {lang: "en"}}
+  ];
+}
+
+const pageTitle = lang === 'en' 
+  ? "Ayahuasca Ceremonies at Casa del Jaguar - Ancestral Medicine"
+  : "Ceremonias de Ayahuasca en Casa del Jaguar - Medicina Ancestral";
+  
+const pageDescription = lang === 'en'
+  ? "Experience authentic and safe ayahuasca ceremonies at Casa del Jaguar. Deep healing with Amazonian ancestral medicine, guided by experienced shamans at a medically licensed center in Iquitos, Peru."
+  : "Experimenta ceremonias de ayahuasca auténticas y seguras en Casa del Jaguar. Sanación profunda con medicina ancestral amazónica, guiadas por chamanes experimentados en un centro con licencia médica en Iquitos, Perú.";
+
+const pageKeywords = lang === 'en'
+  ? "ayahuasca ceremonies, ancestral medicine, Amazonian shamans, ayahuasca Iquitos, sacred medicine, spiritual healing, Casa del Jaguar, ayahuasca retreat Peru, plant medicine, spiritual transformation"
+  : "ceremonias ayahuasca, medicina ancestral, chamanes amazónicos, ayahuasca Iquitos, medicina sagrada, sanación espiritual, Casa del Jaguar, retiro ayahuasca Perú, medicina vegetal, transformación espiritual";
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+>
+  <section class="hero relative h-[665px] -mt-16 pt-16 flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="/img/maloca-ceremonial.webp" 
+        alt={lang === 'en' ? "Ayahuasca ceremonies in ceremonial maloca" : "Ceremonias de ayahuasca en maloca ceremonial"}
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-4 md:px-8 text-center">
+      <h1 class="scroll-animate text-5xl md:text-7xl font-bold text-white font-georgia mb-8 leading-tight">
+        {lang === 'en' ? (
+          <>Ayahuasca <br/><span class="text-brand-primary">Ceremonies</span></>
+        ) : (
+          <>Ceremonias de <br/><span class="text-brand-primary">Ayahuasca</span></>
+        )}
+      </h1>
+      
+      <p class="scroll-animate text-xl md:text-[19px] text-white brand-cream mb-12 max-w-4xl mx-auto font-gotham leading-relaxed">
+        {lang === 'en' 
+          ? "At Casa del Jaguar, our weekly ayahuasca experiences are truly incomparable. During four spectacular nights, we guide you through a transformative journey like nowhere else in the world."
+          : "En Casa del Jaguar, nuestras experiencias semanales con ayahuasca son verdaderamente incomparables. Durante cuatro noches espectaculares, te guiamos a través de un viaje transformador como en ningún otro lugar del mundo."
+        }
+      </p>
+    </div>
+  </section>
+
+  <Separator />
+
+  <section class="py-16 bg-[#fffcf6] scroll-animate">
+    <div class="max-w-[1500px] mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <h2 class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia">
+            {lang === 'en' ? (
+              <>Night One: <span class="text-brand-gold">Introduction to Plant Medicine</span></>
+            ) : (
+              <>Noche Uno: <span class="text-brand-gold">Introducción a la Medicina Vegetal</span></>
+            )}
+          </h2>
+          <p class="text-lg text-brand-dark font-gotham leading-relaxed">
+            {lang === 'en' 
+              ? "Your first experience with ayahuasca is a sacred encounter with ancestral medicine. On this initial night, we gently introduce you to the world of plant medicine, establishing a deep connection with the master plants and opening your heart to ancestral wisdom."
+              : "Tu primera experiencia con la ayahuasca es un encuentro sagrado con la medicina ancestral. En esta noche inicial, te introducimos suavemente al mundo de la medicina vegetal, estableciendo una conexión profunda con las plantas maestras y abriendo tu corazón a la sabiduría ancestral."
+            }
+          </p>
+          <p class="text-lg text-brand-dark font-gotham leading-relaxed">
+            {lang === 'en' 
+              ? "Our master shamans will guide you with care and respect, ensuring that your first experience is safe, transformative, and full of profound revelations about your inner being."
+              : "Nuestros maestros chamanes te guiarán con cuidado y respeto, asegurando que tu primera experiencia sea segura, transformadora y llena de revelaciones profundas sobre tu ser interior."
+            }
+          </p>
+        </div>
+        <div>
+          <img 
+            src="/img/ayahuasca.webp" 
+            alt={lang === 'en' ? "First ayahuasca ceremony - Introduction to plant medicine" : "Primera ceremonia de ayahuasca - Introducción a la medicina vegetal"}
+            class="w-full h-[400px] object-cover rounded-lg shadow-lg"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Separator />
+
+  <section class="py-16 bg-white scroll-animate">
+    <div class="max-w-[1500px] mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="order-2 md:order-1">
+          <img 
+            src="/img/maloca-ceremonial.webp" 
+            alt={lang === 'en' ? "Second ceremony - Going deeper into the experience" : "Segunda ceremonia - Profundizando en la experiencia"}
+            class="w-full h-[400px] object-cover rounded-lg shadow-lg"
+          />
+        </div>
+        <div class="space-y-6 order-1 md:order-2">
+          <h2 class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia">
+            {lang === 'en' ? (
+              <>Night Two: <span class="text-brand-gold">Going Deeper</span></>
+            ) : (
+              <>Noche Dos: <span class="text-brand-gold">Profundizando</span></>
+            )}
+          </h2>
+          <p class="text-lg text-brand-dark font-gotham leading-relaxed">
+            {lang === 'en' 
+              ? "With the trust established in your first ceremony, the second night invites you to explore deeper layers of consciousness. The medicine takes you beyond superficial barriers, revealing hidden aspects of your psyche and allowing for more intense healing."
+              : "Con la confianza establecida en tu primera ceremonia, la segunda noche te invita a explorar capas más profundas de consciencia. La medicina te lleva más allá de las barreras superficiales, revelando aspectos ocultos de tu psique y permitiendo una sanación más intensa."
+            }
+          </p>
+          <p class="text-lg text-brand-dark font-gotham leading-relaxed">
+            {lang === 'en' 
+              ? "This experience deepens your connection with ancestral wisdom, allowing memories, emotions, and understandings that need to be processed and healed to emerge."
+              : "Esta experiencia profundiza tu conexión con la sabiduría ancestral, permitiendo que emerjan memorias, emociones y comprensiones que necesitan ser procesadas y sanadas."
+            }
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Separator />
+
+  <section class="py-16 bg-[#fffcf6] scroll-animate">
+    <div class="max-w-[1500px] mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <h2 class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia">
+            {lang === 'en' ? (
+              <>Night Three: <span class="text-brand-gold">Divine Feminine</span></>
+            ) : (
+              <>Noche Tres: <span class="text-brand-gold">Lo Divino Femenino</span></>
+            )}
+          </h2>
+          <p class="text-lg text-brand-dark font-gotham leading-relaxed">
+            {lang === 'en' 
+              ? "The third ceremony honors the sacred energy of the divine feminine. This special night is dedicated to connecting with the maternal wisdom of Pachamama and the nurturing energies that sustain all life in the cosmos."
+              : "La tercera ceremonia honra la energía sagrada del divino femenino. Esta noche especial se dedica a conectar con la sabiduría maternal de la Pachamama y las energías nutritivas que sostienen toda la vida en el cosmos."
+            }
+          </p>
+          <p class="text-lg text-brand-dark font-gotham leading-relaxed">
+            {lang === 'en' 
+              ? "You will experience deep healing that balances the masculine and feminine energies within you, connecting you with compassion, intuition, and the ancestral feminine wisdom that resides in every human being."
+              : "Experimentarás una sanación profunda que equilibra las energías masculinas y femeninas dentro de ti, conectándote con la compasión, la intuición y la sabiduría ancestral femenina que reside en cada ser humano."
+            }
+          </p>
+        </div>
+        <div>
+          <img 
+            src="/img/centro-maloca.webp" 
+            alt={lang === 'en' ? "Third ceremony - Connection with the divine feminine" : "Tercera ceremonia - Conexión con lo divino femenino"}
+            class="w-full h-[400px] object-cover rounded-lg shadow-lg"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Separator />
+
+  <section class="py-16 bg-white scroll-animate">
+    <div class="max-w-[1500px] mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="order-2 md:order-1">
+          <img 
+            src="/img/centro-pasadiso.webp" 
+            alt={lang === 'en' ? "Fourth ceremony - Celestial celebration" : "Cuarta ceremonia - Celebración celestial"}
+            class="w-full h-[400px] object-cover rounded-lg shadow-lg"
+          />
+        </div>
+        <div class="space-y-6 order-1 md:order-2">
+          <h2 class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia">
+            {lang === 'en' ? (
+              <>Night Four: <span class="text-brand-gold">Celestial Party</span></>
+            ) : (
+              <>Noche Cuatro: <span class="text-brand-gold">Fiesta Celestial</span></>
+            )}
+          </h2>
+          <p class="text-lg text-brand-dark font-gotham leading-relaxed">
+            {lang === 'en' 
+              ? "The final ceremony is a transcendental celebration of your transformation. After three nights of deep healing and self-discovery, this 'celestial party' is a moment of joyful integration and infinite gratitude."
+              : "La ceremonia final es una celebración trascendental de tu transformación. Después de tres noches de profunda sanación y autoconocimiento, esta 'fiesta celestial' es un momento de integración gozosa y gratitud infinita."
+            }
+          </p>
+          <p class="text-lg text-brand-dark font-gotham leading-relaxed">
+            {lang === 'en' 
+              ? "You celebrate your spiritual rebirth in community with other seekers, honoring the sacred journey you have completed and carrying with you the teachings and healings received to integrate them into your daily life."
+              : "Celebras tu renacimiento espiritual en comunidad con otros buscadores, honrando el viaje sagrado que has completado y llevando contigo las enseñanzas y sanaciones recibidas para integrarlas en tu vida cotidiana."
+            }
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Separator />
+
+</Layout>
