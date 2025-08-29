@@ -26,7 +26,7 @@ const pageKeywords = lang === 'es'
   description={pageDescription}
   keywords={pageKeywords}
 >
-  <section class="relative h-[500px] flex items-center justify-center overflow-hidden">
+  <section class="hero relative h-[550px] -mt-16 pt-16 flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
       <img 
         src="/img/maloca-ceremonial.webp" 
@@ -47,6 +47,34 @@ const pageKeywords = lang === 'es'
   </section>
 
   <Services showCta={false} />
+
+  <!-- Gallery Modal -->
+  <div id="galleryModal" class="gallery-modal hidden fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
+    <div class="modal-content relative max-w-6xl mx-auto p-4">
+      <!-- Close button -->
+      <button id="closeModal" class="absolute top-4 right-4 text-white text-4xl hover:text-brand-primary transition-colors z-10">
+        ×
+      </button>
+      
+      <!-- Main image -->
+      <div class="main-image-container mb-6">
+        <img id="modalMainImage" src="" alt="" class="w-full h-auto max-h-[70vh] object-contain rounded-lg">
+      </div>
+      
+      <!-- Thumbnail gallery -->
+      <div class="thumbnail-gallery flex gap-3 justify-center overflow-x-auto pb-4">
+        <!-- Thumbnails will be dynamically added here -->
+      </div>
+      
+      <!-- Navigation arrows -->
+      <button id="prevImage" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-6xl hover:text-brand-primary transition-colors">
+        ‹
+      </button>
+      <button id="nextImage" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-6xl hover:text-brand-primary transition-colors">
+        ›
+      </button>
+    </div>
+  </div>
 
   <section class="py-24 bg-white section-left">
     <div class="max-w-[1500px] mx-auto px-6 scroll-animate">
@@ -114,8 +142,10 @@ const pageKeywords = lang === 'es'
         </div>
         
         <div class="flex-1">
-          <div class="masonry-grid">
-            <div class="masonry-item relative overflow-hidden rounded-2xl shadow-lg group">
+          <div class="masonry-grid" data-gallery="ayahuasca">
+            <div class="masonry-item relative overflow-hidden rounded-2xl shadow-lg group gallery-item cursor-pointer" 
+                 data-src="/img/maestro-chaman-denis-montes-selva.webp" 
+                 data-alt={lang === 'es' ? "Maestro chamán Denis Montes en la selva" : "Master shaman Denis Montes in the jungle"}>
               <img 
                 src="/img/maestro-chaman-denis-montes-selva.webp"
                 alt={lang === 'es' 
@@ -126,7 +156,9 @@ const pageKeywords = lang === 'es'
                 loading="lazy"
               />
             </div>
-            <div class="masonry-item relative overflow-hidden rounded-xl shadow-md group">
+            <div class="masonry-item relative overflow-hidden rounded-xl shadow-md group gallery-item cursor-pointer"
+                 data-src="/img/ayahuasca-cabeza-clava.webp"
+                 data-alt={lang === 'es' ? "Ayahuasca medicina ancestral" : "Ayahuasca ancestral medicine"}>
               <img 
                 src="/img/ayahuasca-cabeza-clava.webp"
                 alt={lang === 'es' 
@@ -137,7 +169,9 @@ const pageKeywords = lang === 'es'
                 loading="lazy"
               />
             </div>
-            <div class="masonry-item relative overflow-hidden rounded-xl shadow-md group">
+            <div class="masonry-item relative overflow-hidden rounded-xl shadow-md group gallery-item cursor-pointer"
+                 data-src="/img/centro-maloca.webp"
+                 data-alt={lang === 'es' ? "Centro Casa del Jaguar" : "Casa del Jaguar Center"}>
               <img 
                 src="/img/centro-maloca.webp"
                 alt={lang === 'es' 
@@ -148,7 +182,9 @@ const pageKeywords = lang === 'es'
                 loading="lazy"
               />
             </div>
-            <div class="masonry-item relative overflow-hidden rounded-xl shadow-md group">
+            <div class="masonry-item relative overflow-hidden rounded-xl shadow-md group gallery-item cursor-pointer"
+                 data-src="/img/maloca-ceremonial.webp"
+                 data-alt={lang === 'es' ? "Maloca ceremonial Casa del Jaguar" : "Casa del Jaguar ceremonial maloca"}>
               <img 
                 src="/img/maloca-ceremonial.webp"
                 alt={lang === 'es' 
@@ -164,6 +200,606 @@ const pageKeywords = lang === 'es'
       </div>
     </div>
   </section>
+
+  <section class="py-24 bg-[#fffcf6] section-right">
+    <div class="max-w-[1500px] mx-auto px-6 scroll-animate">
+      <div class="two-column-grid flex items-center gap-16">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-8 h-8 bg-brand-primary rounded-full flex items-center justify-center ml-6 mr-6">
+             <div class="w-15 h-15 bg-brand-cream rounded-full flex items-center justify-center mb-2">
+              <svg class="w-[160px] h-[160px] text-black" xmlns="http://www.w3.org/2000/svg" data-name="bed" viewBox="0 0 24 24" fill="currentColor"><path d="M21.5 2h-19A2.503 2.503 0 0 0 0 4.5V22h1v-3h22v3h1V4.5C24 3.122 22.879 2 21.5 2Zm-19 1h19c.827 0 1.5.673 1.5 1.5V13h-2v-1.5c0-1.378-1.121-2.5-2.5-2.5H14c-.817 0-1.544.394-2 1.002A2.497 2.497 0 0 0 10 9H5.5A2.503 2.503 0 0 0 3 11.5V13H1V4.5C1 3.673 1.673 3 2.5 3Zm9 10H4v-1.5c0-.827.673-1.5 1.5-1.5H10c.827 0 1.5.673 1.5 1.5V13Zm8.5 0h-7.5v-1.5c0-.827.673-1.5 1.5-1.5h4.5c.827 0 1.5.673 1.5 1.5V13ZM1 18v-4h22v4H1Z"/></svg>
+             </div>
+            </div>
+            <span class="text-sm font-gotham text-brand-dark/70 uppercase tracking-wider">
+              {lang === 'es' ? 'OBTIENES' : 'YOU GET'}
+            </span>
+          </div>
+          
+          <div class="mb-8">
+            <div class="flex items-baseline gap-4 mb-4">
+              <span class="text-8xl font-bold text-brand-dark font-georgia leading-none">7</span>
+              <h2 class="text-3xl md:text-4xl font-bold text-brand-dark font-georgia leading-tight">
+                {lang === 'es' 
+                  ? <>Noches de Transformación</> 
+                  : <>Nights of Transformation</>
+                }
+              </h2>
+            </div>
+          </div>
+          
+          <div class="space-y-6 mb-8">
+            <p class="text-[17px] text-brand-dark font-gotham leading-relaxed">
+              {lang === 'es' 
+                ? <>Una experiencia completa de <strong>7 días y 7 noches</strong> diseñada para permitir una transformación profunda y duradera en un entorno de lujo y comodidad.</> 
+                : <>A complete <strong>7 days and 7 nights</strong> experience designed to allow for deep and lasting transformation in a luxurious and comfortable environment.</>
+              }
+            </p>
+            <p class="text-[17px] text-brand-dark font-gotham leading-relaxed">
+              {lang === 'es' 
+                ? <>Cada día está cuidadosamente estructurado para <strong>maximizar tu proceso de sanación</strong> con actividades complementarias, descanso adecuado y tiempo para la integración.</> 
+                : <>Each day is carefully structured to <strong>maximize your healing process</strong> with complementary activities, adequate rest and time for integration.</>
+              }
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Alojamiento de lujo en la selva' : 'Luxury jungle accommodation'}
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Todas las comidas incluidas' : 'All meals included'}
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Actividades de integración diarias' : 'Daily integration activities'}
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Apoyo 24/7 del equipo médico' : '24/7 medical team support'}
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex-1">
+          <div class="seven-nights-grid" data-gallery="seven-nights">
+            <div class="seven-nights-item relative overflow-hidden rounded-2xl shadow-lg group gallery-item cursor-pointer" 
+                 data-src="/img/pasadiso-casa-del-jaguar.webp" 
+                 data-alt={lang === 'es' ? 'Habitación de lujo en la selva' : 'Luxury jungle room'}>
+              <img 
+                src="/img/pasadiso-casa-del-jaguar.webp"
+                alt={lang === 'es' ? 'Habitación de lujo en la selva' : 'Luxury jungle room'}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="seven-nights-item relative overflow-hidden rounded-2xl shadow-lg group gallery-item cursor-pointer"
+                 data-src="/img/centro-maloca.webp"
+                 data-alt={lang === 'es' ? 'Comida orgánica gourmet' : 'Gourmet organic food'}>
+              <img 
+                src="/img/centro-maloca.webp"
+                alt={lang === 'es' ? 'Comida orgánica gourmet' : 'Gourmet organic food'}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="seven-nights-item relative overflow-hidden rounded-2xl shadow-lg group gallery-item cursor-pointer"
+                 data-src="/img/centro-pileta.webp"
+                 data-alt={lang === 'es' ? 'Sesión de yoga y meditación' : 'Yoga and meditation session'}>
+              <img 
+                src="/img/centro-pileta.webp"
+                alt={lang === 'es' ? 'Sesión de yoga y meditación' : 'Yoga and meditation session'}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="seven-nights-item relative overflow-hidden rounded-2xl shadow-lg group gallery-item cursor-pointer"
+                 data-src="/img/habitacion-casa-del-jaguar.webp"
+                 data-alt={lang === 'es' ? 'Terapias integrativas y masajes' : 'Integrative therapies and massages'}>
+              <img 
+                src="/img/habitacion-casa-del-jaguar.webp"
+                alt={lang === 'es' ? 'Terapias integrativas y masajes' : 'Integrative therapies and massages'}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white section-left">
+    <div class="max-w-[1500px] mx-auto px-6 scroll-animate">
+      <div class="two-column-grid flex items-center gap-16">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-8 h-8 bg-brand-primary rounded-full flex items-center justify-center ml-6 mr-6">
+             <div class="w-15 h-15 bg-brand-cream rounded-full flex items-center justify-center mb-2">
+                <svg class="w-[160px] h-[160px] text-black" xmlns="http://www.w3.org/2000/svg" data-name="organic-meals" viewBox="0 0 24 24" fill="currentColor"><path d="M22.02 11.06c.63-.87.98-1.94.98-3.06 0-2.55-1.87-4.73-4.16-4.98.09-.07.18-.15.27-.23.63-.63.83-1.51.89-2.12a.615.615 0 0 0-.67-.67c-.61.06-1.49.27-2.12.89-.28.28-.48.62-.62.96-.64-1.17-1.8-1.76-1.87-1.8a.511.511 0 0 0-.67.22c-.12.25-.03.55.22.67.01 0 1.38.72 1.67 2.05h-1.36c-.92 0-1.83.32-2.6.9-.63-.48-1.37-.79-2.16-.87.09-.07.18-.15.27-.23.63-.63.83-1.51.89-2.12a.615.615 0 0 0-.67-.67C9.7.06 8.82.27 8.19.89c-.28.28-.48.62-.62.96C6.95.68 5.79.09 5.72.05a.511.511 0 0 0-.67.22c-.12.25-.03.55.22.67.01 0 1.38.72 1.67 2.05H5.58C3.1 3 1 5.29 1 8c0 1.11.35 2.18.98 3.06A2.507 2.507 0 0 0 0 13.5v6C0 21.98 2.02 24 4.5 24h15c2.48 0 4.5-2.02 4.5-4.5v-6c0-1.2-.85-2.2-1.98-2.44ZM18.41 4C20.36 4 22 5.83 22 8c0 1.13-.46 2.23-1.24 3h-7.69c.6-.86.94-1.91.94-3 0-1.3-.49-2.51-1.26-3.41.56-.39 1.2-.59 1.86-.59h3.82ZM5.59 4h3.82C11.36 4 13 5.83 13 8c0 1.14-.45 2.23-1.24 3H3.24C2.45 10.23 2 9.14 2 8c0-2.17 1.64-4 3.59-4ZM23 19.5c0 1.93-1.57 3.5-3.5 3.5h-15c-1.76 0-3.22-1.31-3.46-3H19.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5H1v-3h18.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5H1v-1.5c0-.83.67-1.5 1.5-1.5h19c.83 0 1.5.67 1.5 1.5v6Z"/></svg>
+             </div>
+            </div>
+            <span class="text-sm font-gotham text-brand-dark/70 uppercase tracking-wider">
+              {lang === 'es' ? 'NUTRICIÓN' : 'NUTRITION'}
+            </span>
+          </div>
+          
+          <div class="mb-8">
+            <div class="flex items-baseline gap-4 mb-4">
+              <span class="text-8xl font-bold text-brand-dark font-georgia leading-none">21</span>
+              <h2 class="text-3xl md:text-4xl font-bold text-brand-dark font-georgia leading-tight">
+                {lang === 'es' 
+                  ? <>Comidas Diarias<br/>Orgánicas</> 
+                  : <>Organic Meals</>
+                }
+              </h2>
+            </div>
+          </div>
+          
+          <div class="space-y-6 mb-8">
+            <p class="text-[17px] text-brand-dark font-gotham leading-relaxed">
+              {lang === 'es' 
+                ? <>Nuestra <strong>cocina gourmet orgánica</strong> está diseñada específicamente para apoyar tu proceso de transformación con ingredientes frescos y locales de la Amazonía.</> 
+                : <>Our <strong>organic gourmet kitchen</strong> is specifically designed to support your transformation process with fresh and local ingredients from the Amazon.</>
+              }
+            </p>
+            <p class="text-[17px] text-brand-dark font-gotham leading-relaxed">
+              {lang === 'es' 
+                ? <>Cada comida es preparada por <strong>chefs especializados en nutrición consciente</strong>, creando platos que nutren tanto el cuerpo como el espíritu durante tu experiencia.</> 
+                : <>Each meal is prepared by <strong>chefs specialized in conscious nutrition</strong>, creating dishes that nourish both body and spirit during your experience.</>
+              }
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Ingredientes 100% orgánicos' : '100% organic ingredients'}
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Frutas amazónicas frescas' : 'Fresh Amazon fruits'}
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Dieta especializada pre y post ceremonia' : 'Specialized pre and post ceremony diet'}
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Opciones vegetarianas y veganas' : 'Vegetarian and vegan options'}
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex-1">
+          <div class="food-grid" data-gallery="food">
+            <div class="food-item relative overflow-hidden rounded-2xl shadow-lg group gallery-item cursor-pointer" 
+                 data-src="/img/food/comida-pescado.webp" 
+                 data-alt={lang === 'es' ? 'Plato principal orgánico' : 'Organic main dish'}>
+              <img 
+                src="/img/food/comida-pescado.webp"
+                alt={lang === 'es' ? 'Plato principal orgánico' : 'Organic main dish'}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="food-item relative overflow-hidden rounded-xl shadow-md group gallery-item cursor-pointer"
+                 data-src="/img/food/chefs.webp"
+                 data-alt={lang === 'es' ? 'Frutas amazónicas frescas' : 'Fresh Amazon fruits'}>
+              <img 
+                src="/img/food/chefs.webp"
+                alt={lang === 'es' ? 'Frutas amazónicas frescas' : 'Fresh Amazon fruits'}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="food-item relative overflow-hidden rounded-xl shadow-md group gallery-item cursor-pointer"
+                 data-src="/img/food/sandwich.webp"
+                 data-alt={lang === 'es' ? 'Cocina gourmet orgánica' : 'Organic gourmet kitchen'}>
+              <img 
+                src="/img/food/sandwich.webp"
+                alt={lang === 'es' ? 'Cocina gourmet orgánica' : 'Organic gourmet kitchen'}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#fffcf6] section-right">
+    <div class="max-w-[1500px] mx-auto px-6 scroll-animate">
+      <div class="two-column-grid flex items-center gap-16">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-3 mb-6">
+             <div class="w-8 h-8 bg-brand-primary rounded-full flex items-center justify-center ml-6 mr-6">
+             <div class="w-15 h-15 bg-brand-cream rounded-full flex items-center justify-center mb-2">
+              <svg class="w-[160px] h-[160px] text-black" xmlns="http://www.w3.org/2000/svg" data-name="medical" viewBox="0 0 24 24" fill="currentColor"><path d="M16 10a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-7 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm3 9c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8Zm7-8c0-3.86-3.141-7-7-7s-7 3.14-7 7 3.141 7 7 7 7-3.14 7-7Zm-3.853 1.646C15.133 13.66 13.759 15 12 15s-3.134-1.341-3.147-1.354a.501.501 0 0 0-.706.708C8.214 14.421 9.819 16 12.001 16s3.786-1.579 3.854-1.646a.5.5 0 0 0-.706-.708ZM7.5 23h-3C2.57 23 1 21.43 1 19.5v-3a.5.5 0 0 0-1 0v3C0 21.981 2.019 24 4.5 24h3a.5.5 0 0 0 0-1Zm16-7a.5.5 0 0 0-.5.5v3c0 1.93-1.57 3.5-3.5 3.5h-3a.5.5 0 0 0 0 1h3c2.481 0 4.5-2.019 4.5-4.5v-3a.5.5 0 0 0-.5-.5Zm-4-16h-3a.5.5 0 0 0 0 1h3C21.43 1 23 2.57 23 4.5v3a.5.5 0 0 0 1 0v-3C24 2.019 21.981 0 19.5 0ZM.5 8a.5.5 0 0 0 .5-.5v-3C1 2.57 2.57 1 4.5 1h3a.5.5 0 0 0 0-1h-3A4.505 4.505 0 0 0 0 4.5v3a.5.5 0 0 0 .5.5Z"/></svg>
+             </div>
+            </div>
+            <span class="text-sm font-gotham text-brand-dark/70 uppercase tracking-wider">
+              {lang === 'es' ? 'SEGURIDAD' : 'SAFETY'}
+            </span>
+          </div>
+          
+          <div class="mb-8">
+            <div class="flex items-baseline gap-4 mb-4">
+              <span class="text-8xl font-bold text-brand-dark font-georgia leading-none">1</span>
+              <h2 class="text-3xl md:text-4xl font-bold text-brand-dark font-georgia leading-tight">
+                {lang === 'es' 
+                  ? <>Evaluación Médica Completa</> 
+                  : <>Medical Evaluation</>
+                }
+              </h2>
+            </div>
+          </div>
+          
+          <div class="space-y-6 mb-8">
+            <p class="text-[17px] text-brand-dark font-gotham leading-relaxed">
+              {lang === 'es' 
+                ? <>Tu seguridad es nuestra máxima prioridad. Contamos con <strong>evaluación médica profesional</strong> antes, durante y después de cada ceremonia de ayahuasca.</> 
+                : <>Your safety is our top priority. We have <strong>professional medical evaluation</strong> before, during and after each ayahuasca ceremony.</>
+              }
+            </p>
+            <p class="text-[17px] text-brand-dark font-gotham leading-relaxed">
+              {lang === 'es' 
+                ? <>Nuestro equipo médico especializado en medicina integrativa <strong>monitorea constantemente tu bienestar</strong> para garantizar una experiencia segura y transformadora.</> 
+                : <>Our medical team specialized in integrative medicine <strong>constantly monitors your well-being</strong> to ensure a safe and transformative experience.</>
+              }
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Evaluación médica previa' : 'Pre-ceremony medical evaluation'}
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Monitoreo durante ceremonias' : 'Monitoring during ceremonies'}
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Personal médico las 24 horas' : '24-hour medical staff'}
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Licencia médica oficial' : 'Official medical license'}
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex-1">
+          <div class="medical-image-container">
+            <img 
+              src="/img/ayahuasca.webp"
+              alt={lang === 'es' ? 'Equipo médico profesional Casa del Jaguar' : 'Casa del Jaguar professional medical team'}
+              class="w-full h-[500px] object-cover rounded-2xl shadow-lg"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white section-left">
+    <div class="max-w-[1500px] mx-auto px-6 scroll-animate">
+      <div class="two-column-grid flex items-center gap-16">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-8 h-8 bg-brand-primary rounded-full flex items-center justify-center ml-6 mr-6">
+             <div class="w-15 h-15 bg-brand-cream rounded-full flex items-center justify-center mb-2">
+                <svg class="w-[160px] h-[160px] text-black" xmlns="http://www.w3.org/2000/svg" data-name="massage" viewBox="0 0 24 24" fill="currentColor"><path d="M8.5 7C9.878 7 11 5.878 11 4.5 11 3.284 9.245.995 8.893.548L8.5.05l-.393.498C7.755.995 6 3.283 6 4.5 6 5.878 7.122 7 8.5 7Zm0-5.312C9.217 2.676 10 3.96 10 4.5 10 5.327 9.327 6 8.5 6S7 5.327 7 4.5c0-.54.783-1.824 1.5-2.812ZM20.5 17c-.862 0-1.691.316-2.333.892l.667.745A2.492 2.492 0 0 1 20.501 18c1.378 0 2.5 1.122 2.5 2.5s-1.122 2.5-2.5 2.5h-6.5V10.5c0-1.378-1.122-2.5-2.5-2.5h-6a2.503 2.503 0 0 0-2.5 2.5V23H0v1h20.5c1.93 0 3.5-1.57 3.5-3.5S22.43 17 20.5 17ZM4 10.5C4 9.673 4.673 9 5.5 9h6c.827 0 1.5.673 1.5 1.5V23H4V10.5Z"/></svg>
+             </div>
+            </div>
+            <span class="text-sm font-gotham text-brand-dark/70 uppercase tracking-wider">
+              {lang === 'es' ? 'BIENESTAR' : 'YOU GET'}
+            </span>
+          </div>
+          
+          <div class="mb-8">
+            <div class="flex items-baseline gap-4 mb-4">
+              <span class="text-8xl font-bold text-brand-dark font-georgia leading-none">1</span>
+              <h2 class="text-3xl md:text-4xl font-bold text-brand-dark font-georgia leading-tight">
+                {lang === 'es' 
+                  ? <>Sesiones de Masaje<br/>Terapéutico</> 
+                  : <>Healing Massage</>
+                }
+              </h2>
+            </div>
+          </div>
+          
+          <div class="space-y-6 mb-8">
+            <p class="text-[17px] text-brand-dark font-gotham leading-relaxed">
+              {lang === 'es' 
+                ? <>Complementa tu proceso de sanación con <strong>masajes terapéuticos especializados</strong> que ayudan a liberar tensiones físicas y emocionales acumuladas.</> 
+                : <>Complement your healing process with <strong>specialized therapeutic massages</strong> that help release accumulated physical and emotional tensions.</>
+              }
+            </p>
+            <p class="text-[17px] text-brand-dark font-gotham leading-relaxed">
+              {lang === 'es' 
+                ? <>Nuestros terapeutas certificados utilizan <strong>técnicas ancestrales amazónicas</strong> combinadas con métodos modernos para una experiencia de relajación profunda.</> 
+                : <>Our certified therapists use <strong>ancestral Amazonian techniques</strong> combined with modern methods for a deep relaxation experience.</>
+              }
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Masajes con aceites esenciales' : 'Massages with essential oils'}
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Técnicas ancestrales amazónicas' : 'Ancestral Amazonian techniques'}
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Relajación muscular profunda' : 'Deep muscle relaxation'}
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Liberación de tensiones emocionales' : 'Emotional tension release'}
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex-1">
+          <div class="massage-grid" data-gallery="massage">
+            <div class="massage-item relative overflow-hidden rounded-2xl shadow-lg group gallery-item cursor-pointer" 
+                 data-src="/img/maloca-ceremonial.webp" 
+                 data-alt={lang === 'es' ? 'Sesión de masaje terapéutico' : 'Therapeutic massage session'}>
+              <img 
+                src="/img/maloca-ceremonial.webp"
+                alt={lang === 'es' ? 'Sesión de masaje terapéutico' : 'Therapeutic massage session'}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="massage-item relative overflow-hidden rounded-2xl shadow-lg group gallery-item cursor-pointer"
+                 data-src="/img/centro-pileta.webp"
+                 data-alt={lang === 'es' ? 'Masaje con aceites esenciales amazónicos' : 'Massage with Amazonian essential oils'}>
+              <img 
+                src="/img/centro-pileta.webp"
+                alt={lang === 'es' ? 'Masaje con aceites esenciales amazónicos' : 'Massage with Amazonian essential oils'}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#fffcf6] section-right">
+    <div class="max-w-[1500px] mx-auto px-6 scroll-animate">
+      <div class="two-column-grid flex items-center gap-16">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-15 h-15 bg-brand-cream rounded-full flex items-center justify-center mb-2">
+              <svg class="w-[160px] h-[160px] text-black" xmlns="http://www.w3.org/2000/svg" data-name="yoga" viewBox="0 0 24 24" fill="currentColor"><path d="M11.992 6c1.657 0 2.955-1.318 2.955-3s-1.298-3-2.955-3c-1.679 0-3.045 1.346-3.045 3s1.366 3 3.045 3Zm0-5c1.096 0 1.955.878 1.955 2s-.859 2-1.955 2c-1.127 0-2.045-.897-2.045-2s.917-2 2.045-2Zm10.936 15.759a.5.5 0 0 1-.686.169l-3.5-2.115a.496.496 0 0 1-.187-.201l-1.609-3.156A4.49 4.49 0 0 0 16 10.214v8.968l5.342 2.499c.528.3.761.856.615 1.403a1.217 1.217 0 0 1-1.19.916H9.5a.5.5 0 0 1 0-1h11.268c.155 0 .207-.107.224-.172.017-.064.025-.183-.109-.26l-5.594-2.616a.5.5 0 0 1-.288-.453v-9.99A4.49 4.49 0 0 0 12.938 9h-1.873c-.737 0-1.437.186-2.063.509V19.5a.5.5 0 0 1-.288.453l-5.63 2.635c-.098.058-.09.177-.073.241s.069.172.224.172h3.268a.5.5 0 0 1 0 1H3.232a1.217 1.217 0 0 1-1.19-.916 1.214 1.214 0 0 1 .579-1.384l5.378-2.518v-8.969a4.514 4.514 0 0 0-.946 1.242l-1.609 3.156a.496.496 0 0 1-.187.201l-3.5 2.115a.5.5 0 0 1-.518-.856l3.378-2.042 1.544-3.029a5.474 5.474 0 0 1 4.9-3.002h1.873a5.474 5.474 0 0 1 4.9 3.002l1.544 3.029 3.378 2.042a.5.5 0 0 1 .169.687Z"/></svg>
+             </div>
+            <span class="text-sm font-gotham text-brand-dark/70 uppercase tracking-wider">
+              {lang === 'es' ? 'PURIFICACIÓN' : 'PURIFICATION'}
+            </span>
+          </div>
+          
+          <div class="mb-8">
+            <div class="flex items-baseline gap-4 mb-4">
+              <span class="text-8xl font-bold text-brand-dark font-georgia leading-none">1</span>
+              <h2 class="text-3xl md:text-4xl font-bold text-brand-dark font-georgia leading-tight">
+                {lang === 'es' 
+                  ? <>Baño Floral<br/>Ceremonial</> 
+                  : <>Floral Bath</>
+                }
+              </h2>
+            </div>
+          </div>
+          
+          <div class="space-y-6 mb-8">
+            <p class="text-[17px] text-brand-dark font-gotham leading-relaxed">
+              {lang === 'es' 
+                ? <>Experimenta la <strong>purificación energética ancestral</strong> a través de baños florales preparados con plantas medicinales amazónicas recolectadas en su momento perfecto.</> 
+                : <>Experience <strong>ancestral energetic purification</strong> through floral baths prepared with Amazonian medicinal plants collected at their perfect moment.</>
+              }
+            </p>
+            <p class="text-[17px] text-brand-dark font-gotham leading-relaxed">
+              {lang === 'es' 
+                ? <>Esta ceremonia de limpieza espiritual <strong>prepara tu cuerpo y alma</strong> para recibir las enseñanzas de la medicina sagrada, eliminando energías densas y abriendo canales de sanación.</> 
+                : <>This spiritual cleansing ceremony <strong>prepares your body and soul</strong> to receive the teachings of sacred medicine, eliminating dense energies and opening healing channels.</>
+              }
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Plantas medicinales amazónicas' : 'Amazonian medicinal plants'}
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Purificación energética profunda' : 'Deep energetic purification'}
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Preparación ceremonial' : 'Ceremonial preparation'}
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Limpieza de aura y chakras' : 'Aura and chakra cleansing'}
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex-1">
+          <div class="floral-bath-image-container">
+            <img 
+              src="/img/centro-pileta.webp"
+              alt={lang === 'es' ? 'Baño floral ceremonial amazónico' : 'Amazonian ceremonial floral bath'}
+              class="w-full h-[500px] object-cover rounded-2xl shadow-lg"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white section-left">
+    <div class="max-w-[1500px] mx-auto px-6 scroll-animate">
+      <div class="two-column-grid flex items-center gap-16">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-8 h-8 bg-brand-primary rounded-full flex items-center justify-center ml-6 mr-6">
+             <div class="w-15 h-15 bg-brand-cream rounded-full flex items-center justify-center mb-2">
+              <svg class="w-[160px] h-[160px] text-black" xmlns="http://www.w3.org/2000/svg" data-name="yoga" viewBox="0 0 24 24" fill="currentColor"><path d="M11.992 6c1.657 0 2.955-1.318 2.955-3s-1.298-3-2.955-3c-1.679 0-3.045 1.346-3.045 3s1.366 3 3.045 3Zm0-5c1.096 0 1.955.878 1.955 2s-.859 2-1.955 2c-1.127 0-2.045-.897-2.045-2s.917-2 2.045-2Zm10.936 15.759a.5.5 0 0 1-.686.169l-3.5-2.115a.496.496 0 0 1-.187-.201l-1.609-3.156A4.49 4.49 0 0 0 16 10.214v8.968l5.342 2.499c.528.3.761.856.615 1.403a1.217 1.217 0 0 1-1.19.916H9.5a.5.5 0 0 1 0-1h11.268c.155 0 .207-.107.224-.172.017-.064.025-.183-.109-.26l-5.594-2.616a.5.5 0 0 1-.288-.453v-9.99A4.49 4.49 0 0 0 12.938 9h-1.873c-.737 0-1.437.186-2.063.509V19.5a.5.5 0 0 1-.288.453l-5.63 2.635c-.098.058-.09.177-.073.241s.069.172.224.172h3.268a.5.5 0 0 1 0 1H3.232a1.217 1.217 0 0 1-1.19-.916 1.214 1.214 0 0 1 .579-1.384l5.378-2.518v-8.969a4.514 4.514 0 0 0-.946 1.242l-1.609 3.156a.496.496 0 0 1-.187.201l-3.5 2.115a.5.5 0 0 1-.518-.856l3.378-2.042 1.544-3.029a5.474 5.474 0 0 1 4.9-3.002h1.873a5.474 5.474 0 0 1 4.9 3.002l1.544 3.029 3.378 2.042a.5.5 0 0 1 .169.687Z"/></svg>
+             </div>
+            </div>
+            <span class="text-sm font-gotham text-brand-dark/70 uppercase tracking-wider">
+              {lang === 'es' ? 'EQUILIBRIO' : 'YOU GET'}
+            </span>
+          </div>
+          
+          <div class="mb-8">
+            <div class="flex items-baseline gap-4 mb-4">
+              <span class="text-8xl font-bold text-brand-dark font-georgia leading-none">3</span>
+              <h2 class="text-3xl md:text-4xl font-bold text-brand-dark font-georgia leading-tight">
+                {lang === 'es' 
+                  ? <>Sesiones de Yoga<br/>y Meditación</> 
+                  : <>Yoga Sessions</>
+                }
+              </h2>
+            </div>
+          </div>
+          
+          <div class="space-y-6 mb-8">
+            <p class="text-[17px] text-brand-dark font-gotham leading-relaxed">
+              {lang === 'es' 
+                ? <>Integra cuerpo, mente y espíritu con <strong>prácticas diarias de yoga y meditación</strong> especialmente diseñadas para complementar tu proceso de transformación con ayahuasca.</> 
+                : <>Integrate body, mind and spirit with <strong>daily yoga and meditation practices</strong> specially designed to complement your ayahuasca transformation process.</>
+              }
+            </p>
+            <p class="text-[17px] text-brand-dark font-gotham leading-relaxed">
+              {lang === 'es' 
+                ? <>Nuestros instructores certificados te guían a través de <strong>técnicas ancestrales y modernas</strong> que fortalecen tu conexión interior y preparan tu ser para recibir las enseñanzas de la medicina sagrada.</> 
+                : <>Our certified instructors guide you through <strong>ancestral and modern techniques</strong> that strengthen your inner connection and prepare your being to receive the teachings of sacred medicine.</>
+              }
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Hatha y Vinyasa yoga' : 'Hatha and Vinyasa yoga'}
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Meditación mindfulness' : 'Mindfulness meditation'}
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Respiración consciente (Pranayama)' : 'Conscious breathing (Pranayama)'}
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-brand-dark rounded-full"></div>
+              <span class="text-brand-dark font-gotham text-sm">
+                {lang === 'es' ? 'Conexión con la naturaleza' : 'Connection with nature'}
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex-1">
+          <div class="yoga-grid" data-gallery="yoga">
+            <div class="yoga-item yoga-hero relative overflow-hidden rounded-2xl shadow-lg group gallery-item cursor-pointer" 
+                 data-src="/img/yoga-session-1.webp" 
+                 data-alt={lang === 'es' ? 'Sesión de yoga en la selva amazónica' : 'Yoga session in the Amazon jungle'}>
+              <img 
+                src="/img/yoga-session-1.webp"
+                alt={lang === 'es' ? 'Sesión de yoga en la selva amazónica' : 'Yoga session in the Amazon jungle'}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="yoga-item yoga-small relative overflow-hidden rounded-xl shadow-md group gallery-item cursor-pointer"
+                 data-src="/img/yoga-session-2.webp"
+                 data-alt={lang === 'es' ? 'Meditación al amanecer' : 'Dawn meditation'}>
+              <img 
+                src="/img/yoga-session-2.webp"
+                alt={lang === 'es' ? 'Meditación al amanecer' : 'Dawn meditation'}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="yoga-item yoga-small relative overflow-hidden rounded-xl shadow-md group gallery-item cursor-pointer"
+                 data-src="/img/yoga-session-3.webp"
+                 data-alt={lang === 'es' ? 'Yoga en conexión con la naturaleza' : 'Yoga in connection with nature'}>
+              <img 
+                src="/img/yoga-session-3.webp"
+                alt={lang === 'es' ? 'Yoga en conexión con la naturaleza' : 'Yoga in connection with nature'}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
 </Layout>
 
 <style>
@@ -225,6 +861,73 @@ const pageKeywords = lang === 'es'
   }
 }
 
+/* Gallery Modal Styles */
+.gallery-modal {
+  backdrop-filter: blur(5px);
+}
+
+.gallery-modal.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gallery-modal:not(.hidden) {
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 0.3s ease;
+}
+
+.thumbnail-gallery {
+  scrollbar-width: thin;
+  scrollbar-color: #F2AB27 transparent;
+}
+
+.thumbnail-gallery::-webkit-scrollbar {
+  height: 6px;
+}
+
+.thumbnail-gallery::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thumbnail-gallery::-webkit-scrollbar-thumb {
+  background: #F2AB27;
+  border-radius: 3px;
+}
+
+.thumbnail-item {
+  min-width: 80px;
+  height: 80px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.thumbnail-item.active {
+  border-color: #F2AB27;
+}
+
+.gallery-item {
+  position: relative;
+}
+
+.gallery-item::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.gallery-item:hover::after {
+  opacity: 1;
+}
+
 .section-left .two-column-grid {
   flex-direction: row;
 }
@@ -239,4 +942,359 @@ const pageKeywords = lang === 'es'
     flex-direction: column;
   }
 }
+
+.seven-nights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 16px;
+  height: 600px;
+}
+
+.seven-nights-item:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.seven-nights-item:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.seven-nights-item:nth-child(3) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.seven-nights-item:nth-child(4) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+@media (max-width: 768px) {
+  .seven-nights-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 12px;
+  }
+  
+  .seven-nights-item:nth-child(1),
+  .seven-nights-item:nth-child(2),
+  .seven-nights-item:nth-child(3),
+  .seven-nights-item:nth-child(4) {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  
+  .seven-nights-item {
+    height: 250px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .seven-nights-item {
+    height: 200px !important;
+  }
+}
+
+.food-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2fr 1fr;
+  gap: 16px;
+  height: 600px;
+}
+
+.food-item:nth-child(1) {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+
+.food-item:nth-child(2) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.food-item:nth-child(3) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+@media (max-width: 768px) {
+  .food-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 12px;
+  }
+  
+  .food-item:nth-child(1),
+  .food-item:nth-child(2),
+  .food-item:nth-child(3) {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  
+  .food-item {
+    height: 250px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .food-item {
+    height: 200px !important;
+  }
+}
+
+.massage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 16px;
+  height: 400px;
+}
+
+.massage-item:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.massage-item:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+@media (max-width: 768px) {
+  .massage-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 12px;
+  }
+  
+  .massage-item:nth-child(1),
+  .massage-item:nth-child(2) {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  
+  .massage-item {
+    height: 250px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .massage-item {
+    height: 200px !important;
+  }
+}
+
+.yoga-grid {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: 1fr 1fr;
+  gap: 16px;
+  height: 600px;
+}
+
+.yoga-hero {
+  grid-column: 1;
+  grid-row: 1 / -1;
+}
+
+.yoga-small:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.yoga-small:nth-child(3) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+@media (max-width: 768px) {
+  .yoga-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 12px;
+  }
+  
+  .yoga-hero,
+  .yoga-small:nth-child(2),
+  .yoga-small:nth-child(3) {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  
+  .yoga-item {
+    height: 250px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .yoga-item {
+    height: 200px !important;
+  }
+}
 </style>
+
+<script>
+window.addEventListener('load', function() {
+  const modal = document.getElementById('galleryModal');
+  const modalMainImage = document.getElementById('modalMainImage');
+  const thumbnailGallery = document.querySelector('.thumbnail-gallery');
+  const closeModalBtn = document.getElementById('closeModal');
+  const prevBtn = document.getElementById('prevImage');
+  const nextBtn = document.getElementById('nextImage');
+  
+  if (!modal || !modalMainImage || !thumbnailGallery || !closeModalBtn || !prevBtn || !nextBtn) {
+    return;
+  }
+  
+  /** @type {{src: string, alt: string}[]} */
+  /** @type {{src: string, alt: string}[]} */
+  let currentGallery: { src: string; alt: string }[] = [];
+  let currentImageIndex = 0;
+
+  function openModal(galleryType: string, imageIndex?: number) {
+    if (imageIndex === undefined) imageIndex = 0;
+    
+    const galleryContainer = document.querySelector('[data-gallery="' + galleryType + '"]');
+    if (!galleryContainer) return;
+    
+    const images = galleryContainer.querySelectorAll('.gallery-item');
+    
+    currentGallery = [];
+    for (let i = 0; i < images.length; i++) {
+      const img = images[i];
+      currentGallery.push({
+        src: img.getAttribute('data-src') || '',
+        alt: img.getAttribute('data-alt') || ''
+      });
+    }
+    
+    currentImageIndex = imageIndex;
+    updateMainImage();
+    generateThumbnails();
+    
+    if (modal) {
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function updateMainImage() {
+    if (currentGallery[currentImageIndex] && modalMainImage) {
+      const imageData = currentGallery[currentImageIndex];
+      (modalMainImage as HTMLImageElement).src = imageData.src;
+      (modalMainImage as HTMLImageElement).alt = imageData.alt;
+      updateActiveThumbnail();
+    }
+  }
+
+  function generateThumbnails() {
+    if (!thumbnailGallery) return;
+    thumbnailGallery.innerHTML = '';
+    
+    for (let i = 0; i < currentGallery.length; i++) {
+      const image = currentGallery[i];
+      const thumbnail = document.createElement('img');
+      thumbnail.src = image.src;
+      thumbnail.alt = image.alt;
+      thumbnail.className = 'thumbnail-item rounded-lg object-cover';
+      thumbnail.style.width = '80px';
+      thumbnail.style.height = '80px';
+      thumbnail.style.border = '2px solid transparent';
+      thumbnail.style.cursor = 'pointer';
+      
+      if (i === currentImageIndex) {
+        thumbnail.style.borderColor = '#F2AB27';
+      }
+      
+      thumbnail.addEventListener('click', (function(index) {
+        return function() {
+          currentImageIndex = index;
+          updateMainImage();
+        };
+      })(i));
+      
+      thumbnailGallery.appendChild(thumbnail);
+    }
+  }
+
+  function updateActiveThumbnail() {
+    if (!thumbnailGallery) return;
+    const thumbnails = thumbnailGallery.querySelectorAll('.thumbnail-item');
+    for (let i = 0; i < thumbnails.length; i++) {
+      const thumb = thumbnails[i] as HTMLElement;
+      if (i === currentImageIndex) {
+        thumb.style.borderColor = '#F2AB27';
+      } else {
+        thumb.style.borderColor = 'transparent';
+      }
+    }
+  }
+
+  function closeModal() {
+    if (modal) {
+      modal.classList.add('hidden');
+    }
+    document.body.style.overflow = '';
+  }
+
+  function previousImage() {
+    currentImageIndex = currentImageIndex > 0 ? currentImageIndex - 1 : currentGallery.length - 1;
+    updateMainImage();
+  }
+
+  function nextImage() {
+    currentImageIndex = currentImageIndex < currentGallery.length - 1 ? currentImageIndex + 1 : 0;
+    updateMainImage();
+  }
+
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  for (let i = 0; i < galleryItems.length; i++) {
+    const item = galleryItems[i];
+    item.addEventListener('click', function() {
+      const galleryContainer = item.closest('[data-gallery]');
+      if (!galleryContainer) return;
+      
+      const galleryType = galleryContainer.getAttribute('data-gallery');
+      if (!galleryType) return;
+      
+      const galleryItems = galleryContainer.querySelectorAll('.gallery-item');
+      let imageIndex = 0;
+      for (let j = 0; j < galleryItems.length; j++) {
+        if (galleryItems[j] === item) {
+          imageIndex = j;
+          break;
+        }
+      }
+      
+      openModal(galleryType, imageIndex);
+    });
+  }
+
+  closeModalBtn.addEventListener('click', closeModal);
+  prevBtn.addEventListener('click', previousImage);
+  nextBtn.addEventListener('click', nextImage);
+
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (modal.classList.contains('hidden')) {
+      return;
+    }
+    
+    if (e.key === 'Escape') {
+      closeModal();
+    } else if (e.key === 'ArrowLeft') {
+      previousImage();
+    } else if (e.key === 'ArrowRight') {
+      nextImage();
+    }
+  });
+});
+</script>
