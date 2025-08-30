@@ -1,0 +1,686 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Separator from '@/components/Separator.astro';
+import { useTranslations } from '@/i18n/utils';
+
+const t = useTranslations('es');
+
+const pageTitle = "Resort Casa del Jaguar - Centro de Medicina Ancestral de Lujo";
+const pageDescription = "Experimenta la comodidad y elegancia en nuestro resort de medicina ancestral en Iquitos, Perú. Instalaciones de lujo, habitaciones privadas, áreas comunes y espacios sagrados para tu transformación espiritual.";
+const pageKeywords = "resort Casa del Jaguar, centro ayahuasca lujo, instalaciones Iquitos, habitaciones privadas, medicina ancestral resort, retiro espiritual Perú";
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+>
+  <section class="hero relative h-[500px] -mt-16 pt-16 flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="/img/centro-pasadiso.webp" 
+        alt="Resort Casa del Jaguar - Centro de medicina ancestral"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-4 md:px-8 text-center">
+      <h1 class="scroll-animate text-5xl md:text-7xl font-bold text-white font-georgia mb-8 leading-tight">
+        El Escenario Perfecto
+      </h1>
+      
+      <p class="scroll-animate text-xl md:text-[19px] text-white brand-cream mb-12 max-w-4xl mx-auto font-gotham leading-relaxed">
+        El centro de la Casa del Jaguar, situado en la hermosa ciudad de Iquitos, Perú, cuenta con todas las comodidades y servicios de primera calidad para que disfrutes plenamente de tu viaje.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-[#fffcf6] scroll-animate">
+    <div class="max-w-[1500px] mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <h2 class="text-3xl md:text-4xl font-bold text-brand-dark font-georgia">
+            Ubicado en la puerta de entrada del Amazonas, donde la naturaleza nos enseña a vivir más felices y más conectados.
+          </h2>
+          <p class="text-[17px] text-brand-dark font-gotham leading-relaxed">
+            Casa del Jaguar es más que un resort; es un santuario de transformación ubicado estratégicamente en Iquitos, la capital de la Amazonía peruana. Aquí, en el corazón de la selva más biodiversa del mundo, la sabiduría ancestral se encuentra con el lujo moderno.
+          </p>
+          <p class="text-[17px] text-brand-dark font-gotham leading-relaxed">
+            Nuestras instalaciones han sido diseñadas para honrar la conexión profunda entre el ser humano y la naturaleza, ofreciendo un espacio sagrado donde la medicina ancestral puede trabajar en armonía con tu proceso de sanación y crecimiento personal.
+          </p>
+          <div class="pt-4">
+            <a href="https://maps.app.goo.gl/25mFXhWBx2a1Pznd8" target="_blank" rel="noopener noreferrer">
+                <button class="bg-brand-dark text-white px-8 py-4 rounded-lg font-gotham font-semibold text-lg transition-colors duration-300 shadow-lg hover:shadow-xl">
+                Ver en el mapa
+                </button>
+            </a>
+          </div>
+        </div>
+        <div>
+          <img 
+            src="/img/assets/mapa.webp" 
+            alt="Casa del Jaguar ubicado en la Amazonía peruana"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white scroll-animate">
+    <div class="max-w-[1500px] mx-auto px-4 md:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-5xl md:text-6xl font-bold text-brand-dark font-georgia mb-6">
+          Maloca
+        </h2>
+        <p class="text-[17px] text-brand-dark font-gotham leading-relaxed max-w-4xl mx-auto mb-4">
+          La Maloca es el corazón sagrado de Casa del Jaguar, un espacio transformador donde tienen lugar las ceremonias de ayahuasca, trabajo de respiración, yoga y música sagrada. Este templo ancestral está lleno de energía espiritual y guía chamánica, creando el ambiente perfecto para la sanación profunda.
+        </p>
+        <p class="text-[17px] text-brand-dark font-gotham leading-relaxed max-w-4xl mx-auto">
+          Es un espacio comunitario transformador lleno de música, ceremonia y conexión espiritual, donde cada alma encuentra su camino hacia la sanación.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:h-[600px] scroll-animate" data-gallery="maloca">
+        <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group"
+             data-src="/img/maloca-ceremonial.webp" 
+             data-alt="Interior de la Maloca ceremonial Casa del Jaguar">
+          <img 
+            src="/img/maloca-ceremonial.webp" 
+            alt="Interior de la Maloca ceremonial Casa del Jaguar"
+            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+        </div>
+
+        <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group"
+             data-src="/img/centro-maloca.webp" 
+             data-alt="Espacio sagrado de la Maloca">
+          <img 
+            src="/img/centro-maloca.webp" 
+            alt="Espacio sagrado de la Maloca"
+            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-1 md:grid-rows-2 gap-6 h-auto md:h-full">
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group"
+               data-src="/img/ayahuasca.webp" 
+               data-alt="Ceremonia de ayahuasca en la Maloca">
+            <img 
+              src="/img/ayahuasca.webp" 
+              alt="Ceremonia de ayahuasca en la Maloca"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group"
+               data-src="/img/yoga-session-1.webp" 
+               data-alt="Sesión de yoga en la Maloca">
+            <img 
+              src="/img/yoga-session-1.webp" 
+              alt="Sesión de yoga en la Maloca"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-[#fffcf6] scroll-animate" >
+    <div class="max-w-[1500px] mx-auto px-4 md:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-5xl md:text-6xl font-bold text-brand-dark font-georgia mb-6">
+          Restaurante
+        </h2>
+        <p class="text-[17px] text-brand-dark font-gotham leading-relaxed max-w-4xl mx-auto mb-4">
+          Disfruta de una experiencia gastronómica única con ingredientes orgánicos amazónicos. Nuestro restaurante ofrece comidas nutritivas y deliciosas, cuidadosamente preparadas para complementar tu proceso de sanación y transformación.
+        </p>
+        <p class="text-[17px] text-brand-dark font-gotham leading-relaxed max-w-4xl mx-auto">
+          Cada plato está diseñado para nutrir tu cuerpo y alma, utilizando ingredientes locales frescos y técnicas culinarias que honran tanto la tradición como la innovación.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:h-[600px] scroll-animate" data-gallery="restaurant">
+        <div class="grid grid-cols-2 md:grid-cols-1 md:grid-rows-2 gap-6 h-auto md:h-full">
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+               data-src="/img/food/chefs.webp" 
+               data-alt="Comida orgánica amazónica Casa del Jaguar">
+            <img 
+              src="/img/food/chefs.webp" 
+              alt="Comida orgánica amazónica Casa del Jaguar"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+               data-src="/img/food/sandwich.webp" 
+               data-alt="Platos saludables y nutritivos">
+            <img 
+              src="/img/food/sandwich.webp" 
+              alt="Platos saludables y nutritivos"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-1 md:grid-rows-2 gap-6 h-auto md:h-full">
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+               data-src="/img/food/lasana.webp" 
+               data-alt="Ingredientes frescos amazónicos">
+            <img 
+              src="/img/food/lasana.webp" 
+              alt="Ingredientes frescos amazónicos"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+               data-src="/img/food/sandwich.webp" 
+               data-alt="Experiencia gastronómica amazónica">
+            <img 
+              src="/img/food/sandwich.webp" 
+              alt="Experiencia gastronómica amazónica"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+        </div>
+
+        <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+             data-src="/img/food/comida-pescado.webp" 
+             data-alt="Restaurante Casa del Jaguar ambiente">
+          <img 
+            src="/img/food/comida-pescado.webp" 
+            alt="Restaurante Casa del Jaguar ambiente"
+            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white scroll-animate">
+    <div class="max-w-[1500px] mx-auto px-4 md:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-5xl md:text-6xl font-bold text-brand-dark font-georgia mb-6">
+          Habitaciones
+        </h2>
+        <p class="text-[17px] text-brand-dark font-gotham leading-relaxed max-w-4xl mx-auto mb-4">
+          Descansa en nuestras habitaciones diseñadas especialmente para tu comodidad y tranquilidad. Cada espacio ha sido cuidadosamente preparado para ofrecerte el descanso que necesitas durante tu proceso de transformación espiritual.
+        </p>
+        <p class="text-[17px] text-brand-dark font-gotham leading-relaxed max-w-4xl mx-auto">
+          Nuestras habitaciones privadas cuentan con todas las comodidades necesarias, creando un refugio perfecto donde podrás procesar y integrar las enseñanzas de tu viaje espiritual.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:h-[600px] scroll-animate" data-gallery="bedrooms">
+        <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+             data-src="/img/habitacion-principal.webp" 
+             data-alt="Habitación principal Casa del Jaguar">
+          <img 
+            src="/img/habitacion-principal.webp" 
+            alt="Habitación principal Casa del Jaguar"
+            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-1 md:grid-rows-2 gap-6 h-auto md:h-full">
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+               data-src="/img/habitacion-doble.webp" 
+               data-alt="Habitación doble Casa del Jaguar">
+            <img 
+              src="/img/habitacion-doble.webp" 
+              alt="Habitación doble Casa del Jaguar"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+               data-src="/img/baño-privado.webp" 
+               data-alt="Baño privado Casa del Jaguar">
+            <img 
+              src="/img/baño-privado.webp" 
+              alt="Baño privado Casa del Jaguar"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-1 md:grid-rows-2 gap-6 h-auto md:h-full">
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+               data-src="/img/habitacion-individual.webp" 
+               data-alt="Habitación individual Casa del Jaguar">
+            <img 
+              src="/img/habitacion-individual.webp" 
+              alt="Habitación individual Casa del Jaguar"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+               data-src="/img/area-descanso.webp" 
+               data-alt="Área de descanso Casa del Jaguar">
+            <img 
+              src="/img/area-descanso.webp" 
+              alt="Área de descanso Casa del Jaguar"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-[#fffcf6] scroll-animate">
+    <div class="max-w-[1500px] mx-auto px-4 md:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-5xl md:text-6xl font-bold text-brand-dark font-georgia mb-6">
+          Spa y Sala de Masajes
+        </h2>
+        <p class="text-[17px] text-brand-dark font-gotham leading-relaxed max-w-4xl mx-auto mb-4">
+          Relájate y renuévate en nuestro spa tranquilo y nuestra sala de masajes profesional. Estos espacios han sido diseñados para complementar tu proceso de sanación con terapias holísticas que nutren tanto el cuerpo como el espíritu.
+        </p>
+        <p class="text-[17px] text-brand-dark font-gotham leading-relaxed max-w-4xl mx-auto">
+          Experimenta tratamientos tradicionales amazónicos y técnicas de relajación moderna en un ambiente sereno que promueve la liberación profunda y la renovación energética.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:h-[600px] scroll-animate" data-gallery="spa">
+        <div class="grid grid-cols-2 md:grid-cols-1 md:grid-rows-2 gap-6 h-auto md:h-full">
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+               data-src="/img/spa/sala-masajes.webp" 
+               data-alt="Sala de masajes Casa del Jaguar">
+            <img 
+              src="/img/spa/sala-masajes.webp" 
+              alt="Sala de masajes Casa del Jaguar"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+               data-src="/img/spa/terapia-relajacion.webp" 
+               data-alt="Terapia de relajación Casa del Jaguar">
+            <img 
+              src="/img/spa/terapia-relajacion.webp" 
+              alt="Terapia de relajación Casa del Jaguar"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-1 md:grid-rows-2 gap-6 h-auto md:h-full">
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+               data-src="/img/spa/aceites-esenciales.webp" 
+               data-alt="Aceites esenciales y aromaterapia">
+            <img 
+              src="/img/spa/aceites-esenciales.webp" 
+              alt="Aceites esenciales y aromaterapia"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+               data-src="/img/spa/meditacion.webp" 
+               data-alt="Espacio de meditación y relajación">
+            <img 
+              src="/img/spa/meditacion.webp" 
+              alt="Espacio de meditación y relajación"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+        </div>
+
+        <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+             data-src="/img/spa/spa-principal.webp" 
+             data-alt="Spa principal Casa del Jaguar">
+          <img 
+            src="/img/spa/spa-principal.webp" 
+            alt="Spa principal Casa del Jaguar"
+            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white scroll-animate">
+    <div class="max-w-[1500px] mx-auto px-4 md:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-5xl md:text-6xl font-bold text-brand-dark font-georgia mb-6">
+          Piscinas y Actividades
+        </h2>
+        <p class="text-[17px] text-brand-dark font-gotham leading-relaxed max-w-4xl mx-auto mb-4">
+          Disfruta de nuestras refrescantes piscinas y participa en diversas actividades que enriquecen tu experiencia en la Amazonía. Desde natación relajante hasta excursiones de exploración, cada actividad está diseñada para conectarte profundamente con la naturaleza.
+        </p>
+        <p class="text-[17px] text-brand-dark font-gotham leading-relaxed max-w-4xl mx-auto">
+          Nuestras instalaciones recreativas ofrecen el equilibrio perfecto entre relajación y aventura, permitiéndote explorar la biodiversidad amazónica mientras disfrutas de momentos de tranquilidad y recreación.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:h-[600px] scroll-animate" data-gallery="pools">
+        <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+             data-src="/img/pools/piscina-principal.webp" 
+             data-alt="Piscina principal Casa del Jaguar">
+          <img 
+            src="/img/pools/piscina-principal.webp" 
+            alt="Piscina principal Casa del Jaguar"
+            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-1 md:grid-rows-2 gap-6 h-auto md:h-full">
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+               data-src="/img/pools/excursion-rio.webp" 
+               data-alt="Excursión por el río Amazonas">
+            <img 
+              src="/img/pools/excursion-rio.webp" 
+              alt="Excursión por el río Amazonas"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+               data-src="/img/pools/actividades-naturaleza.webp" 
+               data-alt="Actividades en la naturaleza">
+            <img 
+              src="/img/pools/actividades-naturaleza.webp" 
+              alt="Actividades en la naturaleza"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-1 md:grid-rows-2 gap-6 h-auto md:h-full">
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+               data-src="/img/pools/piscina-relajacion.webp" 
+               data-alt="Área de relajación en piscina">
+            <img 
+              src="/img/pools/piscina-relajacion.webp" 
+              alt="Área de relajación en piscina"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+               data-src="/img/pools/observacion-fauna.webp" 
+               data-alt="Observación de fauna amazónica">
+            <img 
+              src="/img/pools/observacion-fauna.webp" 
+              alt="Observación de fauna amazónica"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-[#fffcf6] scroll-animate">
+    <div class="max-w-[1500px] mx-auto px-4 md:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-5xl md:text-6xl font-bold text-brand-dark font-georgia mb-6">
+          Comunidades Indígenas
+        </h2>
+        <p class="text-[17px] text-brand-dark font-gotham leading-relaxed max-w-4xl mx-auto mb-4">
+          Conoce y conecta con las comunidades indígenas Boras, Shipibo y Cucamas, guardianes ancestrales de la sabiduría amazónica. Estas culturas milenarias mantienen vivas las tradiciones de sanación y conocimiento espiritual que enriquecen profundamente tu experiencia.
+        </p>
+        <p class="text-[17px] text-brand-dark font-gotham leading-relaxed max-w-4xl mx-auto">
+          A través de intercambios culturales auténticos, aprenderás sobre sus rituales sagrados, medicina tradicional y cosmovisión ancestral, creando puentes de entendimiento y respeto mutuo.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:h-[600px] scroll-animate" data-gallery="villages">
+        <div class="grid grid-cols-2 md:grid-cols-1 md:grid-rows-2 gap-6 h-auto md:h-full">
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+               data-src="/img/villages/comunidad-boras.webp" 
+               data-alt="Comunidad indígena Boras">
+            <img 
+              src="/img/villages/comunidad-boras.webp" 
+              alt="Comunidad indígena Boras"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+               data-src="/img/villages/rituales-ancestrales.webp" 
+               data-alt="Rituales ancestrales indígenas">
+            <img 
+              src="/img/villages/rituales-ancestrales.webp" 
+              alt="Rituales ancestrales indígenas"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-1 md:grid-rows-2 gap-6 h-auto md:h-full">
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+               data-src="/img/villages/arte-shipibo.webp" 
+               data-alt="Arte tradicional Shipibo">
+            <img 
+              src="/img/villages/arte-shipibo.webp" 
+              alt="Arte tradicional Shipibo"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+          <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+               data-src="/img/villages/medicina-tradicional.webp" 
+               data-alt="Medicina tradicional amazónica">
+            <img 
+              src="/img/villages/medicina-tradicional.webp" 
+              alt="Medicina tradicional amazónica"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+        </div>
+
+        <div class="h-[250px] md:h-full gallery-item cursor-pointer relative overflow-hidden rounded-lg shadow-lg group scroll-animate"
+             data-src="/img/villages/comunidades-indigenas.webp" 
+             data-alt="Comunidades indígenas amazónicas">
+          <img 
+            src="/img/villages/comunidades-indigenas.webp" 
+            alt="Comunidades indígenas amazónicas"
+            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="galleryModal" class="gallery-modal hidden fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
+    <div class="modal-content relative max-w-6xl mx-auto p-4">
+      <button id="closeModal" class="absolute top-4 right-4 text-white text-4xl hover:text-brand-primary transition-colors z-10">
+        ×
+      </button>
+      
+      <div class="main-image-container mb-6">
+        <img id="modalMainImage" src="" alt="" class="w-full h-auto max-h-[70vh] object-contain rounded-lg">
+      </div>
+      
+      <div class="thumbnail-gallery flex gap-3 justify-center overflow-x-auto pb-4">
+      </div>
+      
+      <button id="prevImage" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-6xl hover:text-brand-primary transition-colors">
+        ‹
+      </button>
+      <button id="nextImage" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-6xl hover:text-brand-primary transition-colors">
+        ›
+      </button>
+    </div>
+  </div>
+
+  
+
+<script>
+window.addEventListener('load', function() {
+  const modal = document.getElementById('galleryModal');
+  const modalMainImage = document.getElementById('modalMainImage');
+  const thumbnailGallery = document.querySelector('.thumbnail-gallery');
+  const closeModalBtn = document.getElementById('closeModal');
+  const prevBtn = document.getElementById('prevImage');
+  const nextBtn = document.getElementById('nextImage');
+  
+  if (!modal || !modalMainImage || !thumbnailGallery || !closeModalBtn || !prevBtn || !nextBtn) {
+    return;
+  }
+  
+  let currentGallery: { src: string; alt: string }[] = [];
+  let currentImageIndex = 0;
+
+  function openModal(galleryType: string, imageIndex?: number) {
+    if (imageIndex === undefined) imageIndex = 0;
+    
+    const galleryContainer = document.querySelector('[data-gallery="' + galleryType + '"]');
+    if (!galleryContainer) return;
+    
+    const images = galleryContainer.querySelectorAll('.gallery-item');
+    
+    currentGallery = [];
+    for (let i = 0; i < images.length; i++) {
+      const img = images[i];
+      currentGallery.push({
+        src: img.getAttribute('data-src') || '',
+        alt: img.getAttribute('data-alt') || ''
+      });
+    }
+    
+    currentImageIndex = imageIndex;
+    updateMainImage();
+    generateThumbnails();
+    
+    if (modal) {
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function updateMainImage() {
+    if (currentGallery[currentImageIndex] && modalMainImage) {
+      const imageData = currentGallery[currentImageIndex];
+      (modalMainImage as HTMLImageElement).src = imageData.src;
+      (modalMainImage as HTMLImageElement).alt = imageData.alt;
+      updateActiveThumbnail();
+    }
+  }
+
+  function generateThumbnails() {
+    if (!thumbnailGallery) return;
+    thumbnailGallery.innerHTML = '';
+    
+    for (let i = 0; i < currentGallery.length; i++) {
+      const image = currentGallery[i];
+      const thumbnail = document.createElement('img');
+      thumbnail.src = image.src;
+      thumbnail.alt = image.alt;
+      thumbnail.className = 'thumbnail-item rounded-lg object-cover';
+      thumbnail.style.width = '80px';
+      thumbnail.style.height = '80px';
+      thumbnail.style.border = '2px solid transparent';
+      thumbnail.style.cursor = 'pointer';
+      
+      if (i === currentImageIndex) {
+        thumbnail.style.borderColor = '#F2AB27';
+      }
+      
+      thumbnail.addEventListener('click', (function(index) {
+        return function() {
+          currentImageIndex = index;
+          updateMainImage();
+        };
+      })(i));
+      
+      thumbnailGallery.appendChild(thumbnail);
+    }
+  }
+
+  function updateActiveThumbnail() {
+    const thumbnails = thumbnailGallery?.querySelectorAll('.thumbnail-item');
+    if (thumbnails) {
+      for (let i = 0; i < thumbnails.length; i++) {
+        const thumbnail = thumbnails[i] as HTMLElement;
+        if (i === currentImageIndex) {
+          thumbnail.style.borderColor = '#F2AB27';
+        } else {
+          thumbnail.style.borderColor = 'transparent';
+        }
+      }
+    }
+  }
+
+  function closeModal() {
+    if (modal) {
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+  }
+
+  function nextImage() {
+    if (currentImageIndex < currentGallery.length - 1) {
+      currentImageIndex++;
+      updateMainImage();
+    }
+  }
+
+  function prevImage() {
+    if (currentImageIndex > 0) {
+      currentImageIndex--;
+      updateMainImage();
+    }
+  }
+
+  closeModalBtn.addEventListener('click', closeModal);
+  prevBtn.addEventListener('click', prevImage);
+  nextBtn.addEventListener('click', nextImage);
+
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (!modal.classList.contains('hidden')) {
+      if (e.key === 'Escape') {
+        closeModal();
+      } else if (e.key === 'ArrowLeft') {
+        prevImage();
+      } else if (e.key === 'ArrowRight') {
+        nextImage();
+      }
+    }
+  });
+
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  galleryItems.forEach((item, index) => {
+    item.addEventListener('click', function (this: Element, event: Event) {
+      const gallery = (event.currentTarget as Element).closest('[data-gallery]');
+      if (gallery) {
+        const galleryType = gallery.getAttribute('data-gallery');
+        if (galleryType) {
+          openModal(galleryType, index);
+        }
+      }
+    });
+  });
+});
+</script>
+
+</Layout>
