@@ -3,6 +3,8 @@ import Layout from '@/layouts/Layout.astro';
 import CountrySelect from '@/components/CountrySelect.astro';
 import PhoneCodeSelect from '@/components/PhoneCodeSelect.astro';
 import { useTranslations } from '@/i18n/utils';
+import GoogleReviews from '@/components/GoogleReviews.astro';
+import Services from '@/components/Services.astro';
 
 const t = useTranslations('es');
 
@@ -36,6 +38,7 @@ const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina 
       </p>
     </div>
   </section>
+
 
   <section class="py-20 bg-white scroll-animate">
     <div class="max-w-7xl mx-auto px-4 md:px-8">
@@ -187,7 +190,7 @@ const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina 
     <div class="max-w-7xl mx-auto px-4 md:px-8">
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div class="text-center">
-          <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div class="w-12 h-12 bg-[#D99D55] rounded-full flex items-center justify-center mx-auto mb-4">
             <svg class="w-6 h-6 text-brand-dark" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
             </svg>
@@ -198,7 +201,7 @@ const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina 
         </div>
 
         <div class="text-center">
-          <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div class="w-12 h-12 bg-[#D99D55] rounded-full flex items-center justify-center mx-auto mb-4">
             <svg class="w-6 h-6 text-brand-dark" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
             </svg>
@@ -209,7 +212,7 @@ const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina 
         </div>
 
         <div class="text-center">
-          <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div class="w-12 h-12 bg-[#D99D55] rounded-full flex items-center justify-center mx-auto mb-4">
             <svg class="w-6 h-6 text-brand-dark" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
             </svg>
@@ -220,7 +223,7 @@ const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina 
         </div>
 
         <div class="text-center scroll-animate">
-          <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div class="w-12 h-12 bg-[#D99D55] rounded-full flex items-center justify-center mx-auto mb-4">
             <svg class="w-6 h-6 text-brand-dark" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
             </svg>
@@ -232,6 +235,414 @@ const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina 
       </div>
     </div>
   </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-[1500px] mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 scroll-animate">
+        <h2 class="max-w-[1200px] mx-auto text-4xl md:text-5xl font-bold text-brand-dark font-georgia mb-6">
+          Transforma tu vida con el método Casa del Jaguar, un programa altamente eficaz que fusiona las ceremonias de ayahuasca y la psicología moderna.
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 md:gap-10">
+        <div class="text-center group scroll-animate">
+          <div class="w-16 h-16 mx-auto mb-6 text-[#F2AB27]">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 1 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-brand-dark font-georgia mb-4">Apoyo de Integración</h3>
+          <p class="text-gray-600 font-gotham leading-relaxed">
+            Clases diarias con facilitadores expertos te ayudan a procesar y integrar tus experiencias de manera profunda y significativa. Recibes herramientas prácticas para llevar la transformación a tu vida cotidiana.
+          </p>
+        </div>
+
+        <div class="text-center group scroll-animate">
+          <div class="w-16 h-16 mx-auto mb-6 text-[#F2AB27]">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.623 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-brand-dark font-georgia mb-4">Seguridad Médica</h3>
+          <p class="text-gray-600 font-gotham leading-relaxed">
+            Somos el único resort de medicina vegetal con licencia médica completa en el mundo. Nuestro equipo médico profesional garantiza tu seguridad durante toda la experiencia.
+          </p>
+        </div>
+
+        <div class="text-center group scroll-animate">
+          <div class="w-16 h-16 mx-auto mb-6 text-[#F2AB27]">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205 3 1m1.5.5-1.5-.5M6.75 7.364V3h-3v18m3-13.636 10.5-3.819" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-brand-dark font-georgia mb-4">Comodidades de Lujo</h3>
+          <p class="text-gray-600 font-gotham leading-relaxed">
+            Disfruta de habitaciones elegantes, gastronomía gourmet y espacios de bienestar diseñados para tu comodidad. Tu transformación se desarrolla en un ambiente de total lujo y tranquilidad.
+          </p>
+        </div>
+
+        <div class="text-center group scroll-animate">
+          <div class="w-16 h-16 mx-auto mb-6 text-[#F2AB27]">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-brand-dark font-georgia mb-4">Conexión Cultural</h3>
+          <p class="text-gray-600 font-gotham leading-relaxed">
+            Experimenta ceremonias auténticas dirigidas por chamanes indígenas respetados. Conecta con las tradiciones ancestrales y visita comunidades locales para una experiencia cultural profunda.
+          </p>
+        </div>
+
+        <div class="text-center group scroll-animate">
+          <div class="w-16 h-16 mx-auto mb-6 text-[#F2AB27]">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-brand-dark font-georgia mb-4">Bienestar Holístico</h3>
+          <p class="text-gray-600 font-gotham leading-relaxed">
+            Yoga, meditación, terapias de spa y actividades de bienestar complementan tu viaje de sanación. Cada elemento está diseñado para nutrir tu cuerpo, mente y espíritu de manera integral.
+          </p>
+        </div>
+
+        <div class="text-center group scroll-animate">
+          <div class="w-16 h-16 mx-auto mb-6 text-[#F2AB27]">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-brand-dark font-georgia mb-4">Experiencia Personalizada</h3>
+          <p class="text-gray-600 font-gotham leading-relaxed">
+            Grupos pequeños y atención individual garantizan que recibas el apoyo personalizado que necesitas. Cada huésped es único y tu experiencia se adapta a tus necesidades específicas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white scroll-animate">
+      <div class="max-w-[1500px] mx-auto px-4 md:px-8">
+        <GoogleReviews 
+          title="Acepta los milagros: únete al 97 % de Casa del Jaguar."
+          reviews={[
+            {
+              id: "1",
+              name: "Candy Beatriz Rios Cahuaza",
+              avatar: "/img/avatars/candy-beatriz-rios-cahuaza.webp",
+              rating: 5,
+              date: "Hace 6 meses",
+              text: "La experiencia en la Casa del Jaguar es absolutamente imperdible. Desde el inicio, la atención es de primera, con un ambiente acogedor y armonioso. La ceremonia de Ayahuasca es guiada con profundo conocimiento y sabiduría, brindando una experiencia transformadora. Cada detalle, desde La preparación hasta la explicación, contribuye a hacer de esta sesión un momento único e inolvidable. Sin duda, una experiencia que recomiendo a quienes buscan una conexión auténtica y significativa.",
+              location: "Perú"
+            },
+            {
+              id: "2", 
+              name: "Diego Reuch Borbor",
+              avatar: "/img/avatars/diego-reuch-borbor.webp",
+              rating: 5,
+              date: "Hace 10 meses",
+              text: "Una experiencia única en el lugar. Buena atención, preparación y el guiado en ceremonia es sencillamente personalizado, que se adapta a la situación de uno. Como producto de la potente conexión que tuve gracias a la madre ayahuasca y al maestro chaman pude expandir mis límites mentales y espirituales para forjar la transcendente consciencia que hoy me ayuda a tener una mejor calidad de vida. Definitivamente recomendaría visitar la Casa del Jaguar a toda persona que desee entender mejor su realidad y expandir su nivel de conciencia.",
+              location: "Perú"
+            },
+            {
+              id: "3",
+              name: "Samuel Ballantine",
+              rating: 5,
+              date: "Hace 4 meses",
+              text: "This is a place for people who truly want to heal. The shaman is truly dedicated he is. The kind of man who will sit and talk to you all day if you so desire it. He holds great insight and will be able to guide you through your ceremonies and help you understand what you are seeing and processing. Couldn’t recommend this place any more.",
+              location: "Italia"
+            },
+            {
+              id: "4",
+              name: "Jacopo Foglia",
+              rating: 5,
+              date: "Hace 3 meses",
+              text: "L’esperienza con lo sciamano Denis è stata davvero sorprendente! Avevo già partecipato ad una cerimonia di ayahuasca prima di quel momento, ma questa è stata davvero interessante ed intima. Ha guidato me ed il mio amico in un viaggio interiore indescrivibile, aiutandoci grazie a diverse ore di chiacchierata prima della cerimonia, spiegandoci il suo approccio con la medicina e spiegandoci come gestire la cerimonia nelle sue diverse fasi. Sicuramente parteciperò ad una nuova quando tornerò ad Iquitos.",
+              location: "Italia"
+            },
+            {
+              id: "5",
+              name: "Felix Rios Teran",
+              avatar: "/img/avatars/felix-rios-teran.webp",
+              rating: 5,
+              date: "Hace 1 año",
+              text: "Maestro Denis muchas gracias por guiarme y curarme con tu sabiduría durante mi experiencia con la Madre Ayahuasca una experiencia transformadora que abre puertas a la introspección y la sanación. Estoy profundamente agradecido por tu cuidado, profesionalismo y dedicación. Le recomiendo a cualquier hermano que busque sanación y crecimiento espiritual en la CASA DEL JAGUAR",
+              location: "Perú"
+            },
+            {
+              id: "6",
+              name: "Stella Palomares",
+              avatar: "/img/avatars/stella-palomares.webp",
+              rating: 5,
+              date: "Hace 1 año", 
+              text: "Una experiencia gratificante y llena de sabiduría con la acogedora atención del Sr Jaguar y su linda familia; sentimos mucha comodidad y linda energía. Fuimos bien guiados bajo el poder de la madre Ayahuasca ",
+              location: "México"
+            },
+            {
+              id: "7",
+              name: "Victor Alfonso Vazquez Zapata",
+              avatar: "/img/avatars/victor-alfonso-vazquez-zapata.webp",
+              rating: 5,
+              date: "Hace 1 año", 
+              text: "La mejor experiencia de mi vida. Todo está espectacularmente calculado. Gracias Denis, nos vemos pronto. Saludos desde Aguascalientes, México.",
+              location: "México"
+            },
+            {
+              id: "8",
+              name: "Clever Enrique",
+              rating: 5,
+              date: "Hace 4 meses", 
+              text: "Une belle place et en plein securité pour vivre cette belle expérience. 100% recommander!",
+              location: "Italia"
+            }
+          ]}
+          autoplay={true}
+          autoplayDelay={7000}
+        />
+      </div>
+    </section>
+
+    <Services />
+
+    <section class="py-20 bg-[#fffcf6] scroll-animate">
+      <div class="max-w-[1500px] mx-auto px-4 md:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia mb-6">
+            Transforma tu Vida en Casa del Jaguar
+          </h2>
+        </div>
+
+        <div class="relative">
+          <div class="video-slider overflow-hidden">
+            <div class="video-track sm:h-[350px] md:h-[400px] flex transition-transform duration-500 ease-in-out">
+              <div class="video-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-3">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group cursor-pointer video-thumbnail h-80 flex flex-col" 
+                    data-video-id="dQw4w9WgXcQ" 
+                    data-title="Experiencia Transformadora - María González">
+                  <div class="relative flex-shrink-0">
+                    <img 
+                      src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" 
+                      alt="Testimonio de María González" 
+                      class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    >
+                    <div class="absolute inset-0 transition-all duration-300 flex items-center justify-center">
+                      <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6 text-brand-dark ml-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="text-lg font-bold text-brand-dark font-georgia mb-2">Experiencia Transformadora</h3>
+                    <p class="text-gray-600 font-gotham text-sm flex-1">María González comparte su experiencia de sanación en Casa del Jaguar</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="video-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-3">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group cursor-pointer video-thumbnail" 
+                    data-video-id="9bZkp7q19f0" 
+                    data-title="Un Viaje de Autodescubrimiento - Carlos Mendoza">
+                  <div class="relative">
+                    <img 
+                      src="https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg" 
+                      alt="Testimonio de Carlos Mendoza" 
+                      class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    >
+                    <div class="absolute inset-0 transition-all duration-300 flex items-center justify-center">
+                      <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6 text-brand-dark ml-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-6">
+                    <h3 class="text-lg font-bold text-brand-dark font-georgia mb-2">Un Viaje de Autodescubrimiento</h3>
+                    <p class="text-gray-600 font-gotham text-sm">Carlos Mendoza sobre su proceso de sanación personal</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="video-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-3">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group cursor-pointer video-thumbnail" 
+                    data-video-id="GtL1huin9EE" 
+                    data-title="Ceremonia Sagrada - Ana Rodríguez">
+                  <div class="relative">
+                    <img 
+                      src="https://img.youtube.com/vi/GtL1huin9EE/maxresdefault.jpg" 
+                      alt="Testimonio de Ana Rodríguez" 
+                      class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    >
+                    <div class="absolute inset-0 transition-all duration-300 flex items-center justify-center">
+                      <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6 text-brand-dark ml-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-6">
+                    <h3 class="text-lg font-bold text-brand-dark font-georgia mb-2">Ceremonia Sagrada</h3>
+                    <p class="text-gray-600 font-gotham text-sm">Ana Rodríguez reflexiona sobre la ceremonia de ayahuasca</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="video-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-3">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group cursor-pointer video-thumbnail" 
+                    data-video-id="jNQXAC9IVRw" 
+                    data-title="Sanación Profunda - Luis Torres">
+                  <div class="relative">
+                    <img 
+                      src="https://img.youtube.com/vi/jNQXAC9IVRw/maxresdefault.jpg" 
+                      alt="Testimonio de Luis Torres" 
+                      class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    >
+                    <div class="absolute inset-0 transition-all duration-300 flex items-center justify-center">
+                      <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6 text-brand-dark ml-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-6">
+                    <h3 class="text-lg font-bold text-brand-dark font-georgia mb-2">Sanación Profunda</h3>
+                    <p class="text-gray-600 font-gotham text-sm">Luis Torres sobre su proceso de sanación emocional</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="video-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-3">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group cursor-pointer video-thumbnail" 
+                    data-video-id="dQw4w9WgXcQ" 
+                    data-title="Experiencia Transformadora - María González">
+                  <div class="relative">
+                    <img 
+                      src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" 
+                      alt="Testimonio de María González" 
+                      class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    >
+                    <div class="absolute inset-0 transition-all duration-300 flex items-center justify-center">
+                      <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6 text-brand-dark ml-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-6">
+                    <h3 class="text-lg font-bold text-brand-dark font-georgia mb-2">Experiencia Transformadora</h3>
+                    <p class="text-gray-600 font-gotham text-sm">María González comparte su experiencia de sanación en Casa del Jaguar</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="video-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-3">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group cursor-pointer video-thumbnail" 
+                    data-video-id="9bZkp7q19f0" 
+                    data-title="Un Viaje de Autodescubrimiento - Carlos Mendoza">
+                  <div class="relative">
+                    <img 
+                      src="https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg" 
+                      alt="Testimonio de Carlos Mendoza" 
+                      class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    >
+                    <div class="absolute inset-0 transition-all duration-300 flex items-center justify-center">
+                      <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6 text-brand-dark ml-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-6">
+                    <h3 class="text-lg font-bold text-brand-dark font-georgia mb-2">Un Viaje de Autodescubrimiento</h3>
+                    <p class="text-gray-600 font-gotham text-sm">Carlos Mendoza sobre su proceso de sanación personal</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="video-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-3">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group cursor-pointer video-thumbnail" 
+                    data-video-id="GtL1huin9EE" 
+                    data-title="Ceremonia Sagrada - Ana Rodríguez">
+                  <div class="relative">
+                    <img 
+                      src="https://img.youtube.com/vi/GtL1huin9EE/maxresdefault.jpg" 
+                      alt="Testimonio de Ana Rodríguez" 
+                      class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    >
+                    <div class="absolute inset-0 transition-all duration-300 flex items-center justify-center">
+                      <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6 text-brand-dark ml-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-6">
+                    <h3 class="text-lg font-bold text-brand-dark font-georgia mb-2">Ceremonia Sagrada</h3>
+                    <p class="text-gray-600 font-gotham text-sm">Ana Rodríguez reflexiona sobre la ceremonia de ayahuasca</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="video-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-3">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group cursor-pointer video-thumbnail" 
+                    data-video-id="jNQXAC9IVRw" 
+                    data-title="Sanación Profunda - Luis Torres">
+                  <div class="relative">
+                    <img 
+                      src="https://img.youtube.com/vi/jNQXAC9IVRw/maxresdefault.jpg" 
+                      alt="Testimonio de Luis Torres" 
+                      class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    >
+                    <div class="absolute inset-0 transition-all duration-300 flex items-center justify-center">
+                      <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6 text-brand-dark ml-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-6">
+                    <h3 class="text-lg font-bold text-brand-dark font-georgia mb-2">Sanación Profunda</h3>
+                    <p class="text-gray-600 font-gotham text-sm">Luis Torres sobre su proceso de sanación emocional</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="video-prev absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors z-10">
+            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+          </button>
+          <button class="video-next absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors z-10">
+            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </button>
+
+        </div>
+      </div>
+    </section>
+
+    <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-80 z-50 hidden">
+      <div class="absolute inset-0 flex items-center justify-center p-4">
+        <div class="relative w-full max-w-4xl">
+          <button id="closeModal" class="absolute -top-12 right-0 text-white hover:text-gray-300 text-2xl z-10">
+            ✕
+          </button>
+          <div id="videoContainer" class="relative bg-black rounded-lg overflow-hidden" style="padding-bottom: 56.25%; height: 0;">
+          </div>
+        </div>
+      </div>
+    </div>
+
 </Layout>
 
 <script>
@@ -242,7 +653,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (!form || !submitButton || !successMessage) return;
 
-  // Email validation pattern
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   function showError(field: HTMLElement, message: string) {
@@ -279,7 +689,6 @@ document.addEventListener('DOMContentLoaded', function() {
     return true;
   }
 
-  // Real-time validation
   const fields = form.querySelectorAll('input, select') as NodeListOf<HTMLInputElement | HTMLSelectElement>;
   fields.forEach(field => {
     field.addEventListener('blur', () => validateField(field));
@@ -290,11 +699,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Form submission
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    // Validate all fields
     let isValid = true;
     fields.forEach(field => {
       if (!validateField(field)) {
@@ -304,19 +711,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (!isValid) return;
 
-    // Simulate form submission
     submitButton.disabled = true;
     submitButton.textContent = 'Enviando...';
 
     try {
-      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      // Show success message
       form.classList.add('hidden');
       successMessage.classList.remove('hidden');
       
-      // Scroll to success message
       successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
       
     } catch (error) {
@@ -328,7 +731,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Keyboard accessibility
   form.addEventListener('keydown', function(e) {
     if (e.key === 'Enter' && e.target !== submitButton) {
       e.preventDefault();
@@ -339,15 +741,24 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <style>
-  .scroll-animate {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+  .video-thumbnail {
+    height: 320px;
+    display: flex;
+    flex-direction: column;
   }
-
-  .scroll-animate.visible {
-    opacity: 1;
-    transform: translateY(0);
+  
+  .video-thumbnail .relative {
+    flex-shrink: 0;
+  }
+  
+  .video-thumbnail .p-6 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .video-thumbnail .p-6 p {
+    flex: 1;
   }
 </style>
 
@@ -368,5 +779,165 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const animatedElements = document.querySelectorAll('.scroll-animate');
   animatedElements.forEach(el => observer.observe(el));
+
+  let currentSlide = 0;
+  const videoTrack = document.querySelector('.video-track') as HTMLElement;
+  const videoSlides = document.querySelectorAll('.video-slide');
+  const prevButton = document.querySelector('.video-prev') as HTMLElement;
+  const nextButton = document.querySelector('.video-next') as HTMLElement;
+  const dots = document.querySelectorAll('.video-dot');
+  const modal = document.getElementById('videoModal') as HTMLElement;
+  const videoContainer = document.getElementById('videoContainer') as HTMLElement;
+  const closeModalBtn = document.getElementById('closeModal') as HTMLElement;
+
+  const slidesPerView = getSlidesPerView();
+  const uniqueVideos = 4;
+  const totalSlides = 8;
+  let isAnimating = false;
+
+  function getSlidesPerView() {
+    if (window.innerWidth >= 1024) return 3;
+    if (window.innerWidth >= 768) return 2;
+    return 1;
+  }
+
+  function updateSlider(transition = true) {
+    if (!videoTrack) return;
+    
+    const slideWidth = 100 / slidesPerView;
+    const translateX = -(currentSlide * slideWidth);
+    
+    videoTrack.style.transition = transition ? 'transform 0.5s ease-in-out' : 'none';
+    videoTrack.style.transform = `translateX(${translateX}%)`;
+
+    const visualIndex = currentSlide % uniqueVideos;
+    const visibleGroupIndex = Math.floor(visualIndex / slidesPerView);
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('bg-brand-primary', index === visibleGroupIndex);
+      dot.classList.toggle('bg-gray-300', index !== visibleGroupIndex);
+    });
+  }
+
+  function nextSlide() {
+    if (isAnimating) return;
+    isAnimating = true;
+    
+    currentSlide++;
+    updateSlider(true);
+    
+    if (currentSlide >= uniqueVideos) {
+      setTimeout(() => {
+        currentSlide = 0;
+        updateSlider(false);
+        setTimeout(() => {
+          isAnimating = false;
+        }, 50);
+      }, 500);
+    } else {
+      setTimeout(() => {
+        isAnimating = false;
+      }, 500);
+    }
+  }
+
+  function prevSlide() {
+    if (isAnimating) return;
+    isAnimating = true;
+    
+    if (currentSlide <= 0) {
+      currentSlide = uniqueVideos;
+      updateSlider(false);
+      setTimeout(() => {
+        currentSlide = uniqueVideos - 1;
+        updateSlider(true);
+        setTimeout(() => {
+          isAnimating = false;
+        }, 500);
+      }, 50);
+    } else {
+      currentSlide--;
+      updateSlider(true);
+      setTimeout(() => {
+        isAnimating = false;
+      }, 500);
+    }
+  }
+
+  if (nextButton) nextButton.addEventListener('click', nextSlide);
+  if (prevButton) prevButton.addEventListener('click', prevSlide);
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      if (isAnimating) return;
+      isAnimating = true;
+      
+      currentSlide = index;
+      updateSlider(true);
+      
+      setTimeout(() => {
+        isAnimating = false;
+      }, 500);
+    });
+  });
+
+  const videoThumbnails = document.querySelectorAll('.video-thumbnail');
+  
+  videoThumbnails.forEach(thumbnail => {
+    thumbnail.addEventListener('click', () => {
+      const videoId = thumbnail.getAttribute('data-video-id');
+      const title = thumbnail.getAttribute('data-title');
+      
+      if (videoId && modal && videoContainer) {
+        const liteYoutube = document.createElement('lite-youtube');
+        liteYoutube.setAttribute('videoid', videoId);
+        liteYoutube.setAttribute('style', 'position: absolute; top: 0; left: 0; width: 100%; height: 100%;');
+        
+        videoContainer.innerHTML = '';
+        videoContainer.appendChild(liteYoutube);
+        
+        modal.classList.remove('hidden');
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  function closeModal() {
+    if (modal && videoContainer) {
+      modal.classList.add('hidden');
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+      
+      setTimeout(() => {
+        videoContainer.innerHTML = '';
+      }, 300);
+    }
+  }
+
+  if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+  
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    const newSlidesPerView = getSlidesPerView();
+    updateSlider(false);
+  });
+
+  updateSlider(false);
 });
 </script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.2/src/lite-yt-embed.css">
+<script src="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.2/src/lite-yt-embed.js"></script>
