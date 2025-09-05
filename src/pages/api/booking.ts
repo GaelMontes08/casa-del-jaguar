@@ -15,6 +15,10 @@ export const POST: APIRoute = async ({ request }) => {
   console.log('=== BOOKING API CALLED ===');
   console.log('Request method:', request.method);
   console.log('Request headers:', Object.fromEntries(request.headers.entries()));
+  console.log('Environment check:');
+  console.log('- RESEND_API_KEY exists:', !!import.meta.env.RESEND_API_KEY);
+  console.log('- RESEND_API_KEY preview:', import.meta.env.RESEND_API_KEY?.substring(0, 10) + '...');
+  console.log('- RESEND_AUDIENCE_ID:', import.meta.env.RESEND_AUDIENCE_ID);
   
   try {
     // Check if Resend is properly configured
@@ -76,7 +80,7 @@ export const POST: APIRoute = async ({ request }) => {
     // Send notification email to the business
     try {
       const notificationEmail = await resend.emails.send({
-        from: 'Casa del Jaguar <onboarding@resend.dev>',
+        from: 'Casa del Jaguar <noreply@casadeljaguariquitos.com>',
         to: ['ayahuascamother@gmail.com'], // Replace with your business email
         subject: '🏛️ Nueva Solicitud de Reserva - Casa del Jaguar',
         html: `
@@ -150,13 +154,14 @@ export const POST: APIRoute = async ({ request }) => {
     
     } catch (emailError) {
       console.error('Error sending notification email:', emailError);
-      throw new Error('Failed to send notification email');
+      console.error('Error details:', JSON.stringify(emailError, null, 2));
+      // Don't throw here, continue with confirmation email
     }
 
     // Send confirmation email to the customer
     try {
       const confirmationEmail = await resend.emails.send({
-        from: 'Casa del Jaguar <onboarding@resend.dev>',
+        from: 'Casa del Jaguar <noreply@casadeljaguariquitos.com>',
       to: [email],
       subject: '🙏 Confirmación de Solicitud - Casa del Jaguar',
       html: `
@@ -230,6 +235,7 @@ export const POST: APIRoute = async ({ request }) => {
     
     } catch (emailError) {
       console.error('Error sending confirmation email:', emailError);
+      console.error('Error details:', JSON.stringify(emailError, null, 2));
       // Don't throw here, as the notification email was successful
     }
 
