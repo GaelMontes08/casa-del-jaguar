@@ -12,6 +12,10 @@ if (!RESEND_API_KEY) {
 const resend = RESEND_API_KEY ? new Resend(RESEND_API_KEY) : null;
 
 export const POST: APIRoute = async ({ request }) => {
+  console.log('=== BOOKING API CALLED ===');
+  console.log('Request method:', request.method);
+  console.log('Request headers:', Object.fromEntries(request.headers.entries()));
+  
   try {
     // Check if Resend is properly configured
     if (!resend) {
@@ -63,12 +67,19 @@ export const POST: APIRoute = async ({ request }) => {
 
     const fullPhone = `${countryCode}${phone}`;
 
+    console.log('Starting email sending process...', { firstName, lastName, email, fullPhone });
+
+    // Variables to store email IDs
+    let notificationEmailId = null;
+    let confirmationEmailId = null;
+
     // Send notification email to the business
-    const notificationEmail = await resend.emails.send({
-      from: 'Casa del Jaguar <noreply@casadeljaguar.com>',
-      to: ['ayahuascamother@gmail.com'], // Replace with your business email
-      subject: '🏛️ Nueva Solicitud de Reserva - Casa del Jaguar',
-      html: `
+    try {
+      const notificationEmail = await resend.emails.send({
+        from: 'Casa del Jaguar <onboarding@resend.dev>',
+        to: ['ayahuascamother@gmail.com'], // Replace with your business email
+        subject: '🏛️ Nueva Solicitud de Reserva - Casa del Jaguar',
+        html: `
         <div style="font-family: 'Helvetica Neue', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f8f9fa; padding: 20px;">
           <div style="background: linear-gradient(135deg, #D99D55 0%, #B8854A 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
             <h1 style="color: white; margin: 0; font-size: 28px; font-weight: bold;">
@@ -134,9 +145,18 @@ export const POST: APIRoute = async ({ request }) => {
       `,
     });
 
+    console.log('Notification email sent successfully:', notificationEmail.data);
+    notificationEmailId = notificationEmail.data?.id;
+    
+    } catch (emailError) {
+      console.error('Error sending notification email:', emailError);
+      throw new Error('Failed to send notification email');
+    }
+
     // Send confirmation email to the customer
-    const confirmationEmail = await resend.emails.send({
-      from: 'Casa del Jaguar <noreply@casadeljaguar.com>',
+    try {
+      const confirmationEmail = await resend.emails.send({
+        from: 'Casa del Jaguar <onboarding@resend.dev>',
       to: [email],
       subject: '🙏 Confirmación de Solicitud - Casa del Jaguar',
       html: `
@@ -205,6 +225,14 @@ export const POST: APIRoute = async ({ request }) => {
       `,
     });
 
+    console.log('Confirmation email sent successfully:', confirmationEmail.data);
+    confirmationEmailId = confirmationEmail.data?.id;
+    
+    } catch (emailError) {
+      console.error('Error sending confirmation email:', emailError);
+      // Don't throw here, as the notification email was successful
+    }
+
     // Add to audience/mailing list if RESEND_AUDIENCE_ID is provided
     if (import.meta.env.RESEND_AUDIENCE_ID) {
       try {
@@ -222,8 +250,8 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify({
       success: true,
       message: 'Booking request sent successfully',
-      notificationId: notificationEmail.data?.id,
-      confirmationId: confirmationEmail.data?.id,
+      notificationId: notificationEmailId,
+      confirmationId: confirmationEmailId,
     }), {
       status: 200,
       headers: {

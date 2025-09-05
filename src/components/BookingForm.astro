@@ -305,13 +305,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     try {
       const formData = new FormData(form);
+      console.log('Submitting form data:', Object.fromEntries(formData.entries()));
       
       const response = await fetch('/api/booking', {
         method: 'POST',
         body: formData,
       });
 
+      console.log('Response status:', response.status);
+      console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+
       const result = await response.json();
+      console.log('API result:', result);
 
       if (result.success) {
         showSuccessState();
