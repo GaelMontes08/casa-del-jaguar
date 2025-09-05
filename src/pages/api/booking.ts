@@ -3,6 +3,78 @@ import { Resend } from 'resend';
 
 export const prerender = false;
 
+// Simple in-memory rate limiting storage
+// In production, consider using Redis or a database
+const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
+
+const RATE_LIMIT = {
+  maxRequests: 3,
+  windowMs: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
+};
+
+function getRealIP(request: Request): string {
+  // Try to get real IP from common headers (for production behind proxy/CDN)
+  const forwardedFor = request.headers.get('x-forwarded-for');
+  const realIP = request.headers.get('x-real-ip');
+  const cfConnectingIP = request.headers.get('cf-connecting-ip'); // Cloudflare
+  
+  if (forwardedFor) {
+    // x-forwarded-for can contain multiple IPs, get the first one
+    return forwardedFor.split(',')[0].trim();
+  }
+  
+  if (realIP) return realIP;
+  if (cfConnectingIP) return cfConnectingIP;
+  
+  // Fallback for development
+  return 'unknown-ip';
+}
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const userLimit = rateLimitStore.get(ip);
+  
+  if (!userLimit) {
+    // First request from this IP
+    rateLimitStore.set(ip, { count: 1, resetTime: now + RATE_LIMIT.windowMs });
+    return false;
+  }
+  
+  // Check if the time window has expired
+  if (now > userLimit.resetTime) {
+    // Reset the limit
+    rateLimitStore.set(ip, { count: 1, resetTime: now + RATE_LIMIT.windowMs });
+    return false;
+  }
+  
+  // Check if under the limit
+  if (userLimit.count < RATE_LIMIT.maxRequests) {
+    userLimit.count++;
+    return false;
+  }
+  
+  // Over the limit
+  return true;
+}
+
+function getResetTimeRemaining(ip: string): number {
+  const userLimit = rateLimitStore.get(ip);
+  if (!userLimit) return 0;
+  
+  const remaining = Math.max(0, userLimit.resetTime - Date.now());
+  return Math.ceil(remaining / 1000); // Return seconds
+}
+
+// Clean up old entries periodically (basic cleanup)
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, data] of rateLimitStore.entries()) {
+    if (now > data.resetTime) {
+      rateLimitStore.delete(ip);
+    }
+  }
+}, 60 * 60 * 1000); // Clean up every hour
+
 const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
 
 if (!RESEND_API_KEY) {
@@ -15,6 +87,35 @@ export const POST: APIRoute = async ({ request }) => {
   console.log('=== BOOKING API CALLED ===');
   console.log('Request method:', request.method);
   console.log('Request headers:', Object.fromEntries(request.headers.entries()));
+  
+  // Get client IP and check rate limit
+  const clientIP = getRealIP(request);
+  console.log('Client IP:', clientIP);
+  
+  if (isRateLimited(clientIP)) {
+    const resetTimeRemaining = getResetTimeRemaining(clientIP);
+    const hoursRemaining = Math.floor(resetTimeRemaining / 3600);
+    const minutesRemaining = Math.floor((resetTimeRemaining % 3600) / 60);
+    
+    console.log(`Rate limit exceeded for IP: ${clientIP}`);
+    
+    return new Response(JSON.stringify({
+      success: false,
+      error: 'Límite de solicitudes excedido. Has alcanzado el máximo de 3 solicitudes por día.',
+      rateLimitExceeded: true,
+      resetTime: `${hoursRemaining}h ${minutesRemaining}m`,
+      message: `Podrás enviar nuevas solicitudes en ${hoursRemaining > 0 ? hoursRemaining + ' horas y ' : ''}${minutesRemaining} minutos.`
+    }), {
+      status: 429, // Too Many Requests
+      headers: {
+        'Content-Type': 'application/json',
+        'X-RateLimit-Limit': RATE_LIMIT.maxRequests.toString(),
+        'X-RateLimit-Remaining': '0',
+        'X-RateLimit-Reset': Math.ceil(Date.now() / 1000 + resetTimeRemaining).toString(),
+      },
+    });
+  }
+  
   console.log('Environment check:');
   console.log('- RESEND_API_KEY exists:', !!import.meta.env.RESEND_API_KEY);
   console.log('- RESEND_API_KEY preview:', import.meta.env.RESEND_API_KEY?.substring(0, 10) + '...');
@@ -253,6 +354,10 @@ export const POST: APIRoute = async ({ request }) => {
       }
     }
 
+    // Get current rate limit status for headers
+    const currentLimit = rateLimitStore.get(clientIP);
+    const remaining = currentLimit ? Math.max(0, RATE_LIMIT.maxRequests - currentLimit.count) : RATE_LIMIT.maxRequests - 1;
+
     return new Response(JSON.stringify({
       success: true,
       message: 'Booking request sent successfully',
@@ -262,6 +367,9 @@ export const POST: APIRoute = async ({ request }) => {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
+        'X-RateLimit-Limit': RATE_LIMIT.maxRequests.toString(),
+        'X-RateLimit-Remaining': remaining.toString(),
+        'X-RateLimit-Reset': currentLimit ? Math.ceil(currentLimit.resetTime / 1000).toString() : Math.ceil((Date.now() + RATE_LIMIT.windowMs) / 1000).toString(),
       },
     });
 

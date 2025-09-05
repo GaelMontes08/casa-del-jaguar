@@ -329,7 +329,12 @@ document.addEventListener('DOMContentLoaded', function() {
           });
         }
       } else {
-        showErrorState(result.error || 'Error al enviar la solicitud');
+        // Check if it's a rate limit error
+        if (result.rateLimitExceeded) {
+          showErrorState(`🚫 ${result.error}\n\n⏰ ${result.message}\n\n💡 Si necesitas hacer una reserva urgente, puedes contactarnos directamente al teléfono.`);
+        } else {
+          showErrorState(result.error || 'Error al enviar la solicitud');
+        }
       }
     } catch (error) {
       console.error('Form submission error:', error);
