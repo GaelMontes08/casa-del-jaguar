@@ -52,7 +52,7 @@ const {
     </div>
   )}
 
-  <form class="booking-form max-w-2xl mx-auto bg-white rounded-2xl shadow-xl p-8 border border-gray-100 mb-8">
+  <form class="booking-form max-w-2xl mx-auto bg-white rounded-2xl shadow-xl p-8 border border-gray-100 mb-8" id="bookingForm">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
       <div class="form-group">
         <label for="firstName" class="block text-sm font-semibold text-brand-dark mb-2 font-gotham">
@@ -66,6 +66,7 @@ const {
           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F2AB27] focus:border-transparent transition-all duration-200 font-gotham text-gray-700 bg-gray-50 focus:bg-white"
           placeholder={labels.firstNamePlaceholder}
         />
+        <span class="error-message text-red-500 text-sm hidden"></span>
       </div>
 
       <div class="form-group">
@@ -80,6 +81,7 @@ const {
           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F2AB27] focus:border-transparent transition-all duration-200 font-gotham text-gray-700 bg-gray-50 focus:bg-white"
           placeholder={labels.lastNamePlaceholder}
         />
+        <span class="error-message text-red-500 text-sm hidden"></span>
       </div>
     </div>
 
@@ -95,6 +97,7 @@ const {
         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F2AB27] focus:border-transparent transition-all duration-200 font-gotham text-gray-700 bg-gray-50 focus:bg-white"
         placeholder={labels.emailPlaceholder}
       />
+      <span class="error-message text-red-500 text-sm hidden"></span>
     </div>
 
     <div class="form-group mb-8">
@@ -134,11 +137,48 @@ const {
           placeholder={labels.phonePlaceholder}
         />
       </div>
+      <span class="error-message text-red-500 text-sm hidden"></span>
+    </div>
+
+    <!-- Loading and Success States -->
+    <div id="loadingState" class="text-center hidden mb-6">
+      <div class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-[#D99D55] transition ease-in-out duration-150">
+        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Enviando solicitud...
+      </div>
+    </div>
+
+    <div id="successState" class="text-center hidden mb-6">
+      <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg">
+        <div class="flex items-center justify-center mb-2">
+          <svg class="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <strong>¡Solicitud enviada exitosamente!</strong>
+        </div>
+        <p class="text-sm">Nos pondremos en contacto contigo dentro de las próximas 24 horas.</p>
+      </div>
+    </div>
+
+    <div id="errorState" class="text-center hidden mb-6">
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg">
+        <div class="flex items-center justify-center mb-2">
+          <svg class="w-6 h-6 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <strong>Error al enviar</strong>
+        </div>
+        <p class="text-sm" id="errorMessage">Ha ocurrido un error. Por favor, inténtalo de nuevo.</p>
+      </div>
     </div>
 
     <button
       type="submit"
-      class="w-full bg-brand-dark hover:bg-opacity-90 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-[1.02] focus:ring-4 focus:ring-[#F2AB27] focus:ring-opacity-50 font-gotham text-lg shadow-lg hover:shadow-xl"
+      id="submitButton"
+      class="w-full bg-brand-dark hover:bg-opacity-90 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-[1.02] focus:ring-4 focus:ring-[#F2AB27] focus:ring-opacity-50 font-gotham text-lg shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
     >
       {labels.submit}
     </button>
@@ -147,6 +187,152 @@ const {
       {labels.privacy}
     </p>
   </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('bookingForm') as HTMLFormElement;
+  const submitButton = document.getElementById('submitButton') as HTMLButtonElement;
+  const loadingState = document.getElementById('loadingState');
+  const successState = document.getElementById('successState');
+  const errorState = document.getElementById('errorState');
+  const errorMessage = document.getElementById('errorMessage');
+
+  if (!form || !submitButton || !loadingState || !successState || !errorState || !errorMessage) {
+    console.error('Required form elements not found');
+    return;
+  }
+
+  // Form validation
+  function validateField(field: HTMLInputElement | HTMLSelectElement): boolean {
+    const value = field.value.trim();
+    const errorElement = field.parentElement?.querySelector('.error-message') as HTMLElement;
+    
+    // Clear previous errors
+    field.classList.remove('border-red-500');
+    if (errorElement) {
+      errorElement.classList.add('hidden');
+      errorElement.textContent = '';
+    }
+
+    if (!value && field.hasAttribute('required')) {
+      showFieldError(field, 'Este campo es requerido');
+      return false;
+    }
+
+    if (field.type === 'email' && value) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) {
+        showFieldError(field, 'Por favor, ingresa un email válido');
+        return false;
+      }
+    }
+
+    if (field.name === 'phone' && value) {
+      const phoneRegex = /^[0-9]{6,15}$/;
+      if (!phoneRegex.test(value.replace(/\s/g, ''))) {
+        showFieldError(field, 'Por favor, ingresa un número de teléfono válido');
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  function showFieldError(field: HTMLInputElement | HTMLSelectElement, message: string): void {
+    const errorElement = field.parentElement?.querySelector('.error-message') as HTMLElement;
+    field.classList.add('border-red-500');
+    if (errorElement) {
+      errorElement.textContent = message;
+      errorElement.classList.remove('hidden');
+    }
+  }
+
+  function hideAllStates(): void {
+    if (loadingState) loadingState.classList.add('hidden');
+    if (successState) successState.classList.add('hidden');
+    if (errorState) errorState.classList.add('hidden');
+  }
+
+  function showLoadingState(): void {
+    hideAllStates();
+    if (loadingState) loadingState.classList.remove('hidden');
+    submitButton.disabled = true;
+  }
+
+  function showSuccessState(): void {
+    hideAllStates();
+    if (successState) successState.classList.remove('hidden');
+    submitButton.disabled = false;
+    form.reset(); // Clear the form
+  }
+
+  function showErrorState(message: string = 'Ha ocurrido un error. Por favor, inténtalo de nuevo.'): void {
+    hideAllStates();
+    if (errorMessage) errorMessage.textContent = message;
+    if (errorState) errorState.classList.remove('hidden');
+    submitButton.disabled = false;
+  }
+
+  // Real-time validation
+  const inputs = form.querySelectorAll('input, select') as NodeListOf<HTMLInputElement | HTMLSelectElement>;
+  inputs.forEach(input => {
+    input.addEventListener('blur', () => validateField(input));
+    input.addEventListener('input', () => {
+      if (input.classList.contains('border-red-500')) {
+        validateField(input);
+      }
+    });
+  });
+
+  // Form submission
+  form.addEventListener('submit', async function(e: Event) {
+    e.preventDefault();
+
+    // Validate all fields
+    let isValid = true;
+    inputs.forEach(input => {
+      if (!validateField(input)) {
+        isValid = false;
+      }
+    });
+
+    if (!isValid) {
+      return;
+    }
+
+    showLoadingState();
+
+    try {
+      const formData = new FormData(form);
+      
+      const response = await fetch('/api/booking', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        showSuccessState();
+        
+        // Optional: Track the conversion with analytics
+        if (typeof (window as any).gtag !== 'undefined') {
+          (window as any).gtag('event', 'booking_submitted', {
+            event_category: 'engagement',
+            event_label: 'booking_form',
+          });
+        }
+      } else {
+        showErrorState(result.error || 'Error al enviar la solicitud');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      showErrorState('Error de conexión. Por favor, verifica tu conexión a internet e inténtalo de nuevo.');
+    }
+  });
+});
+</script>
 </div>
 
 <style>

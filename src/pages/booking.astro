@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BookingForm from '../components/BookingForm.astro';
+---
+
+<Layout 
+  title="Reservar - Casa del Jaguar"
+  description="Reserva tu retiro de medicina ancestral en Casa del Jaguar"
+  keywords="reservar retiro ayahuasca, booking Casa del Jaguar, medicina ancestral Peru"
+>
+  <main class="min-h-screen bg-[#fffcf6] py-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <BookingForm 
+        title="Reserva tu Retiro Espiritual"
+        subtitle="Completa el formulario y nos pondremos en contacto contigo dentro de las próximas 24 horas para confirmar tu reserva y coordinar todos los detalles de tu experiencia transformadora."
+        buttonText="Solicitar Reserva"
+      />
+    </div>
+  </main>
+</Layout>
