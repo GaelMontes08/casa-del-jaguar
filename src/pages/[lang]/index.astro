@@ -8,6 +8,7 @@ import BookingForm from '@/components/BookingForm.astro';
 import Services from '@/components/Services.astro';
 
 export { getStaticPaths };
+export const prerender = true;
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as 'es' | 'en');

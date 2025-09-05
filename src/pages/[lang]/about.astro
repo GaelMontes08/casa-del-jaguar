@@ -1,16 +1,16 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import { useTranslations, getStaticPaths } from '@/i18n/utils';
 
 export { getStaticPaths };
+export const prerender = true;
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as 'es' | 'en');
 ---
 
-<Layout title={t('about.title')} description={t('about.subtitle')}>
+<Layout title={t('about.title')} description={t('about.subtitle')} keywords={t('about.keywords')}>
   <main class="py-16">
     <div class="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
