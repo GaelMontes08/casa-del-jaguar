@@ -1,19 +1,70 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import BookingForm from '../../components/BookingForm.astro';
+import { useTranslations } from '../../i18n/utils';
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'es' } }
+  ];
+}
+
+const { lang } = Astro.params as { lang: "en" | "es" };
+const t = useTranslations(lang);
+
+const pageTitle = lang === 'en' 
+  ? "Book Your Retreat - Casa del Jaguar"
+  : "Reserva tu Retiro - Casa del Jaguar";
+
+const pageDescription = lang === 'en'
+  ? "Book your ancestral medicine retreat at Casa del Jaguar. Complete the form and we'll contact you within 24 hours to confirm your transformative experience."
+  : "Reserva tu retiro de medicina ancestral en Casa del Jaguar. Completa el formulario y nos pondremos en contacto contigo en 24 horas para confirmar tu experiencia transformadora.";
+
+const pageKeywords = lang === 'en'
+  ? "book ayahuasca retreat, booking Casa del Jaguar, ancestral medicine Peru, spiritual retreat booking"
+  : "reservar retiro ayahuasca, reserva Casa del Jaguar, medicina ancestral Peru, reservar retiro espiritual";
+
+const formLabels = lang === 'en' ? {
+  firstName: "First Name *",
+  lastName: "Last Name *", 
+  email: "Email Address *",
+  phone: "Phone Number *",
+  submit: "Request Booking",
+  privacy: "By submitting this form, you agree that we may contact you to process your booking.",
+  firstNamePlaceholder: "Your first name",
+  lastNamePlaceholder: "Your last name",
+  emailPlaceholder: "your@email.com",
+  phonePlaceholder: "123456789"
+} : {
+  firstName: "Nombre *",
+  lastName: "Apellido *", 
+  email: "Correo electrónico *",
+  phone: "Número de teléfono *",
+  submit: "Solicitar Reserva",
+  privacy: "Al enviar este formulario, aceptas que nos pongamos en contacto contigo para procesar tu reserva.",
+  firstNamePlaceholder: "Tu nombre",
+  lastNamePlaceholder: "Tu apellido",
+  emailPlaceholder: "tu@email.com",
+  phonePlaceholder: "123456789"
+};
 ---
 
 <Layout 
-  title="Booking - Casa del Jaguar"
-  description="Book your ancestral medicine retreat at Casa del Jaguar"
-  keywords="book ayahuasca retreat, booking Casa del Jaguar, ancestral medicine Peru"
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
 >
   <main class="min-h-screen bg-[#fffcf6] py-20">
     <div class="max-w-4xl mx-auto px-4">
       <BookingForm 
-        title="Book Your Spiritual Retreat"
-        subtitle="Complete the form and we will contact you within the next 24 hours to confirm your reservation and coordinate all the details of your transformative experience."
-        buttonText="Request Booking"
+        title={lang === 'en' ? "Book Your Spiritual Retreat" : "Reserva tu Retiro Espiritual"}
+        subtitle={lang === 'en' 
+          ? "Complete the form and we will contact you within the next 24 hours to confirm your reservation and coordinate all the details of your transformative experience."
+          : "Completa el formulario y nos pondremos en contacto contigo dentro de las próximas 24 horas para confirmar tu reserva y coordinar todos los detalles de tu experiencia transformadora."
+        }
+        buttonText={lang === 'en' ? "Request Booking" : "Solicitar Reserva"}
+        labels={formLabels}
       />
     </div>
   </main>
