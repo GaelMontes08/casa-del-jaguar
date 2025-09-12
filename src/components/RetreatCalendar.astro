@@ -1,0 +1,543 @@
+---
+export interface Props {
+  selectedDate?: string;
+  onDateSelect?: string;
+}
+
+const { selectedDate, onDateSelect = 'onDateSelect' } = Astro.props;
+
+const retreatPeriods = [
+  {
+    id: 'retreat-1',
+    name: 'Retiro de Medicina Ancestral - Octubre',
+    startDate: new Date(2025, 9, 20),
+    endDate: new Date(2025, 9, 26),
+    price: '$850',
+    spotsLeft: 8,
+    description: 'Experiencia transformadora de 7 días en el corazón de la Amazonía'
+  },
+  {
+    id: 'retreat-2', 
+    name: 'Retiro de Medicina Ancestral - Noviembre',
+    startDate: new Date(2025, 9, 27),
+    endDate: new Date(2025, 10, 2),
+    price: '$850',
+    spotsLeft: 5,
+    description: 'Experiencia transformadora de 7 días en el corazón de la Amazonía'
+  }
+];
+
+function getDaysInMonth(year: number, month: number): number {
+  return new Date(year, month + 1, 0).getDate();
+}
+
+function getFirstDayOfMonth(year: number, month: number): number {
+  return new Date(year, month, 1).getDay();
+}
+
+function isDateInRetreat(date: Date, retreat: typeof retreatPeriods[0]): boolean {
+  return date >= retreat.startDate && date <= retreat.endDate;
+}
+
+function getRetreatForDate(date: Date) {
+  return retreatPeriods.find(retreat => isDateInRetreat(date, retreat));
+}
+
+const currentYear = 2025;
+const monthsToShow = [
+  { year: 2025, month: 9, name: 'Octubre' },
+  { year: 2025, month: 10, name: 'Noviembre' }
+];
+---
+
+<div class="retreat-calendar">
+  <div class="calendar-header">
+    <h2 class="calendar-title">Fechas Disponibles</h2>
+    <p class="calendar-subtitle">Selecciona las fechas de tu retiro de medicina ancestral</p>
+  </div>
+
+  <div class="retreat-periods-overview">
+    {retreatPeriods.map(retreat => (
+      <div class="retreat-card" data-retreat-id={retreat.id}>
+        <div class="retreat-dates">
+          <span class="date-range">
+            {retreat.startDate.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })} - 
+            {retreat.endDate.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })}
+          </span>
+          <span class="retreat-price">{retreat.price}</span>
+        </div>
+        <h3 class="retreat-name">{retreat.name}</h3>
+        <p class="retreat-description">{retreat.description}</p>
+        <div class="retreat-info">
+          <span class="spots-left">
+            <i class="spot-indicator"></i>
+            {retreat.spotsLeft} espacios disponibles
+          </span>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="calendar-grid">
+    {monthsToShow.map(({ year, month, name }) => {
+      const daysInMonth = getDaysInMonth(year, month);
+      const firstDay = getFirstDayOfMonth(year, month);
+      const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+      const emptyDays = Array.from({ length: firstDay }, (_, i) => i);
+      
+      return (
+        <div class="month-calendar" data-month={month} data-year={year}>
+          <div class="month-header">
+            <h3 class="month-name">{name} {year}</h3>
+          </div>
+          
+          <div class="weekdays">
+            <div class="weekday">Dom</div>
+            <div class="weekday">Lun</div>
+            <div class="weekday">Mar</div>
+            <div class="weekday">Mié</div>
+            <div class="weekday">Jue</div>
+            <div class="weekday">Vie</div>
+            <div class="weekday">Sáb</div>
+          </div>
+          
+          <div class="days-grid">
+            {emptyDays.map(() => (
+              <div class="day empty"></div>
+            ))}
+            
+            {days.map(day => {
+              const currentDate = new Date(year, month, day);
+              const retreat = getRetreatForDate(currentDate);
+              const isToday = currentDate.toDateString() === new Date().toDateString();
+              const isPast = currentDate < new Date(new Date().setHours(0, 0, 0, 0));
+              
+              let dayClasses = 'day';
+              if (retreat) {
+                dayClasses += ' retreat-day';
+                dayClasses += ` retreat-${retreat.id}`;
+                
+                if (currentDate.getTime() === retreat.startDate.getTime()) {
+                  dayClasses += ' retreat-start';
+                }
+                if (currentDate.getTime() === retreat.endDate.getTime()) {
+                  dayClasses += ' retreat-end';
+                }
+              }
+              if (isToday) dayClasses += ' today';
+              if (isPast) dayClasses += ' past';
+              
+              return (
+                <div 
+                  class={dayClasses}
+                  data-date={currentDate.toISOString().split('T')[0]}
+                  data-retreat-id={retreat?.id}
+                  title={retreat ? `${retreat.name} - ${retreat.price}` : ''}
+                >
+                  <span class="day-number">{day}</span>
+                  {retreat && currentDate.getTime() === retreat.startDate.getTime() && (
+                    <div class="retreat-label">
+                      <span class="retreat-label-text">Retiro</span>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      );
+    })}
+  </div>
+
+  <div class="calendar-legend">
+    <div class="legend-item">
+      <div class="legend-color retreat-available"></div>
+      <span>Retiro Disponible</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color retreat-selected"></div>
+      <span>Seleccionado</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color unavailable"></div>
+      <span>No Disponible</span>
+    </div>
+  </div>
+</div>
+
+<style>
+.retreat-calendar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.calendar-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.calendar-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2D3748;
+  margin-bottom: 0.5rem;
+}
+
+.calendar-subtitle {
+  font-size: 1.125rem;
+  color: #4A5568;
+  margin: 0;
+}
+
+.retreat-periods-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.retreat-card {
+  background: linear-gradient(135deg, #D99D55 0%, #B8854A 100%);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.retreat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.retreat-dates {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.date-range {
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+.retreat-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+}
+
+.retreat-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.retreat-description {
+  font-size: 0.875rem;
+  opacity: 0.9;
+  margin: 0 0 1rem 0;
+  line-height: 1.5;
+}
+
+.retreat-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.spots-left {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.spot-indicator {
+  width: 8px;
+  height: 8px;
+  background: #38a169;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.month-calendar {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #E2E8F0;
+}
+
+.month-header {
+  margin-bottom: 1rem;
+}
+
+.month-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2D3748;
+  margin: 0;
+  text-align: center;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.weekday {
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4A5568;
+  padding: 0.5rem 0;
+}
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.day {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 45px;
+}
+
+.day:not(.empty):hover {
+  background: #EDF2F7;
+  transition: background-color 0.2s ease;
+}
+
+.day.empty {
+  cursor: default;
+}
+
+.day-number {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #2D3748;
+  z-index: 2;
+}
+
+.day.retreat-day {
+  background: linear-gradient(135deg, #D99D55, #B8854A);
+  color: white;
+}
+
+.day.retreat-day .day-number {
+  color: white;
+  font-weight: 600;
+}
+
+.day.retreat-day:hover {
+  background: linear-gradient(135deg, #E6A962, #C29251) !important;
+  box-shadow: 0 2px 4px rgba(217, 157, 85, 0.4);
+  transition: all 0.2s ease;
+}
+
+.day.retreat-start {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.day.retreat-end {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.day.today {
+  border: 2px solid #3182CE;
+}
+
+.day.past {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.day.past:hover {
+  transform: none;
+  background: none;
+}
+
+.retreat-label {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.retreat-label-text {
+  font-size: 0.625rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: #2D3748;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.calendar-legend {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #4A5568;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.legend-color.retreat-available {
+  background: linear-gradient(135deg, #D99D55, #B8854A);
+}
+
+.legend-color.retreat-selected {
+  background: #3182CE;
+}
+
+.legend-color.unavailable {
+  background: #E2E8F0;
+}
+
+@media (max-width: 768px) {
+  .retreat-calendar {
+    padding: 1rem;
+  }
+  
+  .calendar-title {
+    font-size: 2rem;
+  }
+  
+  .calendar-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .retreat-periods-overview {
+    grid-template-columns: 1fr;
+  }
+  
+  .calendar-legend {
+    gap: 1rem;
+  }
+  
+  .month-calendar {
+    padding: 1rem;
+  }
+  
+  .day {
+    min-height: 40px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const calendar = document.querySelector('.retreat-calendar');
+  if (!calendar) return;
+
+  calendar.addEventListener('click', function(e) {
+    if (!e.target) return;
+    const day = (e.target as HTMLElement).closest('.day');
+    if (!day || day.classList.contains('empty') || day.classList.contains('past')) {
+      return;
+    }
+
+    calendar.querySelectorAll('.day.selected').forEach(d => {
+      d.classList.remove('selected');
+    });
+
+    if (day.classList.contains('retreat-day')) {
+      const retreatId = (day as HTMLElement).dataset.retreatId;
+      const retreatDays = calendar.querySelectorAll(`[data-retreat-id="${retreatId}"]`);
+      
+      retreatDays.forEach(retreatDay => {
+        retreatDay.classList.add('selected');
+      });
+
+      const monthCalendar = day.closest('.month-calendar');
+      const retreatStartElement = monthCalendar?.querySelector(`[data-retreat-id="${retreatId}"].retreat-start`) as HTMLElement | null;
+      
+      const event = new CustomEvent('retreatSelected', {
+        detail: {
+          retreatId: retreatId,
+          startDate: retreatStartElement?.dataset.date || '',
+          dates: Array.from(retreatDays).map(d => (d as HTMLElement).dataset.date)
+        }
+      });
+      
+      calendar.dispatchEvent(event);
+    }
+  });
+  calendar.addEventListener('mouseenter', function(e) {
+    if (!e.target) return;
+    const day = (e.target as HTMLElement).closest('.day.retreat-day') as HTMLElement | null;
+    if (!day) return;
+
+    const retreatId = (day as HTMLElement).dataset.retreatId;
+    const retreatDays = calendar.querySelectorAll(`[data-retreat-id="${retreatId}"]`);
+    
+    retreatDays.forEach(retreatDay => {
+      retreatDay.classList.add('hover-group');
+    });
+  }, true);
+
+  calendar.addEventListener('mouseleave', function(e) {
+    if (!e.target) return;
+    const day = (e.target as HTMLElement).closest('.day.retreat-day');
+    if (!day) return;
+
+    calendar.querySelectorAll('.day.hover-group').forEach(d => {
+      d.classList.remove('hover-group');
+    });
+  }, true);
+});
+</script>
+
+<style>
+.day.selected {
+  background: #3182CE !important;
+  box-shadow: 0 2px 6px rgba(49, 130, 206, 0.4);
+  transition: all 0.2s ease;
+}
+
+.day.hover-group {
+  background: linear-gradient(135deg, #E6A962, #C29251) !important;
+  transition: all 0.2s ease;
+}
+</style>
