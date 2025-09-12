@@ -14,10 +14,10 @@ const t = useTranslations(lang);
     loop
     playsinline
     preload="none"
-    poster="/img/hero-poster.webp"
+    poster="/img/maloca-ceremonial.webp"
   >
     <source src="/hero.mp4" type="video/mp4">
-    <img src="/img/hero-poster.webp" alt="Casa del Jaguar Hero" class="w-full h-full object-cover">
+    <img src="/img/maloca-ceremonial.webp" alt="Casa del Jaguar Hero" class="w-full h-full object-cover">
   </video>
 
   <div class="relative z-20 flex items-center justify-center h-full">
@@ -44,8 +44,9 @@ const t = useTranslations(lang);
         <button 
           id="watch-video-btn"
           class="text-brand-dark bg-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-[#402A1E] hover:scale-101 hover:shadow-lg transition-all duration-300 font-gotham flex items-center gap-2 uppercase"
+          aria-label={lang === 'es' ? 'Reproducir video de presentación de Casa del Jaguar' : 'Play Casa del Jaguar presentation video'}
         >
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
           </svg>
           {lang === 'es' ? 'Mira el video' : 'Watch the Video'}

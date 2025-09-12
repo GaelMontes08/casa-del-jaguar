@@ -207,6 +207,7 @@ const pageKeywords = lang === 'en'
                 type="submit" 
                 class="w-full bg-brand-dark text-white py-4 px-6 rounded-lg font-semibold font-gotham text-lg transition-all duration-300 hover:bg-opacity-90 hover:shadow-lg focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 id="submitButton"
+                aria-label={lang === 'en' ? "Submit pricing request form" : "Enviar formulario de solicitud de precios"}
               >
                 {lang === 'en' ? "Submit Request" : "Enviar Solicitud"}
               </button>
@@ -766,13 +767,19 @@ const pageKeywords = lang === 'en'
             </div>
           </div>
 
-          <button class="video-prev absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors z-10">
-            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button 
+            class="video-prev absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors z-10"
+            aria-label={lang === 'en' ? "Previous video" : "Video anterior"}
+          >
+            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
             </svg>
           </button>
-          <button class="video-next absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors z-10">
-            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button 
+            class="video-next absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors z-10"
+            aria-label={lang === 'en' ? "Next video" : "Siguiente video"}
+          >
+            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
             </svg>
           </button>
@@ -783,7 +790,11 @@ const pageKeywords = lang === 'en'
     <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-80 z-50 hidden">
       <div class="absolute inset-0 flex items-center justify-center p-4">
         <div class="relative w-full max-w-4xl">
-          <button id="closeModal" class="absolute -top-12 right-0 text-white hover:text-gray-300 text-2xl z-10">
+          <button 
+            id="closeModal" 
+            class="absolute -top-12 right-0 text-white hover:text-gray-300 text-2xl z-10"
+            aria-label={lang === 'en' ? "Close video modal" : "Cerrar modal de video"}
+          >
             ✕
           </button>
           <div id="videoContainer" class="relative bg-black rounded-lg overflow-hidden" style="padding-bottom: 56.25%; height: 0;">

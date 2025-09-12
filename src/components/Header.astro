@@ -20,9 +20,14 @@ const t = useTranslations(lang);
       <div class="hidden lg:block">
         <div class="ml-10 flex items-baseline space-x-6">
           <div class="relative group">
-            <button class="text-white hover:text-brand-light px-3 py-2 rounded-md text-sm font-bold font-gotham flex items-center">
+            <button 
+              class="text-white hover:text-brand-light px-3 py-2 rounded-md text-sm font-bold font-gotham flex items-center"
+              aria-label={lang === 'es' ? 'Abrir menú de experiencias' : 'Open experiences menu'}
+              aria-expanded="false"
+              aria-haspopup="true"
+            >
               {lang === 'es' ? 'Experiencias' : 'Experiences'}
-              <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
@@ -58,9 +63,14 @@ const t = useTranslations(lang);
           </a>
 
           <div class="relative group">
-            <button class="text-white hover:text-brand-primary px-3 py-2 rounded-md text-sm font-bold font-gotham flex items-center">
+            <button 
+              class="text-white hover:text-brand-primary px-3 py-2 rounded-md text-sm font-bold font-gotham flex items-center"
+              aria-label={lang === 'es' ? 'Abrir menú de información' : 'Open learn more menu'}
+              aria-expanded="false"
+              aria-haspopup="true"
+            >
               {lang === 'es' ? 'Saber Más' : 'Learn More'}
-              <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
@@ -99,8 +109,15 @@ const t = useTranslations(lang);
         <LanguageSwitcher />
         
         <div class="lg:hidden">
-          <button type="button" class="text-brand-cream hover:text-brand-primary" id="mobile-menu-button">
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <button 
+            type="button" 
+            class="text-brand-cream hover:text-brand-primary" 
+            id="mobile-menu-button"
+            aria-label={lang === 'es' ? 'Abrir menú de navegación móvil' : 'Open mobile navigation menu'}
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
@@ -108,7 +125,12 @@ const t = useTranslations(lang);
       </div>
     </div>
 
-    <div class="lg:hidden hidden" id="mobile-menu">
+    <div 
+      class="lg:hidden hidden" 
+      id="mobile-menu"
+      role="menu"
+      aria-labelledby="mobile-menu-button"
+    >
       <div class="px-2 pt-2 pb-3 space-y-1 bg-white rounded-lg mt-2 shadow-lg">
         <div class="border-b border-brand-light pb-2 mb-2">
           <p class="px-3 py-2 text-sm font-medium text-brand-dark font-gotham">{lang === 'es' ? 'Experiencias' : 'Experiences'}</p>
@@ -180,7 +202,9 @@ const t = useTranslations(lang);
     
     if (mobileMenuButton && mobileMenu) {
       mobileMenuButton.addEventListener('click', function() {
+        const isExpanded = mobileMenu.classList.contains('hidden');
         mobileMenu.classList.toggle('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
       });
     }
 

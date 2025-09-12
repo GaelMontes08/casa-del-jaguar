@@ -82,7 +82,10 @@ const pageKeywords = lang === 'en'
           </p>
           <div class="pt-4">
             <a href="https://maps.app.goo.gl/25mFXhWBx2a1Pznd8" target="_blank" rel="noopener noreferrer">
-                <button class="bg-brand-dark text-white px-8 py-4 rounded-lg font-gotham font-semibold text-lg transition-colors duration-300 shadow-lg hover:shadow-xl">
+                <button 
+                  class="bg-brand-dark text-white px-8 py-4 rounded-lg font-gotham font-semibold text-lg transition-colors duration-300 shadow-lg hover:shadow-xl"
+                  aria-label={lang === 'en' ? 'View Casa del Jaguar location on Google Maps' : 'Ver ubicación de Casa del Jaguar en Google Maps'}
+                >
                 {lang === 'en' ? 'View Map' : 'Descubre Nuestras Instalaciones'}
                 </button>
             </a>
@@ -572,9 +575,13 @@ const pageKeywords = lang === 'en'
     </div>
   </section>
 
-  <div id="galleryModal" class="gallery-modal hidden fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
-    <div class="modal-content relative max-w-6xl mx-auto p-4">
-      <button id="closeModal" class="absolute top-4 right-4 text-white text-4xl hover:text-brand-primary transition-colors z-10">
+  <div id="galleryModal" class="gallery-modal hidden fixed inset-0 bg-black bg-opacity-90 z-50">
+    <div class="modal-content relative max-w-6xl mx-auto p-4 flex items-center justify-center min-h-screen">
+      <button 
+        id="closeModal" 
+        class="absolute top-4 right-4 text-white text-4xl hover:text-brand-primary transition-colors z-10"
+        aria-label={lang === 'en' ? 'Close image gallery' : 'Cerrar galería de imágenes'}
+      >
         ×
       </button>
       
@@ -585,10 +592,18 @@ const pageKeywords = lang === 'en'
       <div class="thumbnail-gallery flex gap-3 justify-center overflow-x-auto pb-4">
       </div>
       
-      <button id="prevImage" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-6xl hover:text-brand-primary transition-colors">
+      <button 
+        id="prevImage" 
+        class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-6xl hover:text-brand-primary transition-colors"
+        aria-label={lang === 'en' ? 'Previous image' : 'Imagen anterior'}
+      >
         ‹
       </button>
-      <button id="nextImage" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-6xl hover:text-brand-primary transition-colors">
+      <button 
+        id="nextImage" 
+        class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-6xl hover:text-brand-primary transition-colors"
+        aria-label={lang === 'en' ? 'Next image' : 'Siguiente imagen'}
+      >
         ›
       </button>
     </div>
