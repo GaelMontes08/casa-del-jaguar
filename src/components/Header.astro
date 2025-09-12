@@ -12,8 +12,8 @@ const t = useTranslations(lang);
     <div class="flex justify-between items-center h-16">
       <div class="flex items-center">
         <a href={translatePath('/', lang)} class="flex items-center space-x-2">
-          <img src="/cj-icon-light.webp" alt="Casa del Jaguar" class="h-10 lg:hidden">
-          <img src="/cj-logo.webp" alt="Casa del Jaguar Logo" class="h-8 hidden lg:block">
+          <img src="/cj-icon-light.webp" alt="Casa del Jaguar" class="h-10 lg:hidden" loading="eager" fetchpriority="high">
+          <img src="/cj-logo.webp" alt="Casa del Jaguar Logo" class="h-8 hidden lg:block" loading="eager" fetchpriority="high">
         </a>
       </div>
       

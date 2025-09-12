@@ -61,20 +61,17 @@ const t = useTranslations('es');
 </Layout>
 
 <script>
-// Handle calendar retreat selection and scroll to booking form
 document.addEventListener('DOMContentLoaded', function() {
   const calendar = document.querySelector('.retreat-calendar');
   const bookingForm = document.getElementById('booking-form');
   
   if (calendar && bookingForm) {
     calendar.addEventListener('retreatSelected', function(e) {
-      // Smooth scroll to booking form when a retreat is selected
       bookingForm.scrollIntoView({ 
         behavior: 'smooth',
         block: 'start'
       });
       
-      // Optional: You can also pre-fill form data here
       const customEvent = e as CustomEvent;
       console.log('Retreat selected:', customEvent.detail);
     });

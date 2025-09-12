@@ -13,9 +13,11 @@ const t = useTranslations(lang);
     muted 
     loop
     playsinline
-    preload="auto"
+    preload="metadata"
+    poster="/img/hero-poster.webp"
   >
     <source src="/hero.mp4" type="video/mp4">
+    <img src="/img/hero-poster.webp" alt="Casa del Jaguar Hero" class="w-full h-full object-cover">
   </video>
 
   <div class="relative z-20 flex items-center justify-center h-full">

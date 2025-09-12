@@ -22,8 +22,65 @@ import { SEO } from 'astro-seo';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://use.typekit.net/qtd6stw.css">
-    <link rel="stylesheet" href="/css/scroll-animations.css">
+    
+    <!-- Critical Resource Preloading -->
+    <!-- Fonts - Preload with font-display: swap for better performance -->
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+    <link rel="dns-prefetch" href="https://use.typekit.net">
+    
+    <!-- Preload critical images based on current page -->
+    <link rel="preload" as="image" href="/hero.mp4" media="(min-width: 768px)" type="video/mp4">
+    <link rel="preload" as="image" href="/img/centro-pasadiso.webp" type="image/webp">
+    <link rel="preload" as="image" href="/img/calendario-hero.webp" type="image/webp">
+    
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="/css/scroll-animations.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/css/scroll-animations.css"></noscript>
+    
+    <!-- Load fonts with optimized font-display -->
+    <link rel="stylesheet" href="https://use.typekit.net/qtd6stw.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://use.typekit.net/qtd6stw.css"></noscript>
+    
+    <!-- Critical CSS for above-the-fold content -->
+    <style>
+      /* Critical styles for immediate rendering */
+      body { 
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        margin: 0;
+        background-color: white;
+        color: #1a202c;
+        max-width: 1920px;
+        margin: 0 auto;
+      }
+      
+      /* Header critical styles */
+      .header-nav {
+        background-color: white;
+        position: relative;
+        z-index: 50;
+      }
+      
+      /* Hero section critical styles */
+      .hero-section {
+        position: relative;
+        height: 665px;
+        margin-top: -4rem;
+        padding-top: 4rem;
+        overflow: hidden;
+      }
+      
+      /* Prevent layout shift for fonts */
+      h1, h2, h3, h4, h5, h6 {
+        font-family: Georgia, serif;
+        font-display: swap;
+      }
+      
+      /* Critical brand colors */
+      .text-brand-gold { color: #F2AB27; }
+      .text-brand-dark { color: #402A1E; }
+      .bg-brand-cream { background-color: #F2E8D5; }
+    </style>
+    
     <SEO
       title={title}
       description={description}
@@ -55,6 +112,27 @@ import { SEO } from 'astro-seo';
     <Header />
     <slot />
     <Footer />
-    <script is:inline src="/js/scroll-animations.js"></script>
+    
+    <!-- Defer non-critical JavaScript -->
+    <script defer src="/js/scroll-animations.js"></script>
+    
+    <!-- Preload key interactions -->
+    <script>
+      // Optimize video loading for better LCP
+      if ('IntersectionObserver' in window) {
+        const video = document.getElementById('hero-video');
+        if (video && video instanceof HTMLVideoElement) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                video.preload = 'auto';
+                observer.unobserve(video);
+              }
+            });
+          });
+          observer.observe(video);
+        }
+      }
+    </script>
   </body>
 </html>
