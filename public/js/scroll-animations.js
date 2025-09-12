@@ -1,33 +1,40 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
+// Minimal Scroll Animations - Optimized for performance
+(function() {
+  'use strict';
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate-in');
+  function initScrollAnimations() {
+    const animatedElements = document.querySelectorAll('.scroll-animate, [data-animate]');
+    if (!animatedElements.length) return;
+
+    let ticking = false;
+
+    function animateOnScroll() {
+      animatedElements.forEach(element => {
+        const rect = element.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight * 0.8 && rect.bottom > 0;
         
-        if (entry.target.querySelector('.grid')) {
-          setTimeout(() => {
-            const grid = entry.target.querySelector('.grid');
-            if (grid) grid.classList.add('animate-in');
-          }, 200);
+        if (isVisible && !element.classList.contains('animate-in')) {
+          element.classList.add('animate-in');
         }
+      });
+      
+      ticking = false;
+    }
 
-        if (entry.target.classList.contains('testimonial-section')) {
-          setTimeout(() => {
-            const image = entry.target.querySelector('.testimonial-image');
-            const text = entry.target.querySelector('.testimonial-text');
-            if (image) image.classList.add('animate-in');
-            if (text) text.classList.add('animate-in');
-          }, 200);
-        }
+    function requestTick() {
+      if (!ticking) {
+        requestAnimationFrame(animateOnScroll);
+        ticking = true;
       }
-    });
-  }, observerOptions);
+    }
 
-  const animateElements = document.querySelectorAll('.scroll-animate');
-  animateElements.forEach(el => observer.observe(el));
-});
+    window.addEventListener('scroll', requestTick, { passive: true });
+    animateOnScroll();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollAnimations);
+  } else {
+    initScrollAnimations();
+  }
+})();

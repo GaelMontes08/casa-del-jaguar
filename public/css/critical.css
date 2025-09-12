@@ -1,0 +1,43 @@
+/* Critical CSS Utilities - Inline in head for fastest loading */
+
+/* Reset and base styles */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:#1a202c}
+
+/* Layout utilities */
+.container{max-width:1200px;margin:0 auto;padding:0 1rem}
+.flex{display:flex}
+.grid{display:grid}
+.block{display:block}
+.hidden{display:none}
+
+/* Spacing utilities */
+.p-4{padding:1rem}
+.p-8{padding:2rem}
+.m-0{margin:0}
+.mb-4{margin-bottom:1rem}
+.mb-8{margin-bottom:2rem}
+
+/* Typography utilities */
+.text-center{text-align:center}
+.font-bold{font-weight:700}
+.text-white{color:white}
+.text-lg{font-size:1.125rem}
+.text-xl{font-size:1.25rem}
+.text-2xl{font-size:1.5rem}
+
+/* Button utilities */
+.btn{padding:0.75rem 1.5rem;border-radius:0.5rem;font-weight:600;transition:all 0.2s;cursor:pointer;border:none}
+.btn-primary{background:#D99D55;color:white}
+.btn-primary:hover{background:#B8854A;transform:translateY(-1px)}
+
+/* Animation utilities */
+.animate-in{opacity:1;transform:translateY(0)}
+.scroll-animate{opacity:0;transform:translateY(20px);transition:all 0.6s ease}
+
+/* Responsive utilities */
+@media(max-width:768px){
+  .container{padding:0 0.5rem}
+  .text-2xl{font-size:1.25rem}
+  .p-8{padding:1rem}
+}

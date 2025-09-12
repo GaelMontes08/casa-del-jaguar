@@ -14,7 +14,7 @@ const retreatPeriods = [
     endDate: new Date(2025, 9, 26),
     price: '$2800',
     spotsLeft: 8,
-    description: 'Experiencia transformadora de 7 días en el corazón de la Amazonía'
+    description: 'Experiencia transformadora de 7 días'
   },
   {
     id: 'retreat-2', 
@@ -23,7 +23,7 @@ const retreatPeriods = [
     endDate: new Date(2025, 10, 2),
     price: '$2800',
     spotsLeft: 5,
-    description: 'Experiencia transformadora de 7 días en el corazón de la Amazonía'
+    description: 'Experiencia transformadora de 7 días'
   }
 ];
 
@@ -199,7 +199,7 @@ const monthsToShow = [
 }
 
 .retreat-card {
-  background: linear-gradient(135deg, #D99D55 0%, #B8854A 100%);
+  background: linear-gradient(135deg, #D99D55, #B8854A);
   color: white;
   padding: 1.5rem;
   border-radius: 12px;
@@ -265,7 +265,6 @@ const monthsToShow = [
   height: 8px;
   background: #38a169;
   border-radius: 50%;
-  display: inline-block;
 }
 
 .calendar-grid {
@@ -325,13 +324,12 @@ const monthsToShow = [
   position: relative;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease;
   min-height: 45px;
 }
 
 .day:not(.empty):hover {
   background: #EDF2F7;
-  transition: background-color 0.2s ease;
 }
 
 .day.empty {
@@ -358,7 +356,6 @@ const monthsToShow = [
 .day.retreat-day:hover {
   background: linear-gradient(135deg, #E6A962, #C29251) !important;
   box-shadow: 0 2px 4px rgba(217, 157, 85, 0.4);
-  transition: all 0.2s ease;
 }
 
 .day.retreat-start {
@@ -381,7 +378,6 @@ const monthsToShow = [
 }
 
 .day.past:hover {
-  transform: none;
   background: none;
 }
 
@@ -434,6 +430,15 @@ const monthsToShow = [
   background: #E2E8F0;
 }
 
+.day.selected {
+  background: #3182CE !important;
+  box-shadow: 0 2px 6px rgba(49, 130, 206, 0.4);
+}
+
+.day.hover-group {
+  background: linear-gradient(135deg, #E6A962, #C29251) !important;
+}
+
 @media (max-width: 768px) {
   .retreat-calendar {
     padding: 1rem;
@@ -466,78 +471,16 @@ const monthsToShow = [
 }
 </style>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const calendar = document.querySelector('.retreat-calendar');
-  if (!calendar) return;
-
-  calendar.addEventListener('click', function(e) {
-    if (!e.target) return;
-    const day = (e.target as HTMLElement).closest('.day');
-    if (!day || day.classList.contains('empty') || day.classList.contains('past')) {
-      return;
-    }
-
-    calendar.querySelectorAll('.day.selected').forEach(d => {
-      d.classList.remove('selected');
-    });
-
-    if (day.classList.contains('retreat-day')) {
-      const retreatId = (day as HTMLElement).dataset.retreatId;
-      const retreatDays = calendar.querySelectorAll(`[data-retreat-id="${retreatId}"]`);
-      
-      retreatDays.forEach(retreatDay => {
-        retreatDay.classList.add('selected');
-      });
-
-      const monthCalendar = day.closest('.month-calendar');
-      const retreatStartElement = monthCalendar?.querySelector(`[data-retreat-id="${retreatId}"].retreat-start`) as HTMLElement | null;
-      
-      const event = new CustomEvent('retreatSelected', {
-        detail: {
-          retreatId: retreatId,
-          startDate: retreatStartElement?.dataset.date || '',
-          dates: Array.from(retreatDays).map(d => (d as HTMLElement).dataset.date)
-        }
-      });
-      
-      calendar.dispatchEvent(event);
-    }
-  });
-  calendar.addEventListener('mouseenter', function(e) {
-    if (!e.target) return;
-    const day = (e.target as HTMLElement).closest('.day.retreat-day') as HTMLElement | null;
-    if (!day) return;
-
-    const retreatId = (day as HTMLElement).dataset.retreatId;
-    const retreatDays = calendar.querySelectorAll(`[data-retreat-id="${retreatId}"]`);
-    
-    retreatDays.forEach(retreatDay => {
-      retreatDay.classList.add('hover-group');
-    });
-  }, true);
-
-  calendar.addEventListener('mouseleave', function(e) {
-    if (!e.target) return;
-    const day = (e.target as HTMLElement).closest('.day.retreat-day');
-    if (!day) return;
-
-    calendar.querySelectorAll('.day.hover-group').forEach(d => {
-      d.classList.remove('hover-group');
-    });
-  }, true);
-});
-</script>
+  
+<script src="/js/retreat-calendar.js" defer></script>
 
 <style>
 .day.selected {
   background: #3182CE !important;
   box-shadow: 0 2px 6px rgba(49, 130, 206, 0.4);
-  transition: all 0.2s ease;
 }
 
 .day.hover-group {
   background: linear-gradient(135deg, #E6A962, #C29251) !important;
-  transition: all 0.2s ease;
 }
 </style>

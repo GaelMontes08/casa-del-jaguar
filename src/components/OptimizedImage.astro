@@ -1,0 +1,56 @@
+---
+export interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  loading?: 'lazy' | 'eager';
+  class?: string;
+  sizes?: string;
+}
+
+const { 
+  src, 
+  alt, 
+  width, 
+  height, 
+  loading = 'lazy', 
+  class: className = '',
+  sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+} = Astro.props;
+
+// Generate responsive image sources
+const webpSrc = src.replace(/\.(jpg|jpeg|png)$/, '.webp');
+const isWebp = src.endsWith('.webp');
+---
+
+<picture class={`optimized-image ${className}`}>
+  {!isWebp && (
+    <source srcset={webpSrc} type="image/webp" sizes={sizes} />
+  )}
+  <img 
+    src={src} 
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    decoding="async"
+    sizes={sizes}
+    class="w-full h-auto"
+  />
+</picture>
+
+<style>
+.optimized-image {
+  display: block;
+  overflow: hidden;
+}
+
+.optimized-image img {
+  transition: transform 0.3s ease;
+}
+
+.optimized-image:hover img {
+  transform: scale(1.02);
+}
+</style>
