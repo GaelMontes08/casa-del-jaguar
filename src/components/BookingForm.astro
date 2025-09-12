@@ -105,12 +105,17 @@ const {
         {labels.phone}
       </label>
       <div class="flex gap-3">
-        <select
-          id="countryCode"
-          name="countryCode"
-          required
-          class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F2AB27] focus:border-transparent transition-all duration-200 font-gotham text-gray-700 bg-gray-50 focus:bg-white min-w-[120px]"
-        >
+        <div class="relative">
+          <label for="countryCode" class="sr-only">
+            {labels.phone.includes('*') ? 'Código de país *' : 'Código de país'}
+          </label>
+          <select
+            id="countryCode"
+            name="countryCode"
+            required
+            class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F2AB27] focus:border-transparent transition-all duration-200 font-gotham text-gray-700 bg-gray-50 focus:bg-white min-w-[120px]"
+            aria-label={labels.phone.includes('*') ? 'Código de país requerido' : 'Código de país'}
+          >
           <option value="+51">🇵🇪 +51</option>
           <option value="+1">🇺🇸 +1</option>
           <option value="+44">🇬🇧 +44</option>
@@ -128,6 +133,7 @@ const {
           <option value="+506">🇨🇷 +506</option>
           <option value="+507">🇵🇦 +507</option>
         </select>
+        </div>
         <input
           type="tel"
           id="phone"
