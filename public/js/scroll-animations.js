@@ -12,13 +12,11 @@
     function animateOnScroll() {
       animatedElements.forEach((element, index) => {
         const rect = element.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight * 0.85 && rect.bottom > 0;
+        const isVisible = rect.top < window.innerHeight * 0.9 && rect.bottom > 0;
         
         if (isVisible && !element.classList.contains('animate-in')) {
-          // Add a small delay for staggered animations
-          setTimeout(() => {
-            element.classList.add('animate-in');
-          }, index * 100);
+          // Trigger animation immediately when element is visible
+          element.classList.add('animate-in');
         }
       });
       
