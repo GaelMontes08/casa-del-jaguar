@@ -1,0 +1,266 @@
+---
+export interface Video {
+  id: string;
+  title: string;
+  description: string;
+  thumbnail?: string;
+}
+
+interface Props {
+  title?: string;
+  videos?: Video[];
+  className?: string;
+}
+
+const {
+  title = "Transforma tu Vida en Casa del Jaguar",
+  videos = [
+    {
+      id: "dQw4w9WgXcQ",
+      title: "Experiencia Transformadora",
+      description: "María González comparte su experiencia de sanación en Casa del Jaguar"
+    },
+    {
+      id: "9bZkp7q19f0",
+      title: "Un Viaje de Autodescubrimiento",
+      description: "Carlos Mendoza sobre su proceso de sanación personal"
+    },
+    {
+      id: "GtL1huin9EE",
+      title: "Ceremonia Sagrada",
+      description: "Ana Rodríguez reflexiona sobre la ceremonia de ayahuasca"
+    },
+    {
+      id: "jNQXAC9IVRw",
+      title: "Sanación Profunda",
+      description: "Luis Torres sobre su proceso de sanación emocional"
+    }
+  ],
+  className = ""
+} = Astro.props;
+
+// Duplicate videos to create infinite loop effect
+const allVideos = [...videos, ...videos];
+---
+
+<section class={`py-20 bg-[#fffcf6] scroll-animate ${className}`}>
+  <div class="max-w-[1500px] mx-auto px-4 md:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia mb-6">
+        {title}
+      </h2>
+    </div>
+
+    <div class="relative">
+      <div class="video-slider overflow-hidden">
+        <div class="video-track sm:h-[350px] md:h-[400px] flex transition-transform duration-500 ease-in-out">
+          {allVideos.map((video, index) => (
+            <div class="video-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-3">
+              <div class="bg-white rounded-xl shadow-lg overflow-hidden group cursor-pointer video-thumbnail h-80 flex flex-col"
+                  data-video-id={video.id} 
+                  data-title={video.title}>
+                <div class="relative flex-shrink-0">
+                  <img 
+                    src={video.thumbnail || `https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
+                    alt={`Testimonio - ${video.title}`}
+                    class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  >
+                  <div class="absolute inset-0 transition-all duration-300 flex items-center justify-center">
+                    <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <svg class="w-6 h-6 text-brand-dark ml-1" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                  <h3 class="text-lg font-bold text-brand-dark font-georgia mb-2">{video.title}</h3>
+                  <p class="text-gray-600 font-gotham text-sm flex-1">{video.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <button class="video-prev absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors z-10">
+        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <button class="video-next absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors z-10">
+        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<div id="videoModal" class="fixed inset-0 bg-black bg-opacity-80 z-50 hidden">
+  <div class="absolute inset-0 flex items-center justify-center p-4">
+    <div class="relative w-full max-w-4xl">
+      <button id="closeModal" class="absolute -top-12 right-0 text-white hover:text-gray-300 text-2xl z-10">
+        ✕
+      </button>
+      <div id="videoContainer" class="relative bg-black rounded-lg overflow-hidden" style="padding-bottom: 56.25%; height: 0;">
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .video-thumbnail .relative {
+    flex-shrink: 0;
+  }
+  
+  .video-thumbnail .p-6 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .video-thumbnail .p-6 p {
+    flex: 1;
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  let currentSlide = 0;
+  const videoTrack = document.querySelector('.video-track') as HTMLElement;
+  const videoSlides = document.querySelectorAll('.video-slide');
+  const prevButton = document.querySelector('.video-prev') as HTMLElement;
+  const nextButton = document.querySelector('.video-next') as HTMLElement;
+  const modal = document.getElementById('videoModal') as HTMLElement;
+  const videoContainer = document.getElementById('videoContainer') as HTMLElement;
+  const closeModalBtn = document.getElementById('closeModal') as HTMLElement;
+
+  const uniqueVideos = Math.floor(videoSlides.length / 2); // Half since we duplicate videos
+  let isAnimating = false;
+
+  function getSlidesPerView() {
+    if (window.innerWidth >= 1024) return 3;
+    if (window.innerWidth >= 768) return 2;
+    return 1;
+  }
+
+  function updateSlider(transition = true) {
+    if (!videoTrack) return;
+    
+    const slidesPerView = getSlidesPerView();
+    const slideWidth = 100 / slidesPerView;
+    const translateX = -(currentSlide * slideWidth);
+    
+    videoTrack.style.transition = transition ? 'transform 0.5s ease-in-out' : 'none';
+    videoTrack.style.transform = `translateX(${translateX}%)`;
+  }
+
+  function nextSlide() {
+    if (isAnimating) return;
+    isAnimating = true;
+    
+    currentSlide++;
+    updateSlider(true);
+    
+    if (currentSlide >= uniqueVideos) {
+      setTimeout(() => {
+        currentSlide = 0;
+        updateSlider(false);
+        setTimeout(() => {
+          isAnimating = false;
+        }, 50);
+      }, 500);
+    } else {
+      setTimeout(() => {
+        isAnimating = false;
+      }, 500);
+    }
+  }
+
+  function prevSlide() {
+    if (isAnimating) return;
+    isAnimating = true;
+    
+    if (currentSlide <= 0) {
+      currentSlide = uniqueVideos;
+      updateSlider(false);
+      setTimeout(() => {
+        currentSlide = uniqueVideos - 1;
+        updateSlider(true);
+        setTimeout(() => {
+          isAnimating = false;
+        }, 500);
+      }, 50);
+    } else {
+      currentSlide--;
+      updateSlider(true);
+      setTimeout(() => {
+        isAnimating = false;
+      }, 500);
+    }
+  }
+
+  if (nextButton) nextButton.addEventListener('click', nextSlide);
+  if (prevButton) prevButton.addEventListener('click', prevSlide);
+
+  const videoThumbnails = document.querySelectorAll('.video-thumbnail');
+  
+  videoThumbnails.forEach(thumbnail => {
+    thumbnail.addEventListener('click', () => {
+      const videoId = thumbnail.getAttribute('data-video-id');
+      const title = thumbnail.getAttribute('data-title');
+      
+      if (videoId && modal && videoContainer) {
+        const liteYoutube = document.createElement('lite-youtube');
+        liteYoutube.setAttribute('videoid', videoId);
+        liteYoutube.setAttribute('style', 'position: absolute; top: 0; left: 0; width: 100%; height: 100%;');
+        
+        videoContainer.innerHTML = '';
+        videoContainer.appendChild(liteYoutube);
+        
+        modal.classList.remove('hidden');
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  function closeModal() {
+    if (modal && videoContainer) {
+      modal.classList.add('hidden');
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+      
+      setTimeout(() => {
+        videoContainer.innerHTML = '';
+      }, 300);
+    }
+  }
+
+  if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+  
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    updateSlider(false);
+  });
+
+  updateSlider(false);
+});
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.2/src/lite-yt-embed.css">
+<script src="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.2/src/lite-yt-embed.js"></script>

@@ -73,6 +73,18 @@ export const ui = {
     'contact.hours.saturday': 'Sábados: 10:00 AM - 4:00 PM',
     'contact.hours.sunday': 'Domingos: Cerrado',
     
+    // Testimonials
+    'testimonials.title': 'Testimonios',
+    'testimonials.subtitle': 'Conoce las experiencias de transformación de quienes han participado en nuestras ceremonias de ayahuasca.',
+    'testimonials.keywords': 'testimonios casa del jaguar, experiencias ayahuasca, sanación, transformación, ceremonias, retiros espirituales',
+    'testimonials.stats.ceremonies': 'Ceremonias realizadas',
+    'testimonials.stats.satisfaction': 'Satisfacción de participantes',
+    'testimonials.stats.experience': 'Años de experiencia',
+    'testimonials.cta.title': '¿Listo para tu propia transformación?',
+    'testimonials.cta.subtitle': 'Únete a las personas que han encontrado sanación y crecimiento espiritual en Casa del Jaguar.',
+    'testimonials.cta.contact': 'Contactar',
+    'testimonials.cta.calendar': 'Ver Calendario',
+    
     // Footer
     'footer.description': 'Centro de medicina tradicional especializado en ceremonias de ayahuasca para sanación y crecimiento espiritual.',
     'footer.links': 'Enlaces',
@@ -144,6 +156,18 @@ export const ui = {
     'contact.hours.weekdays': 'Monday to Friday: 9:00 AM - 6:00 PM',
     'contact.hours.saturday': 'Saturday: 10:00 AM - 4:00 PM',
     'contact.hours.sunday': 'Sunday: Closed',
+    
+    // Testimonials
+    'testimonials.title': 'Testimonials',
+    'testimonials.subtitle': 'Discover the transformative experiences of those who have participated in our ayahuasca ceremonies.',
+    'testimonials.keywords': 'casa del jaguar testimonials, ayahuasca experiences, healing, transformation, ceremonies, spiritual retreats',
+    'testimonials.stats.ceremonies': 'Ceremonies conducted',
+    'testimonials.stats.satisfaction': 'Participant satisfaction',
+    'testimonials.stats.experience': 'Years of experience',
+    'testimonials.cta.title': 'Ready for your own transformation?',
+    'testimonials.cta.subtitle': 'Join the people who have found healing and spiritual growth at Casa del Jaguar.',
+    'testimonials.cta.contact': 'Contact Us',
+    'testimonials.cta.calendar': 'View Calendar',
     
     // Footer
     'footer.description': 'Traditional medicine center specialized in ayahuasca ceremonies for healing and spiritual growth.',

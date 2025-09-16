@@ -1,0 +1,217 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { useTranslations, getStaticPaths } from '@/i18n/utils';
+import TestimonialVideos from '@/components/TestimonialVideos.astro';
+import GoogleReviews from '@/components/GoogleReviews.astro';
+
+export { getStaticPaths };
+export const prerender = true;
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as 'es' | 'en');
+
+const testimonials = [
+  {
+    name: lang === 'es' ? 'María González' : 'María González',
+    location: lang === 'es' ? 'Barcelona, España' : 'Barcelona, Spain',
+    image: '/testimonials/maria.jpg',
+    text: lang === 'es' 
+      ? 'Mi experiencia en Casa del Jaguar fue transformadora. Los maestros curanderos me guiaron con sabiduría y compasión a través de un proceso de sanación profunda. La ayahuasca me ayudó a conectar con partes de mí misma que había perdido hace años. El ambiente es seguro, sagrado y lleno de amor. Recomiendo esta experiencia a cualquiera que busque sanación auténtica.'
+      : 'My experience at Casa del Jaguar was transformative. The healing masters guided me with wisdom and compassion through a profound healing process. Ayahuasca helped me connect with parts of myself that I had lost years ago. The environment is safe, sacred and full of love. I recommend this experience to anyone seeking authentic healing.',
+    rating: 5,
+    ceremony: lang === 'es' ? 'Retiro de 7 días' : '7-day Retreat'
+  },
+  {
+    name: lang === 'es' ? 'Carlos Mendoza' : 'Carlos Mendoza',
+    location: lang === 'es' ? 'Ciudad de México, México' : 'Mexico City, Mexico',
+    image: '/testimonials/carlos.jpg',
+    text: lang === 'es'
+      ? 'Casa del Jaguar es un lugar especial donde la medicina tradicional se practica con el respeto y la autenticidad que merece. Los maestros tienen un conocimiento profundo y una conexión genuina con las plantas sagradas. Mi proceso de sanación aquí me ha ayudado a superar traumas antiguos y encontrar un nuevo propósito en la vida. Estoy eternamente agradecido.'
+      : 'Casa del Jaguar is a special place where traditional medicine is practiced with the respect and authenticity it deserves. The masters have deep knowledge and a genuine connection with the sacred plants. My healing process here has helped me overcome old traumas and find a new purpose in life. I am eternally grateful.',
+    rating: 5,
+    ceremony: lang === 'es' ? 'Ceremonia individual' : 'Individual Ceremony'
+  },
+  {
+    name: lang === 'es' ? 'Sarah Johnson' : 'Sarah Johnson',
+    location: lang === 'es' ? 'San Francisco, Estados Unidos' : 'San Francisco, United States',
+    image: '/testimonials/sarah.jpg',
+    text: lang === 'es'
+      ? 'Vine a Casa del Jaguar buscando claridad en mi vida y encontré mucho más. La experiencia me conectó profundamente con la naturaleza y conmigo misma. Los facilitadores crearon un espacio increíblemente seguro donde pude explorar y sanar aspectos profundos de mi ser. La integración posterior fue fundamental para incorporar las enseñanzas en mi vida diaria.'
+      : 'I came to Casa del Jaguar seeking clarity in my life and found much more. The experience connected me deeply with nature and myself. The facilitators created an incredibly safe space where I could explore and heal deep aspects of my being. The integration afterwards was fundamental to incorporating the teachings into my daily life.',
+    rating: 5,
+    ceremony: lang === 'es' ? 'Retiro de 3 días' : '3-day Retreat'
+  },
+  {
+    name: lang === 'es' ? 'Roberto Silva' : 'Roberto Silva',
+    location: lang === 'es' ? 'São Paulo, Brasil' : 'São Paulo, Brazil',
+    image: '/testimonials/roberto.jpg',
+    text: lang === 'es'
+      ? 'La medicina de la ayahuasca en Casa del Jaguar me ayudó a superar años de depresión y ansiedad. El enfoque holístico que tienen, combinando la ceremonia con terapia de integración, hace que la experiencia sea realmente transformadora. Los maestros son auténticos guardianes de esta sabiduría ancestral y tratan cada participante con un cuidado extraordinario.'
+      : 'The ayahuasca medicine at Casa del Jaguar helped me overcome years of depression and anxiety. Their holistic approach, combining ceremony with integration therapy, makes the experience truly transformative. The masters are authentic guardians of this ancestral wisdom and treat each participant with extraordinary care.',
+    rating: 5,
+    ceremony: lang === 'es' ? 'Retiro de 5 días' : '5-day Retreat'
+  },
+  {
+    name: lang === 'es' ? 'Emma Thompson' : 'Emma Thompson',
+    location: lang === 'es' ? 'Londres, Reino Unido' : 'London, United Kingdom',
+    image: '/testimonials/emma.jpg',
+    text: lang === 'es'
+      ? 'Mi búsqueda espiritual me llevó a muchos lugares, pero fue en Casa del Jaguar donde finalmente encontré las respuestas que buscaba. La combinación de la medicina sagrada, el entorno natural y la guía experta de los maestros creó la experiencia perfecta para mi crecimiento personal. Volveré sin duda.'
+      : 'My spiritual search took me to many places, but it was at Casa del Jaguar where I finally found the answers I was looking for. The combination of sacred medicine, natural environment and expert guidance from the masters created the perfect experience for my personal growth. I will definitely return.',
+    rating: 5,
+    ceremony: lang === 'es' ? 'Ceremonia de luna llena' : 'Full Moon Ceremony'
+  },
+  {
+    name: lang === 'es' ? 'Diego Hernández' : 'Diego Hernández',
+    location: lang === 'es' ? 'Lima, Perú' : 'Lima, Peru',
+    image: '/testimonials/diego.jpg',
+    text: lang === 'es'
+      ? 'Como peruano, conocía la tradición de la ayahuasca, pero nunca había participado en una ceremonia. Casa del Jaguar me ofreció la oportunidad de conectar con mis raíces de una manera profunda y auténtica. Los maestros respetan completamente las tradiciones ancestrales mientras proporcionan un ambiente moderno y seguro. Una experiencia que cambió mi vida.'
+      : 'As a Peruvian, I knew about the ayahuasca tradition, but had never participated in a ceremony. Casa del Jaguar offered me the opportunity to connect with my roots in a deep and authentic way. The masters completely respect ancestral traditions while providing a modern and safe environment. An experience that changed my life.',
+    rating: 5,
+    ceremony: lang === 'es' ? 'Ceremonia tradicional' : 'Traditional Ceremony'
+  }
+];
+---
+
+<Layout 
+  title={t('testimonials.title')} 
+  description={t('testimonials.subtitle')} 
+  keywords={t('testimonials.keywords')}
+>
+    <section class="hero relative h-[500px] -mt-16 pt-16 flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+        <img 
+            src="/img/centro-pasadiso.webp" 
+            alt="Resort Casa del Jaguar - Centro de medicina ancestral"
+            class="w-full h-full object-cover"
+        />
+        </div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-4 md:px-8 text-center">
+        <h1 class="scroll-animate text-5xl md:text-7xl font-bold text-white font-georgia mb-8 leading-tight">
+            Testimonies of Transformation
+        </h1>
+            
+        <p class="scroll-animate text-xl md:text-[19px] text-white brand-cream mb-12 max-w-4xl mx-auto font-gotham leading-relaxed">
+            Listen to the voices of those who have experienced transformation at Casa del Jaguar. Their stories reflect the healing power of ancestral medicine and the dedication of our team.
+        </p>
+        </div>
+    </section>
+
+    <TestimonialVideos 
+      title={lang === 'en' ? "Transform your Life at Casa del Jaguar" : "Transforma tu Vida en Casa del Jaguar"}
+      videos={[
+        {
+          id: "dQw4w9WgXcQ",
+          title: lang === 'en' ? "Transformational Experience" : "Experiencia Transformadora",
+          description: lang === 'en' 
+            ? "María González shares her healing experience at Casa del Jaguar"
+            : "María González comparte su experiencia de sanación en Casa del Jaguar"
+        },
+        {
+          id: "9bZkp7q19f0",
+          title: lang === 'en' ? "A Journey of Self-Discovery" : "Un Viaje de Autodescubrimiento",
+          description: lang === 'en' 
+            ? "Carlos Mendoza about his personal healing process"
+            : "Carlos Mendoza sobre su proceso de sanación personal"
+        },
+        {
+          id: "GtL1huin9EE",
+          title: lang === 'en' ? "Sacred Ceremony" : "Ceremonia Sagrada",
+          description: lang === 'en' 
+            ? "Ana Rodríguez reflects on the ayahuasca ceremony"
+            : "Ana Rodríguez reflexiona sobre la ceremonia de ayahuasca"
+        },
+        {
+          id: "jNQXAC9IVRw",
+          title: lang === 'en' ? "Deep Healing" : "Sanación Profunda",
+          description: lang === 'en' 
+            ? "Luis Torres about his emotional healing process"
+            : "Luis Torres sobre su proceso de sanación emocional"
+        }
+      ]}
+    />
+
+    <section class="py-20 bg-white scroll-animate">
+      <div class="max-w-7xl mx-auto px-4 md:px-8">
+        <GoogleReviews 
+          title="Embrace Miracles - Join Casa del Jaguar's 97%"
+          reviews={[
+            {
+              id: "1",
+              name: "Candy Beatriz Rios Cahuaza",
+              avatar: "/img/avatars/candy-beatriz-rios-cahuaza.webp",
+              rating: 5,
+              date: "6 months ago",
+              text: "The experience at Casa del Jaguar is absolutely unmissable. From the very beginning, the service is first-class, with a welcoming and harmonious atmosphere. The Ayahuasca ceremony is guided with deep knowledge and wisdom, providing a transformative experience. Every detail, from the preparation to the explanation, contributes to making this session a unique and unforgettable moment. Without a doubt, this is an experience I recommend to those seeking an authentic and meaningful connection.",
+              location: "Peru"
+            },
+            {
+              id: "2", 
+              name: "Diego Reuch Borbor",
+              avatar: "/img/avatars/diego-reuch-borbor.webp",
+              rating: 5,
+              date: "10 months ago",
+              text: "The experience at Casa del Jaguar is absolutely unmissable. From the very beginning, the service is first-class, with a welcoming and harmonious atmosphere. The Ayahuasca ceremony is guided with deep knowledge and wisdom, providing a transformative experience. Every detail, from the preparation to the explanation, contributes to making this session a unique and unforgettable moment. Without a doubt, this is an experience I recommend to those seeking an authentic and meaningful connection.",
+              location: "Peru"
+            },
+            {
+              id: "3",
+              name: "Samuel Ballantine",
+              rating: 5,
+              date: "4 months ago",
+              text: "This is a place for people who truly want to heal. The shaman is truly dedicated he is. The kind of man who will sit and talk to you all day if you so desire it. He holds great insight and will be able to guide you through your ceremonies and help you understand what you are seeing and processing. Couldn’t recommend this place any more.",
+              location: "Italy"
+            },
+            {
+              id: "4",
+              name: "Jacopo Foglia",
+              rating: 5,
+              date: "3 months ago",
+              text: "The experience with the shaman Denis was truly amazing! I had already participated in an ayahuasca ceremony before, but this one was really interesting and intimate. He guided me and my friend on an indescribable inner journey, helping us with several hours of conversation before the ceremony, explaining his approach to medicine and how to manage the ceremony in its different stages. I will definitely participate in another one when I return to Iquitos.",
+              location: "Italy"
+            },
+            {
+              id: "5",
+              name: "Felix Rios Teran",
+              avatar: "/img/avatars/felix-rios-teran.webp",
+              rating: 5,
+              date: "1 year ago",
+              text: "Master Denis, thank you so much for guiding me and healing me with your wisdom during my experience with Mother Ayahuasca, a transformative experience that opens doors to introspection and healing. I am deeply grateful for your care, professionalism, and dedication. I recommend you to any brother seeking healing and spiritual growth at CASA DEL JAGUAR.",
+              location: "Peru"
+            },
+            {
+              id: "6",
+              name: "Stella Palomares",
+              avatar: "/img/avatars/stella-palomares.webp",
+              rating: 5,
+              date: "1 year ago", 
+              text: "A rewarding and wisdom-filled experience with the warm hospitality of Mr. Jaguar and his lovely family; we felt very comfortable and surrounded by beautiful energy. We were well guided under the power of Mother Ayahuasca.",
+              location: "Mexico"
+            },
+            {
+              id: "7",
+              name: "Victor Alfonso Vazquez Zapata",
+              avatar: "/img/avatars/victor-alfonso-vazquez-zapata.webp",
+              rating: 5,
+              date: "1 year ago", 
+              text: "The best experience of my life. Everything is spectacularly calculated. Thank you, Denis. See you soon. Greetings from Aguascalientes, Mexico.",
+              location: "Mexico"
+            },
+            {
+              id: "8",
+              name: "Clever Enrique",
+              rating: 5,
+              date: "4 months ago", 
+              text: "A beautiful place and completely safe to enjoy this wonderful experience. 100% recommended!",
+              location: "Italy"
+            }
+          ]}
+          autoplay={true}
+          autoplayDelay={7000}
+        />
+      </div>
+    </section>
+  <script src="/js/scroll-animations.js" is:inline></script>
+</Layout>
