@@ -1,0 +1,94 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import RetreatCalendar from '@/components/RetreatCalendar.astro';
+import BookingForm from '@/components/BookingForm.astro';
+import { useTranslations, getStaticPaths as getI18nStaticPaths } from '@/i18n/utils';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return getI18nStaticPaths();
+}
+
+const { lang } = Astro.params;
+const currentLang = (lang as 'es' | 'en') || 'es';
+const t = useTranslations(currentLang);
+---
+
+<Layout 
+  title={currentLang === 'en' ? "Retreat Calendar - Casa del Jaguar" : "Calendario de Retiros - Casa del Jaguar"}
+  description={currentLang === 'en' ? "Check available dates for our ancestral medicine retreats. October and November 2025 in the Peruvian Amazon." : "Consulta las fechas disponibles para nuestros retiros de medicina ancestral. Octubre y Noviembre 2025 en la Amazonía peruana."}
+  keywords={currentLang === 'en' ? "retreat calendar, available dates, ayahuasca, ancestral medicine, Casa del Jaguar, Amazon, October 2025, November 2025" : "calendario retiros, fechas disponibles, ayahuasca, medicina ancestral, Casa del Jaguar, Amazonía, octubre 2025, noviembre 2025"}
+>
+  
+  <section class="hero relative h-[500px] -mt-16 pt-16 flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="/img/maloca-ceremonial.webp" 
+        alt="Retreat Calendar - Casa del Jaguar"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <div class="relative z-10 max-w-[1500px] mx-auto px-4 md:px-8 text-center">
+      <h1 class="scroll-animate text-5xl md:text-7xl font-bold text-white font-georgia mb-8 leading-tight">
+        {currentLang === 'en' ? 'Available Dates' : 'Fechas Disponibles'}
+      </h1>
+      
+      <p class="scroll-animate text-xl md:text-[19px] text-white brand-cream mb-12 max-w-4xl mx-auto font-gotham leading-relaxed">
+        {currentLang === 'en' 
+          ? 'Discover the upcoming dates for your spiritual transformation in the heart of the Peruvian Amazon. Each retreat is a unique 7-day experience.'
+          : 'Descubre las próximas fechas para tu transformación espiritual en el corazón de la Amazonía peruana. Cada retiro es una experiencia única de 7 días.'
+        }
+      </p>
+    </div>
+  </section>
+  
+  <main>
+    <section class="pt-15 bg-gradient-to-b from-brand-cream to-white">
+      <div class="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-4xl md:text-5xl font-bold text-brand-dark mb-8 font-georgia leading-tight">
+            {currentLang === 'en' 
+              ? (<>Upcoming <span class="text-brand-gold">Ancestral Medicine</span> Retreats</>) 
+              : (<>Próximos Retiros de <span class="text-brand-gold">Medicina Ancestral</span></>)
+            }
+          </h2>
+          
+          <p class="text-xl text-brand-secondary leading-relaxed">
+            {currentLang === 'en'
+              ? 'Discover the available dates for your spiritual transformation in the heart of the Peruvian Amazon. Each retreat is a unique 7-day experience that will change your life perspective.'
+              : 'Descubre las fechas disponibles para tu transformación espiritual en el corazón de la Amazonía peruana. Cada retiro es una experiencia única de 7 días que cambiará tu perspectiva de la vida.'
+            }
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-white">
+      <div class="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
+        <RetreatCalendar lang={currentLang} />
+      </div>
+    </section>
+
+  </main>
+</Layout>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const calendar = document.querySelector('.retreat-calendar');
+  const bookingForm = document.getElementById('booking-form');
+  
+  if (calendar && bookingForm) {
+    calendar.addEventListener('retreatSelected', function(e) {
+      bookingForm.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+      
+      const customEvent = e as CustomEvent;
+      console.log('Retreat selected:', customEvent.detail);
+    });
+  }
+});
+</script>

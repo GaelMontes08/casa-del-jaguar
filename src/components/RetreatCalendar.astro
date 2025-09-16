@@ -2,11 +2,12 @@
 export interface Props {
   selectedDate?: string;
   onDateSelect?: string;
+  lang?: 'es' | 'en';
 }
 
-const { selectedDate, onDateSelect = 'onDateSelect' } = Astro.props;
+const { selectedDate, onDateSelect = 'onDateSelect', lang = 'es' } = Astro.props;
 
-const retreatPeriods = [
+const retreatPeriods = lang === 'es' ? [
   {
     id: 'retreat-1',
     name: 'Retiro de Medicina Ancestral - Octubre',
@@ -25,7 +26,50 @@ const retreatPeriods = [
     spotsLeft: 5,
     description: 'Experiencia transformadora de 7 días'
   }
+] : [
+  {
+    id: 'retreat-1',
+    name: 'Ancestral Medicine Retreat - October',
+    startDate: new Date(2025, 9, 20),
+    endDate: new Date(2025, 9, 26),
+    price: '$2800',
+    spotsLeft: 8,
+    description: '7-day transformative experience'
+  },
+  {
+    id: 'retreat-2', 
+    name: 'Ancestral Medicine Retreat - November',
+    startDate: new Date(2025, 9, 27),
+    endDate: new Date(2025, 10, 2),
+    price: '$2800',
+    spotsLeft: 5,
+    description: '7-day transformative experience'
+  }
 ];
+
+const labels = lang === 'es' ? {
+  title: 'Calendario de Retiros 2025',
+  subtitle: 'Selecciona las fechas de tu experiencia transformadora',
+  legend: {
+    available: 'Fechas disponibles',
+    selected: 'Fechas seleccionadas',
+    unavailable: 'No disponible'
+  },
+  spotsLeft: 'cupos disponibles',
+  weekdays: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+  months: ['Octubre', 'Noviembre']
+} : {
+  title: 'Retreat Calendar 2025',
+  subtitle: 'Select the dates for your transformative experience',
+  legend: {
+    available: 'Available dates',
+    selected: 'Selected dates',
+    unavailable: 'Unavailable'
+  },
+  spotsLeft: 'spots available',
+  weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  months: ['October', 'November']
+};
 
 function getDaysInMonth(year: number, month: number): number {
   return new Date(year, month + 1, 0).getDate();
@@ -45,15 +89,15 @@ function getRetreatForDate(date: Date) {
 
 const currentYear = 2025;
 const monthsToShow = [
-  { year: 2025, month: 9, name: 'Octubre' },
-  { year: 2025, month: 10, name: 'Noviembre' }
+  { year: 2025, month: 9, name: labels.months[0] },
+  { year: 2025, month: 10, name: labels.months[1] }
 ];
 ---
 
 <div class="retreat-calendar">
   <div class="calendar-header">
-    <h2 class="calendar-title">Fechas Disponibles</h2>
-    <p class="calendar-subtitle">Selecciona las fechas de tu retiro de medicina ancestral</p>
+    <h2 class="calendar-title">{labels.title}</h2>
+    <p class="calendar-subtitle">{labels.subtitle}</p>
   </div>
 
   <div class="retreat-periods-overview">
@@ -71,7 +115,7 @@ const monthsToShow = [
         <div class="retreat-info">
           <span class="spots-left">
             <i class="spot-indicator"></i>
-            {retreat.spotsLeft} espacios disponibles
+            {retreat.spotsLeft} {labels.spotsLeft}
           </span>
         </div>
       </div>
@@ -92,13 +136,9 @@ const monthsToShow = [
           </div>
           
           <div class="weekdays">
-            <div class="weekday">Dom</div>
-            <div class="weekday">Lun</div>
-            <div class="weekday">Mar</div>
-            <div class="weekday">Mié</div>
-            <div class="weekday">Jue</div>
-            <div class="weekday">Vie</div>
-            <div class="weekday">Sáb</div>
+            {labels.weekdays.map(day => (
+              <div class="weekday">{day}</div>
+            ))}
           </div>
           
           <div class="days-grid">
@@ -152,15 +192,15 @@ const monthsToShow = [
   <div class="calendar-legend">
     <div class="legend-item">
       <div class="legend-color retreat-available"></div>
-      <span>Retiro Disponible</span>
+      <span>{labels.legend.available}</span>
     </div>
     <div class="legend-item">
       <div class="legend-color retreat-selected"></div>
-      <span>Seleccionado</span>
+      <span>{labels.legend.selected}</span>
     </div>
     <div class="legend-item">
       <div class="legend-color unavailable"></div>
-      <span>No Disponible</span>
+      <span>{labels.legend.unavailable}</span>
     </div>
   </div>
 </div>

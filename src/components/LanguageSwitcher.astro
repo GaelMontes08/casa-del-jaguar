@@ -4,7 +4,6 @@ import { getLangFromUrl, getLocalizedPath } from '@/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const currentPath = Astro.url.pathname;
 
-// Flag components as SVGs
 const flags: Record<string, string> = {
   es: `<svg viewBox="0 0 24 18" class="w-6 h-4">
     <rect width="24" height="6" fill="#c60b1e"/>
@@ -41,7 +40,7 @@ const flags: Record<string, string> = {
     <div class="opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
       <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="language-menu">
         {Object.entries(flags).map(([langCode, flagSvg]) => {
-          const langName = langCode === 'es' ? 'Español' : 'English';
+          const langName = langCode === 'es';
           return (
             <a 
               href={getLocalizedPath(currentPath, lang, langCode)} 
@@ -50,7 +49,6 @@ const flags: Record<string, string> = {
               aria-label={lang === 'es' ? `Cambiar a ${langName}` : `Switch to ${langName}`}
             >
               <span set:html={flagSvg} class="mr-3" aria-hidden="true"></span>
-              <span>{langName}</span>
             </a>
           );
         })}
@@ -70,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function() {
       languageButton.setAttribute('aria-expanded', (!isExpanded).toString());
     });
 
-    // Handle hover for accessibility
     const container = languageButton.parentElement;
     if (container) {
       container.addEventListener('mouseenter', function() {
