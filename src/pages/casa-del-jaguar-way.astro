@@ -37,7 +37,7 @@ const pageKeywords = "casa del jaguar way, proceso ayahuasca, preparación cerem
 
   <Services showCta={false} />
 
-  <div id="galleryModal" class="gallery-modal hidden fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
+  <div id="galleryModal" class="gallery-modal hidden fixed inset-0 bg-black bg-opacity-90 z-50 items-center justify-center">
     <div class="modal-content relative max-w-6xl mx-auto p-4">
       <button id="closeModal" class="absolute top-4 right-4 text-white text-4xl hover:text-brand-primary transition-colors z-10">
         ×
@@ -700,14 +700,17 @@ const pageKeywords = "casa del jaguar way, proceso ayahuasca, preparación cerem
 
 .gallery-modal {
   backdrop-filter: blur(5px);
+  display: flex;
 }
 
 .gallery-modal.hidden {
+  display: none;
   opacity: 0;
   pointer-events: none;
 }
 
 .gallery-modal:not(.hidden) {
+  display: flex;
   opacity: 1;
   pointer-events: all;
   transition: opacity 0.3s ease;

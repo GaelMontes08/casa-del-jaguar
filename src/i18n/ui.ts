@@ -34,6 +34,7 @@ export const ui = {
     // About page
     'about.title': 'Nosotros',
     'about.subtitle': 'Conoce nuestra historia, filosofía y compromiso con la medicina tradicional.',
+    'about.keywords': 'casa del jaguar, ayahuasca, medicina tradicional, ceremonias, sanación, crecimiento espiritual, maestros, retiros, acompañamiento',
     'about.mission.title': 'Nuestra Misión',
     'about.mission.desc1': 'Casa del Jaguar es un centro dedicado a la medicina tradicional amazónica, donde ofrecemos ceremonias de ayahuasca en un ambiente seguro, sagrado y respetuoso de las tradiciones ancestrales.',
     'about.mission.desc2': 'Nuestro propósito es acompañar a las personas en sus procesos de sanación y crecimiento espiritual, honrando siempre la sabiduría de los pueblos originarios y la naturaleza.',
