@@ -1,88 +1,166 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import Header from '@/components/Header.astro';
-import Footer from '@/components/Footer.astro';
 import { useTranslations } from '@/i18n/utils';
 
 const t = useTranslations('es'); // Default Spanish for root pages
 ---
 
-<Layout title={t('about.title')} description={t('about.subtitle')}>
-  <main class="py-16">
-    <div class="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">Nosotros</h1>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          Conoce nuestra historia, filosofía y compromiso con la medicina tradicional.
-        </p>
-      </div>
+<Layout title={t('about.title')} description={t('about.subtitle')} keywords={t('about.keywords')}>
+  
+  <section class="relative h-[60vh] min-h-[500px] flex items-center justify-center -mt-16 pt-16">
+    <div class="absolute inset-0 z-0">
+        <img 
+            src="/img/centro-pasadiso.webp" 
+            alt="Resort Casa del Jaguar - Centro de medicina ancestral"
+            class="w-full h-full object-cover"
+        />
+    </div>
+    <div class="text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 scroll-animate font-georgia">
+        Nuestra Historia
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 leading-relaxed scroll-animate font-gotham">
+        Guardianes de la medicina ancestral amazónica, compartiendo la sabiduría sagrada con respeto y autenticidad desde hace más de una década.
+      </p>
+    </div>
+  </section>
 
-      <section class="mb-16">
+  <main>
+
+    <section class="py-16 bg-white scroll-animate">
+      <div class="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 class="text-3xl font-bold text-gray-900 mb-6">Nuestra Misión</h2>
-            <p class="text-gray-600 mb-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-georgia">Nuestra Misión</h2>
+            <p class="text-gray-600 mb-4 text-lg leading-relaxed font-gotham">
               Casa del Jaguar es un centro dedicado a la medicina tradicional amazónica, 
               donde ofrecemos ceremonias de ayahuasca en un ambiente seguro, sagrado y 
               respetuoso de las tradiciones ancestrales.
             </p>
-            <p class="text-gray-600">
+            <p class="text-gray-600 text-lg leading-relaxed font-gotham">
               Nuestro propósito es acompañar a las personas en sus procesos de sanación 
               y crecimiento espiritual, honrando siempre la sabiduría de los pueblos 
               originarios y la naturaleza.
             </p>
           </div>
-          <div class="bg-brand-light p-8 rounded-lg">
-            <h3 class="text-xl font-semibold text-brand-dark mb-4">Nuestros Valores</h3>
-            <ul class="space-y-2 text-brand-secondary">
-              <li>• Respeto por las tradiciones ancestrales</li>
-              <li>• Seguridad y bienestar de los participantes</li>
-              <li>• Conexión profunda con la naturaleza</li>
-              <li>• Crecimiento espiritual auténtico</li>
-              <li>• Comunidad y apoyo mutuo</li>
+          <div class="bg-gradient-to-br from-[#D99D55] to-[#B8854A] p-8 rounded-lg text-white">
+            <h3 class="text-xl font-semibold mb-4 font-georgia">Nuestros Valores</h3>
+            <ul class="space-y-3 text-white/90 font-gotham">
+              <li class="flex items-center">
+                <svg class="w-5 h-5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                Respeto por las tradiciones ancestrales
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                Seguridad y bienestar de los participantes
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                Conexión profunda con la naturaleza
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                Crecimiento espiritual auténtico
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                Comunidad y apoyo mutuo
+              </li>
             </ul>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="mb-16">
-        <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Nuestros Maestros</h2>
+    <section class="py-16 bg-[#fffcf6] scroll-animate">
+      <div class="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12 font-georgia">Nuestros Maestros</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="text-center">
-            <div class="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4"></div>
-            <h3 class="text-xl font-semibold mb-2">Maestro Carlos</h3>
-            <p class="text-gray-600">25 años de experiencia en medicina tradicional amazónica</p>
+          <div class="text-center bg-white p-8 rounded-lg shadow-lg">
+            <div class="w-32 h-32 bg-gradient-to-br from-[#D99D55] to-[#B8854A] rounded-full mx-auto mb-6 flex items-center justify-center">
+              <span class="text-white text-2xl font-bold font-georgia">MC</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-gray-900 font-georgia">Maestro Carlos</h3>
+            <p class="text-gray-600 font-gotham">25 años de experiencia en medicina tradicional amazónica, especialista en ceremonias de sanación profunda</p>
           </div>
-          <div class="text-center">
-            <div class="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4"></div>
-            <h3 class="text-xl font-semibold mb-2">Maestra María</h3>
-            <p class="text-gray-600">Especialista en cantos sagrados y sanación femenina</p>
+          <div class="text-center bg-white p-8 rounded-lg shadow-lg">
+            <div class="w-32 h-32 bg-gradient-to-br from-[#D99D55] to-[#B8854A] rounded-full mx-auto mb-6 flex items-center justify-center">
+              <span class="text-white text-2xl font-bold font-georgia">MM</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-gray-900 font-georgia">Maestra María</h3>
+            <p class="text-gray-600 font-gotham">Especialista en cantos sagrados y sanación femenina, guardiana de los conocimientos ancestrales</p>
           </div>
-          <div class="text-center">
-            <div class="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4"></div>
-            <h3 class="text-xl font-semibold mb-2">Maestro José</h3>
-            <p class="text-gray-600">Curandero tradicional con profundo conocimiento de plantas</p>
+          <div class="text-center bg-white p-8 rounded-lg shadow-lg">
+            <div class="w-32 h-32 bg-gradient-to-br from-[#D99D55] to-[#B8854A] rounded-full mx-auto mb-6 flex items-center justify-center">
+              <span class="text-white text-2xl font-bold font-georgia">MJ</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-gray-900 font-georgia">Maestro José</h3>
+            <p class="text-gray-600 font-gotham">Curandero tradicional con profundo conocimiento de plantas medicinales y rituales sagrados</p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="bg-gray-50 p-8 rounded-lg">
-        <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Nuestra Filosofía</h2>
+    <section class="py-16 bg-white scroll-animate">
+      <div class="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto text-center">
-          <p class="text-lg text-gray-600 mb-6">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8 font-georgia">Nuestra Filosofía</h2>
+          <p class="text-lg text-gray-600 mb-6 leading-relaxed font-gotham">
             Creemos en el poder sanador de la ayahuasca como medicina sagrada que nos 
             conecta con nuestra esencia más profunda y con la sabiduría ancestral de 
             los pueblos amazónicos.
           </p>
-          <p class="text-lg text-gray-600">
+          <p class="text-lg text-gray-600 leading-relaxed font-gotham">
             Cada ceremonia es un espacio sagrado donde se honra tanto la tradición como 
             las necesidades individuales de sanación, siempre en un ambiente de respeto, 
             seguridad y amor incondicional.
           </p>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   </main>
 
-  <Footer />
 </Layout>
+
+<style>
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+  }
+  
+  .scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  const animatedElements = document.querySelectorAll('.scroll-animate');
+  animatedElements.forEach(el => observer.observe(el));
+});
+</script>

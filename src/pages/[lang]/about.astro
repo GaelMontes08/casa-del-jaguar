@@ -1,83 +1,225 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import Footer from '@/components/Footer.astro';
-import { useTranslations, getStaticPaths } from '@/i18n/utils';
+import { useTranslations } from '@/i18n/utils';
 
-export { getStaticPaths };
-export const prerender = true;
+export async function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } }
+  ];
+}
 
-const { lang } = Astro.params;
-const t = useTranslations(lang as 'es' | 'en');
+const { lang } = Astro.params as { lang: 'es' | 'en' };
+const t = useTranslations(lang);
+
+const pageTitle = lang === 'en' 
+  ? "About Us - Traditional Amazonian Medicine | Casa del Jaguar"
+  : "Nosotros - Medicina Tradicional Amazónica | Casa del Jaguar";
+
+const pageDescription = lang === 'en'
+  ? "Learn about Casa del Jaguar's mission, philosophy and experienced masters. Guardians of Amazonian ancestral medicine sharing sacred wisdom with respect and authenticity."
+  : "Conoce la misión, filosofía y maestros experimentados de Casa del Jaguar. Guardianes de la medicina ancestral amazónica compartiendo sabiduría sagrada con respeto y autenticidad.";
+
+const pageKeywords = lang === 'en' 
+  ? "About Casa del Jaguar, ayahuasca retreat, shamanic healing, traditional medicine, spiritual growth, Amazonian masters, sacred ceremonies"
+  : "Acerca de Casa del Jaguar, retiro ayahuasca, sanación chamánica, medicina tradicional, crecimiento espiritual, maestros amazónicos, ceremonias sagradas";
 ---
 
-<Layout title={t('about.title')} description={t('about.subtitle')} keywords={t('about.keywords')}>
-  <main class="py-16">
-    <div class="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">{t('about.title')}</h1>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          {t('about.subtitle')}
-        </p>
-      </div>
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+>
+  
+  <section class="relative h-[60vh] min-h-[500px] flex items-center justify-center -mt-16 pt-16">
+    <div class="absolute inset-0 z-0">
+        <img 
+            src="/img/centro-pasadiso.webp" 
+            alt="Resort Casa del Jaguar - Centro de medicina ancestral"
+            class="w-full h-full object-cover"
+        />
+    </div>
+    <div class="text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 scroll-animate font-georgia">
+        {lang === 'en' ? 'Our Story' : 'Nuestra Historia'}
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 leading-relaxed scroll-animate font-gotham">
+        {lang === 'en' 
+          ? 'Guardians of Amazonian ancestral medicine, sharing sacred wisdom with respect and authenticity for over a decade.'
+          : 'Guardianes de la medicina ancestral amazónica, compartiendo la sabiduría sagrada con respeto y autenticidad desde hace más de una década.'
+        }
+      </p>
+    </div>
+  </section>
 
-      <section class="mb-16">
+  <main>
+    <section class="py-16 bg-white scroll-animate">
+      <div class="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 class="text-3xl font-bold text-gray-900 mb-6">{t('about.mission.title')}</h2>
-            <p class="text-gray-600 mb-4">
-              {t('about.mission.desc1')}
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-georgia">
+              {lang === 'en' ? 'Our Mission' : 'Nuestra Misión'}
+            </h2>
+            <p class="text-gray-600 mb-4 text-lg leading-relaxed font-gotham">
+              {lang === 'en' 
+                ? 'Casa del Jaguar is a center dedicated to traditional Amazonian medicine, where we offer ayahuasca ceremonies in a safe, sacred environment that respects ancestral traditions.'
+                : 'Casa del Jaguar es un centro dedicado a la medicina tradicional amazónica, donde ofrecemos ceremonias de ayahuasca en un ambiente seguro, sagrado y respetuoso de las tradiciones ancestrales.'
+              }
             </p>
-            <p class="text-gray-600">
-              {t('about.mission.desc2')}
+            <p class="text-gray-600 text-lg leading-relaxed font-gotham">
+              {lang === 'en' 
+                ? 'Our purpose is to accompany people in their healing and spiritual growth processes, always honoring the wisdom of indigenous peoples and nature.'
+                : 'Nuestro propósito es acompañar a las personas en sus procesos de sanación y crecimiento espiritual, honrando siempre la sabiduría de los pueblos originarios y la naturaleza.'
+              }
             </p>
           </div>
-          <div class="bg-brand-light p-8 rounded-lg">
-            <h3 class="text-xl font-semibold text-brand-dark mb-4">{t('about.values.title')}</h3>
-            <ul class="space-y-2 text-brand-secondary">
-              <li>• {t('about.values.tradition')}</li>
-              <li>• {t('about.values.safety')}</li>
-              <li>• {t('about.values.nature')}</li>
-              <li>• {t('about.values.growth')}</li>
-              <li>• {t('about.values.community')}</li>
+          <div class="bg-gradient-to-br from-[#D99D55] to-[#B8854A] p-8 rounded-lg text-white">
+            <h3 class="text-xl font-semibold mb-4 font-georgia">
+              {lang === 'en' ? 'Our Values' : 'Nuestros Valores'}
+            </h3>
+            <ul class="space-y-3 text-white/90 font-gotham">
+              <li class="flex items-center">
+                <svg class="w-5 h-5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                {lang === 'en' ? 'Respect for ancestral traditions' : 'Respeto por las tradiciones ancestrales'}
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                {lang === 'en' ? 'Safety and well-being of participants' : 'Seguridad y bienestar de los participantes'}
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                {lang === 'en' ? 'Deep connection with nature' : 'Conexión profunda con la naturaleza'}
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                {lang === 'en' ? 'Authentic spiritual growth' : 'Crecimiento espiritual auténtico'}
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                {lang === 'en' ? 'Community and mutual support' : 'Comunidad y apoyo mutuo'}
+              </li>
             </ul>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="mb-16">
-        <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">{t('about.team.title')}</h2>
+    <section class="py-16 bg-[#fffcf6] scroll-animate">
+      <div class="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12 font-georgia">
+          {lang === 'en' ? 'Our Masters' : 'Nuestros Maestros'}
+        </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="text-center">
-            <div class="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4"></div>
-            <h3 class="text-xl font-semibold mb-2">Maestro Carlos</h3>
-            <p class="text-gray-600">{lang === 'es' ? '25 años de experiencia en medicina tradicional amazónica' : '25 years of experience in traditional Amazonian medicine'}</p>
+          <div class="text-center bg-white p-8 rounded-lg shadow-lg">
+            <div class="w-32 h-32 bg-gradient-to-br from-[#D99D55] to-[#B8854A] rounded-full mx-auto mb-6 flex items-center justify-center">
+              <span class="text-white text-2xl font-bold font-georgia">MC</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-gray-900 font-georgia">
+              {lang === 'en' ? 'Master Carlos' : 'Maestro Carlos'}
+            </h3>
+            <p class="text-gray-600 font-gotham">
+              {lang === 'en' 
+                ? '25 years of experience in traditional Amazonian medicine, specialist in deep healing ceremonies'
+                : '25 años de experiencia en medicina tradicional amazónica, especialista en ceremonias de sanación profunda'
+              }
+            </p>
           </div>
-          <div class="text-center">
-            <div class="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4"></div>
-            <h3 class="text-xl font-semibold mb-2">Maestra María</h3>
-            <p class="text-gray-600">{lang === 'es' ? 'Especialista en cantos sagrados y sanación femenina' : 'Specialist in sacred songs and feminine healing'}</p>
+          <div class="text-center bg-white p-8 rounded-lg shadow-lg">
+            <div class="w-32 h-32 bg-gradient-to-br from-[#D99D55] to-[#B8854A] rounded-full mx-auto mb-6 flex items-center justify-center">
+              <span class="text-white text-2xl font-bold font-georgia">MM</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-gray-900 font-georgia">
+              {lang === 'en' ? 'Master María' : 'Maestra María'}
+            </h3>
+            <p class="text-gray-600 font-gotham">
+              {lang === 'en' 
+                ? 'Specialist in sacred songs and feminine healing, guardian of ancestral knowledge'
+                : 'Especialista en cantos sagrados y sanación femenina, guardiana de los conocimientos ancestrales'
+              }
+            </p>
           </div>
-          <div class="text-center">
-            <div class="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4"></div>
-            <h3 class="text-xl font-semibold mb-2">Maestro José</h3>
-            <p class="text-gray-600">{lang === 'es' ? 'Curandero tradicional con profundo conocimiento de plantas' : 'Traditional healer with deep knowledge of plants'}</p>
+          <div class="text-center bg-white p-8 rounded-lg shadow-lg">
+            <div class="w-32 h-32 bg-gradient-to-br from-[#D99D55] to-[#B8854A] rounded-full mx-auto mb-6 flex items-center justify-center">
+              <span class="text-white text-2xl font-bold font-georgia">MJ</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-gray-900 font-georgia">
+              {lang === 'en' ? 'Master José' : 'Maestro José'}
+            </h3>
+            <p class="text-gray-600 font-gotham">
+              {lang === 'en' 
+                ? 'Traditional healer with deep knowledge of medicinal plants and sacred rituals'
+                : 'Curandero tradicional con profundo conocimiento de plantas medicinales y rituales sagrados'
+              }
+            </p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="bg-gray-50 p-8 rounded-lg">
-        <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">{t('about.philosophy.title')}</h2>
+    <section class="py-16 bg-white scroll-animate">
+      <div class="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto text-center">
-          <p class="text-lg text-gray-600 mb-6">
-            {t('about.philosophy.desc1')}
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8 font-georgia">
+            {lang === 'en' ? 'Our Philosophy' : 'Nuestra Filosofía'}
+          </h2>
+          <p class="text-lg text-gray-600 mb-6 leading-relaxed font-gotham">
+            {lang === 'en' 
+              ? 'We believe in the healing power of ayahuasca as sacred medicine that connects us with our deepest essence and with the ancestral wisdom of Amazonian peoples.'
+              : 'Creemos en el poder sanador de la ayahuasca como medicina sagrada que nos conecta con nuestra esencia más profunda y con la sabiduría ancestral de los pueblos amazónicos.'
+            }
           </p>
-          <p class="text-lg text-gray-600">
-            {t('about.philosophy.desc2')}
+          <p class="text-lg text-gray-600 leading-relaxed font-gotham">
+            {lang === 'en' 
+              ? 'Each ceremony is a sacred space where both tradition and individual healing needs are honored, always in an atmosphere of respect, safety, and unconditional love.'
+              : 'Cada ceremonia es un espacio sagrado donde se honra tanto la tradición como las necesidades individuales de sanación, siempre en un ambiente de respeto, seguridad y amor incondicional.'
+            }
           </p>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   </main>
 
-  <Footer />
 </Layout>
+
+<style>
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+  }
+  
+  .scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  const animatedElements = document.querySelectorAll('.scroll-animate');
+  animatedElements.forEach(el => observer.observe(el));
+});
+</script>
