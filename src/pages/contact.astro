@@ -4,7 +4,7 @@ import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 ---
 
-<Layout title="Contacto - Casa del Jaguar" description="Contáctanos para más información sobre nuestras ceremonias de ayahuasca y retiros espirituales.">
+<Layout title="Contacto - Casa del Jaguar" description="Contáctanos para más información sobre nuestras ceremonias de ayahuasca y retiros espirituales." keywords='contacto casa del jaguar, información ayahuasca, ceremonias, retiros espirituales, acompañamiento, sanación, crecimiento espiritual'>
   <main class="py-16 bg-gray-50 min-h-screen">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
@@ -18,6 +18,24 @@ import Footer from '@/components/Footer.astro';
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <div class="bg-white rounded-lg shadow-lg p-8">
           <h2 class="text-2xl font-semibold mb-6">Envíanos un mensaje</h2>
+          <div id="success-message" class="mb-6 p-4 bg-green-100 border-l-4 border-green-500 text-green-700 rounded-lg hidden">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span id="success-text">¡Mensaje enviado exitosamente! Te contactaremos pronto.</span>
+            </div>
+          </div>
+
+          <div id="error-message" class="mb-6 p-4 bg-red-100 border-l-4 border-red-500 text-red-700 rounded-lg hidden">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+              </svg>
+              <span id="error-text">Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.</span>
+            </div>
+          </div>
+          
           <form id="contact-form" class="space-y-6">
             <div>
               <label for="name" class="block text-sm font-medium text-brand-dark mb-2">
@@ -90,10 +108,18 @@ import Footer from '@/components/Footer.astro';
             </div>
             
             <button 
+              id="submit-btn"
               type="submit"
-              class="w-full bg-brand-primary text-brand-dark py-3 px-6 rounded-lg hover:bg-brand-accent transition-colors font-medium"
+              class="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-3 px-6 rounded-lg transition-all duration-300 font-medium shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Enviar mensaje
+              <span class="submit-text">Enviar mensaje</span>
+              <span class="loading-text hidden items-center justify-center">
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Enviando...
+              </span>
             </button>
           </form>
         </div>
@@ -151,13 +177,148 @@ import Footer from '@/components/Footer.astro';
   <Footer />
 </Layout>
 
-<script is:inline>
-  document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const submitText = submitBtn?.querySelector('.submit-text');
+  const loadingText = submitBtn?.querySelector('.loading-text');
+  const successMessage = document.getElementById('success-message');
+  const errorMessage = document.getElementById('error-message');
+  const successTextEl = document.getElementById('success-text');
+  const errorTextEl = document.getElementById('error-text');
+  
+  // Get language from page (Spanish by default)
+  const lang = 'es';
+  
+  // Validation messages
+  const messages = {
+    es: {
+      nameRequired: 'El nombre es requerido',
+      emailRequired: 'El email es requerido',
+      emailInvalid: 'Por favor ingresa un email válido',
+      subjectRequired: 'Por favor selecciona un asunto',
+      messageRequired: 'El mensaje es requerido',
+      messageMinLength: 'El mensaje debe tener al menos 10 caracteres',
+      success: '¡Mensaje enviado exitosamente! Te contactaremos pronto.',
+      error: 'Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.',
+      sending: 'Enviando...'
+    }
+  };
+  
+  const msg = messages.es;
+  
+  // Hide messages function
+  function hideMessages() {
+    successMessage?.classList.add('hidden');
+    errorMessage?.classList.add('hidden');
+  }
+  
+  // Show success message
+  function showSuccess(text: string) {
+    hideMessages();
+    if (successTextEl && successMessage) {
+      successTextEl.textContent = text;
+      successMessage.classList.remove('hidden');
+      successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+  
+  // Show error message
+  function showError(text: string) {
+    hideMessages();
+    if (errorTextEl && errorMessage) {
+      errorTextEl.textContent = text;
+      errorMessage.classList.remove('hidden');
+      errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+  
+  // Validate email format
+  function isValidEmail(email: string) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+  
+  // Validate form
+  function validateForm(formData: FormData) {
+    const name = formData.get('name')?.toString().trim();
+    const email = formData.get('email')?.toString().trim();
+    const subject = formData.get('subject')?.toString().trim();
+    const message = formData.get('message')?.toString().trim();
+    
+    if (!name) {
+      showError(msg.nameRequired);
+      return false;
+    }
+    
+    if (!email) {
+      showError(msg.emailRequired);
+      return false;
+    }
+    
+    if (!isValidEmail(email)) {
+      showError(msg.emailInvalid);
+      return false;
+    }
+    
+    if (!subject) {
+      showError(msg.subjectRequired);
+      return false;
+    }
+    
+    if (!message) {
+      showError(msg.messageRequired);
+      return false;
+    }
+    
+    if (message.length < 10) {
+      showError(msg.messageMinLength);
+      return false;
+    }
+    
+    return true;
+  }
+  
+  // Set loading state
+  function setLoading(loading: boolean) {
+    if (submitBtn && submitText && loadingText) {
+      submitBtn.disabled = loading;
+      if (loading) {
+        submitText.classList.add('hidden');
+        loadingText.classList.remove('hidden');
+        loadingText.classList.add('flex');
+      } else {
+        submitText.classList.remove('hidden');
+        loadingText.classList.add('hidden');
+        loadingText.classList.remove('flex');
+      }
+    }
+  }
+  
+  // Form submission
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    const form = e.target;
+    hideMessages();
+    
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
+    
+    // Add language to form data
+    formData.append('language', 'es');
+    
+    // Validate form
+    if (!validateForm(formData)) {
+      return;
+    }
+    
+    // Convert FormData to object
+    const data: Record<string, any> = {};
+    formData.forEach((value, key) => {
+      data[key] = value;
+    });
+    
+    setLoading(true);
     
     try {
       const response = await fetch('/api/contact', {
@@ -168,14 +329,77 @@ import Footer from '@/components/Footer.astro';
         body: JSON.stringify(data),
       });
       
+      const result = await response.json();
+      
       if (response.ok) {
-        alert('¡Mensaje enviado correctamente! Te contactaremos pronto.');
+        showSuccess(result.message || msg.success);
         form.reset();
+        
+        // Reset select to placeholder
+        const subjectSelect = form.querySelector('#subject') as HTMLSelectElement;
+        if (subjectSelect) {
+          subjectSelect.selectedIndex = 0;
+        }
       } else {
-        throw new Error('Error al enviar el mensaje');
+        throw new Error(result.error || msg.error);
       }
     } catch (error) {
-      alert('Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.');
+      console.error('Contact form error:', error);
+      const errorMessage = error instanceof Error ? error.message : msg.error;
+      showError(errorMessage);
+    } finally {
+      setLoading(false);
     }
   });
+  
+  // Real-time validation
+  const nameInput = document.getElementById('name') as HTMLInputElement;
+  const emailInput = document.getElementById('email') as HTMLInputElement;
+  const subjectSelect = document.getElementById('subject') as HTMLSelectElement;
+  const messageInput = document.getElementById('message') as HTMLTextAreaElement;
+  
+  // Remove error styling on input
+  function removeErrorStyling(input: HTMLElement) {
+    input?.classList.remove('border-red-500', 'focus:ring-red-500');
+    input?.classList.add('border-gray-300', 'focus:ring-green-500');
+  }
+  
+  function addErrorStyling(input: HTMLElement) {
+    input?.classList.remove('border-gray-300', 'focus:ring-green-500');
+    input?.classList.add('border-red-500', 'focus:ring-red-500');
+  }
+  
+  // Add real-time validation
+  nameInput?.addEventListener('input', () => {
+    hideMessages();
+    if (nameInput.value.trim()) {
+      removeErrorStyling(nameInput);
+    }
+  });
+  
+  emailInput?.addEventListener('input', () => {
+    hideMessages();
+    if (emailInput.value.trim() && isValidEmail(emailInput.value.trim())) {
+      removeErrorStyling(emailInput);
+    } else if (emailInput.value.trim()) {
+      addErrorStyling(emailInput);
+    }
+  });
+  
+  subjectSelect?.addEventListener('change', () => {
+    hideMessages();
+    if (subjectSelect.value) {
+      removeErrorStyling(subjectSelect);
+    }
+  });
+  
+  messageInput?.addEventListener('input', () => {
+    hideMessages();
+    if (messageInput.value.trim() && messageInput.value.trim().length >= 10) {
+      removeErrorStyling(messageInput);
+    } else if (messageInput.value.trim()) {
+      addErrorStyling(messageInput);
+    }
+  });
+});
 </script>

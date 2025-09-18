@@ -52,6 +52,7 @@ export const ui = {
     // Contact page
     'contact.title': 'Contacto',
     'contact.subtitle': 'Estamos aquí para acompañarte en tu proceso de sanación. Contáctanos para más información.',
+    'contact.keywords': 'contacto casa del jaguar, información ayahuasca, ceremonias, retiros espirituales, acompañamiento, sanación, crecimiento espiritual',
     'contact.form.title': 'Envíanos un mensaje',
     'contact.form.name': 'Nombre completo',
     'contact.form.email': 'Email',
