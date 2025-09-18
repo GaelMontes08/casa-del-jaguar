@@ -1,0 +1,391 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { useTranslations } from '@/i18n/utils';
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } }
+  ];
+}
+
+const { lang } = Astro.params as { lang: 'es' | 'en' };
+const t = useTranslations(lang);
+
+const pageTitle = lang === 'en' 
+  ? "Frequently Asked Questions - Casa del Jaguar | Ayahuasca Retreat"
+  : "Preguntas Frecuentes - Casa del Jaguar | Retiro de Ayahuasca";
+
+const pageDescription = lang === 'en'
+  ? "Find answers to the most frequently asked questions about our ayahuasca retreats, ceremonies, preparation, safety and bookings at Casa del Jaguar."
+  : "Encuentra respuestas a las preguntas más frecuentes sobre nuestros retiros de ayahuasca, ceremonias, preparación, seguridad y reservas en Casa del Jaguar.";
+
+const pageKeywords = lang === 'en' 
+  ? "ayahuasca FAQ, ayahuasca retreat questions, Casa del Jaguar FAQ, ayahuasca ceremony doubts, ayahuasca preparation"
+  : "preguntas frecuentes ayahuasca, retiro ayahuasca preguntas, FAQ Casa del Jaguar, ceremonias ayahuasca dudas, preparación ayahuasca";
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+>
+  
+  <section class="relative h-[60vh] min-h-[500px] flex items-center justify-center -mt-16 pt-16">
+    <div class="absolute inset-0 z-0">
+        <img 
+            src="/img/centro-pasadiso.webp" 
+            alt="Resort Casa del Jaguar - Centro de medicina ancestral"
+            class="w-full h-full object-cover"
+        />
+    </div>
+    <div class="text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 scroll-animate font-georgia">
+        {lang === 'en' ? 'Frequently Asked Questions' : 'Preguntas Frecuentes'}
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 leading-relaxed scroll-animate font-gotham">
+        {lang === 'en' 
+          ? 'Answers to the most common questions about our ancestral medicine retreats and ayahuasca ceremonies.'
+          : 'Respuestas a las dudas más comunes sobre nuestros retiros de medicina ancestral y ceremonias de ayahuasca.'
+        }
+      </p>
+    </div>
+  </section>
+
+  <main>
+    <section class="py-16 bg-white">
+      <div class="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="mb-12 scroll-animate">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8 font-georgia text-center">
+            {lang === 'en' ? 'General Questions' : 'Preguntas Generales'}
+          </h2>
+          
+          <div class="space-y-6">
+            <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+              <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+                <h3 class="text-lg font-semibold text-gray-900 font-georgia">
+                  {lang === 'en' ? 'What is ayahuasca and what is it used for?' : '¿Qué es la ayahuasca y para qué se utiliza?'}
+                </h3>
+                <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div class="faq-answer hidden p-6 pt-0">
+                <p class="text-gray-600 font-gotham">
+                  {lang === 'en' 
+                    ? 'Ayahuasca is an ancestral sacred medicine used by indigenous peoples of the Amazon for thousands of years. It is a drink prepared with medicinal plants that facilitates emotional, spiritual and physical healing processes. It is used to connect with inner wisdom, heal trauma, overcome addictions and find purpose in life.'
+                    : 'La ayahuasca es una medicina sagrada ancestral utilizada por los pueblos indígenas del Amazonas durante miles de años. Es una bebida preparada con plantas medicinales que facilita procesos de sanación emocional, espiritual y física. Se utiliza para conectar con la sabiduría interior, sanar traumas, superar adicciones y encontrar propósito en la vida.'
+                  }
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+              <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+                <h3 class="text-lg font-semibold text-gray-900 font-georgia">
+                  {lang === 'en' ? 'Is it safe to participate in ayahuasca ceremonies?' : '¿Es seguro participar en ceremonias de ayahuasca?'}
+                </h3>
+                <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div class="faq-answer hidden p-6 pt-0">
+                <p class="text-gray-600 font-gotham">
+                  {lang === 'en' 
+                    ? 'Yes, at Casa del Jaguar we prioritize absolute safety. Our ceremonies are led by master Denis Montes with 14 years of experience. We have medical staff present, conduct prior health evaluations, and maintain a controlled and sacred environment. All participants go through a personalized preparation and follow-up process.'
+                    : 'Sí, en Casa del Jaguar priorizamos la seguridad absoluta. Nuestras ceremonias son dirigidas por el maestro Denis Montes con más de 14 años de experiencia. Contamos con personal médico presente, realizamos evaluaciones de salud previas, y mantenemos un ambiente controlado y sagrado. Todos los participantes pasan por un proceso de preparación y seguimiento personalizado.'
+                  }
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+              <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+                <h3 class="text-lg font-semibold text-gray-900 font-georgia">
+                  {lang === 'en' ? 'Who can participate in the retreats?' : '¿Quién puede participar en los retiros?'}
+                </h3>
+                <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div class="faq-answer hidden p-6 pt-0">
+                <p class="text-gray-600 font-gotham">
+                  {lang === 'en' 
+                    ? 'Retreats are open to adults over 18 years old who are in good physical and mental condition. It is necessary to complete a prior medical and psychological questionnaire. People with certain medical conditions, pregnant women, or those taking certain medications cannot participate. Each case is evaluated individually to ensure safety.'
+                    : 'Los retiros están abiertos a adultos mayores de 18 años que estén en buena condición física y mental. Es necesario completar un cuestionario médico y psicológico previo. No pueden participar personas con ciertas condiciones médicas, embarazadas, o quienes tomen ciertos medicamentos. Cada caso se evalúa individualmente para garantizar la seguridad.'
+                  }
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-12 scroll-animate">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8 font-georgia text-center">
+            {lang === 'en' ? 'Preparation' : 'Preparación'}
+          </h2>
+          
+          <div class="space-y-6">
+            <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+              <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+                <h3 class="text-lg font-semibold text-gray-900 font-georgia">
+                  {lang === 'en' ? 'How should I prepare before the retreat?' : '¿Cómo debo prepararme antes del retiro?'}
+                </h3>
+                <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div class="faq-answer hidden p-6 pt-0">
+                <p class="text-gray-600 font-gotham">
+                  {lang === 'en' 
+                    ? 'Preparation includes a special diet (no salt, sugar, red meat, alcohol, drugs) 2 weeks before the retreat. We also recommend daily meditation, gentle exercise, and avoiding sexual relations 3 days before. We will send you a detailed preparation guide after confirming your booking.'
+                    : 'La preparación incluye una dieta especial (sin sal, azúcar, carnes rojas, alcohol, drogas) 2 semanas antes del retiro. También recomendamos meditación diaria, ejercicio suave, y evitar relaciones sexuales 3 días antes. Te enviaremos una guía detallada de preparación tras confirmar tu reserva.'
+                  }
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+              <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+                <h3 class="text-lg font-semibold text-gray-900 font-georgia">
+                  {lang === 'en' ? 'What medications should I discontinue?' : '¿Qué medicamentos debo suspender?'}
+                </h3>
+                <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div class="faq-answer hidden p-6 pt-0">
+                <p class="text-gray-600 font-gotham">
+                  {lang === 'en' 
+                    ? 'You must discontinue antidepressants, anxiolytics, and other psychotropics under medical supervision (generally 4-6 weeks before). Also supplements like St. Johns Wort, 5-HTP, and tramadol. NEVER stop medications without consulting your doctor. Our team will help you create a safe transition plan.'
+                    : 'Debes suspender antidepresivos, ansiolíticos, y otros psicotrópicos con supervisión médica (generalmente 4-6 semanas antes). También suplementos como San Juan, 5-HTP, y tramadol. NUNCA suspendas medicamentos sin consultar a tu médico. Nuestro equipo te ayudará a crear un plan seguro de transición.'
+                  }
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-12 scroll-animate">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8 font-georgia text-center">
+            {lang === 'en' ? 'Ceremonies' : 'Ceremonias'}
+          </h2>
+          
+          <div class="space-y-6">
+            <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+              <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+                <h3 class="text-lg font-semibold text-gray-900 font-georgia">
+                  {lang === 'en' ? 'How many ceremonies does the retreat include?' : '¿Cuántas ceremonias incluye el retiro?'}
+                </h3>
+                <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div class="faq-answer hidden p-6 pt-0">
+                <p class="text-gray-600 font-gotham">
+                  {lang === 'en' 
+                    ? 'Our 7-day retreat includes 4 ayahuasca ceremonies strategically distributed to allow integration between each one. We also include rapé ceremony, floral baths, integration sessions, nature connection activities, and individual sessions with our masters.'
+                    : 'Nuestro retiro de 7 días incluye 4 ceremonias de ayahuasca distribuidas estratégicamente para permitir integración entre cada una. También incluimos ceremonia de rapé, baños florales, sesiones de integración, actividades de conexión con la naturaleza, y sesiones individuales con nuestros maestros.'
+                  }
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+              <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+                <h3 class="text-lg font-semibold text-gray-900 font-georgia">
+                  {lang === 'en' ? 'What can I expect during a ceremony?' : '¿Qué puedo esperar durante una ceremonia?'}
+                </h3>
+                <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div class="faq-answer hidden p-6 pt-0">
+                <p class="text-gray-600 font-gotham">
+                  {lang === 'en' 
+                    ? 'Ceremonies last 6-8 hours in a sacred and protected environment. You will experience visions, deep insights, possible physical purging (vomiting/diarrhea as cleansing), intense emotions, and spiritual connection. The masters sing icaros (sacred songs) and provide energetic containment throughout the entire process.'
+                    : 'Las ceremonias duran 6-8 horas en un ambiente sagrado y protegido. Experimentarás visiones, insights profundos, posible purga física (vómito/diarrea como limpieza), emociones intensas, y conexión espiritual. Los maestros cantan icaros (canciones sagradas) y brindan contención energética durante todo el proceso.'
+                  }
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-12 scroll-animate">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8 font-georgia text-center">
+            {lang === 'en' ? 'Accommodation and Services' : 'Alojamiento y Servicios'}
+          </h2>
+          
+          <div class="space-y-6">
+            <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+              <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+                <h3 class="text-lg font-semibold text-gray-900 font-georgia">
+                  {lang === 'en' ? 'What does the accommodation include?' : '¿Qué incluye el alojamiento?'}
+                </h3>
+                <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div class="faq-answer hidden p-6 pt-0">
+                <p class="text-gray-600 font-gotham">
+                  {lang === 'en' 
+                    ? 'Private rooms with bathroom, air conditioning, and garden view. All vegetarian meals prepared with love, purified water, Starlink wifi, rest areas, swimming pool, and meditation spaces. Also includes transportation to/from Iquitos airport.'
+                    : 'Habitaciones privadas con baño, aire acondicionado, y vista al jardín. Todas las comidas vegetarianas preparadas con amor, agua purificada, wifi Starlink, áreas de descanso, piscina, y espacios para meditación. También incluye transporte desde/hacia el aeropuerto de Iquitos.'
+                  }
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+              <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+                <h3 class="text-lg font-semibold text-gray-900 font-georgia">
+                  {lang === 'en' ? 'Are there additional activities during the retreat?' : '¿Hay actividades adicionales durante el retiro?'}
+                </h3>
+                <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div class="faq-answer hidden p-6 pt-0">
+                <p class="text-gray-600 font-gotham">
+                  {lang === 'en' 
+                    ? 'Yes, we include morning yoga, group meditation, integration workshops, jungle excursions, visits to local communities, art therapy sessions, and sharing circles with other participants.'
+                    : 'Sí, incluimos yoga matutino, meditación grupal, talleres de integración, excursiones por la selva, visitas a comunidades locales, sesiones de arte terapia, y círculos de compartir experiencias con otros participantes.'
+                  }
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-12 scroll-animate">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8 font-georgia text-center">
+            {lang === 'en' ? 'Bookings and Payments' : 'Reservas y Pagos'}
+          </h2>
+          
+          <div class="space-y-6">
+            <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+              <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+                <h3 class="text-lg font-semibold text-gray-900 font-georgia">
+                  {lang === 'en' ? 'What is the cost of the retreat and what does it include?' : '¿Cuál es el costo del retiro y qué incluye?'}
+                </h3>
+                <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div class="faq-answer hidden p-6 pt-0">
+                <p class="text-gray-600 font-gotham">
+                  {lang === 'en' 
+                    ? 'The 7-day retreat costs $2,800 USD and includes private accommodation, all meals, 4 ayahuasca ceremonies, complementary activities, airport-center transportation, and post-retreat follow-up.'
+                    : 'El retiro de 7 días cuesta $2,800 USD e incluye alojamiento privado, todas las comidas, 4 ceremonias de ayahuasca, actividades complementarias, transporte aeropuerto-centro, y seguimiento post-retiro.'
+                  }
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+              <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+                <h3 class="text-lg font-semibold text-gray-900 font-georgia">
+                  {lang === 'en' ? 'What is the cancellation policy?' : '¿Cuál es la política de cancelación?'}
+                </h3>
+                <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div class="faq-answer hidden p-6 pt-0">
+                <p class="text-gray-600 font-gotham">
+                  {lang === 'en' 
+                    ? 'Cancellations with more than 60 days: 90% refund. Between 30-60 days: 50% refund. Less than 30 days: no refund, but you can transfer your booking to another date at no additional cost. In case of documented medical emergencies, we evaluate each case individually.'
+                    : 'Cancelaciones con más de 60 días: reembolso del 90%. Entre 30-60 días: reembolso del 50%. Menos de 30 días: sin reembolso, pero puedes transferir tu reserva a otra fecha sin costo adicional. En caso de emergencias médicas documentadas, evaluamos cada caso individualmente.'
+                  }
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center bg-gradient-to-br from-[#D99D55] to-[#B8854A] rounded-lg p-8 scroll-animate">
+          <h2 class="text-2xl font-bold text-white mb-4 font-georgia">
+            {lang === 'en' ? 'Have more questions?' : '¿Tienes más preguntas?'}
+          </h2>
+          <p class="text-white/90 mb-6 font-gotham">
+            {lang === 'en' 
+              ? 'Our team is available to resolve all your doubts and accompany you in this transformation process.'
+              : 'Nuestro equipo está disponible para resolver todas tus dudas y acompañarte en este proceso de transformación.'
+            }
+          </p>
+          <a href={lang === 'en' ? '/en/contact' : '/contact'} class="inline-block bg-white text-[#B8854A] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors font-gotham">
+            {lang === 'en' ? 'Contact Us' : 'Contáctanos'}
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</Layout>
+
+<style>
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+  }
+  
+  .scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .faq-question svg {
+    transition: transform 0.2s ease;
+  }
+  
+  .faq-question.active svg {
+    transform: rotate(180deg);
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  const animatedElements = document.querySelectorAll('.scroll-animate');
+  animatedElements.forEach(el => observer.observe(el));
+
+  const faqQuestions = document.querySelectorAll('.faq-question');
+  
+  faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+      const answer = question.nextElementSibling;
+      if (!answer) return;
+      
+      const isOpen = answer && !answer.classList.contains('hidden');
+      
+      faqQuestions.forEach(otherQuestion => {
+        const otherAnswer = otherQuestion.nextElementSibling;
+        if (otherAnswer) {
+          otherAnswer.classList.add('hidden');
+        }
+        otherQuestion.classList.remove('active');
+      });
+      
+      if (!isOpen) {
+        answer.classList.remove('hidden');
+        question.classList.add('active');
+      }
+    });
+  });
+});
+</script>
