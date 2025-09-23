@@ -1,0 +1,287 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const article = {
+  title: 'How to Prepare for an Ayahuasca Ceremony: Complete Guide',
+  excerpt: 'A detailed guide on the physical, mental, and spiritual preparation necessary before participating in an ayahuasca ceremony.',
+  date: '2025-09-20',
+  author: 'Maestro Denis',
+  authorBio: 'Master healer with over 20 years of experience in Amazonian ancestral medicine.',
+  image: '/blog/preparacion-ayahuasca.webp',
+  readTime: '8 min',
+  category: 'Preparation',
+  tags: ['preparation', 'ayahuasca', 'diet', 'ceremony', 'ancestral medicine']
+};
+---
+
+<Layout 
+  title={`${article.title} | Casa del Jaguar Blog`}
+  description={article.excerpt}
+  keywords={article.tags.join(', ')}
+>
+  <main>
+    <article class="max-w-4xl mx-auto px-4 md:px-8 py-16 -mt-16 pt-24">
+      <nav class="text-sm text-gray-600 mb-8">
+        <a href="/en" class="hover:text-brand-primary transition-colors">Home</a>
+        <span class="mx-2">›</span>
+        <a href="/en/blog" class="hover:text-brand-primary transition-colors">Blog</a>
+        <span class="mx-2">›</span>
+        <span class="text-brand-dark">Ceremony Preparation</span>
+      </nav>
+
+      <div class="mb-6">
+        <span class="bg-brand-primary text-brand-dark px-4 py-2 rounded-full text-sm font-medium">
+          {article.category}
+        </span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia mb-6 leading-tight">
+        {article.title}
+      </h1>
+
+      <div class="flex flex-wrap items-center text-gray-600 mb-8 space-x-6">
+        <div class="flex items-center space-x-2">
+          <div class="w-10 h-10 bg-brand-light rounded-full flex items-center justify-center">
+            <span class="text-brand-dark font-bold text-sm">{article.author.charAt(0)}</span>
+          </div>
+          <div>
+            <p class="font-medium text-brand-dark">{article.author}</p>
+            <p class="text-sm text-gray-500">{article.authorBio}</p>
+          </div>
+        </div>
+        <div class="text-sm">
+          <p>{new Date(article.date).toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+          })}</p>
+          <p>{article.readTime} read</p>
+        </div>
+      </div>
+
+      <div class="mb-12">
+        <img 
+          src={article.image}
+          alt={article.title}
+          class="w-full h-96 object-cover rounded-xl shadow-lg"
+        />
+      </div>
+
+      <div class="prose prose-lg max-w-none">
+        <p class="scroll-animate text-xl text-gray-700 mb-8 font-gotham leading-relaxed">
+          Preparation for an ayahuasca ceremony is a sacred process that begins weeks before the encounter with the medicine. At Casa del Jaguar, we believe that proper preparation not only ensures a safer experience but also enhances the therapeutic and spiritual benefits of this ancient practice.
+        </p>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">The Preparatory Diet</h2>
+        
+        <p class="scroll-animate mb-6">
+          Diet is fundamental in preparation. At least <strong>two weeks before</strong> the ceremony, we recommend eliminating the following foods and substances:
+        </p>
+
+        <div class="scroll-animate bg-red-50 border-l-4 border-red-400 p-6 mb-8">
+          <h3 class="text-lg font-bold text-red-800 mb-4">Foods and Substances to Avoid:</h3>
+          <ul class="list-disc list-inside text-red-700 space-y-2">
+            <li>Red meat and processed meats</li>
+            <li>Dairy products (milk, cheese, yogurt)</li>
+            <li>Alcohol and recreational drugs</li>
+            <li>Caffeine and black tea</li>
+            <li>Refined sugar and sweets</li>
+            <li>Processed and fried foods</li>
+            <li>Excessive salt</li>
+            <li>Spicy seasonings</li>
+          </ul>
+        </div>
+
+        <div class="scroll-animate bg-green-50 border-l-4 border-green-400 p-6 mb-8">
+          <h3 class="text-lg font-bold text-green-800 mb-4">Recommended Foods:</h3>
+          <ul class="list-disc list-inside text-green-700 space-y-2">
+            <li>Fresh fish (without salt)</li>
+            <li>Organic chicken (occasionally)</li>
+            <li>Fresh fruits (banana, papaya, mango)</li>
+            <li>Steamed vegetables</li>
+            <li>Brown rice</li>
+            <li>Quinoa and other ancestral grains</li>
+            <li>Abundant pure water</li>
+            <li>Mild herbal teas</li>
+          </ul>
+        </div>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Mental and Emotional Preparation</h2>
+        
+        <p class="scroll-animate mb-6">
+          Ayahuasca acts as a mirror of the soul, revealing deep aspects of our being. It's essential to arrive with a clear mind and an open heart.
+        </p>
+
+        <h3 class="scroll-animate text-2xl font-bold text-brand-dark font-georgia mt-8 mb-4">Recommended Practices:</h3>
+        
+        <div class="scroll-animate grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-brand-light p-6 rounded-lg">
+            <h4 class="font-bold text-brand-dark mb-3">🧘 Daily Meditation</h4>
+            <p class="text-gray-700">Dedicate at least 20 minutes daily to meditation to calm the mind and develop inner observation.</p>
+          </div>
+          <div class="bg-brand-light p-6 rounded-lg">
+            <h4 class="font-bold text-brand-dark mb-3">📝 Journaling</h4>
+            <p class="text-gray-700">Write down your intentions, fears, and expectations. This will help clarify your goals for the ceremony.</p>
+          </div>
+          <div class="bg-brand-light p-6 rounded-lg">
+            <h4 class="font-bold text-brand-dark mb-3">🌿 Nature Connection</h4>
+            <p class="text-gray-700">Spend time in natural spaces to attune with Earth's energies and the plants.</p>
+          </div>
+          <div class="bg-brand-light p-6 rounded-lg">
+            <h4 class="font-bold text-brand-dark mb-3">🤝 Forgiveness and Release</h4>
+            <p class="text-gray-700">Work on forgiving yourself and others. Ayahuasca amplifies both love and resentment.</p>
+          </div>
+        </div>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Physical Preparation</h2>
+        
+        <p class="scroll-animate mb-6">
+          A healthy body facilitates the medicine's work. In addition to diet, consider these aspects:
+        </p>
+
+        <ul class="scroll-animate list-disc list-inside mb-8 space-y-3">
+          <li><strong>Gentle exercise:</strong> Yoga, walks, or swimming to keep the body active but not exhausted.</li>
+          <li><strong>Hydration:</strong> Drink abundant pure water to cleanse the organism.</li>
+          <li><strong>Rest:</strong> Ensure 7-8 hours of daily sleep to arrive rested.</li>
+          <li><strong>Fasting:</strong> On ceremony day, fast from noon (only water allowed).</li>
+        </ul>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Setting Clear Intentions</h2>
+        
+        <p class="scroll-animate mb-6">
+          Ayahuasca responds to our deepest intentions. It's crucial to arrive with clear and sincere purposes:
+        </p>
+
+        <div class="scroll-animate bg-blue-50 border-l-4 border-blue-400 p-6 mb-8">
+          <h3 class="text-lg font-bold text-blue-800 mb-4">Examples of Powerful Intentions:</h3>
+          <ul class="list-disc list-inside text-blue-700 space-y-2">
+            <li>"I seek to heal past traumas that limit my present"</li>
+            <li>"I want to find my life purpose and true vocation"</li>
+            <li>"I wish to free myself from destructive patterns and addictions"</li>
+            <li>"I seek to reconnect with my spiritual essence"</li>
+            <li>"I want to heal damaged family relationships"</li>
+          </ul>
+        </div>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">What NOT to Do</h2>
+        
+        <div class="scroll-animate bg-yellow-50 border-l-4 border-yellow-400 p-6 mb-8">
+          <h3 class="text-lg font-bold text-yellow-800 mb-4">Avoid These Attitudes:</h3>
+          <ul class="list-disc list-inside text-yellow-700 space-y-2">
+            <li>Arriving with rigid expectations about what "should" happen</li>
+            <li>Trying to control the experience during the ceremony</li>
+            <li>Comparing your experience with other participants'</li>
+            <li>Taking the ceremony as entertainment or curiosity</li>
+            <li>Hiding important medical or psychological information</li>
+          </ul>
+        </div>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Medical Considerations</h2>
+        
+        <p class="scroll-animate mb-6">
+          It's essential to be completely honest about your medical history:
+        </p>
+
+        <div class="scroll-animate bg-red-50 border border-red-200 p-6 rounded-lg mb-8">
+          <h3 class="text-lg font-bold text-red-800 mb-4">⚠️ Important Contraindications:</h3>
+          <ul class="list-disc list-inside text-red-700 space-y-2">
+            <li>Antidepressant medications (SSRIs, MAOIs)</li>
+            <li>Serious psychiatric disorders (schizophrenia, bipolar disorder)</li>
+            <li>Serious heart conditions</li>
+            <li>Pregnancy and breastfeeding</li>
+            <li>Recent use of drugs or alcohol</li>
+          </ul>
+          <p class="mt-4 text-red-800 font-medium">
+            Always consult with our medical team before participating.
+          </p>
+        </div>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">The Day of the Ceremony</h2>
+        
+        <p class="scroll-animate mb-6">
+          Arrive with enough time to settle in and connect with the sacred space. Bring:
+        </p>
+
+        <ul class="scroll-animate list-disc list-inside mb-8 space-y-2">
+          <li>Comfortable and warm clothing</li>
+          <li>A personal blanket</li>
+          <li>Water bottle</li>
+          <li>Notebook and pen for afterwards</li>
+          <li>An open mind and willing heart</li>
+        </ul>
+
+        <div class="scroll-animate bg-brand-light p-8 rounded-xl text-center mt-12">
+          <h3 class="text-2xl font-bold text-brand-dark font-georgia mb-4">
+            "Preparation is as important as the ceremony itself"
+          </h3>
+          <p class="text-brand-secondary font-gotham italic">
+            - Maestro Denis, Casa del Jaguar
+          </p>
+        </div>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Conclusion</h2>
+        
+        <p class="scroll-animate mb-6">
+          Preparation for an ayahuasca ceremony is an act of respect toward the medicine, toward yourself, and toward the sacred process you are about to undertake. At Casa del Jaguar, we accompany every step of your preparation to ensure you receive the maximum benefits from this transformative experience.
+        </p>
+
+        <p class="scroll-animate text-lg font-medium text-brand-dark">
+          Remember: ayahuasca is not a magic solution, but a powerful tool that requires commitment, respect, and proper preparation. Your willingness to prepare consciously reflects your sincerity on the healing path.
+        </p>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-gray-200">
+        <h3 class="text-lg font-bold text-brand-dark mb-4">Tags:</h3>
+        <div class="flex flex-wrap gap-2">
+          {article.tags.map((tag) => (
+            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-brand-light transition-colors">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div class="mt-12 p-6 bg-brand-light rounded-xl">
+        <div class="flex items-start space-x-4">
+          <div class="w-16 h-16 bg-brand-primary rounded-full flex items-center justify-center flex-shrink-0">
+            <span class="text-brand-dark font-bold text-xl">{article.author.charAt(0)}</span>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-brand-dark font-georgia mb-2">About {article.author}</h3>
+            <p class="text-gray-700 font-gotham mb-4">{article.authorBio}</p>
+            <p class="text-sm text-gray-600">
+              Maestro Denis has guided thousands of ceremonies at Casa del Jaguar, combining traditional Amazonian healing practices with modern safety protocols. His deep connection with the plant spirits and compassionate approach create a safe space for transformation and healing.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16 text-center">
+        <h3 class="text-2xl font-bold text-brand-dark font-georgia mb-6">Ready to Begin Your Journey?</h3>
+        <p class="text-gray-700 mb-8 max-w-2xl mx-auto">
+          If you feel called to experience the healing power of ayahuasca in a safe and sacred environment, we invite you to learn more about our retreats.
+        </p>
+        <div class="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
+          <a 
+            href="/en/contact"
+            class="inline-block bg-brand-primary text-brand-dark px-8 py-3 rounded-lg hover:bg-brand-accent transition-colors font-medium"
+          >
+            Contact Us
+          </a>
+          <a 
+            href="/en/about"
+            class="inline-block border border-brand-primary text-brand-primary px-8 py-3 rounded-lg hover:bg-brand-primary hover:text-brand-dark transition-colors font-medium"
+          >
+            View Retreats
+          </a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <script src="/js/scroll-animations.js" is:inline></script>
+</Layout>
+
+<style>
+  /* Additional custom styles for this article if needed */
+</style>
