@@ -13,6 +13,8 @@ export interface Props {
 const { title, description = "Casa del Jaguar - Medicina Ayahuasca", keywords } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 
+const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+
 import '@/styles/global.css';
 import { SEO } from 'astro-seo';
 ---
@@ -23,17 +25,12 @@ import { SEO } from 'astro-seo';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     
-    <!-- Critical Resource Preloading -->
-    <!-- Fonts - Preload with font-display: swap for better performance -->
     <link rel="preconnect" href="https://use.typekit.net" crossorigin>
     
-    <!-- Load fonts with optimized font-display -->
     <link rel="stylesheet" href="https://use.typekit.net/qtd6stw.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://use.typekit.net/qtd6stw.css"></noscript>
     
-    <!-- Critical CSS for above-the-fold content -->
     <style>
-      /* Critical styles for immediate rendering */
       body { 
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         margin: 0;
@@ -43,14 +40,12 @@ import { SEO } from 'astro-seo';
         margin: 0 auto;
       }
       
-      /* Header critical styles */
       .header-nav {
         background-color: white;
         position: relative;
         z-index: 50;
       }
       
-      /* Critical scroll animations */
       .scroll-animate {
         opacity: 0;
         transform: translateY(30px);
@@ -62,7 +57,6 @@ import { SEO } from 'astro-seo';
         transform: translateY(0);
       }
       
-      /* Hero section critical styles */
       .hero-section {
         position: relative;
         height: 665px;
@@ -71,13 +65,11 @@ import { SEO } from 'astro-seo';
         overflow: hidden;
       }
       
-      /* Prevent layout shift for fonts */
       h1, h2, h3, h4, h5, h6 {
         font-family: Georgia, serif;
         font-display: swap;
       }
       
-      /* Critical brand colors */
       .text-brand-gold { color: #F2AB27; }
       .text-brand-dark { color: #402A1E; }
       .bg-brand-cream { background-color: #F2E8D5; }
@@ -108,14 +100,88 @@ import { SEO } from 'astro-seo';
         ],
       }}
     />
+    
+    {GA_MEASUREMENT_ID && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+        <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          
+          gtag('config', GA_MEASUREMENT_ID, {
+            enhanced_measurement: {
+              scrolls: true,
+              outbound_clicks: true,
+              site_search: false,
+              video_engagement: true,
+              file_downloads: true
+            },
+            custom_map: {
+              'custom_parameter_1': 'retreat_type',
+              'custom_parameter_2': 'booking_stage'
+            },
+            anonymize_ip: true,
+            allow_google_signals: true,
+            allow_ad_personalization_signals: false
+          });
+          
+          function trackFormSubmission(formType, success = true) {
+            gtag('event', success ? 'form_submit' : 'form_error', {
+              'event_category': 'engagement',
+              'event_label': formType,
+              'form_type': formType,
+              'success': success
+            });
+          }
+          
+          function trackBookingEvent(action, retreatType = null) {
+            gtag('event', 'booking_interaction', {
+              'event_category': 'conversion',
+              'event_label': action,
+              'retreat_type': retreatType,
+              'booking_stage': action
+            });
+          }
+          
+          function trackVideoPlay(videoTitle) {
+            gtag('event', 'video_play', {
+              'event_category': 'engagement',
+              'event_label': videoTitle,
+              'video_title': videoTitle
+            });
+          }
+          
+          function trackContactAction(method) {
+            gtag('event', 'contact_interaction', {
+              'event_category': 'conversion',
+              'event_label': method,
+              'contact_method': method
+            });
+          }
+          
+          function trackPageView(pageType = null, retreatType = null) {
+            gtag('event', 'page_view', {
+              'page_type': pageType,
+              'retreat_type': retreatType
+            });
+          }
+          
+          window.trackFormSubmission = trackFormSubmission;
+          window.trackBookingEvent = trackBookingEvent;
+          window.trackVideoPlay = trackVideoPlay;
+          window.trackContactAction = trackContactAction;
+          window.trackPageView = trackPageView;
+        </script>
+      </>
+    )}
   </head>
   <body class="bg-white text-gray-900 w-full max-w-[1920px] mx-auto">
     <DiscountBanner />
     <Header />
     <slot />
     <Footer />
-    
-    <!-- Defer non-critical JavaScript -->
+    <script defer src="/js/modal.js"></script>
     <script defer src="/js/scroll-animations.js"></script>
   </body>
 </html>

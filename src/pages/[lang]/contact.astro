@@ -181,6 +181,17 @@ const t = useTranslations(lang as 'es' | 'en');
 </Layout>
 
 <script>
+// Extend Window interface for Google Analytics functions
+declare global {
+  interface Window {
+    trackFormSubmission?: (formType: string, success: boolean) => void;
+    trackBookingEvent?: (action: string, retreatType?: string) => void;
+    trackVideoPlay?: (videoTitle: string) => void;
+    trackContactAction?: (method: string) => void;
+    trackPageView?: (pageType?: string, retreatType?: string) => void;
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
@@ -350,6 +361,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (subjectSelect) {
           subjectSelect.selectedIndex = 0;
         }
+        
+        // Track successful form submission
+        if (typeof window.trackFormSubmission === 'function') {
+          window.trackFormSubmission('contact_form', true);
+        }
       } else {
         throw new Error(result.error || msg.error);
       }
@@ -357,6 +373,11 @@ document.addEventListener('DOMContentLoaded', function() {
       console.error('Contact form error:', error);
       const errorMessage = error instanceof Error ? error.message : msg.error;
       showError(errorMessage);
+      
+      // Track form submission error
+      if (typeof window.trackFormSubmission === 'function') {
+        window.trackFormSubmission('contact_form', false);
+      }
     } finally {
       setLoading(false);
     }
