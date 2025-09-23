@@ -13,8 +13,6 @@ export interface Props {
 const { title, description = "Casa del Jaguar - Medicina Ayahuasca", keywords } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 
-const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || "G-GX0T60THW9";
-
 import '@/styles/global.css';
 import { SEO } from 'astro-seo';
 ---
@@ -101,84 +99,16 @@ import { SEO } from 'astro-seo';
       }}
     />
     
-    {GA_MEASUREMENT_ID ? (
-      <>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
-        <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          
-          gtag('config', GA_MEASUREMENT_ID, {
-            enhanced_measurement: {
-              scrolls: true,
-              outbound_clicks: true,
-              site_search: false,
-              video_engagement: true,
-              file_downloads: true
-            },
-            custom_map: {
-              'custom_parameter_1': 'retreat_type',
-              'custom_parameter_2': 'booking_stage'
-            },
-            anonymize_ip: true,
-            allow_google_signals: true,
-            allow_ad_personalization_signals: false
-          });
-          
-          function trackFormSubmission(formType, success = true) {
-            gtag('event', success ? 'form_submit' : 'form_error', {
-              'event_category': 'engagement',
-              'event_label': formType,
-              'form_type': formType,
-              'success': success
-            });
-          }
-          
-          function trackBookingEvent(action, retreatType = null) {
-            gtag('event', 'booking_interaction', {
-              'event_category': 'conversion',
-              'event_label': action,
-              'retreat_type': retreatType,
-              'booking_stage': action
-            });
-          }
-          
-          function trackVideoPlay(videoTitle) {
-            gtag('event', 'video_play', {
-              'event_category': 'engagement',
-              'event_label': videoTitle,
-              'video_title': videoTitle
-            });
-          }
-          
-          function trackContactAction(method) {
-            gtag('event', 'contact_interaction', {
-              'event_category': 'conversion',
-              'event_label': method,
-              'contact_method': method
-            });
-          }
-          
-          function trackPageView(pageType = null, retreatType = null) {
-            gtag('event', 'page_view', {
-              'page_type': pageType,
-              'retreat_type': retreatType
-            });
-          }
-          
-          window.trackFormSubmission = trackFormSubmission;
-          window.trackBookingEvent = trackBookingEvent;
-          window.trackVideoPlay = trackVideoPlay;
-          window.trackContactAction = trackContactAction;
-          window.trackPageView = trackPageView;
-        </script>
-      </>
-    ) : (
-      <script is:inline>
-        console.warn('Google Analytics ID not found in environment variables');
-      </script>
-    )}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GX0T60THW9"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-GX0T60THW9');
+      
+      window.gtag = gtag;
+    </script>
   </head>
   <body class="bg-white text-gray-900 w-full max-w-[1920px] mx-auto">
     <DiscountBanner />
