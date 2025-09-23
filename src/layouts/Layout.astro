@@ -101,15 +101,10 @@ import { SEO } from 'astro-seo';
       }}
     />
     
-    <!-- Google Analytics Debug -->
-    <!-- GA_MEASUREMENT_ID: {GA_MEASUREMENT_ID} -->
-    
     {GA_MEASUREMENT_ID ? (
       <>
-        <!-- Google Analytics -->
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
         <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
-          console.log('Google Analytics initializing with ID:', GA_MEASUREMENT_ID);
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
@@ -180,7 +175,6 @@ import { SEO } from 'astro-seo';
         </script>
       </>
     ) : (
-      <!-- Google Analytics ID not found -->
       <script is:inline>
         console.warn('Google Analytics ID not found in environment variables');
       </script>
