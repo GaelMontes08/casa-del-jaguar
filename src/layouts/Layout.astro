@@ -15,10 +15,6 @@ const lang = getLangFromUrl(Astro.url);
 
 const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || "G-GX0T60THW9";
 
-// Debug logging
-console.log('GA_MEASUREMENT_ID:', GA_MEASUREMENT_ID);
-console.log('All env vars:', import.meta.env);
-
 import '@/styles/global.css';
 import { SEO } from 'astro-seo';
 ---
