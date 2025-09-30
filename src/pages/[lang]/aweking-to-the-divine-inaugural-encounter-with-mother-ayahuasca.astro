@@ -1,0 +1,307 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const article = {
+  title: 'My Awakening to the Divine: The Inaugural Encounter with Mother Ayahuasca',
+  excerpt: 'The extraordinary story of Maestro Denis\'s first encounter with Mother Ayahuasca at age 16, when he worked as a tourist guide in Iquitos.',
+  date: '2025-09-30',
+  author: 'Maestro Denis',
+  authorBio: 'Master healer with over 15 years of experience in Amazonian ancestral medicine.',
+  image: '/img/aweking-to-the-divine-inaugural-encounter-with-mother-ayahuasca.webp',
+  readTime: '12 min',
+  category: 'Experiences',
+  tags: ['first encounter', 'ayahuasca', 'maestro denis', 'visions', 'transformation', 'jaguar']
+};
+---
+
+<Layout 
+  title={`${article.title} | Blog Casa del Jaguar`}
+  description={article.excerpt}
+  keywords={article.tags.join(', ')}
+>
+  <main>
+    <article class="max-w-4xl mx-auto px-4 md:px-8 py-16 -mt-16 pt-24">
+      <nav class="text-sm text-gray-600 mb-8">
+        <a href="/en" class="hover:text-brand-primary transition-colors">Home</a>
+        <span class="mx-2">›</span>
+        <a href="/en/blog" class="hover:text-brand-primary transition-colors">Blog</a>
+        <span class="mx-2">›</span>
+        <span class="text-brand-dark">{article.category}</span>
+      </nav>
+
+      <div class="mb-6">
+        <span class="bg-brand-primary text-brand-dark px-4 py-2 rounded-full text-sm font-medium">
+          {article.category}
+        </span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia mb-6 leading-tight">
+        {article.title}
+      </h1>
+
+      <div class="flex flex-wrap items-center text-gray-600 mb-8 space-x-6">
+        <div class="flex items-center space-x-2">
+          <div class="w-10 h-10 bg-brand-light rounded-full flex items-center justify-center">
+            <span class="text-brand-dark font-bold text-sm">{article.author.charAt(0)}</span>
+          </div>
+          <div>
+            <p class="font-medium text-brand-dark">{article.author}</p>
+            <p class="text-sm text-gray-500">{article.authorBio}</p>
+          </div>
+        </div>
+        <div class="text-sm">
+          <p>{new Date(article.date).toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+          })}</p>
+          <p>{article.readTime} read</p>
+        </div>
+      </div>
+
+      <div class="mb-12">
+        <img 
+          src={article.image}
+          alt={article.title}
+          class="w-full h-98 object-cover rounded-xl shadow-lg"
+        />
+      </div>
+
+      <div class="prose prose-lg max-w-none">
+        <p class="scroll-animate text-xl text-gray-700 mb-8 font-gotham leading-relaxed">
+          This happened when I was 16 years old. At that time, I was studying to become an Official Tourism Guide. That's how I got a job as a guide at a tourism company.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Shortly after starting work, I was assigned a group of very young tourists, between 18 and 24 years old, who came to the lodge from the United States. On the day of their arrival, I had to pick them up at the airport and take them to their hotel.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          That night, I had to show them the city of Iquitos, the main tourist spots, and the next morning, very early, go to the port where the boats that would take us to the lodge would be waiting for us.
+        </p>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Entering Unknown Territory</h2>
+        
+        <p class="scroll-animate mb-6">
+          The next day, upon arriving at the lodge, we headed to the main maloca, where our boss would welcome them. With everyone present, my boss welcomed them.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Up to that point, everything was proceeding normally. But after this brief welcome, my boss mentioned something I was hearing for the first time:
+        </p>
+
+        <div class="scroll-animate bg-blue-50 border-l-4 border-blue-400 p-6 mb-8">
+          <p class="text-blue-800 italic text-lg">
+            "The shaman is already at the lodge and has everything ready for your Ayahuasca ceremony tomorrow night."
+          </p>
+        </div>
+
+        <p class="scroll-animate mb-6">
+          Mentally, I wondered: "Shaman, what is ayahuasca?" What is my boss talking about? I was so curious that I asked my coworker, who was next to me: "Juan, what is a shaman and what is this Ayahuasca thing?"
+        </p>
+
+        <p class="scroll-animate mb-6">
+          He replied: "Denis, a shaman is like a doctor, but he uses plants to heal people, and Ayahuasca is a plant that they say can make you see things that aren't there, like visions."
+        </p>
+
+        <p class="scroll-animate mb-6">
+          After hearing this, I was even more curious about what a ceremony with this plant would be like. So I asked Juan: "Juan, have you ever participated in a ceremony?" He said no, but that he had heard many stories from people who had done it.
+        </p>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">The Night of the Ceremony</h2>
+
+        <p class="scroll-animate mb-6">
+          The next night, we all gathered in the maloca. Everyone was sitting in a circle, and in front of us was an elderly man with long hair. That was the shaman. He had a table in front of him with some bottles and other things.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          The shaman began to speak in Spanish mixed with words in a language I had never heard before, which I later learned was Shipibo. He explained what the ceremony was about and asked if anyone had any questions.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          One of the tourists asked: "Is it dangerous?" The shaman replied that it was not dangerous, but that we had to trust the process and not fight against what came.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Then he called us one by one to drink the ayahuasca. When my turn came, I approached the shaman. He looked me in the eyes and said something in Shipibo, then gave me a small cup with a dark liquid.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          The taste was incredibly bitter and earthy, like drinking mud from the river. I almost vomited right there, but I managed to swallow it all. I returned to my place and sat waiting.
+        </p>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">The Beginning of the Visions</h2>
+
+        <p class="scroll-animate mb-6">
+          About 30 minutes later, I began to feel strange. First, I heard all the sounds of the jungle with incredible clarity. I could distinguish each bird, each insect, each sound of the wind in the leaves.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Then I heard a very loud sound to my right, it sounded like a gunshot, I saw a flash pass in front of me, even though I still had my eyes closed. After that, I felt my body starting to spin, at first it was slow, but after a few seconds, it started spinning very fast.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          I thought about opening my eyes, this time I managed to do it. However, I couldn't see anything because everything was spinning. The entire maloca was spinning at full speed in front of me. I closed my eyes again and remember simply hugging my legs, bringing my knees to my chest.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          My body was spinning so much that I felt like my spirit was leaving my body. How do I know? I was floating like a spirit. I saw myself sitting in the maloca and could see everyone, the moonlight illuminated the entire maloca.
+        </p>
+
+        <div class="scroll-animate bg-purple-50 border-l-4 border-purple-400 p-6 mb-8">
+          <p class="text-purple-800 italic">
+            While I was suspended in the air, I heard a loud noise, looking up, I saw a strong wind that blew away the roof of the maloca. I could see a beautiful starry sky. At that moment, I thought: "What do I do now?" A voice in my head told me: "Fly, return to Iquitos to see your family so you can be at peace."
+          </p>
+        </div>
+
+        <p class="scroll-animate mb-6">
+          And that's what I did. I flew over the river and could see beautiful river dolphins of all colors. I saw mermaids swimming as if greeting me, when I looked at the trees, I saw jaguars of all colors. It was a very beautiful vision, and indeed, I flew back to my house in Iquitos.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Upon arriving, I could see my family members doing things in the house, but they couldn't see me; I could go through walls like a ghost. Then that same voice told me: "Denis, it's time to return," and in less than a second, I was sitting in the maloca again.
+        </p>
+
+        <h3 class="scroll-animate text-2xl font-bold text-brand-dark font-georgia mt-8 mb-4">Receiving the Visit of Mother Ayahuasca</h3>
+
+        <p class="scroll-animate mb-6">
+          I opened my eyes and found myself completely alone. I could hear the shaman singing, but I couldn't see him. I looked at the ceiling and saw a serpent descending. Its phosphorescent colors shone in the darkness. As it descended, it positioned itself in front of me. I noticed something strange about this serpent: it had a human head and emitted small phosphorescent green bubbles.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          After that, I heard a very loud noise coming from the side of the main door of the maloca, to my left. When I turned and looked, I realized that the door was no longer there. Outside the maloca, thanks to the moonlight, everything could be seen clearly, even the river near the lodge.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          But a strong wind was blowing. To my great surprise, minutes later, I saw an enormous serpent emerging from the river. It was gigantic. I was stunned to see that huge anaconda. I saw it enter the maloca and thought: "Damn, this animal is going to eat me!"
+        </p>
+
+        <p class="scroll-animate mb-6">
+          I wanted to run, but I couldn't move. I could only close my eyes and pray that it wouldn't hurt me. With my eyes closed, I felt its forked tongue brush against my face. Then, I felt it coiling around me, squeezing me, but without hurting me.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Finally, I felt it swallowing me. I felt its saliva and how I was gradually entering. I thought: "How curious that in my first work I'm going to die like this." I felt myself falling asleep, at one point, I think I did, because that voice in my mind told me to wake up: "You're alive," it said. "You have been cleansed and healed."
+        </p>
+
+        <h3 class="scroll-animate text-2xl font-bold text-brand-dark font-georgia mt-8 mb-4">First Encounter with the Jaguar Master</h3>
+
+        <p class="scroll-animate mb-6">
+          When I opened my eyes, I saw a beautiful jaguar in front of me. It was huge, with golden fur and black spots that seemed to move. The jaguar looked at me with eyes that seemed to contain all the wisdom of the jungle.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          The jaguar began to speak to me, not with words, but I could understand everything it was saying. It told me: "Denis, I am the spirit of the jungle, the guardian of all the animals and plants that live here. You have been chosen to learn our secrets."
+        </p>
+
+        <p class="scroll-animate mb-6">
+          The jaguar showed me visions of the jungle from above, as if I were flying like a bird. I could see all the animals in their natural habitat, the plants growing, the rivers flowing. Everything was connected by threads of light.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          "This is what you must learn," the jaguar told me. "Everything is connected. Every plant, every animal, every human being is part of the same web of life. If you learn to see these connections, you can help heal people."
+        </p>
+
+        <div class="scroll-animate bg-green-50 border-l-4 border-green-400 p-6 mb-8">
+          <p class="text-green-800 italic">
+            The jaguar placed its paw on my chest and I felt a warm energy entering my body. "This is my gift to you," it said. "The power to see beyond the physical, to understand the language of plants, and to guide others on their healing journey."
+          </p>
+        </div>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Returning to Reality</h2>
+
+        <p class="scroll-animate mb-6">
+          Gradually, the visions began to fade and I started to return to normal consciousness. I could hear the shaman singing his icaros, his healing songs. I opened my eyes and saw that dawn was beginning to break.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          The shaman approached me and asked: "How do you feel, young man?" I didn't know what to say. I felt like I had been born again, like I was seeing the world with completely different eyes.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          "I feel... different," I told him. "I saw incredible things, I spoke with a jaguar, I flew over the jungle." The shaman smiled and nodded. "The spirits have accepted you," he said. "You have received a great gift."
+        </p>
+
+        <p class="scroll-animate mb-6">
+          That experience changed my life forever. From that day on, I knew that my path was not just to be a tourist guide, but to learn about plant medicine and help others connect with the healing wisdom of the Amazon.
+        </p>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">The Beginning of My Journey</h2>
+
+        <p class="scroll-animate mb-6">
+          In the following days, I couldn't stop thinking about what I had experienced. The tourists returned to their countries, but I stayed at the lodge asking the shaman questions about what had happened to me.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          The shaman, whose name was Don Carlos, told me that I had received a calling from the plant spirits. "Not everyone has visions like yours on their first ceremony," he explained. "The jaguar chose you to be a bridge between the world of spirits and the world of humans."
+        </p>
+
+        <p class="scroll-animate mb-6">
+          From that moment on, I began learning from Don Carlos. He taught me about different medicinal plants, how to prepare them, and how to conduct healing ceremonies. It was the beginning of a journey that has continued for more than 30 years.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Today, as I guide others in their own ayahuasca experiences at Casa del Jaguar, I always remember that first night when everything changed. Each person who comes to us is on their own journey of discovery, and I feel honored to be part of that process.
+        </p>
+
+        <div class="scroll-animate bg-amber-50 border-l-4 border-amber-400 p-6 mb-8">
+          <p class="text-amber-800 italic text-lg">
+            "Ayahuasca doesn't just show you visions; it shows you truths about yourself and the world that you may have forgotten. It reminds you of your connection to all life and your purpose in this world."
+          </p>
+        </div>
+
+        <p class="scroll-animate mb-6">
+          That first encounter with Mother Ayahuasca taught me that we are all connected, that healing is possible, and that sometimes the most profound changes come when we least expect them. It was the beginning of my life's work and my commitment to serving others on their path to healing and self-discovery.
+        </p>
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<script>
+  // Scroll animations
+  const scrollElements = document.querySelectorAll('.scroll-animate');
+  
+  const elementInView = (el: Element, dividend: number = 1) => {
+    const elementTop = el.getBoundingClientRect().top;
+    return (
+      elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+    );
+  };
+  
+  const displayScrollElement = (element: Element) => {
+    element.classList.add('scrolled');
+  };
+  
+  const hideScrollElement = (element: Element) => {
+    element.classList.remove('scrolled');
+  };
+  
+  const handleScrollAnimation = () => {
+    scrollElements.forEach((el) => {
+      if (elementInView(el, 1.25)) {
+        displayScrollElement(el);
+      }
+    });
+  };
+  
+  window.addEventListener('scroll', () => {
+    handleScrollAnimation();
+  });
+  
+  // Initial check
+  handleScrollAnimation();
+</script>
+
+<style>
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+  }
+  
+  .scroll-animate.scrolled {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

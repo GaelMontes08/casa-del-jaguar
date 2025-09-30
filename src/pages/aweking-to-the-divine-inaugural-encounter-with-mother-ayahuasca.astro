@@ -1,0 +1,368 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const article = {
+  title: 'Mi Despertar a lo Divino: El Encuentro Inaugural con la Madre Ayahuasca',
+  excerpt: 'La extraordinaria historia del primer encuentro del Maestro Denis con la Madre Ayahuasca a los 16 años, cuando trabajaba como guía turístico en Iquitos.',
+  date: '2025-09-30',
+  author: 'Maestro Denis',
+  authorBio: 'Maestro curandero con más de 15 años de experiencia en medicina ancestral amazónica.',
+  image: '/img/aweking-to-the-divine-inaugural-encounter-with-mother-ayahuasca.webp',
+  readTime: '12 min',
+  category: 'Experiencias',
+  tags: ['primer encuentro', 'ayahuasca', 'maestro denis', 'visiones', 'transformación', 'jaguar']
+};
+---
+
+<Layout 
+  title={`${article.title} | Blog Casa del Jaguar`}
+  description={article.excerpt}
+  keywords={article.tags.join(', ')}
+>
+  <main>
+    <article class="max-w-4xl mx-auto px-4 md:px-8 py-16 -mt-16 pt-24">
+      <nav class="text-sm text-gray-600 mb-8">
+        <a href="/" class="hover:text-brand-primary transition-colors">Inicio</a>
+        <span class="mx-2">›</span>
+        <a href="/blog" class="hover:text-brand-primary transition-colors">Blog</a>
+        <span class="mx-2">›</span>
+        <span class="text-brand-dark">Experiencias</span>
+      </nav>
+
+      <div class="mb-6">
+        <span class="bg-brand-primary text-brand-dark px-4 py-2 rounded-full text-sm font-medium">
+          {article.category}
+        </span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia mb-6 leading-tight">
+        {article.title}
+      </h1>
+
+      <div class="flex flex-wrap items-center text-gray-600 mb-8 space-x-6">
+        <div class="flex items-center space-x-2">
+          <div class="w-10 h-10 bg-brand-light rounded-full flex items-center justify-center">
+            <span class="text-brand-dark font-bold text-sm">{article.author.charAt(0)}</span>
+          </div>
+          <div>
+            <p class="font-medium text-brand-dark">{article.author}</p>
+            <p class="text-sm text-gray-500">{article.authorBio}</p>
+          </div>
+        </div>
+        <div class="text-sm">
+          <p>{new Date(article.date).toLocaleDateString('es-ES', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+          })}</p>
+          <p>{article.readTime} de lectura</p>
+        </div>
+      </div>
+
+      <div class="mb-12">
+        <img 
+          src={article.image}
+          alt={article.title}
+          class="w-full h-98 object-cover rounded-xl shadow-lg"
+        />
+      </div>
+
+      <div class="prose prose-lg max-w-none">
+        <p class="scroll-animate text-xl text-gray-700 mb-8 font-gotham leading-relaxed">
+          Esto sucedió cuando tenía 16 años. En ese entonces, estudiaba la carrera técnica de Guía Oficial de Turismo. Así fue como conseguí trabajo como guía en una empresa de turismo.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Poco después de empezar a trabajar, me asignaron un grupo de turistas muy jóvenes, de entre 18 y 24 años, que llegaban al albergue desde Estados Unidos. El día de su llegada, debía recogerlos en el aeropuerto y llevarlos a su hotel.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Esa noche, tenía que mostrarles la ciudad de Iquitos, los principales puntos turísticos y a la mañana siguiente, muy temprano, ir al puerto donde nos estarían esperando las embarcaciones que nos llevarían al lodge.
+        </p>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Entrando en Territorio Desconocido</h2>
+        
+        <p class="scroll-animate mb-6">
+          Al día siguiente, al llegar al albergue, nos dirigimos a la maloca principal, donde nuestro jefe les daría la bienvenida. Con todos presentes, mi jefe les dio la bienvenida.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Hasta ese momento, todo transcurría con normalidad. Pero después de esta breve bienvenida, mi jefe mencionó algo que escuchaba por primera vez:
+        </p>
+
+        <div class="scroll-animate bg-blue-50 border-l-4 border-blue-400 p-6 mb-8">
+          <p class="text-blue-800 italic text-lg">
+            «El chamán ya está en el lodge y tiene todo listo para tu ceremonia de Ayahuasca mañana por la noche».
+          </p>
+        </div>
+
+        <p class="scroll-animate mb-6">
+          Mentalmente, me preguntaba: «Chamán, ¿qué es la ayahuasca?». ¿De qué habla mi jefe? Tenía tanta curiosidad que le pregunté a mi compañero de trabajo, que estaba a mi lado: «Juan, ¿Qué es un chamán y qué es esto de la Ayahuasca?».
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Me miró, dibujó una sonrisa en su rostro y me dijo: «¿Qué? ¿De verdad no sabes lo que es un chamán? ¿No sabes lo que es la ayahuasca?». Le dije que no, que nací en Iquitos, pero nunca había oído hablar de eso.
+        </p>
+
+        <div class="scroll-animate bg-yellow-50 border-l-4 border-yellow-400 p-6 mb-8">
+          <p class="text-yellow-800">
+            "Bueno, Denis, un chamán es un «curandero», es decir, una persona que realiza rituales; también se les llama «brujos». Y la ayahuasca es una bebida que te hace ver cosas de tu vida, y tiene un sabor horrible."
+          </p>
+        </div>
+
+        <p class="scroll-animate mb-6">
+          Mientras hablaba con mi compañero de trabajo, vi a uno de los turistas del grupo levantando la mano, pidiendo hablar. Mi jefe le dio permiso, y el turista dijo lo siguiente:
+        </p>
+
+        <div class="scroll-animate bg-green-50 border-l-4 border-green-400 p-6 mb-8">
+          <p class="text-green-800 font-medium">
+            «Queremos que Denis también tome ayahuasca con nosotros».
+          </p>
+        </div>
+
+        <p class="scroll-animate mb-6">
+          Al oír eso, dije: «¡Qué!», pensando: «No, no, no». Mi jefe le dijo que no era posible porque soy parte del personal y la ceremonia es solo para turistas. Al oír esto, el grupo de turistas, a través de su representante, volvió a hablar, diciendo:
+        </p>
+
+        <div class="scroll-animate bg-red-50 border-l-4 border-red-400 p-6 mb-8">
+          <p class="text-red-800 font-bold">
+            «Si Denis no lo bebe, ninguno de nosotros lo hará».
+          </p>
+        </div>
+
+        <p class="scroll-animate mb-6">
+          Mi jefe, al oír esto, me miró. Por su expresión, supe que me estaba diciendo que tendría que hacerlo. Mi jefe le dijo al grupo: «Hablaré con él». Luego se acercó a mí y me dijo: «Denis, tendrás que aceptarlo».
+        </p>
+
+        <div class="scroll-animate bg-brand-light p-8 rounded-xl text-center mt-8 mb-8">
+          <h3 class="text-xl font-bold text-brand-dark font-georgia mb-4">
+            Reflexión del Maestro Denis
+          </h3>
+          <p class="text-brand-secondary font-gotham italic">
+            "Cuando la madre Ayahuasca nos llama o quiere que la conozcamos lo hace de maneras inexplicables, así es ella, así trabaja, esta es su magia."
+          </p>
+        </div>
+
+        <p class="scroll-animate mb-6">
+          Nunca había pasado algo así, y si no lo aceptan, no pagarán, y eso afectará a todos. También dijo: «No te preocupes, no es malo. Te doy un consejo: no preguntes por tu pasado ni por tu futuro, sobre todo cómo vas a morir».
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Tras oír esas palabras, le dije: «Jefe, no me está ayudando, me está poniendo muy nervioso. ¿Qué es eso de la ayahuasca? ¿Por qué no debería preguntar, y supuestamente a quién no debería preguntarle?». Me respondió: «Eso es todo lo que puedo decirle.»
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Obviamente, el grupo de turistas se alegró mucho al saber que me uniría a la ceremonia. Pero seguía muy nervioso; seguí preguntando, pero nadie quería darme más información. Me dijeron que era mejor así. Esa noche no pude dormir.
+        </p>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">El Encuentro con lo Sagrado: Noche de Ceremonia</h2>
+
+        <p class="scroll-animate mb-6">
+          Llegó la noche de la ceremonia, yo estaba súper nervioso, ellos también, ya que nos dijeron que nos sentáramos muy juntos por seguridad, al sentarme, mi rodilla tocaba la rodilla de mi acompañante y así consecutivamente.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Mientras tanto, el chamán dirigía la ceremonia inaugural y preparaba la Ayahuasca. Como éramos un grupo grande, pensé que sería el último en tomarla, pero para mi sorpresa, el chamán empezó conmigo.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Exclamé: «¡Qué!». Lo vi verter la ayahuasca en un vaso grande, llenándolo al 70 %. Pensé: «Parece mucho», pero supuse que así debía ser, dada mi ignorancia al respecto.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Después, lo vi fumar mapacho (tabaco) y sopló el humo dentro del vaso que estaba con la Ayahuasca. Cuando me tocó beber, olía fatal y no tenía ni idea de cómo hacerlo, así que decidí tomarlo con calma, grave error, porque al primer sorbo, la bebida me supo fatal, tan mal que casi se la escupo en la cara al chamán.
+        </p>
+
+        <div class="scroll-animate bg-amber-50 border-l-4 border-amber-400 p-6 mb-8">
+          <p class="text-amber-800">
+            Se dio cuenta y me dijo: «Bébetelo todo, aguanta la respiración y tómalo todo de golpe».
+          </p>
+        </div>
+
+        <p class="scroll-animate mb-6">
+          Así que hice lo que me dijo, me quedé con ese horrible sabor de boca durante varios minutos. Nunca me dijeron que debía esperar unos 30 minutos, así que unos 10 minutos después de tomarlo, pensé que no me estaba haciendo efecto.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Mentalmente, pensé: «Bueno, supongo que algo salió mal porque no siento nada. Eso está mejor; estoy tranquilo así. Esperaré un poco más y luego diré que me voy a mi habitación».
+        </p>
+
+        <h3 class="scroll-animate text-2xl font-bold text-brand-dark font-georgia mt-8 mb-4">La Conexión se Inició</h3>
+
+        <p class="scroll-animate mb-6">
+          Unos minutos después, empecé a sentir un aire muy frío que me entraba por la punta de los pies y subía gradualmente por todo el cuerpo. Pensé: «¿Qué es esto?». Era un frío que me paralizaba, impidiéndome moverme. En otras palabras, estaba sentado en la maloca, completamente congelado.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Más tarde, mientras estaba paralizado, sentí que el suelo de la maloca se volvía maleable, como si estuviera sentado en un colchón de agua. Me pregunté qué estaría pasando. Intenté abrir los ojos, pero no pude; me pesaban los párpados.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Entonces, oí un sonido muy fuerte a mi derecha, parecía un disparo, vi un destello pasar frente a mí, aunque aún tenía los ojos cerrados. Después de eso, sentí que mi cuerpo empezaba a dar vueltas, al principio, fue lento, pero después de unos segundos, empezó a girar muy rápido.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Pensé en abrir los ojos, esta vez lo logré. Sin embargo, no podía ver nada porque todo daba vueltas. Toda la maloca giraba a toda velocidad frente a mí. Cerré los ojos de nuevo y recuerdo simplemente abrazarme las piernas, llevando las rodillas hasta el pecho.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Mi cuerpo daba tantas vueltas que sentí como si mi espíritu abandonara mi cuerpo. ¿Cómo lo sé? Flotaba como un espíritu. Me vi sentado en la maloca y pude ver a todos, la luz de la luna iluminaba toda la maloca.
+        </p>
+
+        <div class="scroll-animate bg-purple-50 border-l-4 border-purple-400 p-6 mb-8">
+          <p class="text-purple-800 italic">
+            Mientras estaba suspendido en el aire, escuché un fuerte ruido, al levantar la vista, vi un fuerte viento que se llevaba el techo de la maloca. Pude ver un hermoso cielo estrellado. En ese momento, pensé: «¿Qué hago ahora?». Una voz en mi cabeza me dijo: «Vuela, regresa a Iquitos a ver a tu familia para que puedas estar en paz».
+          </p>
+        </div>
+
+        <p class="scroll-animate mb-6">
+          Y eso hice. Volé sobre el río y pude ver hermosos delfines de río de todos los colores. Vi sirenas nadando como si me saludaran, cuando miré hacia los árboles, vi jaguares de todos los colores. Fue una visión muy hermosa, y de hecho, volé de regreso a mi casa en Iquitos.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Al llegar, pude ver a mis familiares haciendo cosas en la casa, pero ellos no podían verme; podía atravesar las paredes como un fantasma. Entonces esa misma voz me dijo: «Denis, es hora de volver», y en menos de un segundo, estaba de nuevo sentado en la maloca.
+        </p>
+
+        <h3 class="scroll-animate text-2xl font-bold text-brand-dark font-georgia mt-8 mb-4">Recibiendo la Visita de la Madre Ayahuasca</h3>
+
+        <p class="scroll-animate mb-6">
+          Abrí los ojos y me encontré completamente solo. Podía oír al chamán cantando, pero no podía verlo. Miré al techo y vi una serpiente descendiendo. Sus colores fosforescentes brillaban en la oscuridad. Al descender, se posicionó frente a mí. Noté algo extraño en esta serpiente: tenía cabeza humana y emitía pequeñas burbujas verdes fosforescentes.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Después de eso, oí un ruido muy fuerte proveniente del costado de la puerta principal de la maloca, a mi izquierda. Al girarme y mirar, me di cuenta de que la puerta ya no estaba. Fuera de la maloca, gracias a la luz de la luna, todo se veía claramente, incluso el río cerca del albergue.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Pero soplaba un viento fuerte. Para mi gran sorpresa, minutos después, vi una enorme serpiente emergiendo del río. Era gigantesca. Me quedé atónito al ver esa enorme anaconda. La vi entrar en la maloca y pensé: «¡Maldita sea, este animal me va a comer!».
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Quería correr, pero no podía moverme. Solo podía cerrar los ojos y rezar para que no me hiciera daño. Con los ojos cerrados, sentí su lengua bífida rozar mi cara. Luego, sentí que se enroscaba a mi alrededor, apretándome, pero sin hacerme daño.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Finalmente, sentí que me tragaba. Sentía su saliva y cómo me adentraba poco a poco. Pensé: «Qué curioso que en mi primer trabajo vaya a morir así». Sentí que me dormía, en un momento dado, creo que lo hice, porque esa voz en mi mente me dijo que despertara: «Estás vivo, dijo. Has sido limpiado y sanado».
+        </p>
+
+        <h3 class="scroll-animate text-2xl font-bold text-brand-dark font-georgia mt-8 mb-4">Primer Encuentro con el Maestro Jaguar</h3>
+
+        <p class="scroll-animate mb-6">
+          Abrí los ojos y estaba de nuevo sentado en el centro de la maloca. Todo estaba en su sitio: el techo, la puerta. Ya no oía al chamán, pero noté algo extraño. No estaba solo. Veía sombras de gente sentada alrededor de la maloca.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          La maloca tenía forma circular. Parecían fantasmas, pero de color negro. Noté que querían acercarse, pero algo los detenía. Volaban de un lado a otro. Entonces oí una respiración muy fuerte detrás de mí. Era la respiración de algo o alguien enorme.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Mentalmente, me dije a mí mismo que no me diera la vuelta, que no mirara atrás, pero la curiosidad me venció, y lo hice. Cuando me giré para ver qué o quién era, vi un felino enorme, enorme, gigantesco.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Al principio, pensé que era un tigre gigante. Vi que era él quien impedía que esas sombras oscuras se acercaran. Entonces, en un momento dado, se dio cuenta de que lo estaba observando y giró su enorme cabeza para mirarme.
+        </p>
+
+        <div class="scroll-animate bg-orange-50 border-l-4 border-orange-400 p-6 mb-8">
+          <p class="text-orange-800 font-medium">
+            Lo miré a los ojos y sentí un poder, algo que nunca antes había sentido. Pero al no entender nada al respecto, el miedo me invadió.
+          </p>
+        </div>
+
+        <p class="scroll-animate mb-6">
+          Regresé a mi posición original y cerré los ojos, pensando: «Este animal me va a comer. ¿Por qué tomé esto? Ya no quiero estar aquí. Perdóname, mamá, por todo. Prometo escucharte y hacerte caso en todo». Empecé a rezar tres Padre nuestros y tres Ave marías.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Tras unos minutos, se hizo un silencio absoluto. Mentalmente, me dije a mí mismo que no abriera los ojos, pero una vez más, la curiosidad me venció, y lo hice. El enorme felino estaba justo frente a mí; esos ojos jamás los olvidaré.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Rugió frente a mí, sentí su aliento, su saliva. Entonces, algo extraño ocurrió. Vi mi cabeza dentro de su boca; no como si me hubiera comido, sino como si mi cabeza fuera, de alguna manera, parte de la cabeza de este enorme felino.
+        </p>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">El Despertar</h2>
+
+        <p class="scroll-animate mb-6">
+          Después de eso, abrí los ojos y estaba de vuelta en la maloca. Las luces ya estaban encendidas y mis compañeros me esperaban, preocupados porque fui el último en despertar. Entonces, sentí muchas náuseas y corrí al baño a vomitar. Vomité mucho.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Al salir del baño, sintiéndome algo mejor, me preguntaron cómo estaba. Les dije que estaba bien, un poco mareado, pero mejor después de vomitar. Me preguntaron si tenía alguna conexión, y dije que sí.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Expresaron sus dudas porque, después de tomar la Ayahuasca, me vieron acostarme y quedarme dormido. Esta información me sorprendió porque nunca dormí ni me acosté. Así de fantástica fue mi primera ceremonia con la Madre Ayahuasca.
+        </p>
+
+        <div class="scroll-animate bg-brand-light p-8 rounded-xl text-center mt-12">
+          <h3 class="text-2xl font-bold text-brand-dark font-georgia mb-4">
+            Reflexión Final
+          </h3>
+          <p class="text-brand-secondary font-gotham mb-4">
+            "Mi primer encuentro con la Madre Ayahuasca fue una conexión única y profundamente especial."
+          </p>
+          <p class="text-brand-secondary font-gotham italic">
+            "¿Quién hubiera imaginado que años después me convertiría en chamán, trabajando en armonía con la Madre Ayahuasca y el Maestro Jaguar?"
+          </p>
+          <p class="text-brand-dark font-gotham font-medium mt-4">
+            - Maestro Denis
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-gray-200">
+        <h3 class="text-lg font-bold text-brand-dark mb-4">Etiquetas:</h3>
+        <div class="flex flex-wrap gap-2">
+          {article.tags.map((tag) => (
+            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-brand-light transition-colors">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div class="mt-12 p-6 bg-brand-light rounded-xl">
+        <div class="flex items-start space-x-4">
+          <div class="w-16 h-16 bg-brand-primary rounded-full flex items-center justify-center flex-shrink-0">
+            <span class="text-brand-dark font-bold text-xl">{article.author.charAt(0)}</span>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-brand-dark font-georgia mb-2">Sobre {article.author}</h3>
+            <p class="text-gray-700 font-gotham mb-4">{article.authorBio}</p>
+            <p class="text-sm text-gray-600">
+              Este relato personal del Maestro Denis nos muestra cómo la Madre Ayahuasca puede llamarnos de maneras inesperadas, transformando por completo el curso de nuestras vidas. Su experiencia a los 16 años fue el inicio de un camino que lo llevaría a convertirse en un respetado curandero y guía espiritual.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16 text-center">
+        <h3 class="text-2xl font-bold text-brand-dark font-georgia mb-6">¿Te Sientes Llamado por la Medicina?</h3>
+        <p class="text-gray-700 mb-8 max-w-2xl mx-auto">
+          Si sientes el llamado de la Madre Ayahuasca, como lo sintió el Maestro Denis, te invitamos a conocer más sobre nuestras ceremonias sagradas en un ambiente seguro y respetuoso.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="/contact"
+            class="bg-brand-primary text-brand-dark px-8 py-3 rounded-lg hover:bg-brand-accent transition-colors font-medium"
+          >
+            Contáctanos
+          </a>
+          <a 
+            href="/about"
+            class="border border-brand-primary text-brand-primary px-8 py-3 rounded-lg hover:bg-brand-primary hover:text-brand-dark transition-colors font-medium"
+          >
+            Conoce Nuestra Historia
+          </a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <script src="/js/scroll-animations.js" is:inline></script>
+</Layout>
+
+<style>
+  /* Additional custom styles for this article if needed */
+</style>
