@@ -3,6 +3,7 @@ import Layout from '@/layouts/Layout.astro';
 import { useTranslations } from '@/i18n/utils';
 
 const t = useTranslations('es'); // Default Spanish for root pages
+export const prerender = true;
 ---
 
 <Layout title={t('about.title')} description={t('about.subtitle')} keywords={t('about.keywords')}>
@@ -17,10 +18,10 @@ const t = useTranslations('es'); // Default Spanish for root pages
     </div>
     <div class="text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-4xl md:text-6xl font-bold mb-6 scroll-animate font-georgia">
-        Nuestra Historia
+        Casa del Jaguar
       </h1>
       <p class="text-xl md:text-2xl mb-8 leading-relaxed scroll-animate font-gotham">
-        Guardianes de la medicina ancestral amazónica, compartiendo la sabiduría sagrada con respeto y autenticidad desde hace más de una década.
+        Donde la sabiduría ancestral se fusiona con la ciencia moderna en la búsqueda del bienestar físico, mental y emocional.
       </p>
     </div>
   </section>
@@ -33,48 +34,47 @@ const t = useTranslations('es'); // Default Spanish for root pages
           <div>
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-georgia">Nuestra Misión</h2>
             <p class="text-gray-600 mb-4 text-lg leading-relaxed font-gotham">
-              Casa del Jaguar es un centro dedicado a la medicina tradicional amazónica, 
-              donde ofrecemos ceremonias de ayahuasca en un ambiente seguro, sagrado y 
-              respetuoso de las tradiciones ancestrales.
+              En la Casa del Jaguar, nos dedicamos a brindar ayuda con las plantas maestras a personas que enfrentan problemas de salud mental como depresión, ansiedad, adicciones y heridas emocionales.
+            </p>
+            <p class="text-gray-600 mb-4 text-lg leading-relaxed font-gotham">
+              Ayudamos a sanar mente, cuerpo y espíritu con la ayuda de las Plantas Maestras. Desde el 2008, hemos estado trabajando en el mundo de la medicina vegetal, en particular con la medicina sagrada Ayahuasca, en ceremonias de sanación.
             </p>
             <p class="text-gray-600 text-lg leading-relaxed font-gotham">
-              Nuestro propósito es acompañar a las personas en sus procesos de sanación 
-              y crecimiento espiritual, honrando siempre la sabiduría de los pueblos 
-              originarios y la naturaleza.
+              <strong>Nuestra misión es simple pero profunda:</strong> Ayudar a las personas a reconectarse con su verdadero ser, sanar traumas del pasado y liberar todo su potencial.
             </p>
           </div>
           <div class="bg-gradient-to-br from-[#D99D55] to-[#B8854A] p-8 rounded-lg text-white">
-            <h3 class="text-xl font-semibold mb-4 font-georgia">Nuestros Valores</h3>
+            <h3 class="text-xl font-semibold mb-4 font-georgia">Nuestro Enfoque</h3>
             <ul class="space-y-3 text-white/90 font-gotham">
               <li class="flex items-center">
                 <svg class="w-5 h-5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                Respeto por las tradiciones ancestrales
+                Máximo respeto y seriedad ceremonial
               </li>
               <li class="flex items-center">
                 <svg class="w-5 h-5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                Seguridad y bienestar de los participantes
+                Apoyo integral a los participantes
               </li>
               <li class="flex items-center">
                 <svg class="w-5 h-5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                Conexión profunda con la naturaleza
+                Fusión de sabiduría ancestral y ciencia
               </li>
               <li class="flex items-center">
                 <svg class="w-5 h-5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                Crecimiento espiritual auténtico
+                Transformación interior y sanación profunda
               </li>
               <li class="flex items-center">
                 <svg class="w-5 h-5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                Comunidad y apoyo mutuo
+                No turismo, sino sanación auténtica
               </li>
             </ul>
           </div>
@@ -84,28 +84,85 @@ const t = useTranslations('es'); // Default Spanish for root pages
 
     <section class="py-16 bg-[#fffcf6] scroll-animate">
       <div class="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12 font-georgia">Nuestros Maestros</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="text-center bg-white p-8 rounded-lg shadow-lg">
-            <div class="w-32 h-32 bg-gradient-to-br from-[#D99D55] to-[#B8854A] rounded-full mx-auto mb-6 flex items-center justify-center">
-              <span class="text-white text-2xl font-bold font-georgia">MC</span>
-            </div>
-            <h3 class="text-xl font-semibold mb-2 text-gray-900 font-georgia">Maestro Carlos</h3>
-            <p class="text-gray-600 font-gotham">25 años de experiencia en medicina tradicional amazónica, especialista en ceremonias de sanación profunda</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12 font-georgia">Nuestro Camino</h2>
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-white p-8 rounded-lg shadow-lg mb-8">
+            <h3 class="text-2xl font-semibold mb-4 text-gray-900 font-georgia">Desde el 2008</h3>
+            <p class="text-gray-600 mb-4 text-lg leading-relaxed font-gotham">
+              Nuestro camino comenzó con una profunda investigación sobre el potencial curativo de la planta maestra Ayahuasca y, desde entonces, hemos trabajado incansablemente para integrarla en prácticas terapéuticas efectivas.
+            </p>
+            <p class="text-gray-600 text-lg leading-relaxed font-gotham">
+              Para nosotros, las plantas maestras Ayahuasca y la Huachuma no son solo plantas: son una poderosa herramienta para la transformación interior y la sanación.
+            </p>
           </div>
-          <div class="text-center bg-white p-8 rounded-lg shadow-lg">
-            <div class="w-32 h-32 bg-gradient-to-br from-[#D99D55] to-[#B8854A] rounded-full mx-auto mb-6 flex items-center justify-center">
-              <span class="text-white text-2xl font-bold font-georgia">MM</span>
-            </div>
-            <h3 class="text-xl font-semibold mb-2 text-gray-900 font-georgia">Maestra María</h3>
-            <p class="text-gray-600 font-gotham">Especialista en cantos sagrados y sanación femenina, guardiana de los conocimientos ancestrales</p>
+          
+          <div class="bg-white p-8 rounded-lg shadow-lg">
+            <h3 class="text-2xl font-semibold mb-4 text-gray-900 font-georgia">Ceremonias Sagradas</h3>
+            <p class="text-gray-600 mb-4 text-lg leading-relaxed font-gotham">
+              Nuestras ceremonias chamánicas se llevan a cabo con mucho respeto y sobre todo brindando todo el apoyo necesario a los participantes; honramos lo sagrado de la ceremonia y la medicina.
+            </p>
+            <p class="text-gray-600 text-lg leading-relaxed font-gotham">
+              De esta manera la maloca ceremonial se transforma en un espacio de sanación profunda, donde combinamos la sabiduría de las plantas maestras con los conocimientos de la ciencia moderna.
+            </p>
           </div>
-          <div class="text-center bg-white p-8 rounded-lg shadow-lg">
-            <div class="w-32 h-32 bg-gradient-to-br from-[#D99D55] to-[#B8854A] rounded-full mx-auto mb-6 flex items-center justify-center">
-              <span class="text-white text-2xl font-bold font-georgia">MJ</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-brand-light scroll-animate">
+      <div class="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12 font-georgia">Maestro Denis Montes</h2>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
+            <div class="text-center">
+              <div class="w-64 h-64 bg-gradient-to-br from-[#D99D55] to-[#B8854A] rounded-full mx-auto mb-6 flex items-center justify-center">
+                <span class="text-white text-4xl font-bold font-georgia">DM</span>
+              </div>
             </div>
-            <h3 class="text-xl font-semibold mb-2 text-gray-900 font-georgia">Maestro José</h3>
-            <p class="text-gray-600 font-gotham">Curandero tradicional con profundo conocimiento de plantas medicinales y rituales sagrados</p>
+            
+            <div>
+              <p class="text-gray-600 mb-4 text-lg leading-relaxed font-gotham">
+                Denis Montes nació en la ciudad de Iquitos en 1983, ciudad conocida como la "Isla Bonita". Es Ingeniero Químico de profesión y miembro del Colegio de Ingenieros del Perú (CIP N° 271557).
+              </p>
+              <p class="text-gray-600 mb-4 text-lg leading-relaxed font-gotham">
+                Ha ejercido su profesión durante muchos años en ciudades como Iquitos y Lima, así como en zonas rurales de la selva, incluyendo lugares como Contamana, Atalaya, Yarinacocha, entre otros.
+              </p>
+              <p class="text-gray-600 text-lg leading-relaxed font-gotham">
+                Su primer encuentro con la Madre Ayahuasca fue a los 16 años mientras trabajaba como Guía Turístico Oficial.
+              </p>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+              <h3 class="text-xl font-semibold mb-4 text-gray-900 font-georgia">Formación Académica</h3>
+              <ul class="space-y-2 text-gray-600 font-gotham">
+                <li>• Universidad Nacional de la Amazonía Peruana (UNAP)</li>
+                <li>• Colegio de Ingenieros del Perú: CIP N° 271557</li>
+                <li>• CEVATUR PERU</li>
+                <li>• IDAT</li>
+                <li>• ESAN University</li>
+                <li>• SEGEL</li>
+              </ul>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+              <h3 class="text-xl font-semibold mb-4 text-gray-900 font-georgia">Camino Chamánico</h3>
+              <p class="text-gray-600 mb-3 leading-relaxed font-gotham">
+                Su formación chamánica comenzó en 2012 bajo la guía y supervisión del Maestro Dan Reynolds.
+              </p>
+              <p class="text-gray-600 leading-relaxed font-gotham">
+                Lugares donde convivió con pueblos indígenas que enriquecieron su experiencia y conocimiento de la biodiversidad amazónica.
+              </p>
+            </div>
+          </div>
+          
+          <div class="bg-gradient-to-br from-[#D99D55] to-[#B8854A] p-8 rounded-lg text-white text-center">
+            <h3 class="text-2xl font-semibold mb-4 font-georgia">Su Misión</h3>
+            <p class="text-white/90 text-lg leading-relaxed font-gotham">
+              Aboga por que la Ayahuasca sea conocida por todos, ya que es una medicina sagrada utilizada por nuestros antepasados, y la medicina moderna está descubriendo sus beneficios para nuestra salud física, mental y espiritual.
+            </p>
           </div>
         </div>
       </div>
@@ -114,16 +171,15 @@ const t = useTranslations('es'); // Default Spanish for root pages
     <section class="py-16 bg-white scroll-animate">
       <div class="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8 font-georgia">Nuestra Filosofía</h2>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8 font-georgia">Para Quién Estamos Aquí</h2>
           <p class="text-lg text-gray-600 mb-6 leading-relaxed font-gotham">
-            Creemos en el poder sanador de la ayahuasca como medicina sagrada que nos 
-            conecta con nuestra esencia más profunda y con la sabiduría ancestral de 
-            los pueblos amazónicos.
+            Ya sea que busques alivio para la ansiedad persistente, luches por superar una adicción o simplemente anheles mayor claridad y propósito en la vida, estamos aquí para apoyarte en cada paso del camino.
+          </p>
+          <p class="text-lg text-gray-600 mb-6 leading-relaxed font-gotham">
+            Nosotros no vemos a las ceremonias de sanación chamánica como simples atracciones turísticas, realizamos nuestro trabajo con el máximo respeto y seriedad.
           </p>
           <p class="text-lg text-gray-600 leading-relaxed font-gotham">
-            Cada ceremonia es un espacio sagrado donde se honra tanto la tradición como 
-            las necesidades individuales de sanación, siempre en un ambiente de respeto, 
-            seguridad y amor incondicional.
+            <strong>Sabemos que la sanación es un proceso</strong>, por eso combinamos la sabiduría de las plantas maestras con los conocimientos de la ciencia moderna para crear un espacio de transformación auténtica y profunda.
           </p>
         </div>
       </div>

@@ -8,18 +8,18 @@ export const defaultLang = 'es';
 export const ui = {
   es: {
     // Discount Banner
-    'discount.text': 'Este mes, ahorre $1250 con el código:',
+    'discount.text': 'Este mes, ahorre $800 con el código:',
     'discount.call': 'Llame hoy mismo al',
     'discount.phone': '+51 928-105-750',
     
     // Navigation
     'nav.home': 'Inicio',
-    'nav.about': 'Nosotros',
+    'nav.about': 'Sobre Nosotros',
     'nav.services': 'Servicios',
     'nav.contact': 'Contacto',
     
     // Homepage
-    'home.title': 'Casa del Jaguar - Medicina Ayahuasca',
+    'home.title': 'Casa del Jaguar - Ceremonias de Ayahuasca',
     'home.subtitle': 'Centro de medicina tradicional especializado en ceremonias de ayahuasca para sanación y crecimiento espiritual guiado por maestros experimentados.',
     'home.cta.contact': 'Contactar',
     'home.cta.learn': 'Conocer más',
@@ -32,7 +32,7 @@ export const ui = {
     'home.services.support.desc': 'Sesiones de integración y apoyo personalizado antes y después de las ceremonias.',
     
     // About page
-    'about.title': 'Nosotros',
+    'about.title': 'Sobre Nosotros - Casa del Jaguar',
     'about.subtitle': 'Conoce nuestra historia, filosofía y compromiso con la medicina tradicional.',
     'about.keywords': 'casa del jaguar, ayahuasca, medicina tradicional, ceremonias, sanación, crecimiento espiritual, maestros, retiros, acompañamiento',
     'about.mission.title': 'Nuestra Misión',
@@ -50,7 +50,7 @@ export const ui = {
     'about.philosophy.desc2': 'Cada ceremonia es un espacio sagrado donde se honra tanto la tradición como las necesidades individuales de sanación, siempre en un ambiente de respeto, seguridad y amor incondicional.',
     
     // Contact page
-    'contact.title': 'Contacto',
+    'contact.title': 'Contáctanos - Casa del Jaguar',
     'contact.subtitle': 'Estamos aquí para acompañarte en tu proceso de sanación. Contáctanos para más información.',
     'contact.keywords': 'contacto casa del jaguar, información ayahuasca, ceremonias, retiros espirituales, acompañamiento, sanación, crecimiento espiritual',
     'contact.form.title': 'Envíanos un mensaje',
@@ -105,7 +105,7 @@ export const ui = {
     'nav.contact': 'Contact',
     
     // Homepage
-    'home.title': 'Casa del Jaguar - Ayahuasca Medicine',
+    'home.title': 'Casa del Jaguar - Ayahuasca Ceremonies',
     'home.subtitle': 'Traditional medicine center specialized in ayahuasca ceremonies for healing and spiritual growth guided by experienced masters.',
     'home.cta.contact': 'Contact Us',
     'home.cta.learn': 'Learn More',
@@ -118,7 +118,7 @@ export const ui = {
     'home.services.support.desc': 'Integration sessions and personalized support before and after ceremonies.',
     
     // About page
-    'about.title': 'About Us',
+    'about.title': 'About Us - Casa del Jaguar',
     'about.subtitle': 'Learn about our history, philosophy, and commitment to traditional medicine.',
     'about.mission.title': 'Our Mission',
     'about.mission.desc1': 'Casa del Jaguar is a center dedicated to traditional Amazonian medicine, where we offer ayahuasca ceremonies in a safe, sacred environment that respects ancestral traditions.',
@@ -135,7 +135,7 @@ export const ui = {
     'about.philosophy.desc2': 'Each ceremony is a sacred space where both tradition and individual healing needs are honored, always in an environment of respect, safety, and unconditional love.',
     
     // Contact page
-    'contact.title': 'Contact',
+    'contact.title': 'Contact Us - Casa del Jaguar',
     'contact.subtitle': 'We are here to accompany you in your healing process. Contact us for more information.',
     'contact.form.title': 'Send us a message',
     'contact.form.name': 'Full name',
@@ -159,7 +159,7 @@ export const ui = {
     'contact.hours.sunday': 'Sunday: Closed',
     
     // Testimonials
-    'testimonials.title': 'Testimonials',
+    'testimonials.title': 'Testimonials - Casa del Jaguar',
     'testimonials.subtitle': 'Discover the transformative experiences of those who have participated in our ayahuasca ceremonies.',
     'testimonials.keywords': 'casa del jaguar testimonials, ayahuasca experiences, healing, transformation, ceremonies, spiritual retreats',
     'testimonials.stats.ceremonies': 'Ceremonies conducted',

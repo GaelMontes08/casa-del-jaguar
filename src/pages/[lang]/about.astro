@@ -9,6 +9,8 @@ export async function getStaticPaths() {
   ];
 }
 
+export const prerender = true;
+
 const { lang } = Astro.params as { lang: 'es' | 'en' };
 const t = useTranslations(lang);
 
@@ -41,12 +43,12 @@ const pageKeywords = lang === 'en'
     </div>
     <div class="text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-4xl md:text-6xl font-bold mb-6 scroll-animate font-georgia">
-        {lang === 'en' ? 'Our Story' : 'Nuestra Historia'}
+        {lang === 'en' ? 'Casa del Jaguar' : 'Casa del Jaguar'}
       </h1>
       <p class="text-xl md:text-2xl mb-8 leading-relaxed scroll-animate font-gotham">
         {lang === 'en' 
-          ? 'Guardians of Amazonian ancestral medicine, sharing sacred wisdom with respect and authenticity for over a decade.'
-          : 'Guardianes de la medicina ancestral amazónica, compartiendo la sabiduría sagrada con respeto y autenticidad desde hace más de una década.'
+          ? 'Where ancestral wisdom merges with modern science in the pursuit of physical, mental, and emotional well-being.'
+          : 'Donde la sabiduría ancestral se fusiona con la ciencia moderna en la búsqueda del bienestar físico, mental y emocional.'
         }
       </p>
     </div>
@@ -62,51 +64,57 @@ const pageKeywords = lang === 'en'
             </h2>
             <p class="text-gray-600 mb-4 text-lg leading-relaxed font-gotham">
               {lang === 'en' 
-                ? 'Casa del Jaguar is a center dedicated to traditional Amazonian medicine, where we offer ayahuasca ceremonies in a safe, sacred environment that respects ancestral traditions.'
-                : 'Casa del Jaguar es un centro dedicado a la medicina tradicional amazónica, donde ofrecemos ceremonias de ayahuasca en un ambiente seguro, sagrado y respetuoso de las tradiciones ancestrales.'
+                ? 'At Casa del Jaguar, we are dedicated to providing help with master plants to people facing mental health issues such as depression, anxiety, addictions, and emotional wounds.'
+                : 'En la Casa del Jaguar, nos dedicamos a brindar ayuda con las plantas maestras a personas que enfrentan problemas de salud mental como depresión, ansiedad, adicciones y heridas emocionales.'
+              }
+            </p>
+            <p class="text-gray-600 mb-4 text-lg leading-relaxed font-gotham">
+              {lang === 'en'
+                ? 'We help heal mind, body, and spirit with the aid of Master Plants. Since 2008, we have been working in the world of plant medicine, particularly with the sacred medicine Ayahuasca, in healing ceremonies.'
+                : 'Ayudamos a sanar mente, cuerpo y espíritu con la ayuda de las Plantas Maestras. Desde el 2008, hemos estado trabajando en el mundo de la medicina vegetal, en particular con la medicina sagrada Ayahuasca, en ceremonias de sanación.'
               }
             </p>
             <p class="text-gray-600 text-lg leading-relaxed font-gotham">
-              {lang === 'en' 
-                ? 'Our purpose is to accompany people in their healing and spiritual growth processes, always honoring the wisdom of indigenous peoples and nature.'
-                : 'Nuestro propósito es acompañar a las personas en sus procesos de sanación y crecimiento espiritual, honrando siempre la sabiduría de los pueblos originarios y la naturaleza.'
+              {lang === 'en'
+                ? '**Our mission is simple but profound:** Help people reconnect with their true self, heal past traumas, and unlock their full potential.'
+                : '**Nuestra misión es simple pero profunda:** Ayudar a las personas a reconectarse con su verdadero ser, sanar traumas del pasado y liberar todo su potencial.'
               }
             </p>
           </div>
           <div class="bg-gradient-to-br from-[#D99D55] to-[#B8854A] p-8 rounded-lg text-white">
             <h3 class="text-xl font-semibold mb-4 font-georgia">
-              {lang === 'en' ? 'Our Values' : 'Nuestros Valores'}
+              {lang === 'en' ? 'Our Approach' : 'Nuestro Enfoque'}
             </h3>
             <ul class="space-y-3 text-white/90 font-gotham">
               <li class="flex items-center">
                 <svg class="w-5 h-5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                {lang === 'en' ? 'Respect for ancestral traditions' : 'Respeto por las tradiciones ancestrales'}
+                {lang === 'en' ? 'Maximum respect and ceremonial seriousness' : 'Máximo respeto y seriedad ceremonial'}
               </li>
               <li class="flex items-center">
                 <svg class="w-5 h-5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                {lang === 'en' ? 'Safety and well-being of participants' : 'Seguridad y bienestar de los participantes'}
+                {lang === 'en' ? 'Comprehensive support for participants' : 'Apoyo integral a los participantes'}
               </li>
               <li class="flex items-center">
                 <svg class="w-5 h-5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                {lang === 'en' ? 'Deep connection with nature' : 'Conexión profunda con la naturaleza'}
+                {lang === 'en' ? 'Fusion of ancestral wisdom and science' : 'Fusión de sabiduría ancestral y ciencia'}
               </li>
               <li class="flex items-center">
                 <svg class="w-5 h-5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                {lang === 'en' ? 'Authentic spiritual growth' : 'Crecimiento espiritual auténtico'}
+                {lang === 'en' ? 'Inner transformation and deep healing' : 'Transformación interior y sanación profunda'}
               </li>
               <li class="flex items-center">
                 <svg class="w-5 h-5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                {lang === 'en' ? 'Community and mutual support' : 'Comunidad y apoyo mutuo'}
+                {lang === 'en' ? 'Not tourism, but authentic healing' : 'No turismo, sino sanación auténtica'}
               </li>
             </ul>
           </div>
@@ -117,48 +125,126 @@ const pageKeywords = lang === 'en'
     <section class="py-16 bg-[#fffcf6] scroll-animate">
       <div class="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12 font-georgia">
-          {lang === 'en' ? 'Our Masters' : 'Nuestros Maestros'}
+          {lang === 'en' ? 'Our Journey' : 'Nuestro Camino'}
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="text-center bg-white p-8 rounded-lg shadow-lg">
-            <div class="w-32 h-32 bg-gradient-to-br from-[#D99D55] to-[#B8854A] rounded-full mx-auto mb-6 flex items-center justify-center">
-              <span class="text-white text-2xl font-bold font-georgia">MC</span>
-            </div>
-            <h3 class="text-xl font-semibold mb-2 text-gray-900 font-georgia">
-              {lang === 'en' ? 'Master Carlos' : 'Maestro Carlos'}
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-white p-8 rounded-lg shadow-lg mb-8">
+            <h3 class="text-2xl font-semibold mb-4 text-gray-900 font-georgia">
+              {lang === 'en' ? 'Since 2008' : 'Desde el 2008'}
             </h3>
-            <p class="text-gray-600 font-gotham">
+            <p class="text-gray-600 mb-4 text-lg leading-relaxed font-gotham">
               {lang === 'en' 
-                ? '25 years of experience in traditional Amazonian medicine, specialist in deep healing ceremonies'
-                : '25 años de experiencia en medicina tradicional amazónica, especialista en ceremonias de sanación profunda'
+                ? 'Our journey began with deep research into the healing potential of the master plant Ayahuasca and, since then, we have worked tirelessly to integrate it into effective therapeutic practices.'
+                : 'Nuestro camino comenzó con una profunda investigación sobre el potencial curativo de la planta maestra Ayahuasca y, desde entonces, hemos trabajado incansablemente para integrarla en prácticas terapéuticas efectivas.'
+              }
+            </p>
+            <p class="text-gray-600 text-lg leading-relaxed font-gotham">
+              {lang === 'en' 
+                ? 'For us, the master plants Ayahuasca and Huachuma are not just plants: they are a powerful tool for inner transformation and healing.'
+                : 'Para nosotros, las plantas maestras Ayahuasca y la Huachuma no son solo plantas: son una poderosa herramienta para la transformación interior y la sanación.'
               }
             </p>
           </div>
-          <div class="text-center bg-white p-8 rounded-lg shadow-lg">
-            <div class="w-32 h-32 bg-gradient-to-br from-[#D99D55] to-[#B8854A] rounded-full mx-auto mb-6 flex items-center justify-center">
-              <span class="text-white text-2xl font-bold font-georgia">MM</span>
-            </div>
-            <h3 class="text-xl font-semibold mb-2 text-gray-900 font-georgia">
-              {lang === 'en' ? 'Master María' : 'Maestra María'}
+          
+          <div class="bg-white p-8 rounded-lg shadow-lg">
+            <h3 class="text-2xl font-semibold mb-4 text-gray-900 font-georgia">
+              {lang === 'en' ? 'Sacred Ceremonies' : 'Ceremonias Sagradas'}
             </h3>
-            <p class="text-gray-600 font-gotham">
+            <p class="text-gray-600 mb-4 text-lg leading-relaxed font-gotham">
               {lang === 'en' 
-                ? 'Specialist in sacred songs and feminine healing, guardian of ancestral knowledge'
-                : 'Especialista en cantos sagrados y sanación femenina, guardiana de los conocimientos ancestrales'
+                ? 'Our shamanic ceremonies are conducted with great respect and above all providing all necessary support to the participants; we honor the sacred nature of the ceremony and the medicine.'
+                : 'Nuestras ceremonias chamánicas se llevan a cabo con mucho respeto y sobre todo brindando todo el apoyo necesario a los participantes; honramos lo sagrado de la ceremonia y la medicina.'
+              }
+            </p>
+            <p class="text-gray-600 text-lg leading-relaxed font-gotham">
+              {lang === 'en' 
+                ? 'In this way, the ceremonial maloca is transformed into a space of deep healing, where we combine the wisdom of master plants with the knowledge of modern science.'
+                : 'De esta manera la maloca ceremonial se transforma en un espacio de sanación profunda, donde combinamos la sabiduría de las plantas maestras con los conocimientos de la ciencia moderna.'
               }
             </p>
           </div>
-          <div class="text-center bg-white p-8 rounded-lg shadow-lg">
-            <div class="w-32 h-32 bg-gradient-to-br from-[#D99D55] to-[#B8854A] rounded-full mx-auto mb-6 flex items-center justify-center">
-              <span class="text-white text-2xl font-bold font-georgia">MJ</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-brand-light scroll-animate">
+      <div class="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12 font-georgia">
+            {lang === 'en' ? 'Master Denis Montes' : 'Maestro Denis Montes'}
+          </h2>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
+            <div class="text-center">
+              <div class="w-64 h-64 bg-gradient-to-br from-[#D99D55] to-[#B8854A] rounded-full mx-auto mb-6 flex items-center justify-center">
+                <span class="text-white text-4xl font-bold font-georgia">DM</span>
+              </div>
             </div>
-            <h3 class="text-xl font-semibold mb-2 text-gray-900 font-georgia">
-              {lang === 'en' ? 'Master José' : 'Maestro José'}
+            
+            <div>
+              <p class="text-gray-600 mb-4 text-lg leading-relaxed font-gotham">
+                {lang === 'en' 
+                  ? 'Denis Montes was born in the city of Iquitos in 1983, a city known as the "Beautiful Island". He is a Chemical Engineer by profession and a member of the College of Engineers of Peru (CIP N° 271557).'
+                  : 'Denis Montes nació en la ciudad de Iquitos en 1983, ciudad conocida como la "Isla Bonita". Es Ingeniero Químico de profesión y miembro del Colegio de Ingenieros del Perú (CIP N° 271557).'
+                }
+              </p>
+              <p class="text-gray-600 mb-4 text-lg leading-relaxed font-gotham">
+                {lang === 'en' 
+                  ? 'He has practiced his profession for many years in cities like Iquitos and Lima, as well as in rural jungle areas, including places like Contamana, Atalaya, Yarinacocha, among others.'
+                  : 'Ha ejercido su profesión durante muchos años en ciudades como Iquitos y Lima, así como en zonas rurales de la selva, incluyendo lugares como Contamana, Atalaya, Yarinacocha, entre otros.'
+                }
+              </p>
+              <p class="text-gray-600 text-lg leading-relaxed font-gotham">
+                {lang === 'en' 
+                  ? 'His first encounter with Mother Ayahuasca was at age 16 while working as an Official Tourist Guide.'
+                  : 'Su primer encuentro con la Madre Ayahuasca fue a los 16 años mientras trabajaba como Guía Turístico Oficial.'
+                }
+              </p>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+              <h3 class="text-xl font-semibold mb-4 text-gray-900 font-georgia">
+                {lang === 'en' ? 'Academic Formation' : 'Formación Académica'}
+              </h3>
+              <ul class="space-y-2 text-gray-600 font-gotham">
+                <li>• {lang === 'en' ? 'National University of the Peruvian Amazon (UNAP)' : 'Universidad Nacional de la Amazonía Peruana (UNAP)'}</li>
+                <li>• {lang === 'en' ? 'College of Engineers of Peru: CIP N° 271557' : 'Colegio de Ingenieros del Perú: CIP N° 271557'}</li>
+                <li>• CEVATUR PERU</li>
+                <li>• IDAT</li>
+                <li>• ESAN University</li>
+                <li>• SEGEL</li>
+              </ul>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+              <h3 class="text-xl font-semibold mb-4 text-gray-900 font-georgia">
+                {lang === 'en' ? 'Shamanic Path' : 'Camino Chamánico'}
+              </h3>
+              <p class="text-gray-600 mb-3 leading-relaxed font-gotham">
+                {lang === 'en' 
+                  ? 'His shamanic formation began in 2012 under the guidance and supervision of Master Dan Reynolds.'
+                  : 'Su formación chamánica comenzó en 2012 bajo la guía y supervisión del Maestro Dan Reynolds.'
+                }
+              </p>
+              <p class="text-gray-600 leading-relaxed font-gotham">
+                {lang === 'en' 
+                  ? 'Places where he lived with indigenous peoples who enriched his experience and knowledge of Amazonian biodiversity.'
+                  : 'Lugares donde convivió con pueblos indígenas que enriquecieron su experiencia y conocimiento de la biodiversidad amazónica.'
+                }
+              </p>
+            </div>
+          </div>
+          
+          <div class="bg-gradient-to-br from-[#D99D55] to-[#B8854A] p-8 rounded-lg text-white text-center">
+            <h3 class="text-2xl font-semibold mb-4 font-georgia">
+              {lang === 'en' ? 'His Mission' : 'Su Misión'}
             </h3>
-            <p class="text-gray-600 font-gotham">
+            <p class="text-white/90 text-lg leading-relaxed font-gotham">
               {lang === 'en' 
-                ? 'Traditional healer with deep knowledge of medicinal plants and sacred rituals'
-                : 'Curandero tradicional con profundo conocimiento de plantas medicinales y rituales sagrados'
+                ? 'He advocates for Ayahuasca to be known by all, as it is a sacred medicine used by our ancestors, and modern medicine is discovering its benefits for our physical, mental, and spiritual health.'
+                : 'Aboga por que la Ayahuasca sea conocida por todos, ya que es una medicina sagrada utilizada por nuestros antepasados, y la medicina moderna está descubriendo sus beneficios para nuestra salud física, mental y espiritual.'
               }
             </p>
           </div>
@@ -170,18 +256,24 @@ const pageKeywords = lang === 'en'
       <div class="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto text-center">
           <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8 font-georgia">
-            {lang === 'en' ? 'Our Philosophy' : 'Nuestra Filosofía'}
+            {lang === 'en' ? 'Who We Are Here For' : 'Para Quién Estamos Aquí'}
           </h2>
           <p class="text-lg text-gray-600 mb-6 leading-relaxed font-gotham">
             {lang === 'en' 
-              ? 'We believe in the healing power of ayahuasca as sacred medicine that connects us with our deepest essence and with the ancestral wisdom of Amazonian peoples.'
-              : 'Creemos en el poder sanador de la ayahuasca como medicina sagrada que nos conecta con nuestra esencia más profunda y con la sabiduría ancestral de los pueblos amazónicos.'
+              ? 'Whether you seek relief from persistent anxiety, struggle to overcome an addiction, or simply long for greater clarity and purpose in life, we are here to support you every step of the way.'
+              : 'Ya sea que busques alivio para la ansiedad persistente, luches por superar una adicción o simplemente anheles mayor claridad y propósito en la vida, estamos aquí para apoyarte en cada paso del camino.'
+            }
+          </p>
+          <p class="text-lg text-gray-600 mb-6 leading-relaxed font-gotham">
+            {lang === 'en' 
+              ? 'We do not view shamanic healing ceremonies as simple tourist attractions; we carry out our work with maximum respect and seriousness.'
+              : 'Nosotros no vemos a las ceremonias de sanación chamánica como simples atracciones turísticas, realizamos nuestro trabajo con el máximo respeto y seriedad.'
             }
           </p>
           <p class="text-lg text-gray-600 leading-relaxed font-gotham">
             {lang === 'en' 
-              ? 'Each ceremony is a sacred space where both tradition and individual healing needs are honored, always in an atmosphere of respect, safety, and unconditional love.'
-              : 'Cada ceremonia es un espacio sagrado donde se honra tanto la tradición como las necesidades individuales de sanación, siempre en un ambiente de respeto, seguridad y amor incondicional.'
+              ? '**We know that healing is a process**, which is why we combine the wisdom of master plants with the knowledge of modern science to create a space of authentic and profound transformation.'
+              : '**Sabemos que la sanación es un proceso**, por eso combinamos la sabiduría de las plantas maestras con los conocimientos de la ciencia moderna para crear un espacio de transformación auténtica y profunda.'
             }
           </p>
         </div>
