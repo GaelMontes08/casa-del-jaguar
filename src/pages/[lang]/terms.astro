@@ -1,0 +1,591 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'es' } }
+  ];
+}
+
+const { lang } = Astro.params as { lang: 'en' | 'es' };
+
+const translations = {
+  en: {
+    title: "Terms and Conditions | Casa del Jaguar",
+    description: "Terms and conditions of service for ancestral medicine ceremonies at Casa del Jaguar. Liability policy, medical requirements and participation conditions.",
+    keywords: "terms, conditions, policy, liability, ayahuasca ceremony, ancestral medicine",
+    breadcrumbHome: "Home",
+    breadcrumbTerms: "Terms and Conditions",
+    mainTitle: "Terms and Conditions of Service",
+    lastUpdated: "Last updated: October 2, 2025",
+    importantNotice: "IMPORTANT: Please read these terms and conditions carefully before participating in any ceremony or service offered by Casa del Jaguar. Your participation implies complete acceptance of these terms.",
+    section1: {
+      title: "1. General Information",
+      content1: "Casa del Jaguar is a healing center that offers ancestral medicine ceremonies including Ayahuasca and Huachuma (San Pedro) in a traditional and safe environment. These services are led by experienced master healers with over 15 years of practice in Amazonian ancestral medicine.",
+      content2: "By making a reservation or participating in any of our services, you agree to comply with all the terms and conditions established herein."
+    },
+    section2: {
+      title: "2. Participation Requirements",
+      subtitle1: "2.1 Minimum Age",
+      content1: "Participants must be at least 18 years old. Valid official identification is required at the time of registration.",
+      subtitle2: "2.2 Physical and Mental Health Status",
+      content2: "Participants must:",
+      list1: [
+        "• Honestly complete the required medical questionnaire",
+        "• Declare any medical conditions, medications or current treatments",
+        "• Provide truthful information about their mental health history",
+        "• Consult with their doctor before participating if they have pre-existing medical conditions"
+      ],
+      subtitle3: "2.3 Medical Contraindications",
+      contraindicationsTitle: "The following conditions are absolute contraindications:",
+      contraindications: [
+        "• Use of antidepressants (SSRIs, MAOIs, tricyclics)",
+        "• Antipsychotics or mood stabilizers",
+        "• Serious heart conditions (heart failure, arrhythmias)",
+        "• Uncontrolled high blood pressure",
+        "• Pregnancy or breastfeeding",
+        "• History of psychosis, schizophrenia or bipolar disorder",
+        "• Epilepsy or seizure disorders",
+        "• Severe liver disease"
+      ]
+    },
+    section3: {
+      title: "3. Preparation and Diet",
+      subtitle1: "3.1 Pre-Ceremony Diet",
+      content1: "Participants must strictly follow the following dietary guidelines for at least 7 days before the ceremony:",
+      allowedTitle: "Allowed Foods:",
+      allowed: [
+        "• Fresh fish (not canned)",
+        "• Organic chicken",
+        "• Brown rice",
+        "• Quinoa and oats",
+        "• Fresh fruits (except fermented citrus)",
+        "• Fresh vegetables",
+        "• Purified water",
+        "• Natural herbal teas"
+      ],
+      prohibitedTitle: "Prohibited Foods:",
+      prohibited: [
+        "• Red meat (pork, beef, lamb)",
+        "• Dairy products",
+        "• Alcohol and drugs",
+        "• Excess salt",
+        "• Refined sugar",
+        "• Processed foods",
+        "• Strong condiments",
+        "• Coffee and black tea",
+        "• Chocolate",
+        "• Fermented foods"
+      ],
+      subtitle2: "3.2 Sexual Abstinence",
+      content2: "Sexual abstinence is required for at least 3 days before and 3 days after the ceremony as part of traditional energetic preparation."
+    },
+    section4: {
+      title: "4. During the Ceremony",
+      subtitle1: "4.1 Behavioral Guidelines",
+      content1: "During the ceremony, participants must:",
+      list1: [
+        "• Follow all instructions from the master healer",
+        "• Maintain silence and respect during rituals",
+        "• Stay in the designated area unless otherwise authorized",
+        "• Not interfere with other participants",
+        "• Not use electronic devices",
+        "• Not consume unauthorized food or drinks"
+      ],
+      subtitle2: "4.2 Dosage",
+      content2: "The dosage of medicines will be determined exclusively by the master healer based on their experience and individual assessment of each participant. Participants cannot request specific doses."
+    },
+    section5: {
+      title: "5. Booking and Payment Policy",
+      subtitle1: "5.1 Reservations",
+      content1: "Reservations must be made at least 15 days in advance. Full payment is required to confirm the reservation. Space is limited and assigned by order of confirmed payment.",
+      subtitle2: "5.2 Cancellation Policy",
+      cancellations: [
+        "• More than 30 days: 80% refund (20% retained for administrative expenses)",
+        "• 15-30 days: 50% refund",
+        "• 7-14 days: 25% refund",
+        "• Less than 7 days: No refund",
+        "• Medical emergencies: Will be evaluated case by case with medical documentation"
+      ],
+      subtitle3: "5.3 Exclusion for Medical Reasons",
+      content3: "Casa del Jaguar reserves the right to exclude any participant who presents medical conditions that may pose a risk. In these cases, the corresponding refund policy will apply according to the timing of exclusion."
+    },
+    section6: {
+      title: "6. Risks and Responsibilities",
+      subtitle1: "6.1 Risk Acknowledgment",
+      content1: "The participant acknowledges and accepts that:",
+      list1: [
+        "• Ancestral medicine ceremonies may involve physical, emotional and psychological risks",
+        "• Experiences can be intense and challenging",
+        "• Effects may include nausea, vomiting, diarrhea, and altered consciousness",
+        "• Difficult emotional or psychological content may arise",
+        "• Results are not guaranteed and vary between individuals"
+      ],
+      subtitle2: "6.2 Limitation of Liability",
+      liabilityTitle: "Casa del Jaguar and its facilitators are not responsible for:",
+      liability: [
+        "• Adverse reactions resulting from non-compliance with preparation guidelines",
+        "• False or incomplete medical information provided by the participant",
+        "• Undeclared drug interactions",
+        "• Undisclosed pre-existing medical conditions",
+        "• Decisions made by the participant after the ceremony",
+        "• Loss of personal belongings"
+      ],
+      subtitle3: "6.3 Medical Insurance",
+      content3: "It is strongly recommended that participants have valid medical insurance. Casa del Jaguar does not provide medical insurance coverage for participants."
+    },
+    section7: {
+      title: "7. Privacy and Confidentiality",
+      subtitle1: "7.1 Personal Information",
+      content1: "All medical and personal information provided will be treated with strict confidentiality and used solely to ensure the safety and effectiveness of the ceremony.",
+      subtitle2: "7.2 Shared Experiences",
+      content2: "Participants commit to respecting the privacy of other participants and not disclosing experiences, identities or personal information of third parties.",
+      subtitle3: "7.3 Photographs and Videos",
+      content3: "Photographs or recordings are not permitted during ceremonies without express authorization. Casa del Jaguar may take photographs for its own documentation, and participants may choose not to appear in them."
+    },
+    section8: {
+      title: "8. After the Ceremony",
+      subtitle1: "8.1 Integration Period",
+      content1: "Guidance on the post-ceremony integration process is provided. Participants are responsible for following recommendations and seeking additional support if necessary.",
+      subtitle2: "8.2 Follow-up Contact",
+      content2: "Casa del Jaguar offers optional follow-up sessions. Participants may contact the center for support in their integration process within a reasonable period after the ceremony."
+    },
+    section9: {
+      title: "9. Legal Framework",
+      subtitle1: "9.1 Legal Compliance",
+      content1: "Casa del Jaguar operates within the legal framework corresponding to traditional ancestral medicine practices. Participants acknowledge that these practices are part of recognized ancestral cultural traditions.",
+      subtitle2: "9.2 Jurisdiction",
+      content2: "These terms are governed by applicable local laws. Any dispute will be resolved through mediation or, if necessary, in the competent courts of the local jurisdiction."
+    },
+    section10: {
+      title: "10. Modifications",
+      content1: "Casa del Jaguar reserves the right to modify these terms and conditions at any time. Changes will be communicated to registered participants and published on the official website."
+    },
+    section11: {
+      title: "11. Contact",
+      content1: "For questions about these terms and conditions, you can contact us:",
+      contactInfo: [
+        "Email: ayahuascamother@gmail.com",
+        "Phone: +51 928 230 781",
+        "WhatsApp: +51 928 230 781",
+        "Address: Jaen 454, Iquitos, Peru."
+      ]
+    },
+    section12: {
+      title: "12. Acceptance",
+      content1: "By making a reservation, signing the consent form, or participating in any ceremony or service at Casa del Jaguar, you confirm that:",
+      list1: [
+        "• You have read and fully understood these terms and conditions",
+        "• You accept all terms and conditions without reservations",
+        "• You understand the risks involved",
+        "• You provide truthful and complete information about your health status",
+        "• You participate by your own will and decision"
+      ]
+    },
+    footer: "Document valid from October 2, 2025<br>© 2025 Casa del Jaguar. All rights reserved."
+  },
+  es: {
+    title: "Términos y Condiciones | Casa del Jaguar",
+    description: "Términos y condiciones de servicio para las ceremonias de medicina ancestral en Casa del Jaguar. Política de responsabilidad, requisitos médicos y condiciones de participación.",
+    keywords: "términos, condiciones, política, responsabilidad, ceremonia ayahuasca, medicina ancestral",
+    breadcrumbHome: "Inicio",
+    breadcrumbTerms: "Términos y Condiciones",
+    mainTitle: "Términos y Condiciones de Servicio",
+    lastUpdated: "Última actualización: 2 de octubre de 2025",
+    importantNotice: "IMPORTANTE: Por favor, lea cuidadosamente estos términos y condiciones antes de participar en cualquier ceremonia o servicio ofrecido por Casa del Jaguar. Su participación implica la aceptación completa de estos términos.",
+    section1: {
+      title: "1. Información General",
+      content1: "Casa del Jaguar es un centro de sanación que ofrece ceremonias de medicina ancestral incluyendo Ayahuasca y Huachuma (San Pedro) en un entorno tradicional y seguro. Estos servicios están dirigidos por maestros curanderos experimentados con más de 15 años de práctica en medicina ancestral amazónica.",
+      content2: "Al realizar una reserva o participar en cualquiera de nuestros servicios, usted acepta cumplir con todos los términos y condiciones aquí establecidos."
+    },
+    section2: {
+      title: "2. Requisitos de Participación",
+      subtitle1: "2.1 Edad Mínima",
+      content1: "Los participantes deben tener al menos 18 años de edad. Se requiere identificación oficial válida al momento del registro.",
+      subtitle2: "2.2 Estado de Salud Física y Mental",
+      content2: "Los participantes deben:",
+      list1: [
+        "• Completar honestamente el cuestionario médico requerido",
+        "• Declarar cualquier condición médica, medicamentos o tratamientos actuales",
+        "• Proporcionar información veraz sobre su historial de salud mental",
+        "• Consultar con su médico antes de participar si tienen condiciones médicas preexistentes"
+      ],
+      subtitle3: "2.3 Contraindicaciones Médicas",
+      contraindicationsTitle: "Las siguientes condiciones son contraindicaciones absolutas:",
+      contraindications: [
+        "• Uso de antidepresivos (ISRS, IMAO, tricíclicos)",
+        "• Antipsicóticos o estabilizadores del estado de ánimo",
+        "• Condiciones cardíacas graves (insuficiencia cardíaca, arritmias)",
+        "• Hipertensión arterial no controlada",
+        "• Embarazo o lactancia",
+        "• Historial de psicosis, esquizofrenia o trastorno bipolar",
+        "• Epilepsia o trastornos convulsivos",
+        "• Enfermedad hepática grave"
+      ]
+    },
+    section3: {
+      title: "3. Preparación y Dieta",
+      subtitle1: "3.1 Dieta Previa",
+      content1: "Los participantes deben seguir estrictamente las siguientes pautas dietéticas durante al menos 7 días antes de la ceremonia:",
+      allowedTitle: "Alimentos Permitidos:",
+      allowed: [
+        "• Pescado fresco (no enlatado)",
+        "• Pollo orgánico",
+        "• Arroz integral",
+        "• Quinoa y avena",
+        "• Frutas frescas (excepto cítricos fermentados)",
+        "• Verduras frescas",
+        "• Agua purificada",
+        "• Infusiones de hierbas naturales"
+      ],
+      prohibitedTitle: "Alimentos Prohibidos:",
+      prohibited: [
+        "• Carne roja (cerdo, res, cordero)",
+        "• Productos lácteos",
+        "• Alcohol y drogas",
+        "• Sal en exceso",
+        "• Azúcar refinada",
+        "• Alimentos procesados",
+        "• Condimentos fuertes",
+        "• Café y té negro",
+        "• Chocolate",
+        "• Alimentos fermentados"
+      ],
+      subtitle2: "3.2 Abstinencia Sexual",
+      content2: "Se requiere abstinencia sexual durante al menos 3 días antes y 3 días después de la ceremonia como parte de la preparación energética tradicional."
+    },
+    section4: {
+      title: "4. Durante la Ceremonia",
+      subtitle1: "4.1 Normas de Comportamiento",
+      content1: "Durante la ceremonia, los participantes deben:",
+      list1: [
+        "• Seguir todas las instrucciones del maestro curandero",
+        "• Mantener silencio y respeto durante los rituales",
+        "• Permanecer en el área designada a menos que se autorice lo contrario",
+        "• No interferir con otros participantes",
+        "• No usar dispositivos electrónicos",
+        "• No consumir alimentos o bebidas no autorizadas"
+      ],
+      subtitle2: "4.2 Dosificación",
+      content2: "La dosificación de las medicinas será determinada exclusivamente por el maestro curandero basándose en su experiencia y la evaluación individual de cada participante. Los participantes no pueden solicitar dosis específicas."
+    },
+    section5: {
+      title: "5. Política de Reservas y Pagos",
+      subtitle1: "5.1 Reservas",
+      content1: "Las reservas deben realizarse con al menos 15 días de anticipación. Se requiere el pago completo para confirmar la reserva. El cupo es limitado y se asigna por orden de pago confirmado.",
+      subtitle2: "5.2 Política de Cancelación",
+      cancellations: [
+        "• Más de 30 días: Reembolso del 80% (se retiene 20% por gastos administrativos)",
+        "• 15-30 días: Reembolso del 50%",
+        "• 7-14 días: Reembolso del 25%",
+        "• Menos de 7 días: Sin reembolso",
+        "• Emergencias médicas: Se evaluará caso por caso con documentación médica"
+      ],
+      subtitle3: "5.3 Exclusión por Razones Médicas",
+      content3: "Casa del Jaguar se reserva el derecho de excluir a cualquier participante que presente condiciones médicas que puedan representar un riesgo. En estos casos, se aplicará la política de reembolso correspondiente según el momento de la exclusión."
+    },
+    section6: {
+      title: "6. Riesgos y Responsabilidades",
+      subtitle1: "6.1 Reconocimiento de Riesgos",
+      content1: "El participante reconoce y acepta que:",
+      list1: [
+        "• Las ceremonias de medicina ancestral pueden involucrar riesgos físicos, emocionales y psicológicos",
+        "• Las experiencias pueden ser intensas y desafiantes",
+        "• Los efectos pueden incluir náuseas, vómitos, diarrea, y alteraciones de conciencia",
+        "• Pueden surgir contenidos emocionales o psicológicos difíciles",
+        "• Los resultados no están garantizados y varían entre individuos"
+      ],
+      subtitle2: "6.2 Limitación de Responsabilidad",
+      liabilityTitle: "Casa del Jaguar y sus facilitadores no se hacen responsables por:",
+      liability: [
+        "• Reacciones adversas derivadas del incumplimiento de las pautas de preparación",
+        "• Información médica falsa o incompleta proporcionada por el participante",
+        "• Interacciones medicamentosas no declaradas",
+        "• Condiciones médicas preexistentes no reveladas",
+        "• Decisiones tomadas por el participante después de la ceremonia",
+        "• Pérdida de objetos personales"
+      ],
+      subtitle3: "6.3 Seguro Médico",
+      content3: "Se recomienda encarecidamente que los participantes cuenten con seguro médico válido. Casa del Jaguar no proporciona cobertura de seguro médico para los participantes."
+    },
+    section7: {
+      title: "7. Privacidad y Confidencialidad",
+      subtitle1: "7.1 Información Personal",
+      content1: "Toda la información médica y personal proporcionada será tratada con estricta confidencialidad y utilizada únicamente para garantizar la seguridad y efectividad de la ceremonia.",
+      subtitle2: "7.2 Experiencias Compartidas",
+      content2: "Los participantes se comprometen a respetar la privacidad de otros participantes y no divulgar experiencias, identidades o información personal de terceros.",
+      subtitle3: "7.3 Fotografías y Videos",
+      content3: "No se permiten fotografías o grabaciones durante las ceremonias sin autorización expresa. Casa del Jaguar puede tomar fotografías para documentación propia, y los participantes pueden optar por no aparecer en ellas."
+    },
+    section8: {
+      title: "8. Después de la Ceremonia",
+      subtitle1: "8.1 Período de Integración",
+      content1: "Se proporciona orientación sobre el proceso de integración post-ceremonia. Los participantes son responsables de seguir las recomendaciones y buscar apoyo adicional si es necesario.",
+      subtitle2: "8.2 Contacto de Seguimiento",
+      content2: "Casa del Jaguar ofrece sesiones de seguimiento opcionales. Los participantes pueden contactar al centro para apoyo en su proceso de integración dentro de un período razonable después de la ceremonia."
+    },
+    section9: {
+      title: "9. Marco Legal",
+      subtitle1: "9.1 Cumplimiento Legal",
+      content1: "Casa del Jaguar opera dentro del marco legal correspondiente a las prácticas tradicionales de medicina ancestral. Los participantes reconocen que estas prácticas son parte de tradiciones culturales ancestrales reconocidas.",
+      subtitle2: "9.2 Jurisdicción",
+      content2: "Estos términos se rigen por las leyes locales aplicables. Cualquier disputa será resuelta através de mediación o, si es necesario, en los tribunales competentes de la jurisdicción local."
+    },
+    section10: {
+      title: "10. Modificaciones",
+      content1: "Casa del Jaguar se reserva el derecho de modificar estos términos y condiciones en cualquier momento. Los cambios serán comunicados a los participantes registrados y publicados en el sitio web oficial."
+    },
+    section11: {
+      title: "11. Contacto",
+      content1: "Para preguntas sobre estos términos y condiciones, puede contactarnos:",
+      contactInfo: [
+        "Email: ayahuascamother@gmail.com",
+        "Teléfono: +51 928 230 781",
+        "WhatsApp: +51 928 230 781",
+        "Dirección: Jaen 454, Iquitos, Perú."
+      ]
+    },
+    section12: {
+      title: "12. Aceptación",
+      content1: "Al realizar una reserva, firmar el formulario de consentimiento, o participar en cualquier ceremonia o servicio de Casa del Jaguar, usted confirma que:",
+      list1: [
+        "• Ha leído y comprendido completamente estos términos y condiciones",
+        "• Acepta todos los términos y condiciones sin reservas",
+        "• Comprende los riesgos involucrados",
+        "• Proporciona información veraz y completa sobre su estado de salud",
+        "• Participa por su propia voluntad y decisión"
+      ]
+    },
+    footer: "Documento válido desde el 2 de octubre de 2025<br>© 2025 Casa del Jaguar. Todos los derechos reservados."
+  }
+};
+
+const t = translations[lang];
+---
+
+<Layout 
+  title={t.title}
+  description={t.description}
+  keywords={t.keywords}
+>
+  <main>
+    <div class="max-w-6xl mx-auto px-4 md:px-8 py-16 -mt-16 pt-24">
+      <div class="max-w-4xl mx-auto">
+        <nav class="text-sm text-gray-600 mb-8">
+          <a href={lang === 'en' ? '/en' : '/'} class="hover:text-brand-primary transition-colors">{t.breadcrumbHome}</a>
+          <span class="mx-2">›</span>
+          <span class="text-brand-dark">{t.breadcrumbTerms}</span>
+        </nav>
+
+        <div class="mb-8">
+          <h1 class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia mb-6 leading-tight">
+            {t.mainTitle}
+          </h1>
+          <p class="text-xl text-gray-700 font-gotham">
+            {t.lastUpdated}
+          </p>
+        </div>
+
+        <div class="bg-amber-50 border-l-4 border-amber-400 p-6 mb-8">
+          <p class="text-amber-800 font-semibold">
+            {t.importantNotice}
+          </p>
+        </div>
+
+        <div class="prose prose-lg max-w-none">
+          <h2 class="text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">{t.section1.title}</h2>
+          
+          <p class="mb-6">
+            {t.section1.content1}
+          </p>
+
+          <p class="mb-6">
+            {t.section1.content2}
+          </p>
+
+          <h2 class="text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">{t.section2.title}</h2>
+
+          <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.section2.subtitle1}</h3>
+          <p class="mb-6">
+            {t.section2.content1}
+          </p>
+
+          <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.section2.subtitle2}</h3>
+          <p class="mb-4">{t.section2.content2}</p>
+          <ul class="mb-6 space-y-2">
+            {t.section2.list1.map(item => <li>{item}</li>)}
+          </ul>
+
+          <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.section2.subtitle3}</h3>
+          <div class="bg-red-50 border-l-4 border-red-400 p-6 mb-6">
+            <p class="text-red-800 font-semibold mb-3">{t.section2.contraindicationsTitle}</p>
+            <ul class="text-red-700 space-y-1">
+              {t.section2.contraindications.map(item => <li>{item}</li>)}
+            </ul>
+          </div>
+
+          <h2 class="text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">{t.section3.title}</h2>
+
+          <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.section3.subtitle1}</h3>
+          <p class="mb-4">{t.section3.content1}</p>
+          
+          <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-400">
+              <h4 class="font-semibold text-green-800 mb-3">{t.section3.allowedTitle}</h4>
+              <ul class="text-green-700 text-sm space-y-1">
+                {t.section3.allowed.map(item => <li>{item}</li>)}
+              </ul>
+            </div>
+            <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-400">
+              <h4 class="font-semibold text-red-800 mb-3">{t.section3.prohibitedTitle}</h4>
+              <ul class="text-red-700 text-sm space-y-1">
+                {t.section3.prohibited.map(item => <li>{item}</li>)}
+              </ul>
+            </div>
+          </div>
+
+          <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.section3.subtitle2}</h3>
+          <p class="mb-6">
+            {t.section3.content2}
+          </p>
+
+          <h2 class="text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">{t.section4.title}</h2>
+
+          <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.section4.subtitle1}</h3>
+          <p class="mb-4">{t.section4.content1}</p>
+          <ul class="mb-6 space-y-2">
+            {t.section4.list1.map(item => <li>{item}</li>)}
+          </ul>
+
+          <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.section4.subtitle2}</h3>
+          <p class="mb-6">
+            {t.section4.content2}
+          </p>
+
+          <h2 class="text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">{t.section5.title}</h2>
+
+          <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.section5.subtitle1}</h3>
+          <p class="mb-6">
+            {t.section5.content1}
+          </p>
+
+          <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.section5.subtitle2}</h3>
+          <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 mb-6">
+            <ul class="text-yellow-800 space-y-2">
+              {t.section5.cancellations.map(item => <li>{item}</li>)}
+            </ul>
+          </div>
+
+          <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.section5.subtitle3}</h3>
+          <p class="mb-6">
+            {t.section5.content3}
+          </p>
+
+          <h2 class="text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">{t.section6.title}</h2>
+
+          <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.section6.subtitle1}</h3>
+          <p class="mb-4">{t.section6.content1}</p>
+          <ul class="mb-6 space-y-2">
+            {t.section6.list1.map(item => <li>{item}</li>)}
+          </ul>
+
+          <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.section6.subtitle2}</h3>
+          <div class="bg-gray-50 border-l-4 border-gray-400 p-6 mb-6">
+            <p class="text-gray-800 mb-3">
+              <strong>{t.section6.liabilityTitle}</strong>
+            </p>
+            <ul class="text-gray-700 space-y-1">
+              {t.section6.liability.map(item => <li>{item}</li>)}
+            </ul>
+          </div>
+
+          <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.section6.subtitle3}</h3>
+          <p class="mb-6">
+            {t.section6.content3}
+          </p>
+
+          <h2 class="text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">{t.section7.title}</h2>
+
+          <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.section7.subtitle1}</h3>
+          <p class="mb-6">
+            {t.section7.content1}
+          </p>
+
+          <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.section7.subtitle2}</h3>
+          <p class="mb-6">
+            {t.section7.content2}
+          </p>
+
+          <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.section7.subtitle3}</h3>
+          <p class="mb-6">
+            {t.section7.content3}
+          </p>
+
+          <h2 class="text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">{t.section8.title}</h2>
+
+          <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.section8.subtitle1}</h3>
+          <p class="mb-6">
+            {t.section8.content1}
+          </p>
+
+          <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.section8.subtitle2}</h3>
+          <p class="mb-6">
+            {t.section8.content2}
+          </p>
+
+          <h2 class="text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">{t.section9.title}</h2>
+
+          <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.section9.subtitle1}</h3>
+          <p class="mb-6">
+            {t.section9.content1}
+          </p>
+
+          <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.section9.subtitle2}</h3>
+          <p class="mb-6">
+            {t.section9.content2}
+          </p>
+
+          <h2 class="text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">{t.section10.title}</h2>
+
+          <p class="mb-6">
+            {t.section10.content1}
+          </p>
+
+          <h2 class="text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">{t.section11.title}</h2>
+
+          <p class="mb-4">{t.section11.content1}</p>
+          <div class="bg-blue-50 border-l-4 border-blue-400 p-6 mb-8">
+            <ul class="text-blue-800 space-y-2">
+              {t.section11.contactInfo.map(item => <li><strong>{item.includes(':') ? item.split(':')[0] + ':' : ''}</strong> {item.includes(':') ? item.split(':')[1] : item}</li>)}
+            </ul>
+          </div>
+
+          <h2 class="text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">{t.section12.title}</h2>
+
+          <div class="bg-brand-light border-l-4 border-brand-primary p-6 mb-8">
+            <p class="text-brand-dark font-semibold">
+              {t.section12.content1}
+            </p>
+            <ul class="text-brand-dark mt-3 space-y-2">
+              {t.section12.list1.map(item => <li>{item}</li>)}
+            </ul>
+          </div>
+
+          <p class="text-center text-gray-600 mt-12 pt-8 border-t border-gray-200" set:html={t.footer}>
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .prose h2 {
+    scroll-margin-top: 2rem;
+  }
+  
+  .prose h3 {
+    scroll-margin-top: 2rem;
+  }
+</style>
