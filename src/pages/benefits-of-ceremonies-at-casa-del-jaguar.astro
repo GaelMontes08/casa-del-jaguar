@@ -1,0 +1,267 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const article = {
+  title: 'Beneficios de las Ceremonias en Casa del Jaguar',
+  excerpt: 'Descubre los profundos beneficios físicos, psicológicos y espirituales que puedes experimentar a través de las ceremonias de Ayahuasca y Huachuma (San Pedro) en nuestro centro de sanación.',
+  date: '2025-10-02',
+  author: 'Maestro Denis',
+  authorBio: 'Maestro curandero con más de 15 años de experiencia en medicina ancestral amazónica.',
+  image: '/img/benefits-of-ceremonies-at-casa-del-jaguar.webp',
+  readTime: '8 min',
+  category: 'Sanación',
+  tags: ['ayahuasca', 'huachuma', 'benefits of ceremonies', 'san pedro', 'beneficios', 'sanación', 'bienestar', 'transformación', 'medicina ancestral']
+};
+---
+
+<Layout 
+  title={`${article.title} | Blog Casa del Jaguar`}
+  description={article.excerpt}
+  keywords={article.tags.join(', ')}
+>
+  <main>
+    <article class="max-w-4xl mx-auto px-4 md:px-8 py-16 -mt-16 pt-24">
+      <nav class="text-sm text-gray-600 mb-8">
+        <a href="/" class="hover:text-brand-primary transition-colors">Inicio</a>
+        <span class="mx-2">›</span>
+        <a href="/blog" class="hover:text-brand-primary transition-colors">Blog</a>
+        <span class="mx-2">›</span>
+        <span class="text-brand-dark">{article.category}</span>
+      </nav>
+
+      <div class="mb-6">
+        <span class="bg-brand-primary text-brand-dark px-4 py-2 rounded-full text-sm font-medium">
+          {article.category}
+        </span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia mb-6 leading-tight">
+        {article.title}
+      </h1>
+
+      <div class="flex flex-wrap items-center text-gray-600 mb-8 space-x-6">
+        <div class="flex items-center space-x-2">
+          <div class="w-10 h-10 bg-brand-light rounded-full flex items-center justify-center">
+            <span class="text-brand-dark font-bold text-sm">{article.author.charAt(0)}</span>
+          </div>
+          <div>
+            <p class="font-medium text-brand-dark">{article.author}</p>
+            <p class="text-sm text-gray-500">{article.authorBio}</p>
+          </div>
+        </div>
+        <div class="text-sm">
+          <p>{new Date(article.date).toLocaleDateString('es-ES', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+          })}</p>
+          <p>{article.readTime} de lectura</p>
+        </div>
+      </div>
+
+      <div class="mb-12">
+        <img 
+          src={article.image}
+          alt={article.title}
+          class="w-full h-98 object-cover rounded-xl shadow-lg"
+        />
+      </div>
+
+      <div class="prose prose-lg max-w-none">
+        <div class="scroll-animate bg-amber-50 border-l-4 border-amber-400 p-6 mb-8">
+          <p class="text-amber-800 font-semibold italic text-lg">
+            Es importante recordar que los efectos y beneficios de la Ayahuasca y la Huachuma (San Pedro) pueden variar ampliamente de persona a persona.
+          </p>
+        </div>
+
+        <p class="scroll-animate text-xl text-gray-700 mb-8 font-gotham leading-relaxed">
+          Las ceremonias de medicina ancestral en Casa del Jaguar ofrecen una oportunidad única de sanación integral que abarca todos los aspectos del ser humano. A través de la sabiduría milenaria de la Ayahuasca y la Huachuma, los participantes experimentan transformaciones profundas que se manifiestan en múltiples dimensiones de su existencia.
+        </p>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Beneficios Físicos</h2>
+
+        <p class="scroll-animate mb-6">
+          El cuerpo físico es el primer recipiente de la sanación, y las medicinas ancestrales actúan de manera profunda en la restauración del equilibrio corporal. Los participantes frecuentemente reportan mejoras significativas en su bienestar físico general.
+        </p>
+
+        <div class="scroll-animate grid md:grid-cols-2 gap-4 mb-8">
+          <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
+            <h3 class="font-semibold text-green-800 mb-2">Sistema Nervioso</h3>
+            <ul class="text-green-700 text-sm space-y-1">
+              <li>• Alivio del estrés y la tensión muscular</li>
+              <li>• Mejora del sueño y alivio del insomnio</li>
+              <li>• Reducción de la ansiedad física</li>
+            </ul>
+          </div>
+          <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+            <h3 class="font-semibold text-blue-800 mb-2">Sistema Inmunológico</h3>
+            <ul class="text-blue-700 text-sm space-y-1">
+              <li>• Mejora del sistema inmunológico</li>
+              <li>• Purificación y desintoxicación corporal</li>
+              <li>• Reducción de la inflamación</li>
+            </ul>
+          </div>
+          <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-400">
+            <h3 class="font-semibold text-purple-800 mb-2">Energía Vital</h3>
+            <ul class="text-purple-700 text-sm space-y-1">
+              <li>• Aumento de energía y vitalidad</li>
+              <li>• Mayor resistencia física</li>
+              <li>• Renovación celular</li>
+            </ul>
+          </div>
+          <div class="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-400">
+            <h3 class="font-semibold text-orange-800 mb-2">Manejo del Dolor</h3>
+            <ul class="text-orange-700 text-sm space-y-1">
+              <li>• Apoyo en el manejo del dolor crónico</li>
+              <li>• Liberación de tensiones acumuladas</li>
+              <li>• Mejora de la movilidad</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Beneficios Psicológicos</h2>
+
+        <p class="scroll-animate mb-6">
+          La mente es el campo de batalla donde se libran muchas de nuestras luchas más profundas. Las ceremonias proporcionan herramientas poderosas para la sanación psicológica y el desarrollo de nuevos patrones mentales más saludables.
+        </p>
+
+        <div class="scroll-animate bg-blue-50 border-l-4 border-blue-400 p-6 mb-8">
+          <h3 class="text-xl font-semibold text-blue-800 mb-4">Sanación Emocional Profunda</h3>
+          <p class="text-blue-800 mb-4">
+            Las medicinas ancestrales permiten acceder a memorias y traumas almacenados en el subconsciente, ofreciendo la oportunidad de procesarlos y liberarlos de manera segura y supervisada.
+          </p>
+          <ul class="text-blue-700 space-y-2">
+            <li>• <strong>Sanación de traumas emocionales</strong> y recuerdos dolorosos</li>
+            <li>• <strong>Reducción de la ansiedad y la depresión</strong> a través de nuevas perspectivas</li>
+            <li>• <strong>Aumento de la autoaceptación</strong> y la autoestima</li>
+            <li>• <strong>Mayor claridad mental</strong> y concentración</li>
+          </ul>
+        </div>
+
+        <div class="scroll-animate bg-purple-50 border-l-4 border-purple-400 p-6 mb-8">
+          <h3 class="text-xl font-semibold text-purple-800 mb-4">Transformación Mental</h3>
+          <p class="text-purple-800 mb-4">
+            Los patrones de pensamiento limitantes que nos han acompañado durante años pueden ser identificados, comprendidos y transformados durante las ceremonias.
+          </p>
+          <ul class="text-purple-700 space-y-2">
+            <li>• <strong>Transformación de patrones</strong> de pensamiento negativos</li>
+            <li>• <strong>Apertura a nuevas perspectivas</strong> y entendimientos</li>
+            <li>• <strong>Desarrollo de la resiliencia</strong> emocional</li>
+            <li>• <strong>Integración de la sombra</strong> personal</li>
+          </ul>
+        </div>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Beneficios Espirituales</h2>
+
+        <p class="scroll-animate mb-6">
+          El aspecto espiritual de la sanación es quizás el más profundo y transformador. Las ceremonias abren puertas a dimensiones de la experiencia humana que trascienden lo ordinario, conectándonos con aspectos más elevados de nuestra existencia.
+        </p>
+
+        <div class="scroll-animate bg-green-50 border-l-4 border-green-400 p-6 mb-8">
+          <h3 class="text-xl font-semibold text-green-800 mb-4">Conexión Universal</h3>
+          <p class="text-green-800 mb-4">
+            Las experiencias ceremoniales frecuentemente incluyen profundas realizaciones sobre nuestra interconexión con toda la vida y el cosmos.
+          </p>
+          <ul class="text-green-700 space-y-2">
+            <li>• <strong>Conexión profunda</strong> con uno mismo y la naturaleza</li>
+            <li>• <strong>Experiencias de unidad</strong> y conexión con el universo</li>
+            <li>• <strong>Mayor sentido de propósito</strong> y significado en la vida</li>
+            <li>• <strong>Desarrollo de la compasión</strong> y la empatía hacia los demás</li>
+          </ul>
+        </div>
+
+        <div class="scroll-animate bg-brand-light border-l-4 border-brand-primary p-6 mb-8">
+          <h3 class="text-xl font-semibold text-brand-dark mb-4">Expansión de la Conciencia</h3>
+          <p class="text-brand-dark mb-4">
+            La conciencia se expande más allá de los límites habituales, permitiendo acceder a estados de percepción elevados y comprensiones profundas sobre la naturaleza de la realidad.
+          </p>
+          <ul class="text-brand-dark space-y-2">
+            <li>• <strong>Expansión de la conciencia</strong> y la percepción</li>
+            <li>• <strong>Integración de aspectos oscuros</strong> o desconocidos del yo</li>
+            <li>• <strong>Fortalecimiento de la conexión</strong> con lo divino o lo trascendental</li>
+            <li>• <strong>Despertar espiritual</strong> y autoconocimiento profundo</li>
+          </ul>
+        </div>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">El Proceso de Integración</h2>
+
+        <p class="scroll-animate mb-6">
+          Los beneficios de las ceremonias no terminan cuando la experiencia directa con la medicina concluye. De hecho, el trabajo más importante comienza después, durante el proceso de integración.
+        </p>
+
+        <div class="scroll-animate bg-yellow-50 border-l-4 border-yellow-400 p-6 mb-8">
+          <p class="text-yellow-800 font-semibold italic text-lg">
+            Los beneficios pueden manifestarse gradualmente con el tiempo a medida que las experiencias de las ceremonias se integran a la vida cotidiana.
+          </p>
+        </div>
+
+        <p class="scroll-animate mb-6">
+          En Casa del Jaguar, entendemos que cada persona es única y que su proceso de sanación también lo será. Por eso ofrecemos un acompañamiento personalizado que respeta los tiempos y necesidades individuales de cada participante.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Las transformaciones que experimentarás en nuestras ceremonias son el resultado de la combinación entre la sabiduría ancestral de las medicinas, el entorno sagrado de nuestro centro, y tu propia apertura y disposición para el cambio.
+        </p>
+
+        <div class="scroll-animate bg-green-50 border-l-4 border-green-400 p-6 mb-8">
+          <h3 class="text-xl font-semibold text-green-800 mb-3">Nuestro Compromiso Contigo</h3>
+          <p class="text-green-800">
+            En Casa del Jaguar, nos comprometemos a crear un espacio seguro, sagrado y de profundo respeto donde puedas explorar estos beneficios de manera auténtica y transformadora. Nuestro equipo de maestros curanderos te acompañará en cada paso de tu proceso de sanación.
+          </p>
+        </div>
+
+        <p class="scroll-animate mb-6">
+          Recuerda que la sanación es un viaje, no un destino. Cada ceremonia es una oportunidad para profundizar en tu proceso de autoconocimiento y transformación, descubriendo nuevas capas de tu ser y expandiendo tu potencial humano.
+        </p>
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<script>
+  // Scroll animations
+  const scrollElements = document.querySelectorAll('.scroll-animate');
+  
+  const elementInView = (el: Element, dividend = 1) => {
+    const elementTop = el.getBoundingClientRect().top;
+    return (
+      elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+    );
+  };
+  
+  const displayScrollElement = (element: Element) => {
+    element.classList.add('scrolled');
+  };
+  
+  const hideScrollElement = (element: Element) => {
+    element.classList.remove('scrolled');
+  };
+  
+  const handleScrollAnimation = () => {
+    scrollElements.forEach((el) => {
+      if (elementInView(el, 1.25)) {
+        displayScrollElement(el);
+      }
+    });
+  };
+  
+  window.addEventListener('scroll', () => {
+    handleScrollAnimation();
+  });
+  
+  // Initial check
+  handleScrollAnimation();
+</script>
+
+<style>
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+  }
+  
+  .scroll-animate.scrolled {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
