@@ -1,0 +1,541 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { useTranslations } from '@/i18n/utils';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'es' } }
+  ];
+}
+
+const { lang } = Astro.params as { lang: 'en' | 'es' };
+const t = useTranslations(lang);
+
+const article = {
+  en: {
+    title: 'The Importance of Integration After the Ceremony',
+    excerpt: 'Discover why the integration process is fundamental to maximizing the benefits of your ceremonial experience and how to transform the teachings received into lasting changes in your daily life.',
+    date: '2025-10-02',
+    author: 'Maestro Denis',
+    authorBio: 'Master healer with over 15 years of experience in Amazonian ancestral medicine.',
+    image: '/img/integration-after-ceremonies.webp',
+    readTime: '12 min',
+    category: 'Integration',
+    tags: ['integration', 'ayahuasca', 'post-ceremony', 'transformation', 'personal growth', 'healing', 'process']
+  },
+  es: {
+    title: 'La Importancia de la Integración después de la Ceremonia',
+    excerpt: 'Descubre por qué el proceso de integración es fundamental para maximizar los beneficios de tu experiencia ceremonial y cómo transformar las enseñanzas recibidas en cambios duraderos en tu vida cotidiana.',
+    date: '2025-10-02',
+    author: 'Maestro Denis',
+    authorBio: 'Maestro curandero con más de 15 años de experiencia en medicina ancestral amazónica.',
+    image: '/blog/integracion-ceremonia.webp',
+    readTime: '12 min',
+    category: 'Integración',
+    tags: ['integración', 'ayahuasca', 'post-ceremonia', 'transformación', 'crecimiento personal', 'sanación', 'proceso']
+  }
+};
+
+const currentArticle = article[lang as keyof typeof article];
+---
+
+<Layout 
+  title={`${currentArticle.title} | Blog Casa del Jaguar`}
+  description={currentArticle.excerpt}
+  keywords={currentArticle.tags.join(', ')}
+>
+  <main>
+    <article class="max-w-4xl mx-auto px-4 md:px-8 py-16 -mt-16 pt-24">
+      <nav class="text-sm text-gray-600 mb-8">
+        <a href={lang === 'en' ? '/en' : '/'} class="hover:text-brand-primary transition-colors">
+          {lang === 'en' ? 'Home' : 'Inicio'}
+        </a>
+        <span class="mx-2">›</span>
+        <a href={lang === 'en' ? '/en/blog' : '/blog'} class="hover:text-brand-primary transition-colors">Blog</a>
+        <span class="mx-2">›</span>
+        <span class="text-brand-dark">{currentArticle.category}</span>
+      </nav>
+
+      <div class="mb-6">
+        <span class="bg-brand-primary text-brand-dark px-4 py-2 rounded-full text-sm font-medium">
+          {currentArticle.category}
+        </span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia mb-6 leading-tight">
+        {currentArticle.title}
+      </h1>
+
+      <div class="flex flex-wrap items-center text-gray-600 mb-8 space-x-6">
+        <div class="flex items-center space-x-2">
+          <div class="w-10 h-10 bg-brand-light rounded-full flex items-center justify-center">
+            <span class="text-brand-dark font-bold text-sm">{currentArticle.author.charAt(0)}</span>
+          </div>
+          <div>
+            <p class="font-medium text-brand-dark">{currentArticle.author}</p>
+            <p class="text-sm text-gray-500">{currentArticle.authorBio}</p>
+          </div>
+        </div>
+        <div class="text-sm">
+          <p>{new Date(currentArticle.date).toLocaleDateString(lang === 'en' ? 'en-US' : 'es-ES', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+          })}</p>
+          <p>{currentArticle.readTime} {lang === 'en' ? 'read' : 'de lectura'}</p>
+        </div>
+      </div>
+
+      <div class="mb-12">
+        <img 
+          src={currentArticle.image}
+          alt={currentArticle.title}
+          class="w-full h-98 object-cover rounded-xl shadow-lg"
+        />
+      </div>
+
+      <div class="prose prose-lg max-w-none">
+        {lang === 'en' ? (
+          <>
+            <p class="scroll-animate text-xl text-gray-700 mb-8 font-gotham leading-relaxed">
+              The ancestral medicine ceremony is only the beginning of a transformation process that can last months or even years. True healing occurs in the period afterward, when the teachings, visions, and understandings received during the ceremony are consciously integrated into daily life.
+            </p>
+
+            <div class="scroll-animate bg-amber-50 border-l-4 border-amber-400 p-6 mb-8">
+              <p class="text-amber-800 font-semibold italic text-lg">
+                "The ceremony plants the seeds of transformation, but integration is the water and light that makes them grow."
+              </p>
+            </div>
+
+            <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">What is Integration?</h2>
+
+            <p class="scroll-animate mb-6">
+              Integration is the conscious and deliberate process of incorporating the teachings, insights, and experiences of the ceremony into our daily life. It's not a single event, but a continuous process that requires time, patience, and dedication.
+            </p>
+
+            <p class="scroll-animate mb-6">
+              During the ceremony, the medicine shows us aspects of ourselves that normally remain hidden. It can reveal destructive patterns, unresolved traumas, or connect us with our deepest inner wisdom. However, these revelations are only the first step.
+            </p>
+
+            <div class="scroll-animate bg-blue-50 border-l-4 border-blue-400 p-6 mb-8">
+              <h3 class="text-xl font-semibold text-blue-800 mb-3">The Three Pillars of Integration</h3>
+              <ul class="text-blue-700 space-y-2">
+                <li>• <strong>Reflection:</strong> Processing and understanding the experiences lived</li>
+                <li>• <strong>Action:</strong> Implementing concrete changes in daily life</li>
+                <li>• <strong>Persistence:</strong> Maintaining new habits and patterns long-term</li>
+              </ul>
+            </div>
+
+            <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">The First Days Post-Ceremony</h2>
+
+            <p class="scroll-animate mb-6">
+              The days immediately following the ceremony are crucial for the integration process. During this period, it's common to experience heightened emotional sensitivity and greater mental clarity.
+            </p>
+
+            <div class="scroll-animate grid md:grid-cols-2 gap-6 mb-8">
+              <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-400">
+                <h3 class="font-semibold text-green-800 mb-3">Recommended Practices</h3>
+                <ul class="text-green-700 text-sm space-y-2">
+                  <li>• Keep an experience journal</li>
+                  <li>• Practice daily meditation</li>
+                  <li>• Spend time in nature</li>
+                  <li>• Maintain a clean and nutritious diet</li>
+                  <li>• Get adequate rest</li>
+                  <li>• Avoid toxic substances</li>
+                </ul>
+              </div>
+              <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-400">
+                <h3 class="font-semibold text-red-800 mb-3">Avoid During Integration</h3>
+                <ul class="text-red-700 text-sm space-y-2">
+                  <li>• Making important decisions immediately</li>
+                  <li>• Consuming alcohol or drugs</li>
+                  <li>• Exposing yourself to negative environments</li>
+                  <li>• Overloading your schedule with activities</li>
+                  <li>• Ignoring emotions that arise</li>
+                  <li>• Completely isolating yourself from others</li>
+                </ul>
+              </div>
+            </div>
+
+            <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Practical Tools for Integration</h2>
+
+            <p class="scroll-animate mb-6">
+              There are various tools and practices that can facilitate the integration process. The key is finding those that resonate most with you and maintaining consistent practice.
+            </p>
+
+            <div class="scroll-animate bg-purple-50 border-l-4 border-purple-400 p-6 mb-8">
+              <h3 class="text-xl font-semibold text-purple-800 mb-4">Therapeutic Writing</h3>
+              <p class="text-purple-800 mb-3">
+                Keeping a detailed journal of your integration process is one of the most powerful tools available:
+              </p>
+              <ul class="text-purple-700 space-y-1">
+                <li>• Document the teachings received during the ceremony</li>
+                <li>• Record the emotional and physical changes you experience</li>
+                <li>• Note dreams and synchronicities that occur</li>
+                <li>• Reflect on patterns that emerge in your life</li>
+              </ul>
+            </div>
+
+            <div class="scroll-animate bg-green-50 border-l-4 border-green-400 p-6 mb-8">
+              <h3 class="text-xl font-semibold text-green-800 mb-4">Mindfulness Practices</h3>
+              <p class="text-green-800 mb-3">
+                Mindfulness helps you maintain connection with the expanded states of consciousness experienced during the ceremony:
+              </p>
+              <ul class="text-green-700 space-y-1">
+                <li>• Daily meditation of at least 10-20 minutes</li>
+                <li>• Conscious breathing practice</li>
+                <li>• Non-judgmental observation of thoughts and emotions</li>
+                <li>• Gratitude and appreciation exercises</li>
+              </ul>
+            </div>
+
+            <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Integration Challenges</h2>
+
+            <p class="scroll-animate mb-6">
+              The integration process isn't always easy. It's common to face resistance, both internal and external, when trying to implement the changes the medicine has shown us as necessary.
+            </p>
+
+            <div class="scroll-animate bg-yellow-50 border-l-4 border-yellow-400 p-6 mb-8">
+              <h3 class="text-xl font-semibold text-yellow-800 mb-4">Common Challenges</h3>
+              <ul class="text-yellow-800 space-y-3">
+                <li>• <strong>Daily routine:</strong> Returning to habitual patterns can eclipse new understandings</li>
+                <li>• <strong>Environmental resistance:</strong> Family and friends may resist the changes you're experiencing</li>
+                <li>• <strong>Internal doubts:</strong> The rational mind may question the experiences lived</li>
+                <li>• <strong>Impatience:</strong> Wanting to see immediate results instead of trusting the process</li>
+              </ul>
+            </div>
+
+            <p class="scroll-animate mb-6">
+              It's important to remember that these challenges are normal and part of the process. The key is maintaining patience and self-compassion while navigating these changes.
+            </p>
+
+            <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Long-term Integration</h2>
+
+            <p class="scroll-animate mb-6">
+              True integration is a process that can extend for months or years. The deepest benefits often manifest gradually, as new patterns of thought and behavior become firmly established.
+            </p>
+
+            <div class="scroll-animate bg-brand-light border-l-4 border-brand-primary p-6 mb-8">
+              <h3 class="text-xl font-semibold text-brand-dark mb-4">Signs of Successful Integration</h3>
+              <ul class="text-brand-dark space-y-2">
+                <li>• Greater self-awareness and personal understanding</li>
+                <li>• More authentic and healthy relationships</li>
+                <li>• Reduction of self-destructive behaviors</li>
+                <li>• Increased compassion toward oneself and others</li>
+                <li>• Greater sense of purpose and direction in life</li>
+                <li>• Improved ability to handle stress and challenges</li>
+              </ul>
+            </div>
+
+            <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">The Role of Professional Support</h2>
+
+            <p class="scroll-animate mb-6">
+              At Casa del Jaguar, we understand that the integration process is as important as the ceremony itself. That's why we offer continuous accompaniment to help you navigate this transformation process.
+            </p>
+
+            <div class="scroll-animate bg-blue-50 border-l-4 border-blue-400 p-6 mb-8">
+              <h3 class="text-xl font-semibold text-blue-800 mb-3">Our Integration Support</h3>
+              <p class="text-blue-800 mb-3">
+                We offer multiple forms of accompaniment to ensure your integration process is successful:
+              </p>
+              <ul class="text-blue-700 space-y-2">
+                <li>• Personalized follow-up sessions</li>
+                <li>• Guidance in specific integration practices</li>
+                <li>• Support community with other participants</li>
+                <li>• Educational resources and practical tools</li>
+              </ul>
+            </div>
+
+            <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Creating Your Personal Integration Plan</h2>
+
+            <p class="scroll-animate mb-6">
+              Each person is unique, and therefore, each integration process is too. It's important to create a personalized plan that adapts to your lifestyle, personality, and specific circumstances.
+            </p>
+
+            <div class="scroll-animate bg-green-50 border-l-4 border-green-400 p-6 mb-8">
+              <h3 class="text-xl font-semibold text-green-800 mb-4">Elements of an Effective Integration Plan</h3>
+              <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                  <h4 class="font-semibold text-green-800 mb-2">Daily Practices:</h4>
+                  <ul class="text-green-700 text-sm space-y-1">
+                    <li>• Time for reflection</li>
+                    <li>• Physical exercise</li>
+                    <li>• Spiritual practice</li>
+                    <li>• Conscious eating</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-green-800 mb-2">Periodic Reviews:</h4>
+                  <ul class="text-green-700 text-sm space-y-1">
+                    <li>• Weekly progress evaluation</li>
+                    <li>• Adjustments to practices</li>
+                    <li>• Celebration of achievements</li>
+                    <li>• Identification of improvement areas</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <p class="scroll-animate mb-6">
+              Remember that integration is not a destination to be reached, but a continuous process of growth and evolution. Each day is an opportunity to apply the teachings received and deepen your healing and transformation process.
+            </p>
+
+            <div class="scroll-animate bg-amber-50 border-l-4 border-amber-400 p-6 mb-8">
+              <p class="text-amber-800 font-semibold italic text-lg">
+                "The ceremony shows you the path, but integration is where you actually walk it. It's in daily life where true transformations take shape and become a new way of being in the world."
+              </p>
+            </div>
+
+            <p class="scroll-animate mb-6">
+              At Casa del Jaguar, we are committed to accompanying you not only during the ceremony, but also in this crucial integration process. Because we understand that true healing occurs when the teachings of ancestral medicine become lived wisdom in every aspect of your existence.
+            </p>
+          </>
+        ) : (
+          <>
+            <p class="scroll-animate text-xl text-gray-700 mb-8 font-gotham leading-relaxed">
+              La ceremonia de medicina ancestral es solo el comienzo de un proceso de transformación que puede durar meses o incluso años. La verdadera sanación ocurre en el período posterior, cuando las enseñanzas, visiones y comprensiones recibidas durante la ceremonia se integran conscientemente en la vida cotidiana.
+            </p>
+
+            <div class="scroll-animate bg-amber-50 border-l-4 border-amber-400 p-6 mb-8">
+              <p class="text-amber-800 font-semibold italic text-lg">
+                "La ceremonia planta las semillas de la transformación, pero la integración es el agua y la luz que las hace crecer."
+              </p>
+            </div>
+
+            <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">¿Qué es la Integración?</h2>
+
+            <p class="scroll-animate mb-6">
+              La integración es el proceso consciente y deliberado de incorporar las enseñanzas, insights y experiencias de la ceremonia en nuestra vida diaria. No es un evento único, sino un proceso continuo que requiere tiempo, paciencia y dedicación.
+            </p>
+
+            <p class="scroll-animate mb-6">
+              Durante la ceremonia, la medicina nos muestra aspectos de nosotros mismos que normalmente permanecen ocultos. Puede revelarnos patrones destructivos, traumas no resueltos, o conectarnos con nuestra sabiduría interior más profunda. Sin embargo, estas revelaciones son solo el primer paso.
+            </p>
+
+            <div class="scroll-animate bg-blue-50 border-l-4 border-blue-400 p-6 mb-8">
+              <h3 class="text-xl font-semibold text-blue-800 mb-3">Los Tres Pilares de la Integración</h3>
+              <ul class="text-blue-700 space-y-2">
+                <li>• <strong>Reflexión:</strong> Procesar y entender las experiencias vividas</li>
+                <li>• <strong>Acción:</strong> Implementar cambios concretos en la vida diaria</li>
+                <li>• <strong>Persistencia:</strong> Mantener los nuevos hábitos y patrones a largo plazo</li>
+              </ul>
+            </div>
+
+            <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Los Primeros Días Post-Ceremonia</h2>
+
+            <p class="scroll-animate mb-6">
+              Los días inmediatamente posteriores a la ceremonia son cruciales para el proceso de integración. Durante este período, es común experimentar una sensibilidad emocional elevada y una mayor claridad mental.
+            </p>
+
+            <div class="scroll-animate grid md:grid-cols-2 gap-6 mb-8">
+              <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-400">
+                <h3 class="font-semibold text-green-800 mb-3">Prácticas Recomendadas</h3>
+                <ul class="text-green-700 text-sm space-y-2">
+                  <li>• Mantener un diario de experiencias</li>
+                  <li>• Practicar meditación diaria</li>
+                  <li>• Pasar tiempo en la naturaleza</li>
+                  <li>• Mantener una dieta limpia y nutritiva</li>
+                  <li>• Descansar lo suficiente</li>
+                  <li>• Evitar sustancias tóxicas</li>
+                </ul>
+              </div>
+              <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-400">
+                <h3 class="font-semibold text-red-800 mb-3">Evitar Durante la Integración</h3>
+                <ul class="text-red-700 text-sm space-y-2">
+                  <li>• Tomar decisiones importantes inmediatamente</li>
+                  <li>• Consumir alcohol o drogas</li>
+                  <li>• Exponerse a ambientes negativos</li>
+                  <li>• Sobrecargar la agenda con actividades</li>
+                  <li>• Ignorar las emociones que surjan</li>
+                  <li>• Aislarse completamente de otros</li>
+                </ul>
+              </div>
+            </div>
+
+            <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Herramientas Prácticas para la Integración</h2>
+
+            <p class="scroll-animate mb-6">
+              Existen diversas herramientas y prácticas que pueden facilitar el proceso de integración. La clave está en encontrar aquellas que resuenen más contigo y mantener una práctica constante.
+            </p>
+
+            <div class="scroll-animate bg-purple-50 border-l-4 border-purple-400 p-6 mb-8">
+              <h3 class="text-xl font-semibold text-purple-800 mb-4">Escritura Terapéutica</h3>
+              <p class="text-purple-800 mb-3">
+                Llevar un diario detallado de tu proceso de integración es una de las herramientas más poderosas disponibles:
+              </p>
+              <ul class="text-purple-700 space-y-1">
+                <li>• Documenta las enseñanzas recibidas durante la ceremonia</li>
+                <li>• Registra los cambios emocionales y físicos que experimentes</li>
+                <li>• Anota los sueños y sincronías que ocurran</li>
+                <li>• Reflexiona sobre los patrones que emergen en tu vida</li>
+              </ul>
+            </div>
+
+            <div class="scroll-animate bg-green-50 border-l-4 border-green-400 p-6 mb-8">
+              <h3 class="text-xl font-semibold text-green-800 mb-4">Prácticas de Mindfulness</h3>
+              <p class="text-green-800 mb-3">
+                La atención plena te ayuda a mantener la conexión con los estados de conciencia expandida experienciados durante la ceremonia:
+              </p>
+              <ul class="text-green-700 space-y-1">
+                <li>• Meditación diaria de al menos 10-20 minutos</li>
+                <li>• Práctica de respiración consciente</li>
+                <li>• Observación sin juicio de pensamientos y emociones</li>
+                <li>• Ejercicios de gratitud y apreciación</li>
+              </ul>
+            </div>
+
+            <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Los Desafíos de la Integración</h2>
+
+            <p class="scroll-animate mb-6">
+              El proceso de integración no siempre es fácil. Es común enfrentar resistencia, tanto interna como externa, cuando intentamos implementar los cambios que la medicina nos ha mostrado como necesarios.
+            </p>
+
+            <div class="scroll-animate bg-yellow-50 border-l-4 border-yellow-400 p-6 mb-8">
+              <h3 class="text-xl font-semibold text-yellow-800 mb-4">Desafíos Comunes</h3>
+              <ul class="text-yellow-800 space-y-3">
+                <li>• <strong>La rutina cotidiana:</strong> Volver a patrones habituales puede eclipsar las nuevas comprensiones</li>
+                <li>• <strong>Resistencia del entorno:</strong> Familiares y amigos pueden resistir los cambios que estás experimentando</li>
+                <li>• <strong>Dudas internas:</strong> La mente racional puede cuestionar las experiencias vividas</li>
+                <li>• <strong>Impaciencia:</strong> Querer ver resultados inmediatos en lugar de confiar en el proceso</li>
+              </ul>
+            </div>
+
+            <p class="scroll-animate mb-6">
+              Es importante recordar que estos desafíos son normales y forman parte del proceso. La clave está en mantener la paciencia y la compasión hacia uno mismo mientras navegamos estos cambios.
+            </p>
+
+            <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Integración a Largo Plazo</h2>
+
+            <p class="scroll-animate mb-6">
+              La verdadera integración es un proceso que puede extenderse por meses o años. Los beneficios más profundos a menudo se manifiestan gradualmente, a medida que los nuevos patrones de pensamiento y comportamiento se establecen firmemente.
+            </p>
+
+            <div class="scroll-animate bg-brand-light border-l-4 border-brand-primary p-6 mb-8">
+              <h3 class="text-xl font-semibold text-brand-dark mb-4">Señales de una Integración Exitosa</h3>
+              <ul class="text-brand-dark space-y-2">
+                <li>• Mayor autoconciencia y comprensión personal</li>
+                <li>• Relaciones más auténticas y saludables</li>
+                <li>• Reducción de comportamientos autodestructivos</li>
+                <li>• Aumento de la compasión hacia uno mismo y otros</li>
+                <li>• Mayor sentido de propósito y dirección en la vida</li>
+                <li>• Capacidad mejorada para manejar el estrés y los desafíos</li>
+              </ul>
+            </div>
+
+            <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">El Papel del Acompañamiento Profesional</h2>
+
+            <p class="scroll-animate mb-6">
+              En Casa del Jaguar, entendemos que el proceso de integración es tan importante como la ceremonia misma. Por eso ofrecemos acompañamiento continuo para ayudarte a navegar este proceso de transformación.
+            </p>
+
+            <div class="scroll-animate bg-blue-50 border-l-4 border-blue-400 p-6 mb-8">
+              <h3 class="text-xl font-semibold text-blue-800 mb-3">Nuestro Apoyo en la Integración</h3>
+              <p class="text-blue-800 mb-3">
+                Ofrecemos múltiples formas de acompañamiento para asegurar que tu proceso de integración sea exitoso:
+              </p>
+              <ul class="text-blue-700 space-y-2">
+                <li>• Sesiones de seguimiento personalizadas</li>
+                <li>• Orientación en prácticas de integración específicas</li>
+                <li>• Comunidad de apoyo con otros participantes</li>
+                <li>• Recursos educativos y herramientas prácticas</li>
+              </ul>
+            </div>
+
+            <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Creando Tu Plan Personal de Integración</h2>
+
+            <p class="scroll-animate mb-6">
+              Cada persona es única, y por tanto, cada proceso de integración también lo es. Es importante crear un plan personalizado que se adapte a tu estilo de vida, personalidad y circunstancias específicas.
+            </p>
+
+            <div class="scroll-animate bg-green-50 border-l-4 border-green-400 p-6 mb-8">
+              <h3 class="text-xl font-semibold text-green-800 mb-4">Elementos de un Plan de Integración Efectivo</h3>
+              <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                  <h4 class="font-semibold text-green-800 mb-2">Prácticas Diarias:</h4>
+                  <ul class="text-green-700 text-sm space-y-1">
+                    <li>• Tiempo para la reflexión</li>
+                    <li>• Ejercicio físico</li>
+                    <li>• Práctica espiritual</li>
+                    <li>• Alimentación consciente</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-green-800 mb-2">Revisiones Periódicas:</h4>
+                  <ul class="text-green-700 text-sm space-y-1">
+                    <li>• Evaluación semanal de progreso</li>
+                    <li>• Ajustes en las prácticas</li>
+                    <li>• Celebración de logros</li>
+                    <li>• Identificación de áreas de mejora</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <p class="scroll-animate mb-6">
+              Recuerda que la integración no es un destino al que se llega, sino un proceso continuo de crecimiento y evolución. Cada día es una oportunidad para aplicar las enseñanzas recibidas y profundizar en tu proceso de sanación y transformación.
+            </p>
+
+            <div class="scroll-animate bg-amber-50 border-l-4 border-amber-400 p-6 mb-8">
+              <p class="text-amber-800 font-semibold italic text-lg">
+                "La ceremonia te muestra el camino, pero la integración es donde realmente caminas por él. Es en la vida cotidiana donde las verdaderas transformaciones toman forma y se convierten en una nueva manera de ser en el mundo."
+              </p>
+            </div>
+
+            <p class="scroll-animate mb-6">
+              En Casa del Jaguar, estamos comprometidos a acompañarte no solo durante la ceremonia, sino también en este crucial proceso de integración. Porque entendemos que la verdadera sanación ocurre cuando las enseñanzas de la medicina ancestral se convierten en sabiduría vivida en cada aspecto de tu existencia.
+            </p>
+          </>
+        )}
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<script>
+  // Scroll animations
+  const scrollElements = document.querySelectorAll('.scroll-animate');
+  
+  const elementInView = (el: Element, dividend = 1) => {
+    const elementTop = el.getBoundingClientRect().top;
+    return (
+      elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+    );
+  };
+  
+  const displayScrollElement = (element: Element) => {
+    element.classList.add('scrolled');
+  };
+  
+  const hideScrollElement = (element: Element) => {
+    element.classList.remove('scrolled');
+  };
+  
+  const handleScrollAnimation = () => {
+    scrollElements.forEach((el) => {
+      if (elementInView(el, 1.25)) {
+        displayScrollElement(el);
+      }
+    });
+  };
+  
+  window.addEventListener('scroll', () => {
+    handleScrollAnimation();
+  });
+  
+  // Initial check
+  handleScrollAnimation();
+</script>
+
+<style>
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+  }
+  
+  .scroll-animate.scrolled {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
