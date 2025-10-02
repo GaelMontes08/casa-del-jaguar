@@ -1,0 +1,360 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const article = {
+  title: 'Mi Primera Ceremonia de Ayahuasca con el Maestro Dan',
+  excerpt: 'El relato extraordinario de mi primera ceremonia con el Maestro Dan Reynolds, donde experimenté una transformación completa en jaguar negro y presencié rituales ancestrales que cambiaron mi comprensión del mundo chamánico para siempre.',
+  date: '2025-10-02',
+  author: 'Maestro Denis',
+  authorBio: 'Maestro curandero con más de 15 años de experiencia en medicina ancestral amazónica.',
+  image: '/img/first-ayahuasca-ceremony-between-denis-and-dan.webp',
+  readTime: '15 min',
+  category: 'Experiencias',
+  tags: ['ayahuasca', 'primera ceremonia de ayahuasca', 'first ayahuasca ceremony', 'ceremonia', 'transformación', 'jaguar', 'chamanismo', 'dan reynolds', 'visión', 'amazonia']
+};
+---
+
+<Layout 
+  title={`${article.title} | Blog Casa del Jaguar`}
+  description={article.excerpt}
+  keywords={article.tags.join(', ')}
+>
+  <main>
+    <article class="max-w-4xl mx-auto px-4 md:px-8 py-16 -mt-16 pt-24">
+      <nav class="text-sm text-gray-600 mb-8">
+        <a href="/" class="hover:text-brand-primary transition-colors">Inicio</a>
+        <span class="mx-2">›</span>
+        <a href="/blog" class="hover:text-brand-primary transition-colors">Blog</a>
+        <span class="mx-2">›</span>
+        <span class="text-brand-dark">{article.category}</span>
+      </nav>
+
+      <div class="mb-6">
+        <span class="bg-brand-primary text-brand-dark px-4 py-2 rounded-full text-sm font-medium">
+          {article.category}
+        </span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia mb-6 leading-tight">
+        {article.title}
+      </h1>
+
+      <div class="flex flex-wrap items-center text-gray-600 mb-8 space-x-6">
+        <div class="flex items-center space-x-2">
+          <div class="w-10 h-10 bg-brand-light rounded-full flex items-center justify-center">
+            <span class="text-brand-dark font-bold text-sm">{article.author.charAt(0)}</span>
+          </div>
+          <div>
+            <p class="font-medium text-brand-dark">{article.author}</p>
+            <p class="text-sm text-gray-500">{article.authorBio}</p>
+          </div>
+        </div>
+        <div class="text-sm">
+          <p>{new Date(article.date).toLocaleDateString('es-ES', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+          })}</p>
+          <p>{article.readTime} de lectura</p>
+        </div>
+      </div>
+
+      <div class="mb-12">
+        <img 
+          src={article.image}
+          alt={article.title}
+          class="w-full h-98 object-cover rounded-xl shadow-lg"
+        />
+      </div>
+
+      <div class="prose prose-lg max-w-none">
+        <p class="scroll-animate text-xl text-gray-700 mb-8 font-gotham leading-relaxed">
+          Al llegar al lugar de la ceremonia, para nuestra sorpresa, Dan no estaba solo; estaba con otros turistas. Le oí decir: «Oye, David, esta es la persona de la que te hablaba».
+        </p>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Descubriendo que el Maestro Dan habló de mí con otras personas</h2>
+
+        <p class="scroll-animate mb-6">
+          Esta persona me miró fijamente y dijo: «Bien, siento una fuerte conexión y energía dentro de él». Dan y David no hablaban español, así que no se preocuparon por prestar atención a lo que decían, ya que mi esposa no entendía inglés.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Solo yo pude entenderlo, pero no dije nada. En cambio, mentalmente pensé: «Otra locura».
+        </p>
+
+        <p class="scroll-animate mb-6">
+          La maloca ceremonial era hermosa y estaba muy bien cuidada. Mientras Dan me explicaba el protocolo y el proceso que se desarrollaría durante la ceremonia, me di cuenta de que este maestro dirigía sus ceremonias de forma completamente diferente a mi experiencia a los 16 años.
+        </p>
+
+        <div class="scroll-animate bg-blue-50 border-l-4 border-blue-400 p-6 mb-8">
+          <h3 class="text-xl font-semibold text-blue-800 mb-3">La dosis es muy importante en una Ceremonia</h3>
+          <p class="text-blue-800">
+            Una dosis muy pequeña en comparación con mi primera experiencia, lo cual me tranquilizó mucho. Aunque Dan me dijo: «La Ayahuasca que preparo es muy potente, no se necesita mucha cantidad y sabe bastante bien».
+          </p>
+        </div>
+
+        <p class="scroll-animate mb-6">
+          Cuando mencionó el sabor, me recordó el horrible sabor de mi experiencia pasada, pero saber que esta ayahuasca tenía buen sabor me ayudó mucho.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Esta vez, sabía que después de tomar ayahuasca, los efectos tardan unos 20 minutos en aparecer. Así que fui paciente y esta vez me senté en una mecedora en lugar de en el suelo.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Dan dirigió la ceremonia inaugural; todo era muy hermoso hasta que llegó el momento de tomar la medicina. Así lo hice, y el sabor era muy agradable. Dan no mentía.
+        </p>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Alta tecnología en una Ceremonia de Ayahuasca</h2>
+
+        <p class="scroll-animate mb-6">
+          Después de tomar la medicina, Dan me dijo que usaría una tecnología llamada Hemi-Sync, que ayuda al cerebro a alcanzar un estado de concentración sin esfuerzo. Eso fue lo que me dijo Dan.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          En mi mente, pensé: «Qué chamán tan extraño, usando tecnología moderna combinada con rituales». Cerré los ojos y comencé a escuchar el sonido.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          En realidad me trajo una sensación de calma que me hizo sentir sueño y comencé a bostezar varias veces.
+        </p>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Lo Bueno Comienza</h2>
+
+        <p class="scroll-animate mb-6">
+          Después de unos 20 minutos, oí un sonido y abrí los ojos. Al hacerlo, me encontré corriendo. Corría muy rápido y no entendía qué pasaba.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Me vi en medio de la selva amazónica. Era de noche, con una hermosa luna llena iluminando la selva.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          En mi mente, me repetía: «Deja de correr. ¿Adónde voy? ¡Denis, detente! ¿Por qué corres?». En esos momentos, me di cuenta de que o la hierba estaba muy cerca de mi cara, o mi cara estaba muy cerca del suelo.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Otra cosa que me sorprendió fue que quería mirar el cielo nocturno, pero no podía hacerlo como normalmente lo hacen los humanos inclinando la cabeza hacia atrás para ver el cielo sin ningún problema.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Simplemente no pude y no era algo que me lo impidiera físicamente; simplemente lo sentí como una limitación física al correr.
+        </p>
+
+        <div class="scroll-animate bg-purple-50 border-l-4 border-purple-400 p-6 mb-8">
+          <p class="text-purple-800 italic">
+            Mentalmente, me preguntaba: «¿Qué pasa? ¿Qué hago en medio de la selva? ¿Dónde están todos? ¿Dónde está mi esposa?».
+          </p>
+        </div>
+
+        <p class="scroll-animate mb-6">
+          Me seguía haciendo todas esas preguntas, pero seguí corriendo. Finalmente, pude ver, oír y oler fuego, como si alguien hubiera provocado un incendio y estuviera quemando plantas o leña a muchos metros de distancia.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Dije: «¿Qué pasa?».
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Pasaron varios minutos hasta que llegué a un punto en el bosque donde no había hierba. Esta zona parecía como si alguien la hubiera cultivado. Al llegar, me detuve y, en ese momento, dije: «Quiero levantarme», pero mi cuerpo no me obedeció.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Fue entonces cuando miré mis brazos y para mi asombro, no eran brazos; eran las patas de un felino.
+        </p>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Estar dentro de un Jaguar Negro</h2>
+
+        <p class="scroll-animate mb-6">
+          Miré mis manos y vi que tenían garras. El color de mi piel no era el de una persona; era la de un felino de pelaje negro con manchas, que podía ver claramente bajo la luz de la luna.
+        </p>
+
+        <div class="scroll-animate bg-amber-50 border-l-4 border-amber-400 p-6 mb-8">
+          <p class="text-amber-800 font-semibold italic text-lg">
+            «Una ola de miedo me invadió y me dije: Debo dirigirme rápidamente al lugar donde está ese fuego, ya que es una señal de civilización. Debe haber gente ahí que sabrá lo que me pasa y seguramente me ayudará.»
+          </p>
+        </div>
+
+        <p class="scroll-animate mb-6">
+          Corrí con más fuerza, sintiéndome aliviado al ver que me acercaba al fuego. Sin embargo, mi alivio duró poco, ya que la hoguera no estaba a mi altura; Yo parecía estar en una zona elevada.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Me acerqué con cautela para ver qué pasaba, pues comencé a escuchar voces pero no podía entender lo que decían.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Al acercarme, vi a un grupo de cinco nativos reunidos alrededor de la hoguera. Habían hecho el fuego cerca de la orilla del río y el nivel del mismo había bajado, por lo que me encontré en un terreno elevado.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Sentí que pasaron unos 5 minutos y uno de los nativos que estaba sentado se levantó y caminó alrededor de la fogata hasta posicionarse frente a sus compañeros.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          En su mano derecha sostenía un pedazo de una rama. Me pregunté qué haría esta persona.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Con la rama a modo de lápiz, empezó a escribir algo en el suelo. Era una combinación de símbolos y algo parecido a letras.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Sinceramente, me quedé atónito y pensé: «¿Qué escribe?». Mi vista era tan aguda que, cuando quería ver algo más de cerca, era como si mis ojos tuvieran un efecto zoom.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Después de terminar de escribir, rápidamente se movió para pararse al lado de uno de sus compañeros y los cinco comenzaron a hacer algunos sonidos extraños.
+        </p>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Presenciando algo increíble</h2>
+
+        <p class="scroll-animate mb-6">
+          Parecían saber que algo estaba a punto de suceder, pues podía ver alegría en sus expresiones. Pensé: «Están llamando a alguien o a algo».
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Sentí un hormigueo en la piel y segundos después de que escribió, sentí una energía muy fuerte acumulándose y sobre el fuego de la hoguera, esta energía comenzó a acumularse, formando una nube de humo.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Con cada segundo que pasaba, se hacía más y más denso. Entonces, oí el sonido de un trueno y algo emergió de aquella nube de humo.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Estaba petrificado, mirando lo que estaba pasando.
+        </p>
+
+        <div class="scroll-animate bg-green-50 border-l-4 border-green-400 p-6 mb-8">
+          <p class="text-green-800 font-semibold">
+            Cuando todo el humo desapareció, mi sorpresa fue grande porque ante mis ojos se encontraba un ser gigantesco frente a los nativos. Este ser tenía características felinas, de color negro con manchas oscuras, de pie sobre dos patas, un jaguar humanoide.
+          </p>
+        </div>
+
+        <p class="scroll-animate mb-6">
+          Los nativos estaban extasiados, cuatro de ellos danzaban alrededor, mientras el que escribió en el suelo estaba arrodillado frente a este ser.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          No podía comprender lo que veía. Estaba tan asombrado que quería ver con más detalle, pero no quería que supieran que estaba ahí.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Junto a mí había un árbol con una rama considerablemente grande, así que decidí subir ahí y observar desde arriba.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Eso fue exactamente lo que hice, muy lentamente y sin hacer ruido, o eso pensé.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Así es. De un solo salto, me encontré en esa rama, encantado de que, por lo que pude ver, nadie hubiera notado mi presencia.
+        </p>
+
+        <h2 class="scroll-animate text-3xl font-bold text-brand-dark font-georgia mt-12 mb-6">Sintiendo el Poder de la Mirada</h2>
+
+        <p class="scroll-animate mb-6">
+          Reanudé la observación y vi como este ser estaba dando instrucciones a los nativos hasta que ocurrió algo muy extraño.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Este ser levantó la mirada hacia mí e hicimos contacto visual.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Pero su mirada me atravesó la mente. Vi cómo sus ojos felinos se agrandaban, solo sus ojos, y cuando intenté resistirme, sentí como si algo o alguien me empujara.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Esto hizo que me cayera del árbol y un me invadió un poco de miedo.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Entonces tuve que darme la vuelta, intentando regresar por el mismo camino, pero no pude encontrar el camino de regreso a mi grupo.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Sólo recuerdo haber reentrado en la selva con la maleza muy espesa.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Entonces abrí los ojos de nuevo y esta vez me encontré de nuevo en la maloca ceremonial.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Vi a mi esposa a mi lado y entonces Dan me preguntó cómo me sentía. Le dije que todavía me sentía mareado y conectado.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          No vomité, pero algo extraño ocurrió cuando intenté levantarme de la silla; no pude.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          Sentía las piernas como si me pesaran una tonelada. Así que, siguiendo la recomendación de Dan, esperé un poco más antes de ir a mi habitación.
+        </p>
+
+        <div class="scroll-animate bg-brand-light border-l-4 border-brand-primary p-6 mb-8">
+          <p class="text-brand-dark font-semibold italic text-lg">
+            Esa noche aprendí muchas cosas sobre el mundo chamánico, desmintiendo mitos y descartando mentiras que lamentablemente aún existen hasta el día de hoy.
+          </p>
+        </div>
+
+        <p class="scroll-animate mb-6">
+          Esta primera ceremonia con el Maestro Dan marcó un antes y un después en mi comprensión de la medicina sagrada. La experiencia de transformarme en jaguar negro no fue solo una visión, sino un despertar a mi verdadera naturaleza espiritual y mi conexión ancestral con el reino felino.
+        </p>
+
+        <p class="scroll-animate mb-6">
+          El encuentro con el ser jaguar humanoide y los rituales de los nativos me mostró que existe un mundo paralelo de conocimiento y sabiduría que trasciende nuestra comprensión ordinaria. Esa noche comprendí que mi camino como curandero apenas comenzaba.
+        </p>
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<script>
+  // Scroll animations
+  const scrollElements = document.querySelectorAll('.scroll-animate');
+  
+  const elementInView = (el: Element, dividend = 1) => {
+    const elementTop = el.getBoundingClientRect().top;
+    return (
+      elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+    );
+  };
+  
+  const displayScrollElement = (element: Element) => {
+    element.classList.add('scrolled');
+  };
+  
+  const hideScrollElement = (element: Element) => {
+    element.classList.remove('scrolled');
+  };
+  
+  const handleScrollAnimation = () => {
+    scrollElements.forEach((el) => {
+      if (elementInView(el, 1.25)) {
+        displayScrollElement(el);
+      }
+    });
+  };
+  
+  window.addEventListener('scroll', () => {
+    handleScrollAnimation();
+  });
+  
+  // Initial check
+  handleScrollAnimation();
+</script>
+
+<style>
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+  }
+  
+  .scroll-animate.scrolled {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
