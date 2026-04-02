@@ -3,6 +3,35 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY || 'placeholder');
 
+// In-memory rate limiting (resets on serverless cold start, provides basic protection)
+const rateLimitMap = new Map<string, { count: number; windowStart: number }>();
+const RATE_LIMIT_WINDOW_MS = 24 * 60 * 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 3;
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  if (!record || now - record.windowStart > RATE_LIMIT_WINDOW_MS) {
+    rateLimitMap.set(ip, { count: 1, windowStart: now });
+    return false;
+  }
+  if (record.count >= RATE_LIMIT_MAX_REQUESTS) return true;
+  record.count++;
+  return false;
+}
+
+function isSpam(message: string): boolean {
+  // Too many URLs
+  if ((message.match(/https?:\/\/|www\./gi) || []).length > 2) return true;
+  // Excessive word repetition
+  const words = message.toLowerCase().split(/\s+/).filter(w => w.length > 2);
+  if (words.length > 10 && new Set(words).size / words.length < 0.3) return true;
+  // Mostly uppercase (shouting/spam)
+  const letters = message.replace(/[^a-zA-Z]/g, '');
+  if (letters.length > 20 && (message.match(/[A-Z]/g) || []).length / letters.length > 0.7) return true;
+  return false;
+}
+
 export const POST: APIRoute = async ({ request }) => {
   try {
     if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY === 'placeholder') {
@@ -12,12 +41,40 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
+    // IP-based rate limiting
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim()
+      || request.headers.get('x-real-ip')
+      || 'unknown';
+    if (isRateLimited(ip)) {
+      return new Response(
+        JSON.stringify({ error: 'Too many requests. Please wait a moment before trying again.' }),
+        { status: 429, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
     const data = await request.json();
-    const { name, email, phone, subject, message, language = 'es' } = data;
+    const { name, email, phone, subject, message, honeypot, language = 'es' } = data;
+
+    // Honeypot check — bots fill hidden fields; respond with fake success
+    if (honeypot) {
+      return new Response(
+        JSON.stringify({ success: true, message: 'Message sent.' }),
+        { status: 200, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
 
     if (!name || !email || !subject || !message) {
       return new Response(
         JSON.stringify({ error: 'Missing required fields' }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Name must have at least 2 words (first + last name)
+    const nameParts = name.trim().split(/\s+/).filter((p: string) => p.length > 0);
+    if (nameParts.length < 2) {
+      return new Response(
+        JSON.stringify({ error: 'Please enter your full name (first and last name)' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
@@ -27,6 +84,29 @@ export const POST: APIRoute = async ({ request }) => {
     if (!emailRegex.test(email)) {
       return new Response(
         JSON.stringify({ error: 'Invalid email format' }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Message length validation
+    const trimmedMessage = message.trim();
+    if (trimmedMessage.length < 20) {
+      return new Response(
+        JSON.stringify({ error: 'Message must be at least 20 characters' }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+    if (trimmedMessage.length > 2000) {
+      return new Response(
+        JSON.stringify({ error: 'Message must not exceed 2000 characters' }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Spam detection
+    if (isSpam(trimmedMessage)) {
+      return new Response(
+        JSON.stringify({ error: 'Your message was flagged as spam. Please review and try again.' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }

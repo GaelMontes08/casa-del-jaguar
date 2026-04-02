@@ -35,6 +35,10 @@ import Layout from '@/layouts/Layout.astro';
           </div>
           
           <form id="contact-form" class="space-y-6">
+            <!-- Honeypot field: must remain empty -->
+            <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;overflow:hidden;" aria-hidden="true">
+              <input type="text" name="honeypot" id="honeypot" tabindex="-1" autocomplete="off" />
+            </div>
             <div>
               <label for="name" class="block text-sm font-medium text-brand-dark mb-2">
                 Nombre completo *
@@ -100,9 +104,15 @@ import Layout from '@/layouts/Layout.astro';
                 name="message" 
                 rows="5" 
                 required
+                minlength="20"
+                maxlength="2000"
                 class="w-full px-4 py-3 border border-brand-accent rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-transparent"
                 placeholder="Cuéntanos sobre tu interés en nuestros servicios..."
               ></textarea>
+              <div class="flex justify-between mt-1">
+                <span id="message-hint" class="text-xs text-gray-500">Mínimo 20 caracteres</span>
+                <span id="message-counter" class="text-xs text-gray-400">0 / 2000</span>
+              </div>
             </div>
             
             <button 
@@ -203,11 +213,14 @@ document.addEventListener('DOMContentLoaded', function() {
   const messages = {
     es: {
       nameRequired: 'El nombre es requerido',
+      nameMinWords: 'Por favor ingresa tu nombre completo (nombre y apellido)',
       emailRequired: 'El email es requerido',
       emailInvalid: 'Por favor ingresa un email válido',
       subjectRequired: 'Por favor selecciona un asunto',
       messageRequired: 'El mensaje es requerido',
-      messageMinLength: 'El mensaje debe tener al menos 10 caracteres',
+      messageMinLength: 'El mensaje debe tener al menos 20 caracteres',
+      messageMaxLength: 'El mensaje no puede superar los 2000 caracteres',
+      rateLimited: 'Por favor espera un momento antes de enviar otro mensaje',
       success: '¡Mensaje enviado exitosamente! Te contactaremos pronto.',
       error: 'Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.',
       sending: 'Enviando...'
@@ -248,6 +261,34 @@ document.addEventListener('DOMContentLoaded', function() {
     return emailRegex.test(email);
   }
   
+  // Client-side rate limiting
+  const RATE_LIMIT_KEY = 'contact_last_submit';
+  const RATE_LIMIT_MS = 24 * 60 * 60 * 1000;
+  const RATE_LIMIT_MAX = 3;
+
+  function isClientRateLimited(): boolean {
+    const raw = localStorage.getItem(RATE_LIMIT_KEY);
+    if (!raw) return false;
+    const { count, windowStart } = JSON.parse(raw) as { count: number; windowStart: number };
+    if (Date.now() - windowStart > RATE_LIMIT_MS) return false;
+    return count >= RATE_LIMIT_MAX;
+  }
+
+  function recordSubmission() {
+    const raw = localStorage.getItem(RATE_LIMIT_KEY);
+    const now = Date.now();
+    if (!raw) {
+      localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify({ count: 1, windowStart: now }));
+      return;
+    }
+    const { count, windowStart } = JSON.parse(raw) as { count: number; windowStart: number };
+    if (now - windowStart > RATE_LIMIT_MS) {
+      localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify({ count: 1, windowStart: now }));
+    } else {
+      localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify({ count: count + 1, windowStart }));
+    }
+  }
+
   // Validate form
   function validateForm(formData: FormData) {
     const name = formData.get('name')?.toString().trim();
@@ -257,6 +298,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (!name) {
       showError(msg.nameRequired);
+      return false;
+    }
+
+    const nameWords = name.split(/\s+/).filter(w => w.length > 0);
+    if (nameWords.length < 2) {
+      showError(msg.nameMinWords);
       return false;
     }
     
@@ -280,8 +327,18 @@ document.addEventListener('DOMContentLoaded', function() {
       return false;
     }
     
-    if (message.length < 10) {
+    if (message.length < 20) {
       showError(msg.messageMinLength);
+      return false;
+    }
+
+    if (message.length > 2000) {
+      showError(msg.messageMaxLength);
+      return false;
+    }
+
+    if (isClientRateLimited()) {
+      showError(msg.rateLimited);
       return false;
     }
     
@@ -341,6 +398,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       if (response.ok) {
         showSuccess(result.message || msg.success);
+        recordSubmission();
         form.reset();
         
         // Reset select to placeholder
@@ -348,6 +406,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (subjectSelect) {
           subjectSelect.selectedIndex = 0;
         }
+
+        // Reset message counter
+        const counterEl = document.getElementById('message-counter');
+        if (counterEl) counterEl.textContent = '0 / 2000';
         
         // Track successful form submission
         if (typeof window.trackFormSubmission === 'function') {
@@ -390,8 +452,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // Add real-time validation
   nameInput?.addEventListener('input', () => {
     hideMessages();
-    if (nameInput.value.trim()) {
+    const words = nameInput.value.trim().split(/\s+/).filter(w => w.length > 0);
+    if (words.length >= 2) {
       removeErrorStyling(nameInput);
+    } else if (nameInput.value.trim()) {
+      addErrorStyling(nameInput);
     }
   });
   
@@ -411,12 +476,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
+  const messageCounter = document.getElementById('message-counter');
+  const messageHint = document.getElementById('message-hint');
+
   messageInput?.addEventListener('input', () => {
     hideMessages();
-    if (messageInput.value.trim() && messageInput.value.trim().length >= 10) {
+    const len = messageInput.value.length;
+    if (messageCounter) messageCounter.textContent = `${len} / 2000`;
+    const trimmedLen = messageInput.value.trim().length;
+    if (trimmedLen >= 20 && len <= 2000) {
       removeErrorStyling(messageInput);
+      if (messageHint) messageHint.classList.remove('text-red-500');
     } else if (messageInput.value.trim()) {
       addErrorStyling(messageInput);
+      if (messageHint && trimmedLen < 20) messageHint.classList.add('text-red-500');
     }
   });
 });
