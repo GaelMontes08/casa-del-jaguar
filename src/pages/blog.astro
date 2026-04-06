@@ -164,7 +164,11 @@ const blogPosts = [
           Suscríbete a nuestro boletín para recibir artículos sobre medicina ancestral, consejos de preparación y las últimas noticias de Casa del Jaguar.
         </p>
         
-        <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+        <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" id="blog-newsletter-form">
+          <!-- Honeypot field: must remain empty -->
+          <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;overflow:hidden;" aria-hidden="true">
+            <input type="text" name="honeypot" id="hp-blog" tabindex="-1" autocomplete="off" />
+          </div>
           <input 
             type="email" 
             placeholder="Tu correo electrónico"
@@ -183,6 +187,15 @@ const blogPosts = [
   </main>
 
   <script src="/js/scroll-animations.js" is:inline></script>
+
+<script>
+document.getElementById('blog-newsletter-form')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const honeypot = (document.getElementById('hp-blog') as HTMLInputElement)?.value;
+  if (honeypot) return;
+  // TODO: wire up to newsletter API
+});
+</script>
 </Layout>
 
 <style>

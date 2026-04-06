@@ -104,6 +104,10 @@ const pageKeywords = lang === 'en'
             </p>
 
             <form id="pricingForm" class="space-y-4">
+              <!-- Honeypot field: must remain empty -->
+              <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;overflow:hidden;" aria-hidden="true">
+                <input type="text" name="honeypot" id="hp-pricing" tabindex="-1" autocomplete="off" />
+              </div>
               <div class="grid grid-cols-2 gap-4">
                 <div>
                   <label for="firstName" class="block text-sm font-semibold text-brand-dark font-gotham mb-2">
@@ -582,6 +586,11 @@ document.addEventListener('DOMContentLoaded', function() {
       return false;
     }
 
+    if ((field.name === 'firstName' || field.name === 'lastName') && value.length < 2) {
+      showError(field, lang === 'en' ? 'Please write at least 2 characters' : 'Por favor escribe al menos 2 caracteres');
+      return false;
+    }
+
     if (field.type === 'email' && value && !emailPattern.test(value)) {
       showError(field, errorMessages.email);
       return false;
@@ -604,6 +613,25 @@ document.addEventListener('DOMContentLoaded', function() {
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
 
+    // Honeypot check
+    const honeypot = form.querySelector('#hp-pricing')?.value;
+    if (honeypot) return;
+
+    // Client-side rate limiting (3 per 24h)
+    const RL_KEY = 'pricing_rl';
+    const RL_WINDOW = 24 * 60 * 60 * 1000;
+    const RL_MAX = 3;
+    const rawRl = localStorage.getItem(RL_KEY);
+    if (rawRl) {
+      const { count, windowStart } = JSON.parse(rawRl);
+      if (Date.now() - windowStart < RL_WINDOW && count >= RL_MAX) {
+        alert(lang === 'en' 
+          ? 'You have reached the daily submission limit. Please try again tomorrow.'
+          : 'Has alcanzado el límite de envíos por hoy. Inténtalo de nuevo mañana.');
+        return;
+      }
+    }
+
     let isValid = true;
     fields.forEach(field => {
       if (!validateField(field)) {
@@ -618,6 +646,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));
+
+      // Record rate limit
+      const RL_KEY2 = 'pricing_rl';
+      const RL_WINDOW2 = 24 * 60 * 60 * 1000;
+      const now = Date.now();
+      const rawRl2 = localStorage.getItem(RL_KEY2);
+      if (!rawRl2) {
+        localStorage.setItem(RL_KEY2, JSON.stringify({ count: 1, windowStart: now }));
+      } else {
+        const { count, windowStart } = JSON.parse(rawRl2);
+        if (now - windowStart > RL_WINDOW2) {
+          localStorage.setItem(RL_KEY2, JSON.stringify({ count: 1, windowStart: now }));
+        } else {
+          localStorage.setItem(RL_KEY2, JSON.stringify({ count: count + 1, windowStart }));
+        }
+      }
       
       form.classList.add('hidden');
       successMessage.classList.remove('hidden');

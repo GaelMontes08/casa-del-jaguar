@@ -142,6 +142,15 @@ export const POST: APIRoute = async ({ request }) => {
     const email = data.get('email') as string;
     const countryCode = data.get('countryCode') as string;
     const phone = data.get('phone') as string;
+    const honeypot = data.get('honeypot') as string;
+
+    // Honeypot check — bots fill hidden fields; respond with fake success
+    if (honeypot) {
+      return new Response(JSON.stringify({ success: true }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
 
     // Validate required fields
     if (!firstName || !lastName || !email || !phone || !countryCode) {
@@ -153,6 +162,30 @@ export const POST: APIRoute = async ({ request }) => {
         headers: {
           'Content-Type': 'application/json',
         },
+      });
+    }
+
+    // First and last name must be at least 2 characters
+    if (firstName.trim().length < 2 || lastName.trim().length < 2) {
+      return new Response(JSON.stringify({
+        success: false,
+        error: 'Please write at least a first name and a last name'
+      }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Spam detection on name fields
+    const fullName = `${firstName} ${lastName}`;
+    const nameLetters = fullName.replace(/[^a-zA-Z]/g, '');
+    if (nameLetters.length > 4 && (fullName.match(/[A-Z]/g) || []).length / nameLetters.length > 0.7) {
+      return new Response(JSON.stringify({
+        success: false,
+        error: 'Please enter a valid name'
+      }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
       });
     }
 

@@ -10,7 +10,7 @@ export const ui = {
     // Discount Banner
     'discount.text': 'Este mes, ahorre $800 con el código:',
     'discount.call': 'Llame hoy mismo al',
-    'discount.phone': '+51 928-105-750',
+    'discount.phone': '+51 917 811 803',
     
     // Navigation
     'nav.home': 'Inicio',
@@ -96,7 +96,7 @@ export const ui = {
     // Discount Banner
     'discount.text': 'This month, save $1250 with code:',
     'discount.call': 'Call today at',
-    'discount.phone': '+51 928-105-750',
+    'discount.phone': '+51 917 811 803',
     
     // Navigation
     'nav.home': 'Home',

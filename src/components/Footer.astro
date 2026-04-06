@@ -155,8 +155,8 @@ const content = footerContent[lang] || footerContent.es;
           <div class="footer-content max-h-0 lg:max-h-none overflow-hidden lg:overflow-visible transition-all duration-300">
             <div class="space-y-4">
               <div>
-                <a href="tel:+51928230781" class="text-[#F2CF8D] hover:text-[#F2E8D5] transition-colors text-2xl font-semibold font-gotham">
-                  +51 928-230-781
+                <a href="tel:+51917811803" class="text-[#F2CF8D] hover:text-[#F2E8D5] transition-colors text-2xl font-semibold font-gotham">
+                  +51 917 811 803
                 </a>
               </div>
               <div class="text-sm font-gotham text-[#F2E8D5] space-y-2">
@@ -183,6 +183,10 @@ const content = footerContent[lang] || footerContent.es;
           </h3>
           <div class="footer-content max-h-0 lg:max-h-none overflow-hidden lg:overflow-visible transition-all duration-300">
             <form class="newsletter-form space-y-4">
+              <!-- Honeypot field: must remain empty -->
+              <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;overflow:hidden;" aria-hidden="true">
+                <input type="text" name="honeypot" id="hp-newsletter" tabindex="-1" autocomplete="off" />
+              </div>
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-3">
                 <div>
                   <label for="newsletter-first-name" class="block text-sm font-gotham text-[#F2E8D5] mb-1">{content.newsletterForm.firstName}</label>
@@ -359,6 +363,9 @@ document.addEventListener('DOMContentLoaded', function() {
   if (newsletterForm) {
     newsletterForm.addEventListener('submit', function(e) {
       e.preventDefault();
+      const honeypotEl = newsletterForm.querySelector('#hp-newsletter');
+      const honeypot = honeypotEl ? honeypotEl.value : '';
+      if (honeypot) return;
       console.log('Newsletter form submitted');
     });
   }

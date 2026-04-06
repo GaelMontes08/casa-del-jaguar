@@ -53,6 +53,10 @@ const {
   )}
 
   <form class="booking-form max-w-2xl mx-auto bg-white rounded-2xl shadow-xl p-8 border border-gray-100 mb-8" id="bookingForm">
+    <!-- Honeypot field: must remain empty -->
+    <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;overflow:hidden;" aria-hidden="true">
+      <input type="text" name="honeypot" id="hp-booking" tabindex="-1" autocomplete="off" />
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
       <div class="form-group">
         <label for="firstName" class="block text-sm font-semibold text-brand-dark mb-2 font-gotham">
@@ -227,6 +231,11 @@ document.addEventListener('DOMContentLoaded', function() {
       return false;
     }
 
+    if ((field.name === 'firstName' || field.name === 'lastName') && value.length < 2) {
+      showFieldError(field, 'Por favor escribe al menos 2 caracteres');
+      return false;
+    }
+
     if (field.type === 'email' && value) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(value)) {
@@ -296,6 +305,23 @@ document.addEventListener('DOMContentLoaded', function() {
   form.addEventListener('submit', async function(e: Event) {
     e.preventDefault();
 
+    // Honeypot check
+    const honeypot = (form.querySelector('#hp-booking') as HTMLInputElement)?.value;
+    if (honeypot) return;
+
+    // Client-side rate limiting (3 per 24h)
+    const RL_KEY = 'booking_rl';
+    const RL_WINDOW = 24 * 60 * 60 * 1000;
+    const RL_MAX = 3;
+    const raw = localStorage.getItem(RL_KEY);
+    if (raw) {
+      const { count, windowStart } = JSON.parse(raw) as { count: number; windowStart: number };
+      if (Date.now() - windowStart < RL_WINDOW && count >= RL_MAX) {
+        showErrorState('Has alcanzado el límite de envíos por hoy. Inténtalo de nuevo mañana.');
+        return;
+      }
+    }
+
     // Validate all fields
     let isValid = true;
     inputs.forEach(input => {
@@ -326,6 +352,21 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log('API result:', result);
 
       if (result.success) {
+        // Record rate limit entry
+        const RL_KEY = 'booking_rl';
+        const RL_WINDOW = 24 * 60 * 60 * 1000;
+        const now = Date.now();
+        const rawRl = localStorage.getItem(RL_KEY);
+        if (!rawRl) {
+          localStorage.setItem(RL_KEY, JSON.stringify({ count: 1, windowStart: now }));
+        } else {
+          const { count, windowStart } = JSON.parse(rawRl) as { count: number; windowStart: number };
+          if (now - windowStart > RL_WINDOW) {
+            localStorage.setItem(RL_KEY, JSON.stringify({ count: 1, windowStart: now }));
+          } else {
+            localStorage.setItem(RL_KEY, JSON.stringify({ count: count + 1, windowStart }));
+          }
+        }
         showSuccessState();
         
         // Optional: Track the conversion with analytics
