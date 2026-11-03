@@ -1,0 +1,260 @@
+---
+import { translatePath } from '@/i18n/utils';
+import LocationClarity from '@/components/LocationClarity.astro';
+
+export interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const content = {
+  es: {
+    heroTitle: 'Excursiones <br/><span class="text-brand-primary">Amazónicas</span>',
+    heroSubtitle:
+      'Nuestras ceremonias se realizan en la ciudad de Iquitos. La selva la vives con nosotros: salidas guiadas, seguras y de regreso el mismo día, programadas en tus días de integración.',
+    heroCta: 'Reservar con excursiones',
+    introTitle: 'La selva como complemento, no como riesgo',
+    introP1:
+      'Separar la ceremonia de la excursión es una decisión consciente. Las noches de ceremonia necesitan descanso, contención y acceso rápido a atención médica, por eso ocurren en nuestra maloca urbana. Los días de integración, en cambio, son perfectos para abrir los sentidos al Amazonas.',
+    introP2:
+      'Cada excursión parte y regresa a Casa del Jaguar con guía local, transporte incluido y grupos pequeños. Tú eliges cuánto de selva quieres en tu viaje.',
+    includedBadge: '2 excursiones de medio día incluidas en el retiro de 7 días y 6 noches',
+    listTitle: 'Elige tu experiencia',
+    excursions: [
+      {
+        title: 'Río Amazonas y delfines rosados',
+        duration: 'Medio día',
+        tag: 'Más popular',
+        desc: 'Navegación por la confluencia de los ríos Nanay y Amazonas con avistamiento de delfines rosados y grises. Opción de atardecer sobre el río.',
+      },
+      {
+        title: 'Mercado de Belén y la Venecia amazónica',
+        duration: 'Medio día',
+        tag: 'Cultura',
+        desc: 'Recorrido por el pasaje Paquito, el corazón de las plantas medicinales de la región, y el barrio flotante de Belén con guía local.',
+      },
+      {
+        title: 'Comunidad nativa Bora o Yagua',
+        duration: 'Medio día',
+        tag: 'Encuentro',
+        desc: 'Visita respetuosa a una comunidad amazónica: danzas tradicionales, artesanía y conversación sobre su relación con las plantas maestras.',
+      },
+      {
+        title: 'Santuario de fauna y mariposario',
+        duration: 'Medio día',
+        tag: 'Naturaleza',
+        desc: 'Centro de rescate de animales en Padre Cocha: monos, perezosos, manatíes y el mariposario más conocido de la región.',
+      },
+      {
+        title: 'Sendero de plantas medicinales',
+        duration: 'Día completo',
+        tag: 'Medicina',
+        desc: 'Caminata guiada para reconocer ayahuasca, chacruna, uña de gato y otras plantas maestras en su entorno natural.',
+      },
+      {
+        title: 'Reserva Nacional Allpahuayo-Mishana',
+        duration: 'Día completo',
+        tag: 'Aventura',
+        desc: 'Bosques de arena blanca únicos en el mundo, aves endémicas y una inmersión profunda en la biodiversidad amazónica.',
+      },
+    ],
+    howTitle: 'Cómo funciona',
+    steps: [
+      { n: '1', title: 'Elige tus excursiones', desc: 'Al reservar o ya durante tu estadía, cuéntanos qué te llama más.' },
+      { n: '2', title: 'Las programamos contigo', desc: 'Siempre en días sin ceremonia, respetando tu descanso y tu dieta.' },
+      { n: '3', title: 'Te recogemos y te traemos', desc: 'Salida y regreso desde Casa del Jaguar con guía y transporte incluidos.' },
+    ],
+    safetyTitle: 'Pensado para tu proceso',
+    safety: [
+      'Nunca programamos excursiones el mismo día de una ceremonia.',
+      'Actividades de intensidad ligera a moderada, compatibles con la dieta ceremonial.',
+      'Hidratación, repelente y guía local incluidos en cada salida.',
+      'Excursiones adicionales y de día completo disponibles con costo extra.',
+    ],
+    standaloneTitle: '¿Visitas Iquitos sin hacer el retiro?',
+    standaloneDesc:
+      'También puedes reservar nuestras excursiones de forma independiente. Escríbenos y armamos tu itinerario.',
+    ctaPrimary: 'Reserva tu retiro',
+    ctaSecondary: 'Consultar por WhatsApp',
+    whatsappText: 'Hola, quisiera información sobre las excursiones amazónicas de Casa del Jaguar.',
+  },
+  en: {
+    heroTitle: 'Amazon <br/><span class="text-brand-primary">Excursions</span>',
+    heroSubtitle:
+      'Our ceremonies take place in the city of Iquitos. You experience the jungle with us: guided, safe, same-day outings scheduled on your integration days.',
+    heroCta: 'Book with excursions',
+    introTitle: 'The jungle as a complement, not a risk',
+    introP1:
+      'Separating the ceremony from the excursion is a conscious decision. Ceremony nights need rest, support and fast access to medical care, which is why they happen in our urban maloca. Integration days, on the other hand, are perfect for opening your senses to the Amazon.',
+    introP2:
+      'Every excursion departs from and returns to Casa del Jaguar with a local guide, transport included and small groups. You decide how much jungle you want in your journey.',
+    includedBadge: '2 half-day excursions included in the 7-day, 6-night retreat',
+    listTitle: 'Choose your experience',
+    excursions: [
+      {
+        title: 'Amazon River and pink dolphins',
+        duration: 'Half day',
+        tag: 'Most popular',
+        desc: 'Boat ride to the confluence of the Nanay and Amazon rivers to spot pink and grey river dolphins. Sunset option available.',
+      },
+      {
+        title: 'Belén Market and the Amazon Venice',
+        duration: 'Half day',
+        tag: 'Culture',
+        desc: 'Walk through Pasaje Paquito, the heart of the region’s medicinal plant trade, and the floating neighborhood of Belén with a local guide.',
+      },
+      {
+        title: 'Bora or Yagua native community',
+        duration: 'Half day',
+        tag: 'Encounter',
+        desc: 'Respectful visit to an Amazonian community: traditional dances, crafts and conversation about their relationship with master plants.',
+      },
+      {
+        title: 'Wildlife sanctuary and butterfly farm',
+        duration: 'Half day',
+        tag: 'Nature',
+        desc: 'Animal rescue center in Padre Cocha: monkeys, sloths, manatees and the region’s best-known butterfly farm.',
+      },
+      {
+        title: 'Medicinal plants trail',
+        duration: 'Full day',
+        tag: 'Medicine',
+        desc: 'Guided walk to recognize ayahuasca, chacruna, cat’s claw and other master plants in their natural habitat.',
+      },
+      {
+        title: 'Allpahuayo-Mishana National Reserve',
+        duration: 'Full day',
+        tag: 'Adventure',
+        desc: 'White-sand forests unique in the world, endemic birds and a deep immersion into Amazonian biodiversity.',
+      },
+    ],
+    howTitle: 'How it works',
+    steps: [
+      { n: '1', title: 'Choose your excursions', desc: 'When booking or during your stay, tell us what calls to you most.' },
+      { n: '2', title: 'We schedule them with you', desc: 'Always on non-ceremony days, respecting your rest and your diet.' },
+      { n: '3', title: 'We pick you up and bring you back', desc: 'Departure and return from Casa del Jaguar with guide and transport included.' },
+    ],
+    safetyTitle: 'Designed around your process',
+    safety: [
+      'We never schedule excursions on the same day as a ceremony.',
+      'Light to moderate intensity activities, compatible with the ceremonial diet.',
+      'Hydration, repellent and local guide included on every outing.',
+      'Additional and full-day excursions available at an extra cost.',
+    ],
+    standaloneTitle: 'Visiting Iquitos without the retreat?',
+    standaloneDesc:
+      'You can also book our excursions on their own. Message us and we will build your itinerary.',
+    ctaPrimary: 'Book your retreat',
+    ctaSecondary: 'Ask on WhatsApp',
+    whatsappText: 'Hello, I would like information about Casa del Jaguar’s Amazon excursions.',
+  },
+};
+
+const c = content[lang];
+const whatsappHref = `https://wa.me/51917811803?text=${encodeURIComponent(c.whatsappText)}`;
+---
+
+<section class="hero relative h-[600px] -mt-16 pt-16 flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img
+      src="/img/maestro-chaman-denis-montes-selva.webp"
+      alt={lang === 'en' ? 'Master Denis Montes guiding an Amazon excursion' : 'Maestro Denis Montes guiando una excursión amazónica'}
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-black/40"></div>
+  </div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-4 md:px-8 text-center">
+    <h1 class="scroll-animate text-5xl md:text-7xl font-bold text-white font-georgia mb-8 leading-tight" set:html={c.heroTitle}></h1>
+    <p class="scroll-animate text-xl md:text-[19px] text-white mb-10 max-w-4xl mx-auto font-gotham leading-relaxed">{c.heroSubtitle}</p>
+    <a href={translatePath('/booking', lang)} class="scroll-animate inline-block bg-brand-gold text-brand-dark px-8 py-4 rounded-lg font-bold text-lg font-gotham uppercase shadow-lg hover:scale-105 transition-all duration-300">
+      {c.heroCta}
+    </a>
+  </div>
+</section>
+
+<main>
+  <section class="py-20 bg-[#fffcf6]">
+    <div class="max-w-6xl mx-auto px-4 md:px-8 grid md:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6 scroll-animate">
+        <h2 class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia leading-tight">{c.introTitle}</h2>
+        <p class="text-lg text-brand-dark font-gotham leading-relaxed">{c.introP1}</p>
+        <p class="text-lg text-brand-dark font-gotham leading-relaxed">{c.introP2}</p>
+        <div class="inline-flex items-center gap-3 bg-brand-dark text-[#F2CF8D] px-5 py-3 rounded-full font-gotham font-bold text-sm">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+          </svg>
+          {c.includedBadge}
+        </div>
+      </div>
+      <div class="scroll-animate">
+        <img src="/img/centro-pasadiso.webp" alt="Casa del Jaguar - Iquitos" class="w-full h-[420px] object-cover rounded-2xl shadow-2xl" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 md:px-8">
+      <h2 class="scroll-animate text-4xl md:text-5xl font-bold text-brand-dark font-georgia text-center mb-14">{c.listTitle}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {c.excursions.map((e) => (
+          <article class="scroll-animate bg-[#fffcf6] border border-[#F2E8D5] rounded-2xl p-6 flex flex-col h-full">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs uppercase tracking-widest font-bold text-brand-gold font-gotham">{e.tag}</span>
+              <span class="text-xs font-semibold text-brand-dark/60 font-gotham">{e.duration}</span>
+            </div>
+            <h3 class="text-xl font-bold text-brand-dark font-georgia mb-3">{e.title}</h3>
+            <p class="text-brand-dark/80 font-gotham text-[15px] leading-relaxed">{e.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-gradient-to-b from-[#fdf6e7] to-white">
+    <div class="max-w-6xl mx-auto px-4 md:px-8">
+      <h2 class="scroll-animate text-4xl md:text-5xl font-bold text-brand-dark font-georgia text-center mb-14">{c.howTitle}</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        {c.steps.map((s) => (
+          <div class="scroll-animate text-center">
+            <div class="w-14 h-14 rounded-full bg-brand-gold text-brand-dark font-bold text-2xl font-georgia flex items-center justify-center mx-auto mb-4">{s.n}</div>
+            <h3 class="text-xl font-bold text-brand-dark font-georgia mb-2">{s.title}</h3>
+            <p class="text-brand-dark/80 font-gotham text-[15px] leading-relaxed">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="scroll-animate mt-16 bg-white rounded-2xl shadow-xl border border-[#F2E8D5] p-8 max-w-3xl mx-auto">
+        <h3 class="text-2xl font-bold text-brand-dark font-georgia mb-4">{c.safetyTitle}</h3>
+        <ul class="space-y-3">
+          {c.safety.map((item) => (
+            <li class="flex items-start gap-3 text-brand-dark font-gotham text-[15px] leading-relaxed">
+              <svg class="w-5 h-5 mt-0.5 shrink-0 text-brand-gold" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <LocationClarity className="bg-white" />
+
+  <section class="py-20 bg-brand-dark">
+    <div class="max-w-4xl mx-auto px-4 md:px-8 text-center scroll-animate">
+      <h2 class="text-3xl md:text-4xl font-bold text-white font-georgia mb-4">{c.standaloneTitle}</h2>
+      <p class="text-white/80 font-gotham text-lg leading-relaxed mb-10">{c.standaloneDesc}</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={translatePath('/booking', lang)} class="inline-block bg-brand-gold text-brand-dark px-8 py-4 rounded-full font-bold font-gotham uppercase tracking-wide hover:scale-105 transition-all duration-300">
+          {c.ctaPrimary}
+        </a>
+        <a href={whatsappHref} target="_blank" rel="noopener noreferrer" class="inline-block bg-[#25D366] text-white px-8 py-4 rounded-full font-bold font-gotham uppercase tracking-wide hover:opacity-90 transition-all duration-300">
+          {c.ctaSecondary}
+        </a>
+      </div>
+    </div>
+  </section>
+</main>

@@ -39,12 +39,13 @@ const t = useTranslations(lang);
                 <a href={translatePath('/ayahuasca-ceremonies', lang)} class="block px-4 py-2 text-sm text-brand-dark hover:bg-brand-light font-gotham">
                   {lang === 'es' ? 'Ceremonias de Ayahuasca' : 'Ayahuasca Ceremonies'}
                 </a>
-                <a href={translatePath('/experiences', lang)} class="block px-4 py-2 text-sm text-brand-dark hover:bg-brand-light font-gotham">
-                  {lang === 'es' ? 'Equipo Holístico' : 'Holistic Team'}
-                </a>
               </div>
             </div>
           </div>
+
+          <a href={translatePath('/excursions', lang)} class="text-white hover:text-brand-primary px-3 py-2 rounded-md text-sm font-bold font-gotham">
+            {lang === 'es' ? 'Excursiones' : 'Excursions'}
+          </a>
 
           <a href={translatePath('/resort', lang)} class="text-white hover:text-brand-primary px-3 py-2 rounded-md text-sm font-bold font-gotham">
             {lang === 'es' ? 'Centro Ceremonial' : 'Resort'}
@@ -56,10 +57,6 @@ const t = useTranslations(lang);
           
           <a href={translatePath('/pricing', lang)} class="text-white hover:text-brand-primary px-3 py-2 rounded-md text-sm font-bold font-gotham">
             {lang === 'es' ? 'Precios' : 'Pricing'}
-          </a>
-
-          <a href={translatePath('/calendar', lang)} class="text-white hover:text-brand-primary px-3 py-2 rounded-md text-sm font-bold font-gotham">
-            {lang === 'es' ? 'Calendario' : 'Calendar'}
           </a>
           
           <a href={translatePath('/testimonials', lang)} class="text-white hover:text-brand-primary px-3 py-2 rounded-md text-sm font-bold font-gotham">
@@ -141,14 +138,14 @@ const t = useTranslations(lang);
           <a href={translatePath('/casa-del-jaguar-way', lang)} class="block px-6 py-2 text-sm text-brand-secondary hover:bg-brand-light font-gotham">
             {lang === 'es' ? 'La forma de la Casa del Jaguar' : 'The Casa del Jaguar Way'}
           </a>
-          <a href={translatePath('/experiences', lang)} class="block px-6 py-2 text-sm text-brand-secondary hover:bg-brand-light font-gotham">
+          <a href={translatePath('/ayahuasca-ceremonies', lang)} class="block px-6 py-2 text-sm text-brand-secondary hover:bg-brand-light font-gotham">
             {lang === 'es' ? 'Ceremonias de Ayahuasca' : 'Ayahuasca Ceremonies'}
-          </a>
-          <a href={translatePath('/experiences', lang)} class="block px-6 py-2 text-sm text-brand-secondary hover:bg-brand-light font-gotham">
-            {lang === 'es' ? 'Equipo Holístico' : 'Holistic Team'}
           </a>
         </div>
         
+        <a href={translatePath('/excursions', lang)} class="block px-3 py-2 text-sm text-brand-dark hover:bg-brand-light font-gotham">
+          {lang === 'es' ? 'Excursiones Amazónicas' : 'Amazon Excursions'}
+        </a>
         <a href={translatePath('/resort', lang)} class="block px-3 py-2 text-sm text-brand-dark hover:bg-brand-light font-gotham">
           {lang === 'es' ? 'Centro Ceremonial' : 'Resort'}
         </a>
@@ -166,9 +163,6 @@ const t = useTranslations(lang);
           <p class="px-3 py-2 text-sm font-medium text-brand-dark font-gotham">{lang === 'es' ? 'Saber Más' : 'Learn More'}</p>
           <a href={translatePath('/about', lang)} class="block px-6 py-2 text-sm text-brand-secondary hover:bg-brand-light font-gotham">
             {lang === 'es' ? 'Sobre Nosotros' : 'About Us'}
-          </a>
-          <a href={translatePath('/team', lang)} class="block px-6 py-2 text-sm text-brand-secondary hover:bg-brand-light font-gotham">
-            {lang === 'es' ? 'Equipo' : 'Team'}
           </a>
           <a href={translatePath('/faqs', lang)} class="block px-6 py-2 text-sm text-brand-secondary hover:bg-brand-light font-gotham">
             {lang === 'es' ? 'Preguntas Frecuentes' : 'FAQ'}

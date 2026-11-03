@@ -6,11 +6,13 @@ import { useTranslations } from '@/i18n/utils';
 import GoogleReviews from '@/components/GoogleReviews.astro';
 import Services from '@/components/Services.astro';
 import TestimonialVideos from '@/components/TestimonialVideos.astro';
+import ValueOffer from '@/components/ValueOffer.astro';
+import LocationClarity from '@/components/LocationClarity.astro';
 
 const t = useTranslations('es');
 
-const pageTitle = "Precios - Retiro de 7 Días Todo Incluido | Casa del Jaguar";
-const pageDescription = "Experimenta una transformación profunda con nuestro retiro de medicina ancestral de 7 días todo incluido. Desde $4,900 USD incluye ceremonias, alojamiento de lujo y prácticas de bienestar.";
+const pageTitle = "Precios - Retiro de 7 Días Todo Incluido en Iquitos | Casa del Jaguar";
+const pageDescription = "Experimenta una transformación profunda con nuestro retiro de medicina ancestral de 7 días todo incluido en la ciudad de Iquitos. Desde $2,800 USD incluye 4 ceremonias, alojamiento privado, 2 excursiones amazónicas y prácticas de bienestar.";
 const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina ancestral precio, retiro 7 días Iquitos, reservar retiro espiritual";
 ---
 
@@ -35,7 +37,7 @@ const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina 
       </h1>
       
       <p class="scroll-animate text-xl md:text-[19px] text-white mb-12 max-w-4xl mx-auto font-gotham leading-relaxed">
-        Una inversión en tu transformación personal que incluye ceremonias de medicina ancestral, prácticas de bienestar y alojamiento de lujo en el corazón de la Amazonía.
+        Una inversión en tu transformación personal que incluye ceremonias de medicina ancestral, prácticas de bienestar, alojamiento privado en la ciudad de Iquitos y excursiones guiadas a la Amazonía.
       </p>
     </div>
   </section>
@@ -407,6 +409,10 @@ const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina 
     </section>
 
     <Services />
+
+    <ValueOffer />
+
+    <LocationClarity />
 
     <TestimonialVideos 
       title="Transforma tu Vida en Casa del Jaguar"

@@ -197,7 +197,7 @@ export const POST: APIRoute = async ({ request }) => {
     try {
       const notificationEmail = await resend.emails.send({
         from: 'Casa del Jaguar <noreply@casadeljaguariquitos.com>',
-        to: ['ayahuascamother@gmail.com'], // Replace with your business email
+        to: ['info@casadeljaguariquitos.com'],
         subject: '🏛️ Nueva Solicitud de Reserva - Casa del Jaguar',
         html: `
         <div style="font-family: 'Helvetica Neue', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f8f9fa; padding: 20px;">
@@ -329,7 +329,7 @@ export const POST: APIRoute = async ({ request }) => {
               <a href="tel:${fullPhone}" style="background: #D99D55; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 600; display: inline-block; margin-right: 10px;">
                 📞 Llamanos
               </a>
-              <a href="mailto:info@casadeljaguar.com" style="background: #2D3748; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 600; display: inline-block;">
+              <a href="mailto:info@casadeljaguariquitos.com" style="background: #2D3748; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 600; display: inline-block;">
                 📧 Email
               </a>
             </div>

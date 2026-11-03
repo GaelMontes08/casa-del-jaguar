@@ -6,6 +6,8 @@ import { useTranslations } from '@/i18n/utils';
 import GoogleReviews from '@/components/GoogleReviews.astro';
 import Services from '@/components/Services.astro';
 import TestimonialVideos from '@/components/TestimonialVideos.astro';
+import ValueOffer from '@/components/ValueOffer.astro';
+import LocationClarity from '@/components/LocationClarity.astro';
 
 export async function getStaticPaths() {
   return [
@@ -20,12 +22,12 @@ const { lang } = Astro.params as { lang: "en" | "es" };
 const t = useTranslations(lang);
 
 const pageTitle = lang === 'en' 
-  ? "Pricing - 7-Day All-Inclusive Retreat | Casa del Jaguar"
-  : "Precios - Retiro de 7 Días Todo Incluido | Casa del Jaguar";
+  ? "Pricing - 7-Day All-Inclusive Retreat in Iquitos | Casa del Jaguar"
+  : "Precios - Retiro de 7 Días Todo Incluido en Iquitos | Casa del Jaguar";
 
 const pageDescription = lang === 'en'
-  ? "Experience deep transformation with our 7-day all-inclusive ancestral medicine retreat. Starting at $4,900 USD including ceremonies, luxury accommodation and wellness practices."
-  : "Experimenta una transformación profunda con nuestro retiro de medicina ancestral de 7 días todo incluido. Desde $4,900 USD incluye ceremonias, alojamiento de lujo y prácticas de bienestar.";
+  ? "Experience deep transformation with our 7-day all-inclusive ancestral medicine retreat in the city of Iquitos. From $2,800 USD including 4 ceremonies, private accommodation, 2 Amazon excursions and wellness practices."
+  : "Experimenta una transformación profunda con nuestro retiro de medicina ancestral de 7 días todo incluido en la ciudad de Iquitos. Desde $2,800 USD incluye 4 ceremonias, alojamiento privado, 2 excursiones amazónicas y prácticas de bienestar.";
 
 const pageKeywords = lang === 'en'
   ? "Casa del Jaguar pricing, ayahuasca retreat cost, ancestral medicine price, 7-day retreat Iquitos, book spiritual retreat"
@@ -56,8 +58,8 @@ const pageKeywords = lang === 'en'
       
       <p class="scroll-animate text-xl md:text-[19px] text-white mb-12 max-w-4xl mx-auto font-gotham leading-relaxed">
         {lang === 'en' 
-          ? "An investment in your personal transformation that includes ancestral medicine ceremonies, wellness practices, and luxury accommodation in the heart of the Amazon."
-          : "Una inversión en tu transformación personal que incluye ceremonias de medicina ancestral, prácticas de bienestar y alojamiento de lujo en el corazón de la Amazonía."
+          ? "An investment in your personal transformation that includes ancestral medicine ceremonies, wellness practices, private accommodation in the city of Iquitos and guided Amazon excursions."
+          : "Una inversión en tu transformación personal que incluye ceremonias de medicina ancestral, prácticas de bienestar, alojamiento privado en la ciudad de Iquitos y excursiones guiadas a la Amazonía."
         }
       </p>
     </div>
@@ -504,6 +506,10 @@ const pageKeywords = lang === 'en'
     </section>
 
     <Services />
+
+    <ValueOffer />
+
+    <LocationClarity />
 
     <TestimonialVideos 
       title={lang === 'en' ? "Transform your Life at Casa del Jaguar" : "Transforma tu Vida en Casa del Jaguar"}

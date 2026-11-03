@@ -19,8 +19,8 @@ export const ui = {
     'nav.contact': 'Contacto',
     
     // Homepage
-    'home.title': 'Casa del Jaguar - Ceremonias de Ayahuasca',
-    'home.subtitle': 'Centro de medicina tradicional especializado en ceremonias de ayahuasca para sanación y crecimiento espiritual guiado por maestros experimentados.',
+    'home.title': 'Retiro de Ayahuasca en Iquitos, Perú | Casa del Jaguar',
+    'home.subtitle': 'Retiro de ayahuasca de 7 días y 6 noches todo incluido en la ciudad de Iquitos. 4 ceremonias guiadas por el Maestro Denis Montes, alojamiento privado, excursiones amazónicas e integración.',
     'home.cta.contact': 'Contactar',
     'home.cta.learn': 'Conocer más',
     'home.services.title': 'Nuestros Servicios',
@@ -30,6 +30,8 @@ export const ui = {
     'home.services.retreats.desc': 'Programas intensivos de múltiples días para profundizar en el proceso de sanación.',
     'home.services.support.title': 'Acompañamiento',
     'home.services.support.desc': 'Sesiones de integración y apoyo personalizado antes y después de las ceremonias.',
+    'home.services.excursions.title': 'Excursiones Amazónicas',
+    'home.services.excursions.desc': 'Salidas guiadas desde Iquitos en tus días de integración: río, comunidades y plantas medicinales.',
     
     // About page
     'about.title': 'Sobre Nosotros - Casa del Jaguar',
@@ -62,6 +64,7 @@ export const ui = {
     'contact.form.subject.ceremony': 'Información sobre ceremonias',
     'contact.form.subject.retreat': 'Retiros espirituales',
     'contact.form.subject.integration': 'Sesiones de integración',
+    'contact.form.subject.excursions': 'Excursiones amazónicas',
     'contact.form.subject.other': 'Otro',
     'contact.form.message': 'Mensaje',
     'contact.form.message.placeholder': 'Cuéntanos sobre tu interés en nuestros servicios...',
@@ -69,7 +72,7 @@ export const ui = {
     'contact.info.title': 'Información de contacto',
     'contact.info.hours': 'Horarios de atención',
     'contact.info.location': 'Ubicación',
-    'contact.info.location.desc': 'Costa Rica\\nInformación detallada al contactar',
+    'contact.info.location.desc': 'Ciudad de Iquitos, Loreto, Perú<br />Zona urbana, a minutos del aeropuerto. Dirección exacta al confirmar tu reserva.',
     'contact.hours.weekdays': 'Lunes a Viernes: 9:00 AM - 6:00 PM',
     'contact.hours.saturday': 'Sábados: 10:00 AM - 4:00 PM',
     'contact.hours.sunday': 'Domingos: Cerrado',
@@ -105,8 +108,8 @@ export const ui = {
     'nav.contact': 'Contact',
     
     // Homepage
-    'home.title': 'Casa del Jaguar - Ayahuasca Ceremonies',
-    'home.subtitle': 'Traditional medicine center specialized in ayahuasca ceremonies for healing and spiritual growth guided by experienced masters.',
+    'home.title': 'Ayahuasca Retreat in Iquitos, Peru | Casa del Jaguar',
+    'home.subtitle': '7-day, 6-night all-inclusive ayahuasca retreat in the city of Iquitos. 4 ceremonies guided by Master Denis Montes, private accommodation, Amazon excursions and integration.',
     'home.cta.contact': 'Contact Us',
     'home.cta.learn': 'Learn More',
     'home.services.title': 'Our Services',
@@ -116,6 +119,8 @@ export const ui = {
     'home.services.retreats.desc': 'Intensive multi-day programs to deepen the healing process.',
     'home.services.support.title': 'Support',
     'home.services.support.desc': 'Integration sessions and personalized support before and after ceremonies.',
+    'home.services.excursions.title': 'Amazon Excursions',
+    'home.services.excursions.desc': 'Guided outings from Iquitos on your integration days: river, communities and medicinal plants.',
     
     // About page
     'about.title': 'About Us - Casa del Jaguar',
@@ -146,6 +151,7 @@ export const ui = {
     'contact.form.subject.ceremony': 'Ceremony information',
     'contact.form.subject.retreat': 'Spiritual retreats',
     'contact.form.subject.integration': 'Integration sessions',
+    'contact.form.subject.excursions': 'Amazon excursions',
     'contact.form.subject.other': 'Other',
     'contact.form.message': 'Message',
     'contact.form.message.placeholder': 'Tell us about your interest in our services...',
@@ -153,7 +159,7 @@ export const ui = {
     'contact.info.title': 'Contact information',
     'contact.info.hours': 'Office hours',
     'contact.info.location': 'Location',
-    'contact.info.location.desc': 'Costa Rica\\nDetailed information upon contact',
+    'contact.info.location.desc': 'City of Iquitos, Loreto, Peru<br />Urban area, minutes from the airport. Exact address shared upon booking confirmation.',
     'contact.hours.weekdays': 'Monday to Friday: 9:00 AM - 6:00 PM',
     'contact.hours.saturday': 'Saturday: 10:00 AM - 4:00 PM',
     'contact.hours.sunday': 'Sunday: Closed',

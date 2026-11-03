@@ -1,0 +1,189 @@
+---
+import { getLangFromUrl, translatePath } from '@/i18n/utils';
+
+export interface Props {
+  className?: string;
+}
+
+const { className = '' } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  es: {
+    eyebrow: 'Retiro de 7 días y 6 noches todo incluido en Iquitos',
+    title: 'Todo lo que recibes por <span class="text-brand-gold">una sola inversión</span>',
+    subtitle:
+      'No vendemos una ceremonia suelta. Diseñamos una experiencia completa de preparación, ceremonia e integración para que el cambio que vives aquí se quede contigo cuando vuelvas a casa.',
+    stackTitle: 'Tu experiencia incluye',
+    stack: [
+      '4 ceremonias de Ayahuasca guiadas por el Maestro Denis Montes',
+      '6 noches en habitación privada con A/C y baño privado, en la ciudad de Iquitos',
+      '21 comidas orgánicas alineadas con la dieta ceremonial',
+      'Evaluación médica previa y acompañamiento durante cada ceremonia',
+      '3 sesiones de yoga y meditación guiada',
+      'Masaje de sanación y baño de florecimiento',
+      '2 excursiones amazónicas guiadas en tus días de integración',
+      'Traslados aeropuerto – Casa del Jaguar – aeropuerto',
+    ],
+    bonusTitle: 'Bonos incluidos sin costo',
+    bonuses: [
+      'Sesión informativa 1 a 1 con nuestro equipo antes de reservar',
+      'Guía digital de preparación, dieta y medicamentos',
+      '3 sesiones de integración online después del retiro',
+      'Acceso a la comunidad privada de participantes de Casa del Jaguar',
+    ],
+    totalLabel: 'Valor total de la experiencia',
+    totalValue: '$4,040 USD',
+    priceLabel: 'Tu inversión',
+    price: 'Desde $2,800 USD',
+    priceNote: 'Habitaciones premium y suites con costo adicional. Planes de pago disponibles.',
+    guaranteesTitle: 'Reserva con tranquilidad',
+    guarantees: [
+      {
+        title: 'Sin compromiso',
+        desc: 'Tu primera conversación con nosotros es gratuita. Si sientes que no es tu momento, no pasa nada.',
+      },
+      {
+        title: 'Honestidad médica',
+        desc: 'Si en la evaluación previa vemos que la ceremonia no es segura para ti, te lo diremos y te devolvemos tu reserva.',
+      },
+      {
+        title: 'Fecha flexible',
+        desc: 'Puedes transferir tu reserva a otra fecha sin costo adicional si tus planes cambian.',
+      },
+    ],
+    scarcity: 'Grupos reducidos para una atención realmente personalizada. Pregunta por el descuento del mes al reservar.',
+    ctaPrimary: 'Reserva tu sesión informativa gratuita',
+    ctaSecondary: 'Escríbenos por WhatsApp',
+  },
+  en: {
+    eyebrow: '7-day, 6-night all-inclusive retreat in Iquitos',
+    title: 'Everything you receive for <span class="text-brand-gold">one single investment</span>',
+    subtitle:
+      'We do not sell a one-off ceremony. We designed a complete experience of preparation, ceremony and integration so that the change you live here stays with you when you return home.',
+    stackTitle: 'Your experience includes',
+    stack: [
+      '4 Ayahuasca ceremonies guided by Master Denis Montes',
+      '6 nights in a private room with A/C and private bathroom, in the city of Iquitos',
+      '21 organic meals aligned with the ceremonial diet',
+      'Pre-retreat medical screening and support during every ceremony',
+      '3 yoga and guided meditation sessions',
+      'Healing massage and flower bath',
+      '2 guided Amazon excursions on your integration days',
+      'Airport – Casa del Jaguar – airport transfers',
+    ],
+    bonusTitle: 'Bonuses included at no cost',
+    bonuses: [
+      '1-on-1 information session with our team before you book',
+      'Digital preparation, diet and medication guide',
+      '3 online integration sessions after the retreat',
+      'Access to the private Casa del Jaguar participants community',
+    ],
+    totalLabel: 'Total value of the experience',
+    totalValue: '$4,040 USD',
+    priceLabel: 'Your investment',
+    price: 'From $2,800 USD',
+    priceNote: 'Premium rooms and suites at an additional cost. Payment plans available.',
+    guaranteesTitle: 'Book with peace of mind',
+    guarantees: [
+      {
+        title: 'No commitment',
+        desc: 'Your first conversation with us is free. If you feel this is not your moment, that is completely fine.',
+      },
+      {
+        title: 'Medical honesty',
+        desc: 'If our screening shows the ceremony is not safe for you, we will tell you and refund your booking.',
+      },
+      {
+        title: 'Flexible dates',
+        desc: 'You can transfer your booking to another date at no additional cost if your plans change.',
+      },
+    ],
+    scarcity: 'Small groups for truly personalized care. Ask about this month’s discount when you book.',
+    ctaPrimary: 'Book your free information session',
+    ctaSecondary: 'Message us on WhatsApp',
+  },
+};
+
+const c = content[lang] || content.es;
+const whatsappText = encodeURIComponent(
+  lang === 'en'
+    ? 'Hello, I would like information about the 7-day retreat at Casa del Jaguar.'
+    : 'Hola, quisiera información sobre el retiro de 7 días en Casa del Jaguar.'
+);
+---
+
+<section class={`py-20 bg-gradient-to-b from-[#fdf6e7] to-white ${className}`}>
+  <div class="max-w-6xl mx-auto px-4 md:px-8">
+    <div class="text-center max-w-4xl mx-auto mb-14 scroll-animate">
+      <p class="text-sm uppercase tracking-widest text-brand-gold font-gotham font-bold mb-4">{c.eyebrow}</p>
+      <h2 class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia leading-tight mb-6" set:html={c.title}></h2>
+      <p class="text-lg md:text-[19px] text-brand-dark font-gotham leading-relaxed">{c.subtitle}</p>
+    </div>
+
+    <div class="grid lg:grid-cols-5 gap-10 items-start">
+      <div class="lg:col-span-3 space-y-8">
+        <div class="scroll-animate bg-white rounded-2xl shadow-xl border border-[#F2E8D5] p-8">
+          <h3 class="text-2xl font-bold text-brand-dark font-georgia mb-6">{c.stackTitle}</h3>
+          <ul class="divide-y divide-[#F2E8D5]">
+            {c.stack.map((item) => (
+              <li class="flex items-start gap-3 py-3 text-brand-dark font-gotham text-[15px] leading-relaxed">
+                <svg class="w-5 h-5 mt-0.5 shrink-0 text-brand-gold" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="scroll-animate bg-brand-dark text-white rounded-2xl shadow-xl p-8">
+          <h3 class="text-2xl font-bold font-georgia mb-6 text-[#F2CF8D]">{c.bonusTitle}</h3>
+          <ul class="divide-y divide-white/10">
+            {c.bonuses.map((item) => (
+              <li class="flex items-start gap-3 py-3 font-gotham text-[15px] leading-relaxed">
+                <svg class="w-5 h-5 mt-0.5 shrink-0 text-[#F2CF8D]" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2 lg:sticky lg:top-24 space-y-6">
+        <div class="scroll-animate bg-white rounded-2xl shadow-2xl border-2 border-brand-gold p-8 text-center">
+          <p class="text-sm uppercase tracking-widest text-brand-dark/60 font-gotham font-bold">{c.totalLabel}</p>
+          <p class="text-2xl font-bold text-brand-dark/50 font-georgia line-through mt-1">{c.totalValue}</p>
+          <p class="text-sm uppercase tracking-widest text-brand-gold font-gotham font-bold mt-6">{c.priceLabel}</p>
+          <p class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia mt-1">{c.price}</p>
+          <p class="text-xs text-brand-dark/60 font-gotham mt-3">{c.priceNote}</p>
+
+          <div class="mt-8 space-y-3">
+            <a href={translatePath('/booking', lang)} class="block w-full bg-brand-dark text-white px-6 py-4 rounded-full font-bold font-gotham uppercase tracking-wide hover:bg-brand-gold hover:text-brand-dark transition-all duration-300">
+              {c.ctaPrimary}
+            </a>
+            <a href={`https://wa.me/51917811803?text=${whatsappText}`} target="_blank" rel="noopener noreferrer" class="block w-full bg-[#25D366] text-white px-6 py-4 rounded-full font-bold font-gotham uppercase tracking-wide hover:opacity-90 transition-all duration-300">
+              {c.ctaSecondary}
+            </a>
+          </div>
+
+          <p class="text-sm text-brand-dark/70 font-gotham mt-6 leading-relaxed">{c.scarcity}</p>
+        </div>
+
+        <div class="scroll-animate bg-[#fffcf6] border border-[#F2E8D5] rounded-2xl p-6">
+          <h3 class="text-xl font-bold text-brand-dark font-georgia mb-4">{c.guaranteesTitle}</h3>
+          <ul class="space-y-4">
+            {c.guarantees.map((g) => (
+              <li>
+                <p class="font-bold text-brand-dark font-gotham text-[15px]">{g.title}</p>
+                <p class="text-brand-dark/75 font-gotham text-sm leading-relaxed">{g.desc}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

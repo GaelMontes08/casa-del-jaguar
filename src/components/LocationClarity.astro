@@ -1,0 +1,117 @@
+---
+import { getLangFromUrl, translatePath } from '@/i18n/utils';
+
+export interface Props {
+  className?: string;
+  compact?: boolean;
+}
+
+const { className = '', compact = false } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  es: {
+    eyebrow: 'Transparencia sobre nuestra ubicación',
+    title: 'Ceremonias en la <span class="text-brand-gold">ciudad de Iquitos</span>, no en medio de la selva',
+    intro:
+      'Casa del Jaguar está en una zona urbana de Iquitos, la capital de la Amazonía peruana. Nuestras ceremonias se realizan en nuestra maloca dentro de la ciudad, no en un lodge remoto al que se llega tras horas de bote. Lo decimos con claridad porque creemos que es una ventaja real para tu seguridad y tu comodidad.',
+    benefits: [
+      {
+        title: 'Atención médica a minutos',
+        desc: 'Clínicas y hospitales de Iquitos a pocos minutos del centro, además de nuestra evaluación médica previa.',
+      },
+      {
+        title: 'Llegada sencilla',
+        desc: 'Te recogemos en el aeropuerto de Iquitos y en pocos minutos estás en Casa del Jaguar. Sin travesías largas.',
+      },
+      {
+        title: 'Comodidades estables',
+        desc: 'Electricidad, agua purificada, aire acondicionado y wifi Starlink durante toda tu estadía.',
+      },
+      {
+        title: 'Libertad y contacto',
+        desc: 'Puedes salir a caminar, hablar con tu familia y moverte con libertad en los días sin ceremonia.',
+      },
+      {
+        title: 'Menos exposición',
+        desc: 'Menor exposición a mosquitos, humedad extrema y condiciones impredecibles del interior de la selva.',
+      },
+      {
+        title: 'La selva, cuando tú lo elijas',
+        desc: 'Vive el Amazonas con nuestras excursiones guiadas en tus días de integración, sin sacrificar descanso ni seguridad.',
+      },
+    ],
+    ctaPrimary: 'Ver excursiones amazónicas',
+    ctaSecondary: 'Conoce el centro ceremonial',
+  },
+  en: {
+    eyebrow: 'Transparency about our location',
+    title: 'Ceremonies in the <span class="text-brand-gold">city of Iquitos</span>, not deep in the jungle',
+    intro:
+      'Casa del Jaguar is located in an urban area of Iquitos, the capital of the Peruvian Amazon. Our ceremonies take place in our maloca within the city, not at a remote lodge reached after hours by boat. We say this clearly because we believe it is a real advantage for your safety and comfort.',
+    benefits: [
+      {
+        title: 'Medical care minutes away',
+        desc: 'Iquitos clinics and hospitals are a short drive from the center, on top of our pre-retreat medical screening.',
+      },
+      {
+        title: 'Easy arrival',
+        desc: 'We pick you up at Iquitos airport and you are at Casa del Jaguar within minutes. No long river crossings.',
+      },
+      {
+        title: 'Reliable comforts',
+        desc: 'Electricity, purified water, air conditioning and Starlink wifi throughout your stay.',
+      },
+      {
+        title: 'Freedom and connection',
+        desc: 'Walk around, call your family and move freely on non-ceremony days.',
+      },
+      {
+        title: 'Less exposure',
+        desc: 'Lower exposure to mosquitoes, extreme humidity and the unpredictable conditions of the deep jungle.',
+      },
+      {
+        title: 'The jungle, on your terms',
+        desc: 'Experience the Amazon through our guided excursions on integration days, without sacrificing rest or safety.',
+      },
+    ],
+    ctaPrimary: 'See Amazon excursions',
+    ctaSecondary: 'Explore the ceremonial center',
+  },
+};
+
+const c = content[lang] || content.es;
+---
+
+<section class={`py-20 bg-white ${className}`}>
+  <div class="max-w-6xl mx-auto px-4 md:px-8">
+    <div class="text-center max-w-4xl mx-auto mb-14 scroll-animate">
+      <p class="text-sm uppercase tracking-widest text-brand-gold font-gotham font-bold mb-4">{c.eyebrow}</p>
+      <h2 class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia leading-tight mb-6" set:html={c.title}></h2>
+      <p class="text-lg md:text-[19px] text-brand-dark font-gotham leading-relaxed">{c.intro}</p>
+    </div>
+
+    <div class={`grid grid-cols-1 sm:grid-cols-2 ${compact ? 'lg:grid-cols-3' : 'lg:grid-cols-3'} gap-6`}>
+      {c.benefits.map((b) => (
+        <div class="scroll-animate bg-[#fffcf6] border border-[#F2E8D5] rounded-2xl p-6 h-full">
+          <div class="w-10 h-10 rounded-full bg-brand-gold/20 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-brand-dark" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-brand-dark font-georgia mb-2">{b.title}</h3>
+          <p class="text-brand-dark font-gotham text-[15px] leading-relaxed opacity-80">{b.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center mt-12 scroll-animate">
+      <a href={translatePath('/excursions', lang)} class="inline-block bg-brand-dark text-white px-8 py-4 rounded-full font-bold font-gotham uppercase tracking-wide hover:bg-brand-gold hover:text-brand-dark transition-all duration-300 text-center">
+        {c.ctaPrimary}
+      </a>
+      <a href={translatePath('/resort', lang)} class="inline-block bg-white border-2 border-brand-dark text-brand-dark px-8 py-4 rounded-full font-bold font-gotham uppercase tracking-wide hover:bg-brand-dark hover:text-white transition-all duration-300 text-center">
+        {c.ctaSecondary}
+      </a>
+    </div>
+  </div>
+</section>

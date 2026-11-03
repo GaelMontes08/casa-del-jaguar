@@ -6,13 +6,15 @@ import GoogleReviews from '@/components/GoogleReviews.astro';
 import { useTranslations } from '@/i18n/utils';
 import BookingForm from '@/components/BookingForm.astro';
 import Services from '@/components/Services.astro';
+import LocationClarity from '@/components/LocationClarity.astro';
+import ValueOffer from '@/components/ValueOffer.astro';
 
 export const prerender = true;
 
 const t = useTranslations('es');
 ---
 
-<Layout title={t('home.title')} description={t('home.subtitle')} keywords="medicina ancestral, ayahuasca, retiro, Amazonía, sanación, transformación, Casa del Jaguar">
+<Layout title={t('home.title')} description={t('home.subtitle')} keywords="medicina ancestral, ayahuasca, retiro, Iquitos, Amazonía, sanación, transformación, Casa del Jaguar, ceremonias ayahuasca Iquitos">
   
   <Hero />
   <main>
@@ -28,7 +30,7 @@ const t = useTranslations('es');
           </p>
           
           <p class="text-[19px] md:text-md text-brand-dark font-gotham leading-relaxed mb-12">
-            En el corazón de la selva amazónica, ofrecemos un espacio sagrado donde las plantas maestras, ceremonias guiadas por nuestro maestro experimentado, gastronomía consciente y alojamiento exclusivo se combinan en un programa integral de transformación. Aquí, cada respiración te conecta con tu verdadera esencia y cada experiencia te acerca a la versión más auténtica de ti mismo.
+            En la ciudad de Iquitos, puerta de entrada a la Amazonía peruana, ofrecemos un espacio sagrado donde las plantas maestras, ceremonias guiadas por nuestro maestro experimentado, gastronomía consciente y alojamiento exclusivo se combinan en un programa integral de transformación. Con la seguridad de la ciudad y la selva a un paso, cada experiencia te acerca a la versión más auténtica de ti mismo.
           </p>
         </div>
         
@@ -135,12 +137,12 @@ const t = useTranslations('es');
         
         <div class="w-full md:w-1/2 space-y-8 order-1 md:order-2">
           <h2 class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia leading-tight">
-            Un <span class="text-brand-gold">santuario</span> en el corazón de la <span class="text-brand-gold">Amazonía</span>
+            Un <span class="text-brand-gold">santuario</span> urbano en <span class="text-brand-gold">Iquitos</span>
           </h2>
           
           <div class="text-lg md:text-[19px] text-brand-dark font-gotham leading-relaxed space-y-4">
             <p>
-              Nuestro resort de lujo está diseñado como un <strong>santuario sagrado</strong> donde la naturaleza y la comodidad se encuentran en perfecta armonía, creando el ambiente ideal para tu transformación personal.
+              Nuestro centro está diseñado como un <strong>santuario sagrado</strong> dentro de la ciudad de Iquitos, donde la comodidad, la seguridad y la tradición se encuentran para crear el ambiente ideal para tu transformación personal.
             </p>
             
             <p>
@@ -148,7 +150,7 @@ const t = useTranslations('es');
             </p>
             
             <p class="text-base opacity-70">
-              Alojamiento exclusivo, gastronomía consciente y espacios diseñados para la contemplación y el crecimiento personal.
+              Alojamiento exclusivo, gastronomía consciente, atención médica a minutos y excursiones opcionales a la selva en tus días de integración.
             </p>
           </div>
           
@@ -162,6 +164,10 @@ const t = useTranslations('es');
     </section>
 
     <Services showCta={true} />
+
+    <LocationClarity />
+
+    <ValueOffer />
 
     <section class="scroll-animate">
         <ImageSlider 

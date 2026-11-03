@@ -24,13 +24,16 @@ const t = useTranslations(lang);
   <div class="relative z-20 flex items-center justify-center h-full">
     <div class="text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-georgia leading-tight">
-        {lang === 'es' ? 'Ábrete a los milagros' : 'Awaken to miracles'}
+        {lang === 'es' 
+          ? <>Retiro de Ayahuasca en Iquitos: <span class="text-brand-gold">7 días para sanar y renacer</span></>
+          : <>Ayahuasca Retreat in Iquitos: <span class="text-brand-gold">7 Days to Heal and Be Reborn</span></>
+        }
       </h1>
 
       <p class="text-lg md:text-xl lg:text-2xl mb-8 font-gotham leading-relaxed opacity-90">
         {lang === 'es' 
-          ? 'La Casa del Jaguar es un exclusivo retiro de lujo con todo incluido de medicina ancestral' 
-          : 'Casa del Jaguar is a leading all-inclusive luxury plant medicine retreat'
+          ? 'Ábrete a los milagros. Casa del Jaguar es un retiro de medicina ancestral todo incluido, guiado por el Maestro Denis Montes, con la seguridad de la ciudad y la Amazonía a un paso.' 
+          : 'Awaken to miracles. Casa del Jaguar is an all-inclusive plant medicine retreat guided by Master Denis Montes, with the safety of the city and the Amazon one step away.'
         }
       </p>
 

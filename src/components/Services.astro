@@ -13,14 +13,14 @@ const { className = "", showCta = true } = Astro.props;
 
 const servicesContent = {
   es: {
-    title: 'Tu estadía de <span class="text-brand-gold">7 noches</span> incluye',
+    title: 'Tu estadía de <span class="text-brand-gold">7 días y 6 noches</span> incluye',
     services: [
       {
         number: '4',
         title: 'Ceremonias de Ayahuasca'
       },
       {
-        number: '7',
+        number: '6',
         title: 'Noches en Alojamiento de Lujo'
       },
       {
@@ -42,20 +42,24 @@ const servicesContent = {
       {
         number: '3',
         title: 'Sesiones de Yoga'
+      },
+      {
+        number: '2',
+        title: 'Excursiones Amazónicas'
       }
     ],
     ctaButton: 'Comienza tu Viaje',
     ctaLink: '/casa-del-jaguar-way'
   },
   en: {
-    title: 'Your <span class="text-brand-gold">7-night</span> stay includes',
+    title: 'Your <span class="text-brand-gold">7-day, 6-night</span> stay includes',
     services: [
       {
         number: '4',
         title: 'Ayahuasca Ceremonies'
       },
       {
-        number: '7',
+        number: '6',
         title: 'Nights in Luxury Accommodation'
       },
       {
@@ -77,6 +81,10 @@ const servicesContent = {
       {
         number: '3',
         title: 'Yoga Sessions'
+      },
+      {
+        number: '2',
+        title: 'Amazon Excursions'
       }
     ],
     ctaButton: 'Begin Your Journey',
@@ -126,7 +134,7 @@ const content = servicesContent[lang] || servicesContent.es;
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 max-w-4xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
       <div class="scroll-animate flex flex-col items-center space-y-4">
         <div class="w-15 h-15 bg-brand-cream rounded-full flex items-center justify-center mb-2">
           <svg class="w-[160px] h-[160px] text-black" xmlns="http://www.w3.org/2000/svg" data-name="massage" viewBox="0 0 24 24" fill="currentColor"><path d="M8.5 7C9.878 7 11 5.878 11 4.5 11 3.284 9.245.995 8.893.548L8.5.05l-.393.498C7.755.995 6 3.283 6 4.5 6 5.878 7.122 7 8.5 7Zm0-5.312C9.217 2.676 10 3.96 10 4.5 10 5.327 9.327 6 8.5 6S7 5.327 7 4.5c0-.54.783-1.824 1.5-2.812ZM20.5 17c-.862 0-1.691.316-2.333.892l.667.745A2.492 2.492 0 0 1 20.501 18c1.378 0 2.5 1.122 2.5 2.5s-1.122 2.5-2.5 2.5h-6.5V10.5c0-1.378-1.122-2.5-2.5-2.5h-6a2.503 2.503 0 0 0-2.5 2.5V23H0v1h20.5c1.93 0 3.5-1.57 3.5-3.5S22.43 17 20.5 17ZM4 10.5C4 9.673 4.673 9 5.5 9h6c.827 0 1.5.673 1.5 1.5V23H4V10.5Z"/></svg>
@@ -150,6 +158,14 @@ const content = servicesContent[lang] || servicesContent.es;
         <div class="text-3xl font-bold text-brand-dark font-gotham">{content.services[6].number}</div>
         <p class="text-brand-dark font-gotham text-sm">{content.services[6].title}</p>
       </div>
+
+      <a href={translatePath('/excursions', lang)} class="scroll-animate flex flex-col items-center space-y-4 group">
+        <div class="w-15 h-15 bg-brand-cream rounded-full flex items-center justify-center mb-2">
+          <svg class="w-[160px] h-[160px] text-black" xmlns="http://www.w3.org/2000/svg" data-name="excursions" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0Zm0 23C5.935 23 1 18.065 1 12S5.935 1 12 1s11 4.935 11 11-4.935 11-11 11Zm5.316-16.316-7.5 3.5a.5.5 0 0 0-.242.242l-3.5 7.5a.5.5 0 0 0 .664.664l7.5-3.5a.5.5 0 0 0 .242-.242l3.5-7.5a.5.5 0 0 0-.664-.664ZM13.59 13.59l-5.72 2.67 2.67-5.72 5.72-2.67-2.67 5.72ZM12 10.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/></svg>
+        </div>
+        <div class="text-3xl font-bold text-brand-dark font-gotham">{content.services[7].number}</div>
+        <p class="text-brand-dark font-gotham text-sm group-hover:text-brand-gold transition-colors">{content.services[7].title}</p>
+      </a>
     </div>
 
     {showCta && (

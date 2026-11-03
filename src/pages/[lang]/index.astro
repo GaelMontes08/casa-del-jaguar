@@ -6,6 +6,8 @@ import ImageSlider from '@/components/ImageSlider.astro';
 import GoogleReviews from '@/components/GoogleReviews.astro';
 import BookingForm from '@/components/BookingForm.astro';
 import Services from '@/components/Services.astro';
+import LocationClarity from '@/components/LocationClarity.astro';
+import ValueOffer from '@/components/ValueOffer.astro';
 
 export { getStaticPaths };
 export const prerender = true;
@@ -14,7 +16,7 @@ const { lang } = Astro.params;
 const t = useTranslations(lang as 'es' | 'en');
 ---
 
-<Layout title={t('home.title')} description={t('home.subtitle')} keywords={"ayahuasca, retreat, casa del jaguar, amazon, plant medicine, healing, transformation"}>
+<Layout title={t('home.title')} description={t('home.subtitle')} keywords={"ayahuasca, retreat, casa del jaguar, iquitos, amazon, plant medicine, healing, transformation, ayahuasca ceremony iquitos"}>
   <Hero />
   <main>
     <section class="py-20 bg-gradient-to-b from-brand-cream to-white">
@@ -27,7 +29,7 @@ const t = useTranslations(lang as 'es' | 'en');
             Casa del Jaguar is the #1 all-inclusive luxury retreat specializing in ancestral plant medicine for personal growth, deep transformation, and soul healing.
           </p>
           <p class="text-[19px] md:text-md text-brand-dark font-gotham leading-relaxed mb-12">
-            In the heart of the Amazon rainforest, we offer a sacred space where master plants, ceremonies guided by experienced maestros, mindful cuisine, and exclusive accommodations come together in a holistic transformation program. Here, every breath reconnects you with your true essence and every experience brings you closer to your most authentic self.
+            In the city of Iquitos, gateway to the Peruvian Amazon, we offer a sacred space where master plants, ceremonies guided by experienced maestros, mindful cuisine, and exclusive accommodations come together in a holistic transformation program. With the safety of the city and the jungle one step away, every experience brings you closer to your most authentic self.
           </p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20 scroll-animate">
@@ -131,12 +133,12 @@ const t = useTranslations(lang as 'es' | 'en');
         
         <div class="w-full md:w-1/2 space-y-8 order-1 md:order-2">
           <h2 class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia leading-tight">
-            A <span class="text-brand-gold">sanctuary</span> in the heart of the <span class="text-brand-gold">Amazon</span>
+            An urban <span class="text-brand-gold">sanctuary</span> in <span class="text-brand-gold">Iquitos</span>
           </h2>
           
           <div class="text-lg md:text-xl text-brand-dark font-gotham leading-relaxed space-y-4">
             <p>
-              Our luxury resort is designed as a <strong>sacred sanctuary</strong> where nature and comfort meet in perfect harmony, creating the ideal environment for your personal transformation.
+              Our center is designed as a <strong>sacred sanctuary</strong> within the city of Iquitos, where comfort, safety and tradition meet to create the ideal environment for your personal transformation.
             </p>
             
             <p>
@@ -144,7 +146,7 @@ const t = useTranslations(lang as 'es' | 'en');
             </p>
             
             <p>
-              Surrounded by the lush Amazon rainforest, each <strong>dawn</strong> awakens with the song of tropical birds and each <strong>sunset</strong> connects you with the ancestral magic of this unique place in the world.
+              Ceremonies happen in the city, with medical care minutes away. The Amazon itself is one step away: our <strong>guided excursions</strong> on integration days let you experience the river, the communities and the medicinal plants on your own terms.
             </p>
             
             <p class="text-base opacity-70">
@@ -163,6 +165,10 @@ const t = useTranslations(lang as 'es' | 'en');
     
     <Services showCta={true}/>
     
+    <LocationClarity />
+
+    <ValueOffer />
+
     <section class="scroll-animate">
         <ImageSlider 
           images={[

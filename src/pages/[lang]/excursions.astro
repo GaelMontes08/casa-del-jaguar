@@ -1,0 +1,26 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import ExcursionsContent from '@/components/ExcursionsContent.astro';
+import { getStaticPaths } from '@/i18n/utils';
+
+export { getStaticPaths };
+export const prerender = true;
+
+const { lang } = Astro.params as { lang: 'es' | 'en' };
+
+const pageTitle = lang === 'en'
+  ? 'Amazon Excursions from Iquitos | Casa del Jaguar'
+  : 'Excursiones Amazónicas desde Iquitos | Casa del Jaguar';
+
+const pageDescription = lang === 'en'
+  ? 'Experience the jungle on your integration days. Guided excursions from Iquitos: pink dolphins, Belén market, native communities and medicinal plant trails. 2 excursions included in the retreat.'
+  : 'Vive la selva en tus días de integración. Excursiones guiadas desde Iquitos: delfines rosados, mercado de Belén, comunidades nativas y senderos de plantas medicinales. 2 excursiones incluidas en el retiro.';
+
+const pageKeywords = lang === 'en'
+  ? 'Iquitos excursions, Amazon tours Iquitos, pink dolphins Iquitos, Belén market, Bora community, Allpahuayo Mishana, ayahuasca retreat excursions, Casa del Jaguar excursions'
+  : 'excursiones Iquitos, tours Amazonas Iquitos, delfines rosados Iquitos, mercado de Belén, comunidad Bora, Allpahuayo Mishana, excursiones retiro ayahuasca, Casa del Jaguar excursiones';
+---
+
+<Layout title={pageTitle} description={pageDescription} keywords={pageKeywords}>
+  <ExcursionsContent lang={lang} />
+</Layout>
