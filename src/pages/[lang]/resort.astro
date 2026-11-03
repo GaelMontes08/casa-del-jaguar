@@ -4,6 +4,8 @@ import Separator from '@/components/Separator.astro';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
+export const prerender = true;
+
 const t = useTranslations(lang);
 
 export async function getStaticPaths() {

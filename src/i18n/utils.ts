@@ -6,9 +6,13 @@ export function getLangFromUrl(url: URL) {
   return defaultLang;
 }
 
+type TranslationMap = Record<string, string>;
+
 export function useTranslations(lang: keyof typeof ui) {
   return function t(key: keyof typeof ui[typeof defaultLang]) {
-    return (ui[lang] as any)[key] || ui[defaultLang][key];
+    const langMessages = ui[lang] as TranslationMap;
+    const defaultMessages = ui[defaultLang] as TranslationMap;
+    return langMessages[key] || defaultMessages[key];
   }
 }
 

@@ -10,6 +10,8 @@ export async function getStaticPaths() {
 }
 
 const { lang } = Astro.params as { lang: 'es' | 'en' };
+
+export const prerender = true;
 const t = useTranslations(lang);
 
 const pageTitle = lang === 'en' 

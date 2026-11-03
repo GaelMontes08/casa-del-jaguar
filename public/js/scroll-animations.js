@@ -10,7 +10,7 @@
     let ticking = false;
 
     function animateOnScroll() {
-      animatedElements.forEach((element, index) => {
+      animatedElements.forEach((element) => {
         const rect = element.getBoundingClientRect();
         const isVisible = rect.top < window.innerHeight * 0.9 && rect.bottom > 0;
         

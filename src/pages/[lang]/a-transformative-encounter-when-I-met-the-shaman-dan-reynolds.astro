@@ -1,6 +1,15 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'es' } }
+  ];
+}
+
+export const prerender = true;
+
 const article = {
   title: 'A Transformative Encounter: When I Met the Shaman Dan Reynolds',
   excerpt: 'The extraordinary story of how Maestro Denis met his teacher Dan Reynolds in 2011, a meeting orchestrated by ayahuasca visions that would change his life forever.',

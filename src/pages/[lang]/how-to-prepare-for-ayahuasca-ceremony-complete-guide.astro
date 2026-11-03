@@ -1,6 +1,15 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'es' } }
+  ];
+}
+
+export const prerender = true;
+
 const article = {
   title: 'How to Prepare for an Ayahuasca Ceremony: Complete Guide',
   excerpt: 'A detailed guide on the physical, mental, and spiritual preparation necessary before participating in an ayahuasca ceremony.',

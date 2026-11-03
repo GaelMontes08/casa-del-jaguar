@@ -2,6 +2,15 @@
 import Layout from '@/layouts/Layout.astro';
 import { useTranslations } from '@/i18n/utils';
 
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'es' } }
+  ];
+}
+
+export const prerender = true;
+
 const t = useTranslations('en');
 
 const blogPosts = [

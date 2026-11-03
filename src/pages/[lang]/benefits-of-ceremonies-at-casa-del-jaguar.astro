@@ -9,6 +9,8 @@ export function getStaticPaths() {
   ];
 }
 
+export const prerender = true;
+
 const { lang } = Astro.params as { lang: 'en' | 'es' };
 const t = useTranslations(lang);
 

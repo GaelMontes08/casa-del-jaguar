@@ -1,6 +1,15 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'es' } }
+  ];
+}
+
+export const prerender = true;
+
 const article = {
   title: 'My Awakening to the Divine: The Inaugural Encounter with Mother Ayahuasca',
   excerpt: 'The extraordinary story of Maestro Denis\'s first encounter with Mother Ayahuasca at age 16, when he worked as a tourist guide in Iquitos.',

@@ -5,6 +5,8 @@ import { useTranslations, getStaticPaths } from '@/i18n/utils';
 
 export { getStaticPaths };
 
+export const prerender = true;
+
 const { lang } = Astro.params;
 const t = useTranslations(lang as 'es' | 'en');
 
