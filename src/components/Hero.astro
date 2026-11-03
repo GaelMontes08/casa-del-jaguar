@@ -61,8 +61,8 @@ const t = useTranslations(lang);
   document.addEventListener('DOMContentLoaded', function() {
     const video = document.getElementById('hero-video') as HTMLVideoElement;
     if (video) {
-      video.play().catch(function(error: any) {
-        console.log('Video autoplay failed, trying to play manually:', error);
+      video.play().catch(function() {
+        // Autoplay is not supported in some browsers; the video remains available for manual playback.
       });
     }
   });

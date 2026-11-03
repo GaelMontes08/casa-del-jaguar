@@ -66,14 +66,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const bookingForm = document.getElementById('booking-form');
   
   if (calendar && bookingForm) {
-    calendar.addEventListener('retreatSelected', function(e) {
+    calendar.addEventListener('retreatSelected', function() {
       bookingForm.scrollIntoView({ 
         behavior: 'smooth',
         block: 'start'
       });
-      
-      const customEvent = e as CustomEvent;
-      console.log('Retreat selected:', customEvent.detail);
     });
   }
 });

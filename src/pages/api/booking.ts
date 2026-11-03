@@ -77,27 +77,16 @@ setInterval(() => {
 
 const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
 
-if (!RESEND_API_KEY) {
-  console.error('RESEND_API_KEY is not defined in environment variables');
-}
-
 const resend = RESEND_API_KEY ? new Resend(RESEND_API_KEY) : null;
 
 export const POST: APIRoute = async ({ request }) => {
-  console.log('=== BOOKING API CALLED ===');
-  console.log('Request method:', request.method);
-  console.log('Request headers:', Object.fromEntries(request.headers.entries()));
-  
   // Get client IP and check rate limit
   const clientIP = getRealIP(request);
-  console.log('Client IP:', clientIP);
   
   if (isRateLimited(clientIP)) {
     const resetTimeRemaining = getResetTimeRemaining(clientIP);
     const hoursRemaining = Math.floor(resetTimeRemaining / 3600);
     const minutesRemaining = Math.floor((resetTimeRemaining % 3600) / 60);
-    
-    console.log(`Rate limit exceeded for IP: ${clientIP}`);
     
     return new Response(JSON.stringify({
       success: false,
@@ -115,11 +104,6 @@ export const POST: APIRoute = async ({ request }) => {
       },
     });
   }
-  
-  console.log('Environment check:');
-  console.log('- RESEND_API_KEY exists:', !!import.meta.env.RESEND_API_KEY);
-  console.log('- RESEND_API_KEY preview:', import.meta.env.RESEND_API_KEY?.substring(0, 10) + '...');
-  console.log('- RESEND_AUDIENCE_ID:', import.meta.env.RESEND_AUDIENCE_ID);
   
   try {
     // Check if Resend is properly configured
@@ -205,8 +189,6 @@ export const POST: APIRoute = async ({ request }) => {
 
     const fullPhone = `${countryCode}${phone}`;
 
-    console.log('Starting email sending process...', { firstName, lastName, email, fullPhone });
-
     // Variables to store email IDs
     let notificationEmailId = null;
     let confirmationEmailId = null;
@@ -283,12 +265,9 @@ export const POST: APIRoute = async ({ request }) => {
       `,
     });
 
-    console.log('Notification email sent successfully:', notificationEmail.data);
     notificationEmailId = notificationEmail.data?.id;
     
-    } catch (emailError) {
-      console.error('Error sending notification email:', emailError);
-      console.error('Error details:', JSON.stringify(emailError, null, 2));
+    } catch {
       // Don't throw here, continue with confirmation email
     }
 
@@ -364,12 +343,9 @@ export const POST: APIRoute = async ({ request }) => {
       `,
     });
 
-    console.log('Confirmation email sent successfully:', confirmationEmail.data);
     confirmationEmailId = confirmationEmail.data?.id;
     
-    } catch (emailError) {
-      console.error('Error sending confirmation email:', emailError);
-      console.error('Error details:', JSON.stringify(emailError, null, 2));
+    } catch {
       // Don't throw here, as the notification email was successful
     }
 
@@ -382,8 +358,8 @@ export const POST: APIRoute = async ({ request }) => {
           lastName: lastName,
           audienceId: import.meta.env.RESEND_AUDIENCE_ID,
         });
-      } catch (audienceError) {
-        console.log('Note: Could not add to audience, but emails were sent successfully', audienceError);
+      } catch {
+        // Audience sync is optional; do not fail the request if it cannot be updated.
       }
     }
 
@@ -406,9 +382,7 @@ export const POST: APIRoute = async ({ request }) => {
       },
     });
 
-  } catch (error) {
-    console.error('Booking form error:', error);
-    
+  } catch {
     return new Response(JSON.stringify({
       success: false,
       error: 'Failed to send booking request. Please try again.',

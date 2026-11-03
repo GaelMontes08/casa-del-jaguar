@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY || 'placeholder');
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 // In-memory rate limiting (resets on serverless cold start, provides basic protection)
 const rateLimitMap = new Map<string, { count: number; windowStart: number }>();
@@ -189,9 +189,8 @@ export const POST: APIRoute = async ({ request }) => {
           lastName: name.split(' ').slice(1).join(' ') || '',
           audienceId: process.env.RESEND_AUDIENCE_ID,
         });
-      } catch (audienceError) {
-        // Log but don't fail the entire request if audience addition fails
-        console.warn('Failed to add contact to audience:', audienceError);
+      } catch {
+        // Audience sync is optional; do not fail the request if it cannot be updated.
       }
     }
 
@@ -202,8 +201,8 @@ export const POST: APIRoute = async ({ request }) => {
     if (audiencePromise) {
       try {
         await audiencePromise;
-      } catch (audienceError) {
-        console.warn('Failed to add contact to audience:', audienceError);
+      } catch {
+        // Audience sync is optional; do not fail the request if it cannot be updated.
       }
     }
 
@@ -218,9 +217,7 @@ export const POST: APIRoute = async ({ request }) => {
       }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
-  } catch (error) {
-    console.error('Error processing contact form:', error);
-    
+  } catch {
     const errorMessage = 'Failed to send message. Please try again later.';
     
     return new Response(
