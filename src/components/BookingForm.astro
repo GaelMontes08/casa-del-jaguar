@@ -1,4 +1,6 @@
 ---
+import { getLangFromUrl } from '@/i18n/utils';
+
 export interface Props {
   title?: string;
   subtitle?: string;
@@ -36,6 +38,16 @@ const {
     phonePlaceholder: "123456789"
   }
 } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const dateLabels = lang === 'en' ? {
+  arrival: 'Preferred arrival date (optional)',
+  hint: '7 days and 6 nights. Dates and availability are confirmed by our team before booking.',
+  departure: 'Departure',
+} : {
+  arrival: 'Fecha de llegada preferida (opcional)',
+  hint: '7 días y 6 noches. Nuestro equipo confirma las fechas y la disponibilidad antes de reservar.',
+  departure: 'Salida',
+};
 ---
 
 <div class={`booking-form-container ${className}`}>
@@ -56,6 +68,14 @@ const {
     <!-- Honeypot field: must remain empty -->
     <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;overflow:hidden;" aria-hidden="true">
       <input type="text" name="honeypot" id="hp-booking" tabindex="-1" autocomplete="off" />
+    </div>
+    <div class="form-group mb-6 rounded-xl border border-[#d5c8b3] bg-[#fffcf6] p-4">
+      <label for="arrivalDate" class="block text-sm font-semibold text-brand-dark mb-2 font-gotham">{dateLabels.arrival}</label>
+      <input type="date" id="arrivalDate" name="arrivalDate" max="9999-12-25" aria-describedby="arrivalHint arrivalDeparture arrivalError"
+        class="w-full min-w-0 px-4 py-3 border border-gray-300 rounded-lg font-gotham text-gray-700 bg-white" />
+      <p id="arrivalHint" class="mt-2 text-sm text-gray-600">{dateLabels.hint}</p>
+      <p id="arrivalDeparture" class="mt-2 text-sm font-bold text-brand-dark" data-departure-label={dateLabels.departure} aria-live="polite"></p>
+      <span id="arrivalError" class="error-message text-red-500 text-sm hidden" aria-live="polite"></span>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
       <div class="form-group">
@@ -201,6 +221,9 @@ const {
 </div>
 
 <script>
+import { getIquitosToday, getDepartureDate, formatRetreatDate, isValidArrival } from '@/utils/retreat-dates';
+import { getLangFromUrl } from '@/i18n/utils';
+
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('bookingForm') as HTMLFormElement;
   const submitButton = document.getElementById('submitButton') as HTMLButtonElement;
@@ -213,6 +236,39 @@ document.addEventListener('DOMContentLoaded', function() {
     console.error('Required form elements not found');
     return;
   }
+
+  const lang = getLangFromUrl(new URL(window.location.href));
+  const arrival = form.querySelector<HTMLInputElement>('#arrivalDate')!;
+  const departure = form.querySelector<HTMLElement>('#arrivalDeparture')!;
+  const dateError = lang === 'en'
+    ? 'Choose a valid arrival date, today or later (Iquitos time).'
+    : 'Elige una fecha de llegada válida, a partir de hoy (hora de Iquitos).';
+  arrival.min = getIquitosToday();
+
+  function updateDeparture() {
+    arrival.setCustomValidity('');
+    departure.textContent = '';
+    if (arrival.value && !isValidArrival(arrival.value)) {
+      arrival.setCustomValidity(dateError);
+      showFieldError(arrival, dateError);
+    } else {
+      validateField(arrival);
+      if (arrival.value) {
+        departure.textContent = `${departure.dataset.departureLabel}: ${formatRetreatDate(getDepartureDate(arrival.value), lang)}`;
+      }
+    }
+  }
+  const requestedArrival = new URLSearchParams(window.location.search).get('arrival');
+  if (requestedArrival !== null) {
+    if (isValidArrival(requestedArrival)) {
+      arrival.value = requestedArrival;
+      updateDeparture();
+    } else {
+      arrival.setCustomValidity(dateError);
+      showFieldError(arrival, dateError);
+    }
+  }
+  arrival.addEventListener('input', updateDeparture);
 
   // Form validation
   function validateField(field: HTMLInputElement | HTMLSelectElement): boolean {
@@ -228,6 +284,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (!value && field.hasAttribute('required')) {
       showFieldError(field, 'Este campo es requerido');
+      return false;
+    }
+
+    if (field.name === 'arrivalDate' && (field.validationMessage || (value && !isValidArrival(value)))) {
+      showFieldError(field, dateError);
       return false;
     }
 
@@ -281,6 +342,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (successState) successState.classList.remove('hidden');
     submitButton.disabled = false;
     form.reset(); // Clear the form
+    updateDeparture();
   }
 
   function showErrorState(message: string = 'Ha ocurrido un error. Por favor, inténtalo de nuevo.'): void {

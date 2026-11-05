@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
+import { formatRetreatDate, getDepartureDate, isValidArrival } from '@/utils/retreat-dates';
 
 export const prerender = false;
 
@@ -127,6 +128,26 @@ export const POST: APIRoute = async ({ request }) => {
     const countryCode = data.get('countryCode') as string;
     const phone = data.get('phone') as string;
     const honeypot = data.get('honeypot') as string;
+    const arrivalDate = data.get('arrivalDate');
+
+    if (arrivalDate !== null && arrivalDate !== '' &&
+        (typeof arrivalDate !== 'string' || !isValidArrival(arrivalDate))) {
+      return new Response(JSON.stringify({
+        success: false,
+        error: 'Please choose a valid arrival date, today or later (Iquitos time).'
+      }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    const preferredDatesHtml = typeof arrivalDate === 'string' && arrivalDate
+      ? `<div style="background: #fffbf0; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+          <strong>Fechas preferidas (sujetas a confirmación):</strong>
+          <p>Llegada: ${formatRetreatDate(arrivalDate, 'es')}<br>
+          Salida: ${formatRetreatDate(getDepartureDate(arrivalDate), 'es')}<br>
+          7 días y 6 noches</p>
+        </div>`
+      : '';
 
     // Honeypot check — bots fill hidden fields; respond with fake success
     if (honeypot) {
@@ -244,6 +265,7 @@ export const POST: APIRoute = async ({ request }) => {
                 })}</td>
               </tr>
             </table>
+            ${preferredDatesHtml}
             
             <div style="background: #f7fafc; padding: 20px; border-radius: 8px; border-left: 4px solid #D99D55;">
               <p style="color: #4A5568; margin: 0; font-style: italic;">
@@ -296,6 +318,7 @@ export const POST: APIRoute = async ({ request }) => {
             <p style="color: #4A5568; line-height: 1.6; margin-bottom: 20px;">
               Hemos recibido tu solicitud de reserva para participar en nuestro retiro de medicina ancestral. Nos complace saber de tu interés en este viaje de transformación personal.
             </p>
+            ${preferredDatesHtml}
             
             <div style="background: #f0fff4; padding: 20px; border-radius: 8px; border-left: 4px solid #38a169; margin: 20px 0;">
               <h3 style="color: #2f855a; margin: 0 0 10px 0; font-size: 18px;">

@@ -1,0 +1,98 @@
+---
+import RetreatCalendar from '@/components/RetreatCalendar.astro';
+import { translatePath } from '@/i18n/utils';
+
+interface Props {
+  lang: 'es' | 'en';
+}
+const { lang } = Astro.props;
+const es = lang === 'es';
+---
+
+<section
+  class="hero relative -mt-16 flex min-h-[420px] items-center justify-center overflow-hidden pt-16"
+>
+  <img
+    src="/img/maloca-ceremonial.webp"
+    alt={es
+      ? 'Maloca ceremonial de Casa del Jaguar'
+      : 'Casa del Jaguar ceremonial maloca'}
+    class="absolute inset-0 h-full w-full object-cover"
+  />
+  <div class="absolute inset-0 bg-black/55"></div>
+  <div class="relative mx-auto max-w-4xl px-6 py-20 text-center text-white">
+    <p class="mb-5 text-sm font-bold tracking-[0.2em] text-[#F2CF8D] uppercase">
+      Iquitos, Perú · Casa del Jaguar
+    </p>
+    <h1 class="font-georgia text-4xl leading-tight font-bold md:text-6xl">
+      {
+        es
+          ? 'Tu viaje empieza con una fecha'
+          : 'Your journey starts with a date'
+      }
+    </h1>
+    <p class="mt-6 text-lg leading-relaxed text-white/90">
+      {
+        es
+          ? 'Planifica 7 días y 6 noches de ceremonia, descanso e integración. Cuéntanos cuándo te gustaría venir y coordinaremos tu retiro contigo.'
+          : 'Plan 7 days and 6 nights of ceremony, rest, and integration. Tell us when you would like to visit and we will coordinate your retreat with you.'
+      }
+    </p>
+    <a
+      href="#retreat-dates"
+      class="text-brand-dark mt-8 inline-block rounded-lg bg-[#F2CF8D] px-7 py-4 font-bold"
+    >
+      {es ? 'Planificar mis fechas' : 'Plan my dates'}
+    </a>
+  </div>
+</section>
+
+<main class="bg-[#fffcf6]">
+  <section id="retreat-dates" class="scroll-mt-24 py-16 md:py-24">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <RetreatCalendar lang={lang} />
+      <div class="text-brand-dark mt-12 grid gap-6 md:grid-cols-3">
+        {
+          [
+            [
+              es ? '01 · Elige tus fechas' : '01 · Choose your dates',
+              es
+                ? 'Selecciona la llegada; calculamos tu salida después de 6 noches.'
+                : 'Choose your arrival; we calculate your departure after 6 nights.',
+            ],
+            [
+              es ? '02 · Consulta disponibilidad' : '02 · Check availability',
+              es
+                ? 'Envía tus fechas por el formulario o WhatsApp. No se realiza ningún cobro.'
+                : 'Send your dates through the form or WhatsApp. No payment is taken.',
+            ],
+            [
+              es ? '03 · Confirma con el equipo' : '03 · Confirm with our team',
+              es
+                ? 'Revisamos la disponibilidad, tu preparación y los detalles antes de confirmar la reserva.'
+                : 'We review availability, preparation, and the details before confirming your booking.',
+            ],
+          ].map(([title, description]) => (
+            <div class="border-t border-[#d5c8b3] pt-5">
+              <h2 class="font-georgia text-xl font-bold">{title}</h2>
+              <p class="text-brand-secondary mt-3 leading-relaxed">
+                {description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+      <p class="text-brand-secondary mt-10 text-center">
+        {es ? '¿Todavía no tienes fechas?' : 'Not sure about your dates yet?'}{
+          ' '
+        }
+        <a
+          href={translatePath('/booking', lang)}
+          class="text-brand-dark font-bold underline"
+        >
+          {es ? 'Conversa con nuestro equipo' : 'Talk to our team'}
+        </a>
+      </p>
+    </div>
+  </section>
+</main>

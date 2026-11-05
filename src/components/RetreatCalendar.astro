@@ -1,526 +1,483 @@
 ---
+import { translatePath } from '@/i18n/utils';
+
 export interface Props {
-  selectedDate?: string;
-  onDateSelect?: string;
   lang?: 'es' | 'en';
 }
 
-const { selectedDate, onDateSelect = 'onDateSelect', lang = 'es' } = Astro.props;
-
-const retreatPeriods = lang === 'es' ? [
-  {
-    id: 'retreat-1',
-    name: 'Retiro de Medicina Ancestral - Octubre',
-    startDate: new Date(2025, 9, 20),
-    endDate: new Date(2025, 9, 26),
-    price: '$2800',
-    spotsLeft: 8,
-    description: 'Experiencia transformadora de 7 días'
-  },
-  {
-    id: 'retreat-2', 
-    name: 'Retiro de Medicina Ancestral - Noviembre',
-    startDate: new Date(2025, 9, 27),
-    endDate: new Date(2025, 10, 2),
-    price: '$2800',
-    spotsLeft: 5,
-    description: 'Experiencia transformadora de 7 días'
-  }
-] : [
-  {
-    id: 'retreat-1',
-    name: 'Ancestral Medicine Retreat - October',
-    startDate: new Date(2025, 9, 20),
-    endDate: new Date(2025, 9, 26),
-    price: '$2800',
-    spotsLeft: 8,
-    description: '7-day transformative experience'
-  },
-  {
-    id: 'retreat-2', 
-    name: 'Ancestral Medicine Retreat - November',
-    startDate: new Date(2025, 9, 27),
-    endDate: new Date(2025, 10, 2),
-    price: '$2800',
-    spotsLeft: 5,
-    description: '7-day transformative experience'
-  }
-];
-
-const labels = lang === 'es' ? {
-  title: 'Calendario de Retiros 2025',
-  subtitle: 'Selecciona las fechas de tu experiencia transformadora',
-  legend: {
-    available: 'Fechas disponibles',
-    selected: 'Fechas seleccionadas',
-    unavailable: 'No disponible'
-  },
-  spotsLeft: 'cupos disponibles',
-  weekdays: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
-  months: ['Octubre', 'Noviembre']
-} : {
-  title: 'Retreat Calendar 2025',
-  subtitle: 'Select the dates for your transformative experience',
-  legend: {
-    available: 'Available dates',
-    selected: 'Selected dates',
-    unavailable: 'Unavailable'
-  },
-  spotsLeft: 'spots available',
-  weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-  months: ['October', 'November']
-};
-
-function getDaysInMonth(year: number, month: number): number {
-  return new Date(year, month + 1, 0).getDate();
-}
-
-function getFirstDayOfMonth(year: number, month: number): number {
-  return new Date(year, month, 1).getDay();
-}
-
-function isDateInRetreat(date: Date, retreat: typeof retreatPeriods[0]): boolean {
-  return date >= retreat.startDate && date <= retreat.endDate;
-}
-
-function getRetreatForDate(date: Date) {
-  return retreatPeriods.find(retreat => isDateInRetreat(date, retreat));
-}
-
-const currentYear = 2025;
-const monthsToShow = [
-  { year: 2025, month: 9, name: labels.months[0] },
-  { year: 2025, month: 10, name: labels.months[1] }
-];
+const { lang = 'es' } = Astro.props;
+const copy =
+  lang === 'es'
+    ? {
+        title: 'Elige tu fecha de llegada',
+        hint: 'Selecciona un día para planificar tu retiro de 7 días y 6 noches.',
+        previous: 'Mes anterior',
+        next: 'Mes siguiente',
+        today: 'Mes actual',
+        weekdays: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+        weekdayNames: [
+          'Domingo',
+          'Lunes',
+          'Martes',
+          'Miércoles',
+          'Jueves',
+          'Viernes',
+          'Sábado',
+        ],
+        legendToday: 'Hoy en Iquitos',
+        legendSelected: 'Estadía propuesta',
+        legendPast: 'Fechas pasadas',
+        eyebrow: 'Tu próximo viaje',
+        summary: 'Planifica tu estadía',
+        empty:
+          'Selecciona tu llegada en el calendario para ver la fecha de salida.',
+        arrival: 'Llegada',
+        departure: 'Salida',
+        duration: '7 días · 6 noches',
+        note: 'Estas son tus fechas preferidas, no una confirmación de disponibilidad. Nuestro equipo confirmará las fechas y la evaluación previa antes de reservar.',
+        booking: 'Solicitar estas fechas',
+        whatsapp: 'Consultar por WhatsApp',
+        noScript:
+          'Activa JavaScript para elegir tus fechas o contáctanos desde el formulario de reserva.',
+        contact: 'Ir al formulario de reserva',
+      }
+    : {
+        title: 'Choose your arrival date',
+        hint: 'Select a day to plan your 7-day, 6-night retreat.',
+        previous: 'Previous month',
+        next: 'Next month',
+        today: 'Current month',
+        weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        weekdayNames: [
+          'Sunday',
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday',
+        ],
+        legendToday: 'Today in Iquitos',
+        legendSelected: 'Proposed stay',
+        legendPast: 'Past dates',
+        eyebrow: 'Your next journey',
+        summary: 'Plan your stay',
+        empty:
+          'Select your arrival on the calendar to see your departure date.',
+        arrival: 'Arrival',
+        departure: 'Departure',
+        duration: '7 days · 6 nights',
+        note: 'These are your preferred dates, not confirmed availability. Our team will confirm dates and pre-retreat screening before you book.',
+        booking: 'Request these dates',
+        whatsapp: 'Ask on WhatsApp',
+        noScript:
+          'Enable JavaScript to choose your dates, or contact us using the booking form.',
+        contact: 'Go to the booking form',
+      };
 ---
 
-<div class="retreat-calendar">
-  <div class="calendar-header">
-    <h2 class="calendar-title">{labels.title}</h2>
-    <p class="calendar-subtitle">{labels.subtitle}</p>
-  </div>
-
-  <div class="retreat-periods-overview">
-    {retreatPeriods.map(retreat => (
-      <div class="retreat-card" data-retreat-id={retreat.id}>
-        <div class="retreat-dates">
-          <span class="date-range">
-            {retreat.startDate.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })} - 
-            {retreat.endDate.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })}
-          </span>
-          <span class="retreat-price">{retreat.price}</span>
-        </div>
-        <h3 class="retreat-name">{retreat.name}</h3>
-        <p class="retreat-description">{retreat.description}</p>
-        <div class="retreat-info">
-          <span class="spots-left">
-            <i class="spot-indicator"></i>
-            {retreat.spotsLeft} {labels.spotsLeft}
-          </span>
-        </div>
+<div
+  class="retreat-calendar"
+  data-lang={lang}
+  data-booking-url={translatePath('/booking', lang)}
+>
+  <div class="calendar-panel">
+    <h2 class="font-georgia text-brand-dark text-3xl font-bold">
+      {copy.title}
+    </h2>
+    <p class="text-brand-secondary mt-3">{copy.hint}</p>
+    <div class="month-navigation">
+      <button type="button" data-previous aria-label={copy.previous} disabled
+        >&larr;</button
+      >
+      <h3
+        data-month-title
+        class="font-georgia text-brand-dark text-xl font-bold"
+        aria-live="polite"
+      >
+      </h3>
+      <button type="button" data-next aria-label={copy.next} disabled
+        >&rarr;</button
+      >
+    </div>
+    <div class="weekdays">
+      {
+        copy.weekdays.map((day, index) => (
+          <abbr title={copy.weekdayNames[index]}>{day}</abbr>
+        ))
+      }
+    </div>
+    <div class="days-grid" data-days aria-label={copy.title}></div>
+    <div class="calendar-footer">
+      <button type="button" data-current disabled>{copy.today}</button>
+      <div class="legend">
+        <span><i class="today-key"></i>{copy.legendToday}</span>
+        <span><i class="stay-key"></i>{copy.legendSelected}</span>
+        <span><i class="past-key"></i>{copy.legendPast}</span>
       </div>
-    ))}
-  </div>
-
-  <div class="calendar-grid">
-    {monthsToShow.map(({ year, month, name }) => {
-      const daysInMonth = getDaysInMonth(year, month);
-      const firstDay = getFirstDayOfMonth(year, month);
-      const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
-      const emptyDays = Array.from({ length: firstDay }, (_, i) => i);
-      
-      return (
-        <div class="month-calendar" data-month={month} data-year={year}>
-          <div class="month-header">
-            <h3 class="month-name">{name} {year}</h3>
-          </div>
-          
-          <div class="weekdays">
-            {labels.weekdays.map(day => (
-              <div class="weekday">{day}</div>
-            ))}
-          </div>
-          
-          <div class="days-grid">
-            {emptyDays.map(() => (
-              <div class="day empty"></div>
-            ))}
-            
-            {days.map(day => {
-              const currentDate = new Date(year, month, day);
-              const retreat = getRetreatForDate(currentDate);
-              const isToday = currentDate.toDateString() === new Date().toDateString();
-              const isPast = currentDate < new Date(new Date().setHours(0, 0, 0, 0));
-              
-              let dayClasses = 'day';
-              if (retreat) {
-                dayClasses += ' retreat-day';
-                dayClasses += ` retreat-${retreat.id}`;
-                
-                if (currentDate.getTime() === retreat.startDate.getTime()) {
-                  dayClasses += ' retreat-start';
-                }
-                if (currentDate.getTime() === retreat.endDate.getTime()) {
-                  dayClasses += ' retreat-end';
-                }
-              }
-              if (isToday) dayClasses += ' today';
-              if (isPast) dayClasses += ' past';
-              
-              return (
-                <div 
-                  class={dayClasses}
-                  data-date={currentDate.toISOString().split('T')[0]}
-                  data-retreat-id={retreat?.id}
-                  title={retreat ? `${retreat.name} - ${retreat.price}` : ''}
-                >
-                  <span class="day-number">{day}</span>
-                  {retreat && currentDate.getTime() === retreat.startDate.getTime() && (
-                    <div class="retreat-label">
-                      <span class="retreat-label-text">Retiro</span>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      );
-    })}
-  </div>
-
-  <div class="calendar-legend">
-    <div class="legend-item">
-      <div class="legend-color retreat-available"></div>
-      <span>{labels.legend.available}</span>
-    </div>
-    <div class="legend-item">
-      <div class="legend-color retreat-selected"></div>
-      <span>{labels.legend.selected}</span>
-    </div>
-    <div class="legend-item">
-      <div class="legend-color unavailable"></div>
-      <span>{labels.legend.unavailable}</span>
     </div>
   </div>
+  <aside class="stay-panel">
+    <p class="text-sm font-bold tracking-widest text-[#F2CF8D] uppercase">
+      {copy.eyebrow}
+    </p>
+    <h2 class="font-georgia mt-3 text-3xl font-bold">{copy.summary}</h2>
+    <div class="stay-summary" aria-live="polite" aria-atomic="true">
+      <p data-empty>{copy.empty}</p>
+      <dl data-stay hidden>
+        <div><dt>{copy.arrival}</dt><dd data-arrival></dd></div>
+        <div><dt>{copy.departure}</dt><dd data-departure></dd></div>
+      </dl>
+    </div>
+    <p class="mb-6 font-bold text-[#F2CF8D]">{copy.duration}</p>
+    <p class="mb-6 text-sm leading-relaxed text-white/85">{copy.note}</p>
+    <div data-actions hidden>
+      <a
+        data-booking
+        class="request-link"
+        href={translatePath('/booking', lang)}>{copy.booking}</a
+      >
+      <a
+        data-whatsapp
+        class="whatsapp-link"
+        href="https://wa.me/51917811803"
+        target="_blank"
+        rel="noopener noreferrer">{copy.whatsapp}</a
+      >
+    </div>
+    <noscript>
+      <p>{copy.noScript}</p>
+      <a class="whatsapp-link" href={translatePath('/booking', lang)}
+        >{copy.contact}</a
+      >
+    </noscript>
+  </aside>
 </div>
 
 <style>
-.retreat-calendar {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-family: system-ui, -apple-system, sans-serif;
-}
-
-.calendar-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.calendar-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #2D3748;
-  margin-bottom: 0.5rem;
-}
-
-.calendar-subtitle {
-  font-size: 1.125rem;
-  color: #4A5568;
-  margin: 0;
-}
-
-.retreat-periods-overview {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 3rem;
-}
-
-.retreat-card {
-  background: linear-gradient(135deg, #D99D55, #B8854A);
-  color: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.retreat-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-}
-
-.retreat-dates {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  font-weight: 600;
-}
-
-.date-range {
-  font-size: 0.875rem;
-  opacity: 0.9;
-}
-
-.retreat-price {
-  font-size: 1.25rem;
-  font-weight: 700;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-}
-
-.retreat-name {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin: 0 0 0.5rem 0;
-}
-
-.retreat-description {
-  font-size: 0.875rem;
-  opacity: 0.9;
-  margin: 0 0 1rem 0;
-  line-height: 1.5;
-}
-
-.retreat-info {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.spots-left {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-.spot-indicator {
-  width: 8px;
-  height: 8px;
-  background: #38a169;
-  border-radius: 50%;
-}
-
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.month-calendar {
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border: 1px solid #E2E8F0;
-}
-
-.month-header {
-  margin-bottom: 1rem;
-}
-
-.month-name {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #2D3748;
-  margin: 0;
-  text-align: center;
-}
-
-.weekdays {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 2px;
-  margin-bottom: 0.5rem;
-}
-
-.weekday {
-  text-align: center;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #4A5568;
-  padding: 0.5rem 0;
-}
-
-.days-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 2px;
-}
-
-.day {
-  aspect-ratio: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  min-height: 45px;
-}
-
-.day:not(.empty):hover {
-  background: #EDF2F7;
-}
-
-.day.empty {
-  cursor: default;
-}
-
-.day-number {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #2D3748;
-  z-index: 2;
-}
-
-.day.retreat-day {
-  background: linear-gradient(135deg, #D99D55, #B8854A);
-  color: white;
-}
-
-.day.retreat-day .day-number {
-  color: white;
-  font-weight: 600;
-}
-
-.day.retreat-day:hover {
-  background: linear-gradient(135deg, #E6A962, #C29251) !important;
-  box-shadow: 0 2px 4px rgba(217, 157, 85, 0.4);
-}
-
-.day.retreat-start {
-  border-top-left-radius: 12px;
-  border-bottom-left-radius: 12px;
-}
-
-.day.retreat-end {
-  border-top-right-radius: 12px;
-  border-bottom-right-radius: 12px;
-}
-
-.day.today {
-  border: 2px solid #3182CE;
-}
-
-.day.past {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.day.past:hover {
-  background: none;
-}
-
-.retreat-label {
-  position: absolute;
-  bottom: 2px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.retreat-label-text {
-  font-size: 0.625rem;
-  background: rgba(255, 255, 255, 0.9);
-  color: #2D3748;
-  padding: 1px 4px;
-  border-radius: 3px;
-  font-weight: 600;
-}
-
-.calendar-legend {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  color: #4A5568;
-}
-
-.legend-color {
-  width: 16px;
-  height: 16px;
-  border-radius: 4px;
-}
-
-.legend-color.retreat-available {
-  background: linear-gradient(135deg, #D99D55, #B8854A);
-}
-
-.legend-color.retreat-selected {
-  background: #3182CE;
-}
-
-.legend-color.unavailable {
-  background: #E2E8F0;
-}
-
-.day.selected {
-  background: #3182CE !important;
-  box-shadow: 0 2px 6px rgba(49, 130, 206, 0.4);
-}
-
-.day.hover-group {
-  background: linear-gradient(135deg, #E6A962, #C29251) !important;
-}
-
-@media (max-width: 768px) {
   .retreat-calendar {
-    padding: 1rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 2rem;
+    font-family: var(--font-gotham, sans-serif);
   }
-  
-  .calendar-title {
-    font-size: 2rem;
+  .calendar-panel {
+    padding: clamp(1rem, 3vw, 2rem);
+    background: white;
+    border: 1px solid #e8dfd1;
+    border-radius: 1.5rem;
+    box-shadow: 0 12px 40px #27251f08;
+    min-width: 0;
   }
-  
-  .calendar-grid {
-    grid-template-columns: 1fr;
+  .month-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin: 2rem 0 1.5rem;
+  }
+  .month-navigation h3 {
+    text-align: center;
+    text-transform: capitalize;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.35;
+  }
+  .month-navigation button {
+    border: 1px solid #d5c8b3;
+    border-radius: 0.75rem;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    color: #382f22;
+  }
+  .weekdays,
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0.3rem;
+  }
+  .weekdays {
+    margin-bottom: 0.75rem;
+    text-align: center;
+    color: #71634e;
+    font-size: 0.75rem;
+    font-weight: bold;
+  }
+  abbr {
+    text-decoration: none;
+  }
+  .days-grid {
+    grid-template-rows: repeat(6, minmax(44px, 1fr));
+  }
+  .days-grid :global(.day) {
+    cursor: pointer;
+    min-width: 0;
+    min-height: 44px;
+    border-radius: 0.6rem;
+    color: #382f22;
+    font-size: 0.9rem;
+  }
+  .days-grid :global(.day:not(:disabled):hover) {
+    background: #f5e7cc;
+  }
+  .days-grid :global(.day:disabled) {
+    cursor: not-allowed;
+    color: #a39787;
+    background: #f6f4f0;
+  }
+  .days-grid :global(.day.today) {
+    box-shadow: inset 0 0 0 2px #b8854a;
+  }
+  .days-grid :global(.day.in-stay) {
+    background: #f5e7cc;
+  }
+  .days-grid :global(.day[aria-pressed='true']) {
+    background: #382f22;
+    color: white;
+    font-weight: bold;
+  }
+  .retreat-calendar :global(:focus-visible) {
+    outline: 3px solid #b8854a;
+    outline-offset: 3px;
+  }
+  .calendar-footer {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 1rem;
+    justify-content: space-between;
   }
-  
-  .retreat-periods-overview {
-    grid-template-columns: 1fr;
+  .calendar-footer button {
+    color: #675036;
+    text-decoration: underline;
+    font-size: 0.85rem;
+    min-height: 44px;
   }
-  
-  .calendar-legend {
-    gap: 1rem;
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-size: 0.7rem;
+    color: #71634e;
   }
-  
-  .month-calendar {
+  .legend span {
+    display: inline-flex;
+    gap: 0.4rem;
+    align-items: center;
+  }
+  .legend i {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 0.2rem;
+  }
+  .today-key {
+    border: 2px solid #b8854a;
+  }
+  .stay-key {
+    background: #f5e7cc;
+  }
+  .past-key {
+    background: #d7d2ca;
+  }
+  .stay-panel {
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    background: #382f22;
+    color: white;
+    border-radius: 1.5rem;
+    align-self: start;
+  }
+  .stay-summary {
+    margin: 2rem 0 1rem;
+    min-height: 8rem;
+  }
+  .stay-summary p {
+    line-height: 1.7;
+    color: #e8dfd1;
+  }
+  dl > div + div {
+    margin-top: 1.25rem;
+  }
+  dt {
+    color: #ded0b8;
+    font-size: 0.85rem;
+  }
+  dd {
+    margin-top: 0.3rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  .request-link,
+  .whatsapp-link {
+    display: block;
     padding: 1rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    font-weight: bold;
   }
-  
-  .day {
-    min-height: 40px;
+  .request-link {
+    background: #f2cf8d;
+    color: #382f22;
   }
-}
+  .whatsapp-link {
+    margin-top: 0.75rem;
+    border: 1px solid #ffffff60;
+  }
+  @media (max-width: 850px) {
+    .retreat-calendar {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .request-link:hover,
+    .whatsapp-link:hover {
+      transform: translateY(-2px);
+      transition: transform 0.2s;
+    }
+  }
 </style>
 
-  
-<script src="/js/retreat-calendar.js" defer></script>
+<script>
+  import {
+    formatRetreatDate,
+    getDepartureDate,
+    getIquitosToday,
+    isValidArrival,
+    parseRetreatDate,
+  } from '@/utils/retreat-dates';
 
-<style>
-.day.selected {
-  background: #3182CE !important;
-  box-shadow: 0 2px 6px rgba(49, 130, 206, 0.4);
-}
+  document
+    .querySelectorAll<HTMLElement>('.retreat-calendar')
+    .forEach((calendar) => {
+      const lang = calendar.dataset.lang === 'en' ? 'en' : 'es';
+      const days = calendar.querySelector<HTMLElement>('[data-days]')!;
+      const monthTitle =
+        calendar.querySelector<HTMLElement>('[data-month-title]')!;
+      const previous =
+        calendar.querySelector<HTMLButtonElement>('[data-previous]')!;
+      const next = calendar.querySelector<HTMLButtonElement>('[data-next]')!;
+      const current =
+        calendar.querySelector<HTMLButtonElement>('[data-current]')!;
+      const booking =
+        calendar.querySelector<HTMLAnchorElement>('[data-booking]')!;
+      const whatsapp =
+        calendar.querySelector<HTMLAnchorElement>('[data-whatsapp]')!;
+      const arrivalLabel =
+        calendar.querySelector<HTMLElement>('[data-arrival]')!;
+      const departureLabel =
+        calendar.querySelector<HTMLElement>('[data-departure]')!;
+      const initialDate = parseRetreatDate(getIquitosToday())!;
+      let year = initialDate.getUTCFullYear();
+      let month = initialDate.getUTCMonth();
+      let selected = '';
 
-.day.hover-group {
-  background: linear-gradient(135deg, #E6A962, #C29251) !important;
-}
-</style>
+      function renderMonth() {
+        const today = getIquitosToday();
+        const first = new Date(
+          `${year}-${String(month + 1).padStart(2, '0')}-01T12:00:00Z`
+        );
+        const last = new Date(first);
+        last.setUTCMonth(month + 1, 0);
+        monthTitle.textContent = new Intl.DateTimeFormat(
+          lang === 'es' ? 'es-PE' : 'en-US',
+          {
+            month: 'long',
+            year: 'numeric',
+            timeZone: 'UTC',
+          }
+        ).format(first);
+        previous.disabled =
+          first.toISOString().slice(0, 7) <= today.slice(0, 7);
+        next.disabled = year === 9999 && month === 11;
+        current.disabled = false;
+        days.replaceChildren();
+
+        for (let cell = 0; cell < 42; cell++) {
+          const day = cell - first.getUTCDay() + 1;
+          if (day < 1 || day > last.getUTCDate()) {
+            const empty = document.createElement('span');
+            empty.setAttribute('aria-hidden', 'true');
+            days.append(empty);
+            continue;
+          }
+          const value = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'day';
+          button.textContent = String(day);
+          button.dataset.date = value;
+          button.disabled = !isValidArrival(value, today);
+          button.setAttribute('aria-label', formatRetreatDate(value, lang));
+          button.setAttribute('aria-pressed', String(value === selected));
+          if (value === today) {
+            button.classList.add('today');
+            button.setAttribute('aria-current', 'date');
+          }
+          if (
+            selected &&
+            value >= selected &&
+            value <= getDepartureDate(selected)
+          ) {
+            button.classList.add('in-stay');
+          }
+          days.append(button);
+        }
+      }
+
+      function selectDate(value: string) {
+        if (!isValidArrival(value)) return;
+        selected = value;
+        const departure = getDepartureDate(value);
+        arrivalLabel.textContent = formatRetreatDate(value, lang);
+        departureLabel.textContent = formatRetreatDate(departure, lang);
+        calendar.querySelector<HTMLElement>('[data-empty]')!.hidden = true;
+        calendar.querySelector<HTMLElement>('[data-stay]')!.hidden = false;
+        calendar.querySelector<HTMLElement>('[data-actions]')!.hidden = false;
+        booking.href = `${calendar.dataset.bookingUrl}?arrival=${value}`;
+        const message =
+          lang === 'es'
+            ? `Hola, quisiera consultar disponibilidad para un retiro de 7 días y 6 noches. Llegada: ${arrivalLabel.textContent}. Salida: ${departureLabel.textContent}.`
+            : `Hello, I would like to check availability for a 7-day, 6-night retreat. Arrival: ${arrivalLabel.textContent}. Departure: ${departureLabel.textContent}.`;
+        whatsapp.href = `https://wa.me/51917811803?text=${encodeURIComponent(message)}`;
+        renderMonth();
+        days
+          .querySelector<HTMLButtonElement>(`[data-date="${value}"]`)
+          ?.focus({ preventScroll: true });
+      }
+
+      days.addEventListener('click', (event) => {
+        const button =
+          event.target instanceof Element
+            ? event.target.closest<HTMLButtonElement>('button[data-date]')
+            : null;
+        if (button?.dataset.date && !button.disabled)
+          selectDate(button.dataset.date);
+      });
+      function changeMonth(offset: number) {
+        month += offset;
+        if (month < 0) {
+          year--;
+          month = 11;
+        }
+        if (month > 11) {
+          year++;
+          month = 0;
+        }
+        renderMonth();
+      }
+      previous.addEventListener('click', () => changeMonth(-1));
+      next.addEventListener('click', () => changeMonth(1));
+      current.addEventListener('click', () => {
+        const today = parseRetreatDate(getIquitosToday())!;
+        year = today.getUTCFullYear();
+        month = today.getUTCMonth();
+        renderMonth();
+      });
+      renderMonth();
+    });
+</script>

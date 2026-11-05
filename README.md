@@ -56,6 +56,17 @@ El sitio web soporta múltiples idiomas:
 2. Las páginas usan el sistema de routing dinámico `[lang]`
 3. El componente `LanguageSwitcher` permite cambiar entre idiomas
 
+## Calendario y fechas preferidas
+
+- `/calendar` y `/en/calendar` permiten proponer una llegada para un retiro de 7 días y 6 noches. No representan un inventario de disponibilidad confirmada.
+- El calendario usa la fecha actual de Iquitos (`America/Lima`) en el navegador; no necesita actualizar fechas al generar el sitio.
+- La selección se envía al formulario mediante `?arrival=YYYY-MM-DD` o se incluye en el mensaje de WhatsApp.
+- El formulario y la API validan la llegada y calculan la salida seis noches después con los mismos helpers de `src/utils/retreat-dates.ts`. Ambos correos de reserva incluyen las fechas preferidas.
+- Las solicitudes por formulario requieren la configuración existente de Resend. La confirmación de disponibilidad sigue siendo manual.
+
+Pruebas de fechas: `node --experimental-strip-types --test tests/retreat-dates.test.mjs`.
+Pruebas del envío de fechas: `node --test tests/booking-dates.test.mjs` (correos simulados; no envía mensajes reales).
+
 ## � Alias de Rutas
 
 El proyecto usa alias de rutas para imports más limpios:

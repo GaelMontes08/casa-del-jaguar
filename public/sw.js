@@ -1,9 +1,8 @@
-const CACHE_NAME = 'casa-del-jaguar-v2';
+const CACHE_NAME = 'casa-del-jaguar-v3';
 const STATIC_CACHE = [
   '/',
   '/css/critical.css',
   '/js/scroll-animations.js',
-  '/js/retreat-calendar.js',
   '/cj-logo.webp',
   '/cj-icon-light.webp',
   '/cj-icon-dark.webp'
