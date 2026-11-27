@@ -1,6 +1,6 @@
 ---
 import { getLangFromUrl } from '@/i18n/utils';
-import { canonicalUrl, languageAlternates, OG_IMAGE_URL, SITE_ORIGIN } from '@/i18n/urls';
+import { canonicalUrl, GOOGLE_LISTING_URL, GOOGLE_MAPS_URL, languageAlternates, OG_IMAGE_URL, SITE_ORIGIN, STREET_ADDRESS } from '@/i18n/urls';
 import DiscountBanner from '@/components/DiscountBanner.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
@@ -16,11 +16,11 @@ const lang = getLangFromUrl(Astro.url);
 const canonical = canonicalUrl(Astro.url.pathname);
 const alternates = languageAlternates(Astro.url.pathname);
 const businessDescription = lang === 'en'
-  ? 'Casa del Jaguar, founded in 2009, is a 7-day, 6-night ayahuasca retreat in the city of Iquitos for up to 8 guests. The price is $2,800 USD. Indigenous shamans lead the ceremonies together with Maestro Denis Montes, who guides the whole programme. Ceremonies are in English and Denis translates.'
-  : 'Casa del Jaguar, fundada en 2009, es un retiro de ayahuasca de 7 días y 6 noches en la ciudad de Iquitos, para un máximo de 8 personas. El precio es $2,800 USD. Chamanes indígenas guían las ceremonias junto con el Maestro Denis Montes, que dirige todo el programa. Las ceremonias son en inglés y Denis traduce.';
+  ? 'Casa del Jaguar was founded in 2009 by Dan Reynolds, who led the ceremonies until 2014. Since 2014, Maestro Denis Montes has led them with indigenous shamans. It is a 7-day, 6-night retreat in Iquitos for up to 8 guests, at $2,800 USD. Ceremonies are in English and Denis translates.'
+  : 'Dan Reynolds fundó Casa del Jaguar en 2009 y guió las ceremonias hasta 2014. Desde 2014 las guía el Maestro Denis Montes junto con chamanes indígenas. Es un retiro de 7 días y 6 noches en Iquitos, para un máximo de 8 personas, a $2,800 USD. Las ceremonias son en inglés y Denis traduce.';
 const businessJsonLd = JSON.stringify({
   '@context': 'https://schema.org',
-  '@type': ['LocalBusiness', 'TouristAttraction'],
+  '@type': ['LocalBusiness', 'TouristAttraction', 'Organization'],
   '@id': `${SITE_ORIGIN}/#casa-del-jaguar`,
   name: 'Casa del Jaguar',
   url: `${SITE_ORIGIN}/`,
@@ -33,18 +33,29 @@ const businessJsonLd = JSON.stringify({
   currenciesAccepted: 'USD',
   address: {
     '@type': 'PostalAddress',
+    streetAddress: STREET_ADDRESS,
     addressLocality: 'Iquitos',
     addressRegion: 'Loreto',
     addressCountry: 'PE',
   },
+  hasMap: GOOGLE_MAPS_URL,
+  sameAs: [GOOGLE_LISTING_URL, GOOGLE_MAPS_URL],
   areaServed: 'Iquitos',
   knowsLanguage: ['es', 'en'],
+  founder: {
+    '@type': 'Person',
+    name: 'Dan Reynolds',
+    deathDate: '2021',
+    description: lang === 'en'
+      ? 'Founded Casa del Jaguar in 2009 and led the ceremonies from 2009 to 2014. He died in 2021.'
+      : 'Fundó Casa del Jaguar en 2009 y guió las ceremonias de 2009 a 2014. Falleció en 2021.',
+  },
   employee: {
     '@type': 'Person',
     name: 'Denis Montes',
     jobTitle: lang === 'en'
-      ? 'Programme guide. Ceremonies are in English and he translates, together with indigenous shamans.'
-      : 'Guía del programa. Las ceremonias son en inglés y él traduce, junto con chamanes indígenas.',
+      ? 'Has led the ceremonies since 2014, together with indigenous shamans. Ceremonies are in English and he translates.'
+      : 'Guía las ceremonias desde 2014, junto con chamanes indígenas. Las ceremonias son en inglés y él traduce.',
   },
 }).replace(/</g, '\\u003c');
 
