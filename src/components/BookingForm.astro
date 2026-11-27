@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl } from '@/i18n/utils';
+import PayPalDeposit from '@/components/PayPalDeposit.astro';
 
 export interface Props {
   title?: string;
@@ -21,8 +22,8 @@ export interface Props {
 }
 
 const { 
-  title = "Reserva tu experiencia",
-  subtitle = "Completa el formulario y nos pondremos en contacto contigo para confirmar tu reserva",
+  title = "Solicitud de salud",
+  subtitle = "La plaza no queda reservada al enviar este formulario. La confirmamos después de leer tus respuestas.",
   buttonText = "Enviar solicitud",
   className = "",
   labels = {
@@ -39,6 +40,52 @@ const {
   }
 } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
+const es = lang !== 'en';
+const health = es ? {
+  age: 'Edad *',
+  medications: 'Medicamentos que tomas, incluidas dosis *',
+  medicationsHint: 'Escribe “ninguno” si no tomas nada. Incluye antidepresivos, IMAO, ansiolíticos, hierba de San Juan, 5-HTP y tramadol.',
+  antidepressants: '¿Tomas antidepresivos o IMAO ahora? *',
+  pregnancy: '¿Estás embarazada o en lactancia? *',
+  heart: '¿Tienes un problema cardíaco? *',
+  bloodPressure: '¿Tienes la presión arterial alta? *',
+  seizures: '¿Has tenido convulsiones o epilepsia? *',
+  psychiatric: '¿Tienes diagnóstico de psicosis, bipolar o esquizofrenia? *',
+  recentDrugs: '¿Has usado drogas en las últimas semanas? *',
+  doctor: 'Nombre y contacto de tu médico *',
+  yes: 'Sí',
+  no: 'No',
+  na: 'No aplica',
+  choose: 'Elige',
+  sending: 'Enviando solicitud...',
+  successTitle: 'Solicitud recibida',
+  successBody: 'Vamos a leerla. La plaza no está confirmada todavía. Si la ceremonia no es segura para ti, devolvemos el depósito de $100 USD.',
+  errorTitle: 'No se pudo enviar',
+  required: 'Este campo es requerido',
+  ageError: 'Hay que tener 18 años o más',
+} : {
+  age: 'Age *',
+  medications: 'Medicines you take, including doses *',
+  medicationsHint: 'Write “none” if you take nothing. Include antidepressants, MAOIs, anxiolytics, St. John’s wort, 5-HTP, and tramadol.',
+  antidepressants: 'Are you taking antidepressants or MAOIs now? *',
+  pregnancy: 'Are you pregnant or breastfeeding? *',
+  heart: 'Do you have a heart condition? *',
+  bloodPressure: 'Do you have high blood pressure? *',
+  seizures: 'Have you had seizures or epilepsy? *',
+  psychiatric: 'Have you been diagnosed with psychosis, bipolar disorder, or schizophrenia? *',
+  recentDrugs: 'Have you used drugs in recent weeks? *',
+  doctor: 'Your doctor’s name and contact *',
+  yes: 'Yes',
+  no: 'No',
+  na: 'Not applicable',
+  choose: 'Choose',
+  sending: 'Sending application...',
+  successTitle: 'Application received',
+  successBody: 'We will read it. The place is not confirmed yet. If the ceremony is not safe for you, we refund the $100 USD deposit.',
+  errorTitle: 'Could not send',
+  required: 'This field is required',
+  ageError: 'You must be 18 or older',
+};
 const dateLabels = lang === 'en' ? {
   arrival: 'Preferred arrival date (optional)',
   hint: '7 days and 6 nights. Dates and availability are confirmed by our team before booking.',
@@ -173,6 +220,50 @@ const dateLabels = lang === 'en' ? {
       <span class="error-message text-red-500 text-sm hidden"></span>
     </div>
 
+    <fieldset class="mb-6 space-y-4 rounded-xl border border-[#d5c8b3] p-4">
+      <legend class="px-1 font-georgia text-xl font-bold text-brand-dark">{es ? 'Salud' : 'Health'}</legend>
+      <div class="form-group">
+        <label for="age" class="mb-2 block text-sm font-semibold text-brand-dark font-gotham">{health.age}</label>
+        <input type="number" id="age" name="age" required min="18" max="120" inputmode="numeric" class="w-full rounded-lg border border-gray-300 px-4 py-3 font-gotham" />
+        <span class="error-message hidden text-sm text-red-500"></span>
+      </div>
+      <div class="form-group">
+        <label for="medications" class="mb-2 block text-sm font-semibold text-brand-dark font-gotham">{health.medications}</label>
+        <textarea id="medications" name="medications" required rows="4" class="w-full rounded-lg border border-gray-300 px-4 py-3 font-gotham"></textarea>
+        <p class="mt-2 text-sm text-gray-600 font-gotham">{health.medicationsHint}</p>
+        <span class="error-message hidden text-sm text-red-500"></span>
+      </div>
+      {[
+        ['antidepressants', health.antidepressants, false],
+        ['pregnancy', health.pregnancy, true],
+        ['heart', health.heart, false],
+        ['bloodPressure', health.bloodPressure, false],
+        ['seizures', health.seizures, false],
+        ['psychiatric', health.psychiatric, false],
+        ['recentDrugs', health.recentDrugs, false],
+      ].map(([name, label, allowNa]) => (
+        <div class="form-group">
+          <label for={name} class="mb-2 block text-sm font-semibold text-brand-dark font-gotham">{label}</label>
+          <select id={name} name={name} required class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 font-gotham">
+            <option value="">{health.choose}</option>
+            <option value="yes">{health.yes}</option>
+            <option value="no">{health.no}</option>
+            {allowNa && <option value="na">{health.na}</option>}
+          </select>
+          <span class="error-message hidden text-sm text-red-500"></span>
+        </div>
+      ))}
+      <div class="form-group">
+        <label for="doctor" class="mb-2 block text-sm font-semibold text-brand-dark font-gotham">{health.doctor}</label>
+        <input type="text" id="doctor" name="doctor" required class="w-full rounded-lg border border-gray-300 px-4 py-3 font-gotham" />
+        <span class="error-message hidden text-sm text-red-500"></span>
+      </div>
+    </fieldset>
+
+    <div class="mb-6">
+      <PayPalDeposit lang={lang === 'en' ? 'en' : 'es'} />
+    </div>
+
     <!-- Loading and Success States -->
     <div id="loadingState" class="text-center hidden mb-6">
       <div class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-[#D99D55] transition ease-in-out duration-150">
@@ -180,7 +271,7 @@ const dateLabels = lang === 'en' ? {
           <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
           <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
-        Enviando solicitud...
+        {health.sending}
       </div>
     </div>
 
@@ -190,9 +281,9 @@ const dateLabels = lang === 'en' ? {
           <svg class="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
-          <strong>¡Solicitud enviada exitosamente!</strong>
+          <strong>{health.successTitle}</strong>
         </div>
-        <p class="text-sm">Nos pondremos en contacto contigo dentro de las próximas 24 horas.</p>
+        <p class="text-sm">{health.successBody}</p>
       </div>
     </div>
 
@@ -202,7 +293,7 @@ const dateLabels = lang === 'en' ? {
           <svg class="w-6 h-6 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
-          <strong>Error al enviar</strong>
+          <strong>{health.errorTitle}</strong>
         </div>
         <p class="text-sm" id="errorMessage">Ha ocurrido un error. Por favor, inténtalo de nuevo.</p>
       </div>
@@ -274,7 +365,7 @@ document.addEventListener('DOMContentLoaded', function() {
   arrival.addEventListener('input', updateDeparture);
 
   // Form validation
-  function validateField(field: HTMLInputElement | HTMLSelectElement): boolean {
+  function validateField(field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement): boolean {
     const value = field.value.trim();
     const errorElement = field.parentElement?.querySelector('.error-message') as HTMLElement;
     
@@ -286,8 +377,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (!value && field.hasAttribute('required')) {
-      showFieldError(field, 'Este campo es requerido');
+      showFieldError(field, lang === 'en' ? 'This field is required' : 'Este campo es requerido');
       return false;
+    }
+
+    if (field.name === 'age') {
+      const age = Number(value);
+      if (!Number.isInteger(age) || age < 18 || age > 120) {
+        showFieldError(field, lang === 'en' ? 'You must be 18 or older' : 'Hay que tener 18 años o más');
+        return false;
+      }
     }
 
     if (field.name === 'arrivalDate' && (field.validationMessage || (value && !isValidArrival(value)))) {
@@ -319,7 +418,7 @@ document.addEventListener('DOMContentLoaded', function() {
     return true;
   }
 
-  function showFieldError(field: HTMLInputElement | HTMLSelectElement, message: string): void {
+  function showFieldError(field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement, message: string): void {
     const errorElement = field.parentElement?.querySelector('.error-message') as HTMLElement;
     field.classList.add('border-red-500');
     if (errorElement) {
@@ -356,7 +455,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Real-time validation
-  const inputs = form.querySelectorAll('input, select') as NodeListOf<HTMLInputElement | HTMLSelectElement>;
+  const inputs = form.querySelectorAll('input, select, textarea') as NodeListOf<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>;
   inputs.forEach(input => {
     input.addEventListener('blur', () => validateField(input));
     input.addEventListener('input', () => {

@@ -47,6 +47,16 @@ test('booking validates preferred dates and includes them in both emails', async
         phone: '999123456',
         countryCode: '+51',
         honeypot: '',
+        age: '34',
+        medications: 'none',
+        antidepressants: 'no',
+        pregnancy: 'na',
+        heart: 'no',
+        bloodPressure: 'no',
+        seizures: 'no',
+        psychiatric: 'no',
+        recentDrugs: 'no',
+        doctor: 'Dr Ada Example',
       }))
         data.set(key, value);
       if (arrival !== undefined) data.set('arrivalDate', arrival);
@@ -97,6 +107,16 @@ test('booking validates preferred dates and includes them in both emails', async
       phone: '999123456',
       countryCode: '+51',
       honeypot: '',
+      age: '34',
+      medications: 'none <script>',
+      antidepressants: 'no',
+      pregnancy: 'no',
+      heart: 'no',
+      bloodPressure: 'no',
+      seizures: 'no',
+      psychiatric: 'no',
+      recentDrugs: 'no',
+      doctor: 'Dr "Quote"',
     })) nasty.set(key, value);
     const escaped = await POST({
       request: new Request('http://localhost/api/booking', {

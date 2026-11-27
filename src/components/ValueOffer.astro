@@ -17,9 +17,9 @@ const content = {
     stackTitle: 'Tu experiencia incluye',
     stack: [
       '4 ceremonias de Ayahuasca guiadas por el Maestro Denis Montes',
-      '6 noches en habitación privada con A/C y baño privado, en la ciudad de Iquitos',
+      '6 noches en habitación privada en Iquitos: aire acondicionado, TV, wifi, baño privado, ventilador de techo y dos camas. No se fuma',
       '21 comidas orgánicas alineadas con la dieta ceremonial',
-      'Evaluación médica previa y acompañamiento durante cada ceremonia',
+      'Revisión de tu solicitud de salud antes de confirmar la plaza',
       '3 sesiones de yoga y meditación guiada',
       'Masaje de sanación y baño de florecimiento',
       '2 excursiones amazónicas guiadas en tus días de integración',
@@ -32,11 +32,9 @@ const content = {
       '3 sesiones de integración online después del retiro',
       'Acceso a la comunidad privada de participantes de Casa del Jaguar',
     ],
-    totalLabel: 'Valor total de la experiencia',
-    totalValue: '$4,040 USD',
     priceLabel: 'Tu inversión',
-    price: 'Desde $2,800 USD',
-    priceNote: 'Habitaciones premium y suites con costo adicional. Planes de pago disponibles.',
+    price: '$2,800 USD',
+    priceNote: 'El mismo precio para todas las habitaciones. Grupo de máximo 8 personas.',
     guaranteesTitle: 'Reserva con tranquilidad',
     guarantees: [
       {
@@ -45,14 +43,14 @@ const content = {
       },
       {
         title: 'Honestidad médica',
-        desc: 'Si en la evaluación previa vemos que la ceremonia no es segura para ti, te lo diremos y te devolvemos tu reserva.',
+        desc: 'Si la ceremonia no es segura para ti, te lo decimos y devolvemos el depósito de $100 USD.',
       },
       {
         title: 'Fecha flexible',
         desc: 'Puedes transferir tu reserva a otra fecha sin costo adicional si tus planes cambian.',
       },
     ],
-    scarcity: 'Grupos reducidos para una atención realmente personalizada. Pregunta por el descuento del mes al reservar.',
+    scarcity: 'Grupo de máximo 8 personas. Si el código del mes sigue en la barra superior, el precio con descuento queda por escrito.',
     ctaPrimary: 'Reserva tu sesión informativa gratuita',
     ctaSecondary: 'Escríbenos por WhatsApp',
   },
@@ -64,9 +62,9 @@ const content = {
     stackTitle: 'Your experience includes',
     stack: [
       '4 Ayahuasca ceremonies guided by Master Denis Montes',
-      '6 nights in a private room with A/C and private bathroom, in the city of Iquitos',
+      '6 nights in a private room in Iquitos: air conditioning, TV, WiFi, private bathroom, ceiling fan, and two beds. No smoking',
       '21 organic meals aligned with the ceremonial diet',
-      'Pre-retreat medical screening and support during every ceremony',
+      'Review of your health application before we confirm the place',
       '3 yoga and guided meditation sessions',
       'Healing massage and flower bath',
       '2 guided Amazon excursions on your integration days',
@@ -79,11 +77,9 @@ const content = {
       '3 online integration sessions after the retreat',
       'Access to the private Casa del Jaguar participants community',
     ],
-    totalLabel: 'Total value of the experience',
-    totalValue: '$4,040 USD',
     priceLabel: 'Your investment',
-    price: 'From $2,800 USD',
-    priceNote: 'Premium rooms and suites at an additional cost. Payment plans available.',
+    price: '$2,800 USD',
+    priceNote: 'The same price for every room. Groups of 8 people at most.',
     guaranteesTitle: 'Book with peace of mind',
     guarantees: [
       {
@@ -92,14 +88,14 @@ const content = {
       },
       {
         title: 'Medical honesty',
-        desc: 'If our screening shows the ceremony is not safe for you, we will tell you and refund your booking.',
+        desc: 'If the ceremony is not safe for you, we say so and refund the $100 USD deposit.',
       },
       {
         title: 'Flexible dates',
         desc: 'You can transfer your booking to another date at no additional cost if your plans change.',
       },
     ],
-    scarcity: 'Small groups for truly personalized care. Ask about this month’s discount when you book.',
+    scarcity: 'Groups of 8 people at most. If this month’s code is still on the banner, the discounted price is put in writing.',
     ctaPrimary: 'Book your free information session',
     ctaSecondary: 'Message us on WhatsApp',
   },
@@ -154,9 +150,7 @@ const whatsappText = encodeURIComponent(
 
       <div class="lg:col-span-2 lg:sticky lg:top-24 space-y-6">
         <div class="scroll-animate bg-white rounded-2xl shadow-2xl border-2 border-brand-gold p-8 text-center">
-          <p class="text-sm uppercase tracking-widest text-brand-dark/60 font-gotham font-bold">{c.totalLabel}</p>
-          <p class="text-2xl font-bold text-brand-dark/50 font-georgia line-through mt-1">{c.totalValue}</p>
-          <p class="text-sm uppercase tracking-widest text-brand-gold font-gotham font-bold mt-6">{c.priceLabel}</p>
+          <p class="text-sm uppercase tracking-widest text-brand-gold font-gotham font-bold">{c.priceLabel}</p>
           <p class="text-4xl md:text-5xl font-bold text-brand-dark font-georgia mt-1">{c.price}</p>
           <p class="text-xs text-brand-dark/60 font-gotham mt-3">{c.priceNote}</p>
 

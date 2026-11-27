@@ -1,0 +1,68 @@
+---
+/**
+ * PayPal deposit. Set one of these in Vercel, then redeploy:
+ * - PUBLIC_PAYPAL_HOSTED_BUTTON_ID (PayPal hosted button id)
+ * - PUBLIC_PAYPAL_DEPOSIT_URL (a PayPal.me link or other https checkout URL)
+ * Unprefixed PAYPAL_HOSTED_BUTTON_ID and PAYPAL_DEPOSIT_URL are accepted too.
+ * If neither is set, this renders nothing.
+ */
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const hostedButtonId = [
+  import.meta.env.PUBLIC_PAYPAL_HOSTED_BUTTON_ID,
+  import.meta.env.PAYPAL_HOSTED_BUTTON_ID,
+].find((value) => typeof value === 'string' && value.trim())?.trim() ?? '';
+const depositUrl = [
+  import.meta.env.PUBLIC_PAYPAL_DEPOSIT_URL,
+  import.meta.env.PAYPAL_DEPOSIT_URL,
+].find((value) => typeof value === 'string' && value.trim())?.trim() ?? '';
+const safeUrl = /^https:\/\/[\w.-]+(?:\/[^\s]*)?$/i.test(depositUrl) ? depositUrl : '';
+const showHosted = hostedButtonId.length > 0;
+const showLink = !showHosted && safeUrl.length > 0;
+
+const copy = lang === 'en'
+  ? {
+      title: 'Deposit, $100 USD',
+      body: 'Pay the deposit with PayPal when you send your application. If we decline you for safety, or if you withdraw before we confirm the place, we refund the $100. The deposit does not confirm the retreat.',
+      button: 'Pay $100 USD deposit with PayPal',
+      missing: 'The PayPal button is not set up on this page yet. Send the application and we will write with payment instructions.',
+    }
+  : {
+      title: 'Depósito de $100 USD',
+      body: 'Paga el depósito con PayPal al enviar tu solicitud. Si te rechazamos por seguridad, o si retiras la solicitud antes de confirmar la plaza, devolvemos los $100. El depósito no confirma el retiro.',
+      button: 'Pagar depósito de $100 USD con PayPal',
+      missing: 'El botón de PayPal todavía no está configurado. Envía la solicitud y te escribimos con las instrucciones de pago.',
+    };
+---
+
+{showHosted && (
+  <div class="rounded-xl border border-[#d5c8b3] bg-[#fffcf6] p-4">
+    <h3 class="font-georgia text-xl font-bold text-brand-dark">{copy.title}</h3>
+    <p class="mt-2 text-sm leading-relaxed text-brand-dark/80 font-gotham">{copy.body}</p>
+    <form class="mt-4" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+      <input type="hidden" name="cmd" value="_s-xclick" />
+      <input type="hidden" name="hosted_button_id" value={hostedButtonId} />
+      <button type="submit" class="inline-flex min-h-11 items-center justify-center rounded-lg bg-[#0070ba] px-5 py-3 font-gotham font-bold text-white">
+        {copy.button}
+      </button>
+    </form>
+  </div>
+)}
+
+{showLink && (
+  <div class="rounded-xl border border-[#d5c8b3] bg-[#fffcf6] p-4">
+    <h3 class="font-georgia text-xl font-bold text-brand-dark">{copy.title}</h3>
+    <p class="mt-2 text-sm leading-relaxed text-brand-dark/80 font-gotham">{copy.body}</p>
+    <a href={safeUrl} target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex min-h-11 items-center justify-center rounded-lg bg-[#0070ba] px-5 py-3 font-gotham font-bold text-white">
+      {copy.button}
+    </a>
+  </div>
+)}
+
+{!showHosted && !showLink && (
+  <p class="text-sm leading-relaxed text-brand-dark/80 font-gotham">{copy.missing}</p>
+)}

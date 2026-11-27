@@ -2,6 +2,13 @@ export const SITE_ORIGIN = 'https://casadeljaguariquitos.com';
 export const OG_IMAGE_URL = `${SITE_ORIGIN}/og-image.jpg`;
 export const BUSINESS_PHONE_TEL = '+51917811803';
 export const BUSINESS_PHONE_DISPLAY = '+51 917 811 803';
+export const STREET_ADDRESS = 'Calle Jaén 454';
+/** Share link https://share.google/nB3v4buPKUigPV5QO opens this local listing. */
+export const GOOGLE_LISTING_URL =
+  'https://www.google.com/search?kgmid=/g/11y1x9q_z0&q=Casa+del+Jaguar+-+Ayahuasca+Iquitos';
+/** Maps Search URL for that same listing. A place-id redirect was blocked by a captcha. */
+export const GOOGLE_MAPS_URL =
+  'https://www.google.com/maps/search/?api=1&query=Casa+del+Jaguar+-+Ayahuasca+Iquitos';
 
 export function canonicalUrl(pathname: string): string {
   const path = pathname && pathname !== '' ? pathname : '/';
