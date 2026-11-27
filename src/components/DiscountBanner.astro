@@ -19,33 +19,26 @@ const discountCode = `${currentMonth}${currentYear}`;
 
 <div 
   id="discount-banner" 
-  class="bg-brand-light text-brand-dark text-center discount-banner flex items-center justify-center relative z-50 transition-all duration-300 ease-in-out"
+  class="bg-brand-light text-brand-dark discount-banner relative z-50 flex h-9 items-stretch overflow-hidden transition-all duration-300 ease-in-out"
 >
-  <div class="w-full max-w-[1920px] mx-auto px-2 sm:px-4 lg:px-8">
-    <p class="text-xs sm:text-sm font-medium font-gotham leading-snug py-2 pr-8">
+  <p class="discount-line min-w-0 flex-1 truncate whitespace-nowrap px-3 text-center font-gotham font-medium leading-9">
+    <span class="md:hidden">{lang === 'es' ? 'Ahorra' : 'Save'} <span class="font-bold">$800</span> · <span class="font-bold">{discountCode}</span></span>
+    <span class="hidden md:inline">
       {lang === 'es' ? (
-        <>
-          Este mes, ahorre <span class="font-bold">$800</span> con el código: <span class="font-bold bg-white text-brand-dark px-1 sm:px-2 py-1 rounded mx-1 inline-block">{discountCode}</span>
-          <span class="mx-1">·</span>
-          Llame hoy mismo al <span class="font-bold">+51 917 811 803</span>.
-        </>
+        <>Este mes, ahorre <span class="font-bold">$800</span> con el código <span class="font-bold">{discountCode}</span> · Llame al <span class="font-bold">+51 917 811 803</span></>
       ) : (
-        <>
-          This month, save <span class="font-bold">$800</span> with code: <span class="font-bold bg-white text-brand-dark px-1 sm:px-2 py-1 rounded mx-1 inline-block">{discountCode}</span>
-          <span class="mx-1">·</span>
-          Call <span class="font-bold">+51 917 811 803</span> today.
-        </>
+        <>This month, save <span class="font-bold">$800</span> with code <span class="font-bold">{discountCode}</span> · Call <span class="font-bold">+51 917 811 803</span></>
       )}
-    </p>
-    <button
-      type="button"
-      id="discount-dismiss"
-      class="absolute right-2 top-1/2 -translate-y-1/2 min-h-11 min-w-11 text-brand-dark font-bold"
-      aria-label={lang === 'es' ? 'Cerrar aviso' : 'Dismiss notice'}
-    >
-      ×
-    </button>
-  </div>
+    </span>
+  </p>
+  <button
+    type="button"
+    id="discount-dismiss"
+    class="shrink-0 px-3 text-lg font-bold leading-none text-brand-dark"
+    aria-label={lang === 'es' ? 'Cerrar aviso' : 'Dismiss notice'}
+  >
+    ×
+  </button>
 </div>
 
 <script>
@@ -128,20 +121,11 @@ const discountCode = `${currentMonth}${currentYear}`;
 
 <style>
   .discount-banner {
-    min-height: 64px; /* Mobile: 4rem */
-    height: auto;
+    height: 2.25rem;
+    max-height: 2.25rem;
   }
-  
-  @media (min-width: 640px) {
-    .discount-banner {
-      min-height: 48px; /* Tablet: 3rem */
-    }
-  }
-  
-  @media (min-width: 768px) {
-    .discount-banner {
-      min-height: 36px; /* Desktop: 2.25rem */
-      height: 36px;
-    }
+  .discount-line {
+    font-size: clamp(11px, 3.1vw, 14px);
+    line-height: 2.25rem;
   }
 </style>
