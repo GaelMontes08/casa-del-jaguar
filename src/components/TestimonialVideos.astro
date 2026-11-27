@@ -63,6 +63,8 @@ const allVideos = [...videos, ...videos];
                   <img 
                     src={video.thumbnail || `https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
                     alt={`Testimonio - ${video.title}`}
+                    width="1280"
+                    height="720"
                     class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   >
                   <div class="absolute inset-0 transition-all duration-300 flex items-center justify-center">

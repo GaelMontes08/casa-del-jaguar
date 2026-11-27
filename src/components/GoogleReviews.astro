@@ -58,7 +58,7 @@ const {
             <div class="flex items-center mb-3">
               <div class="w-10 h-10 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mr-3">
                 {review.avatar ? (
-                  <img src={review.avatar} alt={review.name} class="w-10 h-10 rounded-full object-cover" draggable="false" />
+                  <img src={review.avatar} alt={review.name} width="64" height="64" class="w-10 h-10 rounded-full object-cover" draggable="false" />
                 ) : (
                   <span class="text-blue-600 font-bold text-base font-gotham">
                     {review.name.charAt(0).toUpperCase()}

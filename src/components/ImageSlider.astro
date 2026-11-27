@@ -18,6 +18,8 @@ const { images, autoplay = true, autoplayDelay = 4000 } = Astro.props;
         <img
           src={image.src}
           alt={image.alt}
+          width="1448"
+          height="1086"
           class="w-full h-[400px] md:h-[800px] object-cover"
           loading={index === 0 ? "eager" : "lazy"}
         />

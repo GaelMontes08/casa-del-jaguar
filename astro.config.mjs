@@ -10,8 +10,22 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   output: 'server',
   adapter: vercel(),
-  site: 'https://casadeljaguar.com',
-  integrations: [sitemap()],
+  site: 'https://casadeljaguariquitos.com',
+  integrations: [
+    sitemap({
+      filter: (page) => {
+        const path = new URL(page).pathname;
+        return path !== '/es' && !path.startsWith('/es/');
+      },
+      i18n: {
+        defaultLocale: 'es',
+        locales: {
+          es: 'es',
+          en: 'en',
+        },
+      },
+    }),
+  ],
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en'],

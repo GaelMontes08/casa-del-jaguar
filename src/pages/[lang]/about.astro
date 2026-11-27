@@ -4,7 +4,6 @@ import { useTranslations } from '@/i18n/utils';
 
 export async function getStaticPaths() {
   return [
-    { params: { lang: 'es' } },
     { params: { lang: 'en' } }
   ];
 }
@@ -36,7 +35,7 @@ const pageKeywords = lang === 'en'
   <section class="relative h-[60vh] min-h-[500px] flex items-center justify-center -mt-16 pt-16">
     <div class="absolute inset-0 z-0">
         <img 
-            src="/img/centro-pasadiso.webp" 
+            src="/img/centro-pasadiso.webp" width="1448" height="1086" 
             alt="Resort Casa del Jaguar - Centro de medicina ancestral"
             class="w-full h-full object-cover"
         />
@@ -285,8 +284,6 @@ const pageKeywords = lang === 'en'
 
 <style>
   .scroll-animate {
-    opacity: 0;
-    transform: translateY(20px);
     transition: all 0.4s ease;
   }
   

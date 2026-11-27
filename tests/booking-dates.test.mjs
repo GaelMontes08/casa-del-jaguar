@@ -88,6 +88,39 @@ test('booking validates preferred dates and includes them in both emails', async
     assert.equal(emails.length, 4);
     assert.ok(!emails[2].html.includes('Fechas preferidas'));
     assert.ok(!emails[3].html.includes('Fechas preferidas'));
+
+    const nasty = new FormData();
+    for (const [key, value] of Object.entries({
+      firstName: 'A<b>na',
+      lastName: 'Te"st',
+      email: 'calendar-test@example.com',
+      phone: '999123456',
+      countryCode: '+51',
+      honeypot: '',
+    })) nasty.set(key, value);
+    const escaped = await POST({
+      request: new Request('http://localhost/api/booking', {
+        method: 'POST',
+        headers: { 'x-real-ip': 'escape-test' },
+        body: nasty,
+      }),
+    });
+    assert.equal(escaped.status, 200);
+    assert.equal(emails.length, 6);
+    const fresh = emails.slice(4);
+    const confirmation = fresh.find((email) =>
+      email.to.includes('calendar-test@example.com')
+    );
+    const notification = fresh.find((email) =>
+      email.to.includes('info@casadeljaguariquitos.com')
+    );
+    assert.ok(confirmation.html.includes('A&lt;b&gt;na'));
+    assert.ok(!confirmation.html.includes('A<b>na'));
+    assert.ok(notification.html.includes('A&lt;b&gt;na'));
+    assert.ok(notification.html.includes('Te&quot;st'));
+    assert.ok(!notification.html.includes('A<b>na'));
+    assert.ok(confirmation.html.includes('tel:+51917811803'));
+    assert.ok(!confirmation.html.includes('tel:+51999123456'));
   } finally {
     if (server) await server.close();
     for (const id of intervals) clearInterval(id);

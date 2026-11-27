@@ -1,24 +1,12 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
+import { escapeHtml } from '@/utils/html';
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
-// In-memory rate limiting (resets on serverless cold start, provides basic protection)
-const rateLimitMap = new Map<string, { count: number; windowStart: number }>();
-const RATE_LIMIT_WINDOW_MS = 24 * 60 * 60 * 1000;
-const RATE_LIMIT_MAX_REQUESTS = 3;
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const record = rateLimitMap.get(ip);
-  if (!record || now - record.windowStart > RATE_LIMIT_WINDOW_MS) {
-    rateLimitMap.set(ip, { count: 1, windowStart: now });
-    return false;
-  }
-  if (record.count >= RATE_LIMIT_MAX_REQUESTS) return true;
-  record.count++;
-  return false;
-}
+// In-memory rate limits do not hold on Vercel serverless (one map per instance,
+// cleared on cold start). Honeypot, length, and spam checks remain. A shared
+// limit needs Upstash Redis or Vercel KV; neither is added here.
 
 function isSpam(message: string): boolean {
   // Too many URLs
@@ -38,17 +26,6 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response(
         JSON.stringify({ error: 'Email service not configured' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
-
-    // IP-based rate limiting
-    const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim()
-      || request.headers.get('x-real-ip')
-      || 'unknown';
-    if (isRateLimited(ip)) {
-      return new Response(
-        JSON.stringify({ error: 'Too many requests. Please wait a moment before trying again.' }),
-        { status: 429, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
@@ -111,11 +88,18 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safePhone = escapeHtml(phone || '');
+    const safeSubject = escapeHtml(subject);
+    const safeMessage = escapeHtml(trimmedMessage).replace(/\n/g, '<br>');
+
     // Language-specific content
     const isSpanish = language === 'es';
+    const safeSubjectLine = subject.replace(/[\r\n]/g, ' ').slice(0, 200);
     const emailSubject = isSpanish 
-      ? `Nuevo mensaje de contacto: ${subject}`
-      : `New contact message: ${subject}`;
+      ? `Nuevo mensaje de contacto: ${safeSubjectLine}`
+      : `New contact message: ${safeSubjectLine}`;
     
     const emailTemplate = isSpanish ? `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9;">
@@ -127,15 +111,15 @@ export const POST: APIRoute = async ({ request }) => {
           
           <div style="background-color: #f8f8f8; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
             <h2 style="color: #333; margin: 0 0 15px 0; font-size: 18px;">Información de contacto</h2>
-            <p style="margin: 8px 0; color: #555;"><strong>Nombre:</strong> ${name}</p>
-            <p style="margin: 8px 0; color: #555;"><strong>Email:</strong> <a href="mailto:${email}" style="color: #D99D55;">${email}</a></p>
-            <p style="margin: 8px 0; color: #555;"><strong>Teléfono:</strong> ${phone || 'No proporcionado'}</p>
-            <p style="margin: 8px 0; color: #555;"><strong>Asunto:</strong> ${subject}</p>
+            <p style="margin: 8px 0; color: #555;"><strong>Nombre:</strong> ${safeName}</p>
+            <p style="margin: 8px 0; color: #555;"><strong>Email:</strong> <a href="mailto:${safeEmail}" style="color: #D99D55;">${safeEmail}</a></p>
+            <p style="margin: 8px 0; color: #555;"><strong>Teléfono:</strong> ${safePhone || 'No proporcionado'}</p>
+            <p style="margin: 8px 0; color: #555;"><strong>Asunto:</strong> ${safeSubject}</p>
           </div>
           
           <div style="background-color: #fff; padding: 20px; border-left: 4px solid #D99D55;">
             <h3 style="color: #333; margin: 0 0 10px 0; font-size: 16px;">Mensaje:</h3>
-            <p style="color: #555; line-height: 1.6; margin: 0;">${message.replace(/\n/g, '<br>')}</p>
+            <p style="color: #555; line-height: 1.6; margin: 0;">${safeMessage}</p>
           </div>
           
           <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
@@ -153,15 +137,15 @@ export const POST: APIRoute = async ({ request }) => {
           
           <div style="background-color: #f8f8f8; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
             <h2 style="color: #333; margin: 0 0 15px 0; font-size: 18px;">Contact Information</h2>
-            <p style="margin: 8px 0; color: #555;"><strong>Name:</strong> ${name}</p>
-            <p style="margin: 8px 0; color: #555;"><strong>Email:</strong> <a href="mailto:${email}" style="color: #D99D55;">${email}</a></p>
-            <p style="margin: 8px 0; color: #555;"><strong>Phone:</strong> ${phone || 'Not provided'}</p>
-            <p style="margin: 8px 0; color: #555;"><strong>Subject:</strong> ${subject}</p>
+            <p style="margin: 8px 0; color: #555;"><strong>Name:</strong> ${safeName}</p>
+            <p style="margin: 8px 0; color: #555;"><strong>Email:</strong> <a href="mailto:${safeEmail}" style="color: #D99D55;">${safeEmail}</a></p>
+            <p style="margin: 8px 0; color: #555;"><strong>Phone:</strong> ${safePhone || 'Not provided'}</p>
+            <p style="margin: 8px 0; color: #555;"><strong>Subject:</strong> ${safeSubject}</p>
           </div>
           
           <div style="background-color: #fff; padding: 20px; border-left: 4px solid #D99D55;">
             <h3 style="color: #333; margin: 0 0 10px 0; font-size: 16px;">Message:</h3>
-            <p style="color: #555; line-height: 1.6; margin: 0;">${message.replace(/\n/g, '<br>')}</p>
+            <p style="color: #555; line-height: 1.6; margin: 0;">${safeMessage}</p>
           </div>
           
           <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
