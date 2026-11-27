@@ -42,10 +42,12 @@ const lang = getLangFromUrl(Astro.url);
 const dateLabels = lang === 'en' ? {
   arrival: 'Preferred arrival date (optional)',
   hint: '7 days and 6 nights. Dates and availability are confirmed by our team before booking.',
+  format: 'Month / day / year',
   departure: 'Departure',
 } : {
   arrival: 'Fecha de llegada preferida (opcional)',
   hint: '7 días y 6 noches. Nuestro equipo confirma las fechas y la disponibilidad antes de reservar.',
+  format: 'Día / mes / año',
   departure: 'Salida',
 };
 ---
@@ -71,8 +73,9 @@ const dateLabels = lang === 'en' ? {
     </div>
     <div class="form-group mb-6 rounded-xl border border-[#d5c8b3] bg-[#fffcf6] p-4">
       <label for="arrivalDate" class="block text-sm font-semibold text-brand-dark mb-2 font-gotham">{dateLabels.arrival}</label>
-      <input type="date" id="arrivalDate" name="arrivalDate" max="9999-12-25" aria-describedby="arrivalHint arrivalDeparture arrivalError"
+      <input type="date" id="arrivalDate" name="arrivalDate" lang={lang} max="9999-12-25" aria-describedby="arrivalFormat arrivalHint arrivalDeparture arrivalError"
         class="w-full min-w-0 px-4 py-3 border border-gray-300 rounded-lg font-gotham text-gray-700 bg-white" />
+      <p id="arrivalFormat" class="mt-2 text-sm font-semibold text-brand-dark">{dateLabels.format}</p>
       <p id="arrivalHint" class="mt-2 text-sm text-gray-600">{dateLabels.hint}</p>
       <p id="arrivalDeparture" class="mt-2 text-sm font-bold text-brand-dark" data-departure-label={dateLabels.departure} aria-live="polite"></p>
       <span id="arrivalError" class="error-message text-red-500 text-sm hidden" aria-live="polite"></span>

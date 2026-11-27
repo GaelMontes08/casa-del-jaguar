@@ -9,7 +9,7 @@ const t = useTranslations(lang);
 <header id="main-header" class="bg-transparent sticky top-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out">
   <div class="w-full max-w-[1920px] mx-auto">
     <nav class="w-full px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center gap-3 h-16">
+    <div class="grid grid-cols-[auto_1fr_auto] items-center gap-3 h-16">
       <div class="flex items-center shrink-0">
         <a href={translatePath('/', lang)} class="flex items-center shrink-0">
           <img src="/cj-icon-light.webp" alt="Casa del Jaguar" width="516" height="516" class="h-10 w-auto sm:hidden" loading="eager" fetchpriority="high">
@@ -17,7 +17,7 @@ const t = useTranslations(lang);
         </a>
       </div>
       
-      <div class="hidden xl:block">
+      <div class="hidden xl:flex justify-center min-w-0">
         <div class="flex items-center gap-1 whitespace-nowrap">
           <div class="relative group">
             <button 
