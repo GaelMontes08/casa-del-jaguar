@@ -3,6 +3,7 @@ import Layout from '@/layouts/Layout.astro';
 import Hero from '@/components/Hero.astro';
 import ImageSlider from '@/components/ImageSlider.astro';
 import GoogleReviews from '@/components/GoogleReviews.astro';
+import { reviewsFor } from '@/data/reviews';
 import { useTranslations } from '@/i18n/utils';
 import BookingForm from '@/components/BookingForm.astro';
 import Services from '@/components/Services.astro';
@@ -22,46 +23,19 @@ const t = useTranslations('es');
       <div class="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl lg:max-w-5xl mb-16 text-center lg:text-left">
           <h2 class="text-4xl md:text-5xl font-bold text-brand-dark mb-8 font-georgia leading-tight">
-            Únete a un viaje transformador que <span class="text-brand-gold">cambiará tu vida</span>
+            Un retiro de 7 días en <span class="text-brand-gold">Iquitos</span>
           </h2>
           
           <p class="text-[19px] md:text-md text-brand-dark mb-4 font-gotham leading-relaxed">
-            Casa del Jaguar es el retiro de lujo todo incluido #1 especializado en medicina ancestral para el crecimiento personal, la transformación profunda y la sanación del alma.
+            Casa del Jaguar es un retiro de ayahuasca de 7 días y 6 noches en la ciudad de Iquitos. Trabaja aquí desde 2009. El precio es $2,800 USD y el grupo es de máximo 8 personas.
           </p>
           
           <p class="text-[19px] md:text-md text-brand-dark font-gotham leading-relaxed mb-12">
-            En la ciudad de Iquitos, puerta de entrada a la Amazonía peruana, ofrecemos un espacio sagrado donde las plantas maestras, ceremonias guiadas por nuestro maestro experimentado, gastronomía consciente y alojamiento exclusivo se combinan en un programa integral de transformación. Con la seguridad de la ciudad y la selva a un paso, cada experiencia te acerca a la versión más auténtica de ti mismo.
+            Las ceremonias son en la maloca, en la ciudad, a minutos del aeropuerto. Las guían chamanes indígenas junto con el Maestro Denis Montes. Denis dirige el programa. Las ceremonias son en inglés y Denis traduce. En los días de integración hay dos salidas a la Amazonía.
           </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20 scroll-animate text-center">
-          <div class="bg-brand-gold rounded-2xl px-8 pt-2 pb-4 shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <div class="text-4xl md:text-5xl font-bold text-white mb-4 font-georgia">
-              1,000+
-            </div>
-            <p class="text-lg font-gotham text-brand-dark font-semibold">
-              Experiencias transformadoras desde 2009
-            </p>
-          </div>
-
-          <div class="bg-brand-gold rounded-2xl px-8 pt-2 pb-4 shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <div class="text-4xl md:text-5xl font-bold text-white mb-4 font-georgia">
-              98%
-            </div>
-            <p class="text-lg font-gotham text-brand-dark font-semibold">
-              De huéspedes reportan cambios profundos en su vida
-            </p>
-          </div>
-
-          <div class="bg-brand-gold rounded-2xl px-8 pt-2 pb-4 shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <div class="text-4xl md:text-5xl font-bold text-white mb-4 font-georgia">
-              5,000+
-            </div>
-            <p class="text-lg font-gotham text-brand-dark font-semibold">
-              Almas transformadas en nuestra comunidad sagrada
-            </p>
-          </div>
-        </div>
+        <p class="font-gotham text-brand-dark">Casa del Jaguar trabaja en Iquitos desde 2009. El retiro cuesta $2,800 USD, con el mismo precio para todas las habitaciones.</p>
       </div>
     </section>
 
@@ -74,13 +48,13 @@ const t = useTranslations('es');
         </div>
         <div class="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left order-1 md:order-2">
           <blockquote class="text-2xl md:text-4xl font-georgia text-brand-dark mb-6 font-semibold leading-snug">
-            “Fui sanado de una vida de sufrimiento. Hoy soy feliz y libre. Casa del Jaguar ha ayudado a más de 1,000 almas a recibir su milagro.”
+            “Vine a esta medicina buscando alivio. Hoy acompaño a otras personas con el mismo cuidado con el que a mí me acompañaron.”
           </blockquote>
           <div class="text-brand-dark text-base md:text-lg font-gotham mb-8 opacity-70">
-            Casa del Jaguar ha acompañado a cientos de personas en su propio proceso de sanación y transformación.
+            Denis Montes nació en Iquitos en 1983. Es ingeniero químico. Su formación chamánica empezó en 2012.
           </div>
           <div class="text-sm text-brand-dark opacity-60 mb-8 font-gotham">
-            — Denis Montes, Maestro Chaman & Ingeniero Químico
+            — Denis Montes, ingeniero químico. Formación chamánica desde 2012.
           </div>
           <a href="/about" class="button-story inline-block bg-brand-gold text-brand-dark px-8 py-3 rounded-full font-bold text-lg shadow-lg font-gotham uppercase tracking-wide hover:scale-110 transition-all">
             Nuestra Historia
@@ -105,7 +79,7 @@ const t = useTranslations('es');
             </p>
             
             <p>
-              Las <strong>ceremonias con medicina ancestral</strong> se complementan con prácticas modernas como <strong>yoga, respiración consciente, meditación, Hemy-Sync</strong> y talleres integrativos que profundizan el proceso de sanación.
+              Las <strong>ceremonias</strong> se acompañan con <strong>yoga, respiración, meditación</strong> y talleres de integración entre una noche y la siguiente.
             </p>
 
             <p class="text-base opacity-70">
@@ -185,79 +159,10 @@ const t = useTranslations('es');
 
     <section class="py-20 bg-white scroll-animate">
       <div class="max-w-[1500px] mx-auto px-4 md:px-8">
-        <GoogleReviews 
-          title="Lo que dicen nuestros huéspedes"
-          reviews={[
-            {
-              id: "1",
-              name: "Candy Beatriz Rios Cahuaza",
-              avatar: "/img/avatars/candy-beatriz-rios-cahuaza.webp",
-              rating: 5,
-              date: "Hace 6 meses",
-              text: "La experiencia en la Casa del Jaguar es absolutamente imperdible. Desde el inicio, la atención es de primera, con un ambiente acogedor y armonioso. La ceremonia de Ayahuasca es guiada con profundo conocimiento y sabiduría, brindando una experiencia transformadora. Cada detalle, desde La preparación hasta la explicación, contribuye a hacer de esta sesión un momento único e inolvidable. Sin duda, una experiencia que recomiendo a quienes buscan una conexión auténtica y significativa.",
-              location: "Perú"
-            },
-            {
-              id: "2", 
-              name: "Diego Reuch Borbor",
-              avatar: "/img/avatars/diego-reuch-borbor.webp",
-              rating: 5,
-              date: "Hace 10 meses",
-              text: "Una experiencia única en el lugar. Buena atención, preparación y el guiado en ceremonia es sencillamente personalizado, que se adapta a la situación de uno. Como producto de la potente conexión que tuve gracias a la madre ayahuasca y al maestro chaman pude expandir mis límites mentales y espirituales para forjar la transcendente consciencia que hoy me ayuda a tener una mejor calidad de vida. Definitivamente recomendaría visitar la Casa del Jaguar a toda persona que desee entender mejor su realidad y expandir su nivel de conciencia.",
-              location: "Perú"
-            },
-            {
-              id: "3",
-              name: "Samuel Ballantine",
-              rating: 5,
-              date: "Hace 4 meses",
-              text: "This is a place for people who truly want to heal. The shaman is truly dedicated he is. The kind of man who will sit and talk to you all day if you so desire it. He holds great insight and will be able to guide you through your ceremonies and help you understand what you are seeing and processing. Couldn’t recommend this place any more.",
-              location: "Italia"
-            },
-            {
-              id: "4",
-              name: "Jacopo Foglia",
-              rating: 5,
-              date: "Hace 3 meses",
-              text: "L’esperienza con lo sciamano Denis è stata davvero sorprendente! Avevo già partecipato ad una cerimonia di ayahuasca prima di quel momento, ma questa è stata davvero interessante ed intima. Ha guidato me ed il mio amico in un viaggio interiore indescrivibile, aiutandoci grazie a diverse ore di chiacchierata prima della cerimonia, spiegandoci il suo approccio con la medicina e spiegandoci come gestire la cerimonia nelle sue diverse fasi. Sicuramente parteciperò ad una nuova quando tornerò ad Iquitos.",
-              location: "Italia"
-            },
-            {
-              id: "5",
-              name: "Felix Rios Teran",
-              avatar: "/img/avatars/felix-rios-teran.webp",
-              rating: 5,
-              date: "Hace 1 año",
-              text: "Maestro Denis muchas gracias por guiarme y curarme con tu sabiduría durante mi experiencia con la Madre Ayahuasca una experiencia transformadora que abre puertas a la introspección y la sanación. Estoy profundamente agradecido por tu cuidado, profesionalismo y dedicación. Le recomiendo a cualquier hermano que busque sanación y crecimiento espiritual en la CASA DEL JAGUAR",
-              location: "Perú"
-            },
-            {
-              id: "6",
-              name: "Stella Palomares",
-              avatar: "/img/avatars/stella-palomares.webp",
-              rating: 5,
-              date: "Hace 1 año", 
-              text: "Una experiencia gratificante y llena de sabiduría con la acogedora atención del Sr Jaguar y su linda familia; sentimos mucha comodidad y linda energía. Fuimos bien guiados bajo el poder de la madre Ayahuasca ",
-              location: "México"
-            },
-            {
-              id: "7",
-              name: "Victor Alfonso Vazquez Zapata",
-              avatar: "/img/avatars/victor-alfonso-vazquez-zapata.webp",
-              rating: 5,
-              date: "Hace 1 año", 
-              text: "La mejor experiencia de mi vida. Todo está espectacularmente calculado. Gracias Denis, nos vemos pronto. Saludos desde Aguascalientes, México.",
-              location: "México"
-            },
-            {
-              id: "8",
-              name: "Clever Enrique",
-              rating: 5,
-              date: "Hace 4 meses", 
-              text: "Une belle place et en plein securité pour vivre cette belle expérience. 100% recommander!",
-              location: "Italia"
-            }
-          ]}
+        <GoogleReviews
+          title="Reseñas de Google"
+          note="Textos copiados a mano desde reseñas de Google. Se muestra el idioma original y, si hace falta, una traducción."
+          reviews={reviewsFor('es')}
           autoplay={true}
           autoplayDelay={7000}
         />
@@ -267,8 +172,8 @@ const t = useTranslations('es');
     <section class="py-20 bg-brand-cream scroll-animate">
       <div class="max-w-[1500px] mx-auto px-4 md:px-8">
         <BookingForm 
-          title="Reserva tu experiencia"
-          subtitle="Completa el formulario y nos pondremos en contacto contigo para confirmar tu reserva"
+          title="Solicitud de salud"
+          subtitle="La plaza se confirma después de leer tus respuestas. El depósito de $100 USD se devuelve si la ceremonia no es segura para ti."
           labels={{
             firstName: "Nombre *",
             lastName: "Apellido *",

@@ -4,6 +4,7 @@ import CountrySelect from '@/components/CountrySelect.astro';
 import PhoneCodeSelect from '@/components/PhoneCodeSelect.astro';
 import { useTranslations } from '@/i18n/utils';
 import GoogleReviews from '@/components/GoogleReviews.astro';
+import { reviewsFor } from '@/data/reviews';
 import Services from '@/components/Services.astro';
 import ValueOffer from '@/components/ValueOffer.astro';
 import LocationClarity from '@/components/LocationClarity.astro';
@@ -11,7 +12,7 @@ import LocationClarity from '@/components/LocationClarity.astro';
 const t = useTranslations('es');
 
 const pageTitle = "Precios - Retiro de 7 Días Todo Incluido en Iquitos | Casa del Jaguar";
-const pageDescription = "Experimenta una transformación profunda con nuestro retiro de medicina ancestral de 7 días todo incluido en la ciudad de Iquitos. Desde $2,800 USD incluye 4 ceremonias, alojamiento privado, 2 excursiones amazónicas y prácticas de bienestar.";
+const pageDescription = "Retiro de ayahuasca de 7 días y 6 noches en Iquitos por $2,800 USD. El mismo precio para todas las habitaciones. 4 ceremonias, grupo de máximo 8 personas.";
 const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina ancestral precio, retiro 7 días Iquitos, reservar retiro espiritual";
 ---
 
@@ -32,12 +33,12 @@ const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina 
 
     <div class="relative z-10 max-w-6xl mx-auto px-4 md:px-8 text-center">
       <h1 class="scroll-animate text-4xl md:text-6xl font-bold text-white font-georgia mb-8 leading-tight">
-        Experiencia de 7 Días Todo Incluido<br>
-        <span class="text-brand-primary">Desde $2,800 USD</span>
+        Retiro de 7 días y 6 noches<br>
+        <span class="text-brand-primary">$2,800 USD</span>
       </h1>
       
       <p class="scroll-animate text-xl md:text-[19px] text-white mb-12 max-w-4xl mx-auto font-gotham leading-relaxed">
-        Una inversión en tu transformación personal que incluye ceremonias de medicina ancestral, prácticas de bienestar, alojamiento privado en la ciudad de Iquitos y excursiones guiadas a la Amazonía.
+        El mismo precio para todas las habitaciones. Grupo de máximo 8 personas. Las ceremonias las guían chamanes indígenas junto con Denis Montes, en inglés. Denis dirige el programa y traduce.
       </p>
     </div>
   </section>
@@ -52,13 +53,13 @@ const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina 
               Tu Viaje de Transformación Incluye
             </h2>
             <p class="text-lg text-brand-dark font-gotham leading-relaxed mb-8">
-              Nuestro retiro de 7 días está cuidadosamente diseñado para ofrecerte una experiencia completa de sanación y crecimiento personal en un entorno de lujo y seguridad.
+              Siete días y seis noches en la ciudad de Iquitos. Cuatro ceremonias, habitación privada y dos salidas a la Amazonía.
             </p>
           </div>
 
           <div class="border-l-4 border-brand-primary pl-6 scroll-animate">
             <p class="text-sm text-gray-600 font-gotham leading-relaxed mb-2">
-              <strong>Nota sobre precios:</strong> El precio final puede variar según la selección de habitación y servicios adicionales. Las habitaciones premium y suites tienen un costo adicional.
+              <strong>La habitación:</strong> aire acondicionado, televisor, wifi, baño privado, ventilador de techo y dos camas. No se fuma. El precio no cambia según la habitación.
             </p>
           </div>
         </div>
@@ -66,127 +67,14 @@ const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina 
         <div class="lg:sticky lg:top-8">
           <div class="bg-white shadow-2xl rounded-2xl p-8 border border-gray-100 scroll-animate">
             <h3 class="text-2xl font-bold text-brand-dark font-georgia mb-2">
-              Reserva tu Sesión Informativa Gratuita
+              Solicitud de salud
             </h3>
             <p class="text-gray-600 font-gotham mb-6">
-              Completa este formulario y nos pondremos en contacto contigo para programar una consulta personalizada.
+              La plaza se confirma después de leer tu salud, no al enviar el formulario.
             </p>
 
-            <form id="pricingForm" class="space-y-4">
-              <!-- Honeypot field: must remain empty -->
-              <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;overflow:hidden;" aria-hidden="true">
-                <input type="text" name="honeypot" id="hp-pricing" tabindex="-1" autocomplete="off" />
-              </div>
-              <div class="grid grid-cols-2 gap-4">
-                <div>
-                  <label for="firstName" class="block text-sm font-semibold text-brand-dark font-gotham mb-2">
-                    Nombre *
-                  </label>
-                  <input 
-                    type="text" 
-                    id="firstName" 
-                    name="firstName" 
-                    required
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-colors font-gotham"
-                    placeholder="Tu nombre"
-                  />
-                  <span class="error-message text-red-500 text-sm hidden">Este campo es requerido</span>
-                </div>
-                <div>
-                  <label for="lastName" class="block text-sm font-semibold text-brand-dark font-gotham mb-2">
-                    Apellido *
-                  </label>
-                  <input 
-                    type="text" 
-                    id="lastName" 
-                    name="lastName" 
-                    required
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-colors font-gotham"
-                    placeholder="Tu apellido"
-                  />
-                  <span class="error-message text-red-500 text-sm hidden">Este campo es requerido</span>
-                </div>
-              </div>
-
-              <div>
-                <label for="email" class="block text-sm font-semibold text-brand-dark font-gotham mb-2">
-                  Email *
-                </label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  name="email" 
-                  required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-colors font-gotham"
-                  placeholder="tu@email.com"
-                />
-                <span class="error-message text-red-500 text-sm hidden">Por favor ingresa un email válido</span>
-              </div>
-
-              <div>
-                <label for="country" class="block text-sm font-semibold text-brand-dark font-gotham mb-2">
-                  País *
-                </label>
-                <CountrySelect 
-                  id="country" 
-                  name="country" 
-                  required={true}
-                  lang="es"
-                />
-                <span class="error-message text-red-500 text-sm hidden">Por favor selecciona tu país</span>
-              </div>
-
-              <div class="grid grid-cols-2 gap-4">
-                <div>
-                  <label for="phoneCode" class="block text-sm font-semibold text-brand-dark font-gotham mb-2">
-                    Código de País *
-                  </label>
-                  <PhoneCodeSelect 
-                    id="phoneCode" 
-                    name="phoneCode" 
-                    required={true}
-                    lang="es"
-                  />
-                  <span class="error-message text-red-500 text-sm hidden">Por favor selecciona tu código de país</span>
-                </div>
-                <div>
-                  <label for="phone" class="block text-sm font-semibold text-brand-dark font-gotham mb-2">
-                    Teléfono *
-                  </label>
-                  <input 
-                    type="tel" 
-                    id="phone" 
-                    name="phone"
-                    required
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-colors font-gotham"
-                    placeholder="123-4567"
-                  />
-                  <span class="error-message text-red-500 text-sm hidden">Este campo es requerido</span>
-                </div>
-              </div>
-
-              <button 
-                type="submit" 
-                class="w-full bg-brand-dark text-white py-4 px-6 rounded-lg font-semibold font-gotham text-lg transition-all duration-300 hover:bg-opacity-90 hover:shadow-lg focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                id="submitButton"
-              >
-                Enviar Solicitud
-              </button>
-            </form>
-
-            <div id="successMessage" class="hidden mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-              <div class="flex items-center">
-                <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3">
-                  <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h4 class="font-semibold text-green-800 font-gotham">¡Gracias por tu interés!</h4>
-                  <p class="text-green-700 font-gotham text-sm">Nos pondremos en contacto contigo pronto para programar tu sesión informativa gratuita.</p>
-                </div>
-              </div>
-            </div>
+            <a href="/booking" class="inline-flex min-h-11 items-center justify-center rounded-lg bg-brand-dark px-5 py-3 font-gotham font-bold text-white">Enviar solicitud de salud</a>
+            <p class="mt-4 text-sm text-gray-600 font-gotham">La solicitud pide edad, medicamentos y un depósito de $100 USD. Si la ceremonia no es segura para ti, devolvemos el depósito.</p>
           </div>
         </div>
       </div>
@@ -203,7 +91,7 @@ const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina 
             </svg>
           </div>
           <p class="text-brand-dark font-gotham text-sm leading-relaxed">
-            Más del 98% de nuestros huéspedes reportan una transformación monumental que describen como un "milagro".
+            Cuatro ceremonias de ayahuasca en siete días, con descanso entre una noche y la siguiente.
           </p>
         </div>
 
@@ -214,7 +102,7 @@ const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina 
             </svg>
           </div>
           <p class="text-brand-dark font-gotham text-sm leading-relaxed">
-            Experimenta ayahuasca de forma segura en el único resort de medicina vegetal con licencia médica en el mundo.
+            Antes de confirmar la plaza leemos tu solicitud de salud. Si no es segura para ti, te lo decimos y devolvemos el depósito.
           </p>
         </div>
 
@@ -247,7 +135,7 @@ const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina 
     <div class="max-w-[1500px] mx-auto px-4 md:px-8">
       <div class="text-center mb-16 scroll-animate">
         <h2 class="max-w-[1200px] mx-auto text-4xl md:text-5xl font-bold text-brand-dark font-georgia mb-6">
-          Transforma tu vida con el método Casa del Jaguar, un programa altamente eficaz que fusiona las ceremonias de ayahuasca y la psicología moderna.
+          Siete días y seis noches. Denis Montes guía el programa. Las ceremonias son en inglés y él traduce.
         </h2>
       </div>
 
@@ -272,7 +160,7 @@ const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina 
           </div>
           <h3 class="text-xl font-bold text-brand-dark font-georgia mb-4">Seguridad Médica</h3>
           <p class="text-gray-600 font-gotham leading-relaxed">
-            Somos el único resort de medicina vegetal con licencia médica completa en el mundo. Nuestro equipo médico profesional garantiza tu seguridad durante toda la experiencia.
+            No somos un hospital. Clínicas y hospitales de Iquitos quedan a minutos del centro. Trae un seguro de viaje: el precio no lo incluye.
           </p>
         </div>
 
@@ -284,7 +172,7 @@ const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina 
           </div>
           <h3 class="text-xl font-bold text-brand-dark font-georgia mb-4">Comodidades de Lujo</h3>
           <p class="text-gray-600 font-gotham leading-relaxed">
-            Disfruta de habitaciones elegantes, gastronomía gourmet y espacios de bienestar diseñados para tu comodidad. Tu transformación se desarrolla en un ambiente de total lujo y tranquilidad.
+            Cada habitación tiene aire acondicionado, televisor, wifi, baño privado, ventilador de techo y dos camas. No se fuma. El precio es el mismo en todas.
           </p>
         </div>
 
@@ -296,7 +184,7 @@ const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina 
           </div>
           <h3 class="text-xl font-bold text-brand-dark font-georgia mb-4">Conexión Cultural</h3>
           <p class="text-gray-600 font-gotham leading-relaxed">
-            Experimenta ceremonias auténticas dirigidas por chamanes indígenas respetados. Conecta con las tradiciones ancestrales y visita comunidades locales para una experiencia cultural profunda.
+            Las ceremonias las guían chamanes indígenas junto con el Maestro Denis Montes. Denis dirige todo el programa. Las ceremonias son en inglés y Denis traduce.
           </p>
         </div>
 
@@ -329,79 +217,10 @@ const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina 
 
   <section class="py-20 bg-white scroll-animate">
       <div class="max-w-[1500px] mx-auto px-4 md:px-8">
-        <GoogleReviews 
-          title="Acepta los milagros: únete al 97 % de Casa del Jaguar."
-          reviews={[
-            {
-              id: "1",
-              name: "Candy Beatriz Rios Cahuaza",
-              avatar: "/img/avatars/candy-beatriz-rios-cahuaza.webp",
-              rating: 5,
-              date: "Hace 6 meses",
-              text: "La experiencia en la Casa del Jaguar es absolutamente imperdible. Desde el inicio, la atención es de primera, con un ambiente acogedor y armonioso. La ceremonia de Ayahuasca es guiada con profundo conocimiento y sabiduría, brindando una experiencia transformadora. Cada detalle, desde La preparación hasta la explicación, contribuye a hacer de esta sesión un momento único e inolvidable. Sin duda, una experiencia que recomiendo a quienes buscan una conexión auténtica y significativa.",
-              location: "Perú"
-            },
-            {
-              id: "2", 
-              name: "Diego Reuch Borbor",
-              avatar: "/img/avatars/diego-reuch-borbor.webp",
-              rating: 5,
-              date: "Hace 10 meses",
-              text: "Una experiencia única en el lugar. Buena atención, preparación y el guiado en ceremonia es sencillamente personalizado, que se adapta a la situación de uno. Como producto de la potente conexión que tuve gracias a la madre ayahuasca y al maestro chaman pude expandir mis límites mentales y espirituales para forjar la transcendente consciencia que hoy me ayuda a tener una mejor calidad de vida. Definitivamente recomendaría visitar la Casa del Jaguar a toda persona que desee entender mejor su realidad y expandir su nivel de conciencia.",
-              location: "Perú"
-            },
-            {
-              id: "3",
-              name: "Samuel Ballantine",
-              rating: 5,
-              date: "Hace 4 meses",
-              text: "This is a place for people who truly want to heal. The shaman is truly dedicated he is. The kind of man who will sit and talk to you all day if you so desire it. He holds great insight and will be able to guide you through your ceremonies and help you understand what you are seeing and processing. Couldn’t recommend this place any more.",
-              location: "Italia"
-            },
-            {
-              id: "4",
-              name: "Jacopo Foglia",
-              rating: 5,
-              date: "Hace 3 meses",
-              text: "L’esperienza con lo sciamano Denis è stata davvero sorprendente! Avevo già partecipato ad una cerimonia di ayahuasca prima di quel momento, ma questa è stata davvero interessante ed intima. Ha guidato me ed il mio amico in un viaggio interiore indescrivibile, aiutandoci grazie a diverse ore di chiacchierata prima della cerimonia, spiegandoci il suo approccio con la medicina e spiegandoci come gestire la cerimonia nelle sue diverse fasi. Sicuramente parteciperò ad una nuova quando tornerò ad Iquitos.",
-              location: "Italia"
-            },
-            {
-              id: "5",
-              name: "Felix Rios Teran",
-              avatar: "/img/avatars/felix-rios-teran.webp",
-              rating: 5,
-              date: "Hace 1 año",
-              text: "Maestro Denis muchas gracias por guiarme y curarme con tu sabiduría durante mi experiencia con la Madre Ayahuasca una experiencia transformadora que abre puertas a la introspección y la sanación. Estoy profundamente agradecido por tu cuidado, profesionalismo y dedicación. Le recomiendo a cualquier hermano que busque sanación y crecimiento espiritual en la CASA DEL JAGUAR",
-              location: "Perú"
-            },
-            {
-              id: "6",
-              name: "Stella Palomares",
-              avatar: "/img/avatars/stella-palomares.webp",
-              rating: 5,
-              date: "Hace 1 año", 
-              text: "Una experiencia gratificante y llena de sabiduría con la acogedora atención del Sr Jaguar y su linda familia; sentimos mucha comodidad y linda energía. Fuimos bien guiados bajo el poder de la madre Ayahuasca ",
-              location: "México"
-            },
-            {
-              id: "7",
-              name: "Victor Alfonso Vazquez Zapata",
-              avatar: "/img/avatars/victor-alfonso-vazquez-zapata.webp",
-              rating: 5,
-              date: "Hace 1 año", 
-              text: "La mejor experiencia de mi vida. Todo está espectacularmente calculado. Gracias Denis, nos vemos pronto. Saludos desde Aguascalientes, México.",
-              location: "México"
-            },
-            {
-              id: "8",
-              name: "Clever Enrique",
-              rating: 5,
-              date: "Hace 4 meses", 
-              text: "Une belle place et en plein securité pour vivre cette belle expérience. 100% recommander!",
-              location: "Italia"
-            }
-          ]}
+        <GoogleReviews
+          title="Reseñas de Google"
+          note="Textos copiados a mano desde reseñas de Google. Se muestra el idioma original y, si hace falta, una traducción."
+          reviews={reviewsFor('es')}
           autoplay={true}
           autoplayDelay={7000}
         />
@@ -415,157 +234,3 @@ const pageKeywords = "precios Casa del Jaguar, retiro ayahuasca costo, medicina 
     <LocationClarity />
 
 </Layout>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const form = document.getElementById('pricingForm') as HTMLFormElement;
-  const submitButton = document.getElementById('submitButton') as HTMLButtonElement;
-  const successMessage = document.getElementById('successMessage') as HTMLElement;
-
-  if (!form || !submitButton || !successMessage) return;
-
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  function showError(field: HTMLElement, message: string) {
-    const errorElement = field.parentElement?.querySelector('.error-message') as HTMLElement;
-    if (errorElement) {
-      errorElement.textContent = message;
-      errorElement.classList.remove('hidden');
-    }
-    field.classList.add('border-red-500');
-  }
-
-  function hideError(field: HTMLElement) {
-    const errorElement = field.parentElement?.querySelector('.error-message') as HTMLElement;
-    if (errorElement) {
-      errorElement.classList.add('hidden');
-    }
-    field.classList.remove('border-red-500');
-  }
-
-  function validateField(field: HTMLInputElement | HTMLSelectElement): boolean {
-    const value = field.value.trim();
-    
-    if (field.hasAttribute('required') && !value) {
-      showError(field, 'Este campo es requerido');
-      return false;
-    }
-
-    if ((field.name === 'firstName' || field.name === 'lastName') && value.length < 2) {
-      showError(field, 'Por favor escribe al menos 2 caracteres');
-      return false;
-    }
-
-    if (field.type === 'email' && value && !emailPattern.test(value)) {
-      showError(field, 'Por favor ingresa un email válido');
-      return false;
-    }
-
-    hideError(field);
-    return true;
-  }
-
-  const fields = form.querySelectorAll('input, select') as NodeListOf<HTMLInputElement | HTMLSelectElement>;
-  fields.forEach(field => {
-    field.addEventListener('blur', () => validateField(field));
-    field.addEventListener('input', () => {
-      if (field.classList.contains('border-red-500')) {
-        validateField(field);
-      }
-    });
-  });
-
-  form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-
-    // Honeypot check
-    const honeypot = (form.querySelector('#hp-pricing') as HTMLInputElement)?.value;
-    if (honeypot) return;
-
-    // Client-side rate limiting (3 per 24h)
-    const RL_KEY = 'pricing_rl';
-    const RL_WINDOW = 24 * 60 * 60 * 1000;
-    const RL_MAX = 3;
-    const rawRl = localStorage.getItem(RL_KEY);
-    if (rawRl) {
-      const { count, windowStart } = JSON.parse(rawRl) as { count: number; windowStart: number };
-      if (Date.now() - windowStart < RL_WINDOW && count >= RL_MAX) {
-        alert('Has alcanzado el límite de envíos por hoy. Inténtalo de nuevo mañana.');
-        return;
-      }
-    }
-
-    let isValid = true;
-    fields.forEach(field => {
-      if (!validateField(field)) {
-        isValid = false;
-      }
-    });
-
-    if (!isValid) return;
-
-    submitButton.disabled = true;
-    submitButton.textContent = 'Enviando...';
-
-    try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-
-      // Record rate limit
-      const RL_KEY2 = 'pricing_rl';
-      const RL_WINDOW2 = 24 * 60 * 60 * 1000;
-      const now = Date.now();
-      const rawRl2 = localStorage.getItem(RL_KEY2);
-      if (!rawRl2) {
-        localStorage.setItem(RL_KEY2, JSON.stringify({ count: 1, windowStart: now }));
-      } else {
-        const { count, windowStart } = JSON.parse(rawRl2) as { count: number; windowStart: number };
-        if (now - windowStart > RL_WINDOW2) {
-          localStorage.setItem(RL_KEY2, JSON.stringify({ count: 1, windowStart: now }));
-        } else {
-          localStorage.setItem(RL_KEY2, JSON.stringify({ count: count + 1, windowStart }));
-        }
-      }
-      
-      form.classList.add('hidden');
-      successMessage.classList.remove('hidden');
-      
-      successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('Hubo un error al enviar el formulario. Por favor inténtalo de nuevo.');
-    } finally {
-      submitButton.disabled = false;
-      submitButton.textContent = 'Enviar Solicitud';
-    }
-  });
-
-  form.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && e.target !== submitButton) {
-      e.preventDefault();
-      submitButton.click();
-    }
-  });
-});
-</script>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, observerOptions);
-
-  const animatedElements = document.querySelectorAll('.scroll-animate');
-  animatedElements.forEach(el => observer.observe(el));
-});
-</script>

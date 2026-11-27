@@ -119,11 +119,74 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
+    const age = Number(data.get('age'));
+    if (!Number.isInteger(age) || age < 18 || age > 120) {
+      return new Response(JSON.stringify({
+        success: false,
+        error: 'Age must be between 18 and 120'
+      }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    const medications = String(data.get('medications') ?? '').trim();
+    const doctor = String(data.get('doctor') ?? '').trim();
+    if (medications.length < 2 || doctor.length < 2) {
+      return new Response(JSON.stringify({
+        success: false,
+        error: 'Medications and doctor contact are required'
+      }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    const yesNoFields = ['antidepressants', 'heart', 'bloodPressure', 'seizures', 'psychiatric', 'recentDrugs'] as const;
+    const answers: Record<string, string> = {};
+    for (const field of yesNoFields) {
+      const value = String(data.get(field) ?? '');
+      if (value !== 'yes' && value !== 'no') {
+        return new Response(JSON.stringify({
+          success: false,
+          error: 'Please answer every health question'
+        }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+      answers[field] = value;
+    }
+    const pregnancy = String(data.get('pregnancy') ?? '');
+    if (pregnancy !== 'yes' && pregnancy !== 'no' && pregnancy !== 'na') {
+      return new Response(JSON.stringify({
+        success: false,
+        error: 'Please answer the pregnancy question'
+      }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
     const fullPhone = `${countryCode}${phone}`;
     const safeFirstName = escapeHtml(firstName);
     const safeLastName = escapeHtml(lastName);
     const safeEmail = escapeHtml(email);
     const safePhone = escapeHtml(fullPhone);
+    const safeMedications = escapeHtml(medications);
+    const safeDoctor = escapeHtml(doctor);
+    const healthRows = [
+      ['Edad', String(age)],
+      ['Medicamentos', safeMedications],
+      ['Antidepresivos o IMAO', escapeHtml(answers.antidepressants)],
+      ['Embarazo o lactancia', escapeHtml(pregnancy)],
+      ['Corazón', escapeHtml(answers.heart)],
+      ['Presión arterial', escapeHtml(answers.bloodPressure)],
+      ['Convulsiones', escapeHtml(answers.seizures)],
+      ['Psicosis, bipolar o esquizofrenia', escapeHtml(answers.psychiatric)],
+      ['Drogas recientes', escapeHtml(answers.recentDrugs)],
+      ['Médico', safeDoctor],
+    ].map(([label, value]) => `<tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding: 8px 0; color: #4A5568; font-weight: 600;">${label}</td><td style="padding: 8px 0; color: #2D3748;">${value}</td></tr>`).join('');
 
     // Variables to store email IDs
     let notificationEmailId = null;
@@ -180,6 +243,11 @@ export const POST: APIRoute = async ({ request }) => {
                 })}</td>
               </tr>
             </table>
+            <h2 style="color: #2D3748; margin: 24px 0 12px; font-size: 20px;">Solicitud de salud</h2>
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+              ${healthRows}
+            </table>
+            <p style="color: #4A5568;">El depósito de $100 USD se devuelve si la solicitud se rechaza por seguridad. La plaza no está confirmada.</p>
             ${preferredDatesHtml}
             
             <div style="background: #f7fafc; padding: 20px; border-radius: 8px; border-left: 4px solid #D99D55;">
@@ -231,7 +299,7 @@ export const POST: APIRoute = async ({ request }) => {
             </h2>
             
             <p style="color: #4A5568; line-height: 1.6; margin-bottom: 20px;">
-              Hemos recibido tu solicitud de reserva para participar en nuestro retiro de medicina ancestral. Nos complace saber de tu interés en este viaje de transformación personal.
+              Recibimos tu solicitud de salud para el retiro de 7 días y 6 noches ($2,800 USD). La plaza todavía no está confirmada. Vamos a leer tus respuestas. Si la ceremonia no es segura para ti, devolvemos el depósito de $100 USD.
             </p>
             ${preferredDatesHtml}
             
@@ -245,10 +313,9 @@ export const POST: APIRoute = async ({ request }) => {
             </div>
             
             <ul style="color: #4A5568; line-height: 1.6; margin: 20px 0; padding-left: 20px;">
-              <li style="margin-bottom: 8px;">📅 <strong>Confirmar disponibilidad</strong> para las fechas de tu preferencia</li>
-              <li style="margin-bottom: 8px;">💬 <strong>Realizar una entrevista</strong> personal para conocerte mejor</li>
-              <li style="margin-bottom: 8px;">📋 <strong>Proporcionar información detallada</strong> sobre el retiro y preparación</li>
-              <li style="margin-bottom: 8px;">💳 <strong>Coordinar el proceso de reserva</strong> y métodos de pago</li>
+              <li style="margin-bottom: 8px;">Leer tu solicitud de salud</li>
+              <li style="margin-bottom: 8px;">Decirte si la plaza puede confirmarse</li>
+              <li style="margin-bottom: 8px;">Devolver los $100 USD si la rechazamos por seguridad</li>
             </ul>
             
             <div style="background: #fffbf0; padding: 20px; border-radius: 8px; border-left: 4px solid #D99D55; margin: 20px 0;">

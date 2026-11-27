@@ -1,0 +1,14 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import PolicyArticle from '@/components/PolicyArticle.astro';
+import { policies } from '@/data/policies';
+
+export const prerender = true;
+const page = policies.es.safety;
+---
+
+<Layout title={`${page.title} | Casa del Jaguar`} description={page.description} keywords="seguridad ayahuasca, contraindicaciones, Iquitos, Casa del Jaguar">
+  <main class="bg-[#fffcf6] -mt-16 pt-24">
+    <PolicyArticle page={page} />
+  </main>
+</Layout>

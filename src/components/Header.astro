@@ -84,6 +84,15 @@ const currentPath = Astro.url.pathname;
                 <a href={translatePath('/faqs', lang)} class="block px-4 py-2 text-sm font-bold text-brand-dark hover:bg-brand-light font-gotham">
                   {lang === 'es' ? 'Preguntas Frecuentes' : 'FAQ'}
                 </a>
+                <a href={translatePath('/diet', lang)} class="block px-4 py-2 text-sm font-bold text-brand-dark hover:bg-brand-light font-gotham">
+                  {lang === 'es' ? 'Dieta' : 'Diet'}
+                </a>
+                <a href={translatePath('/safety', lang)} class="block px-4 py-2 text-sm font-bold text-brand-dark hover:bg-brand-light font-gotham">
+                  {lang === 'es' ? 'Seguridad' : 'Safety'}
+                </a>
+                <a href={translatePath('/cancellation', lang)} class="block px-4 py-2 text-sm font-bold text-brand-dark hover:bg-brand-light font-gotham">
+                  {lang === 'es' ? 'Cancelación' : 'Cancellation'}
+                </a>
                 <a href={translatePath('/blog', lang)} class="block px-4 py-2 text-sm font-bold text-brand-dark hover:bg-brand-light font-gotham">
                   Blog
                 </a>
@@ -157,6 +166,9 @@ const currentPath = Astro.url.pathname;
         <p class="mt-2 px-4 pt-2 text-xs font-bold uppercase tracking-wide text-brand-dark/60 font-gotham">{lang === 'es' ? 'Saber más' : 'Learn more'}</p>
         <a href={translatePath('/about', lang)} class="mobile-link">{lang === 'es' ? 'Sobre nosotros' : 'About us'}</a>
         <a href={translatePath('/faqs', lang)} class="mobile-link">{lang === 'es' ? 'Preguntas frecuentes' : 'FAQ'}</a>
+        <a href={translatePath('/diet', lang)} class="mobile-link">{lang === 'es' ? 'Dieta' : 'Diet'}</a>
+        <a href={translatePath('/safety', lang)} class="mobile-link">{lang === 'es' ? 'Seguridad' : 'Safety'}</a>
+        <a href={translatePath('/cancellation', lang)} class="mobile-link">{lang === 'es' ? 'Cancelación' : 'Cancellation'}</a>
         <a href={translatePath('/blog', lang)} class="mobile-link">Blog</a>
         <a href={translatePath('/contact', lang)} class="mobile-link">{lang === 'es' ? 'Contáctanos' : 'Contact us'}</a>
         <div class="grid grid-cols-2 gap-2 px-3 pb-2 pt-3">

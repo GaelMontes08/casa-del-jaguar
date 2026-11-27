@@ -16,8 +16,8 @@ const lang = getLangFromUrl(Astro.url);
 const canonical = canonicalUrl(Astro.url.pathname);
 const alternates = languageAlternates(Astro.url.pathname);
 const businessDescription = lang === 'en'
-  ? '7-day, 6-night all-inclusive ayahuasca retreat in the city of Iquitos. 4 ceremonies guided by Master Denis Montes, private accommodation, Amazon excursions and integration.'
-  : 'Retiro de ayahuasca de 7 días y 6 noches todo incluido en la ciudad de Iquitos. 4 ceremonias guiadas por el Maestro Denis Montes, alojamiento privado, excursiones amazónicas e integración.';
+  ? 'Casa del Jaguar, founded in 2009, is a 7-day, 6-night ayahuasca retreat in the city of Iquitos for up to 8 guests. The price is $2,800 USD. Indigenous shamans lead the ceremonies together with Maestro Denis Montes, who guides the whole programme. Ceremonies are in English and Denis translates.'
+  : 'Casa del Jaguar, fundada en 2009, es un retiro de ayahuasca de 7 días y 6 noches en la ciudad de Iquitos, para un máximo de 8 personas. El precio es $2,800 USD. Chamanes indígenas guían las ceremonias junto con el Maestro Denis Montes, que dirige todo el programa. Las ceremonias son en inglés y Denis traduce.';
 const businessJsonLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': ['LocalBusiness', 'TouristAttraction'],
@@ -28,7 +28,8 @@ const businessJsonLd = JSON.stringify({
   telephone: '+51917811803',
   email: 'info@casadeljaguariquitos.com',
   description: businessDescription,
-  priceRange: 'From $2,800 USD',
+  priceRange: '$2,800 USD',
+  foundingDate: '2009',
   currenciesAccepted: 'USD',
   address: {
     '@type': 'PostalAddress',
@@ -38,6 +39,13 @@ const businessJsonLd = JSON.stringify({
   },
   areaServed: 'Iquitos',
   knowsLanguage: ['es', 'en'],
+  employee: {
+    '@type': 'Person',
+    name: 'Denis Montes',
+    jobTitle: lang === 'en'
+      ? 'Programme guide. Ceremonies are in English and he translates, together with indigenous shamans.'
+      : 'Guía del programa. Las ceremonias son en inglés y él traduce, junto con chamanes indígenas.',
+  },
 }).replace(/</g, '\\u003c');
 
 import '@/styles/global.css';

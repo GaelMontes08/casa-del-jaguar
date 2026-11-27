@@ -97,7 +97,7 @@ export const ui = {
   },
   en: {
     // Discount Banner
-    'discount.text': 'This month, save $1250 with code:',
+    'discount.text': 'This month, save $800 with code:',
     'discount.call': 'Call today at',
     'discount.phone': '+51 917 811 803',
     
