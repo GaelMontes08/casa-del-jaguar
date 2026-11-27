@@ -9,9 +9,17 @@ export const GOOGLE_LISTING_URL =
 /** Maps Search URL for that same listing. A place-id redirect was blocked by a captcha. */
 export const GOOGLE_MAPS_URL =
   'https://www.google.com/maps/search/?api=1&query=Casa+del+Jaguar+-+Ayahuasca+Iquitos';
+export const RETREATSMAP_PLACE_URL = 'https://retreatsmap.com/places/casa-del-jaguar';
+export const RETREATSMAP_EVENT_URL =
+  'https://retreatsmap.com/events/7-day-ayahuasca-holistic-wellness-retreat-in-iquitos-peru';
+export const BRAND_NAME = 'Casa del Jaguar – Ayahuasca Iquitos';
+export const LOGO_URL = `${SITE_ORIGIN}/cj-logo.webp`;
 
 export function canonicalUrl(pathname: string): string {
-  const path = pathname && pathname !== '' ? pathname : '/';
+  let path = pathname && pathname !== '' ? pathname : '/';
+  if (!path.startsWith('/')) path = `/${path}`;
+  const last = path.split('/').pop() ?? '';
+  if (path !== '/' && !path.endsWith('/') && !last.includes('.')) path = `${path}/`;
   return new URL(path, SITE_ORIGIN).href;
 }
 

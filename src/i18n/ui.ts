@@ -19,7 +19,7 @@ export const ui = {
     'nav.contact': 'Contacto',
     
     // Homepage
-    'home.title': 'Retiro de Ayahuasca en Iquitos, Perú | Casa del Jaguar',
+    'home.title': 'Casa del Jaguar – Ayahuasca Iquitos | Retiro de 7 días',
     'home.subtitle': 'Retiro de ayahuasca de 7 días y 6 noches todo incluido en la ciudad de Iquitos. 4 ceremonias guiadas por el Maestro Denis Montes, alojamiento privado, excursiones amazónicas e integración.',
     'home.cta.contact': 'Contactar',
     'home.cta.learn': 'Conocer más',
@@ -108,7 +108,7 @@ export const ui = {
     'nav.contact': 'Contact',
     
     // Homepage
-    'home.title': 'Ayahuasca Retreat in Iquitos, Peru | Casa del Jaguar',
+    'home.title': 'Casa del Jaguar – Ayahuasca Iquitos | 7-day retreat',
     'home.subtitle': '7-day, 6-night all-inclusive ayahuasca retreat in the city of Iquitos. 4 ceremonies guided by Master Denis Montes, private accommodation, Amazon excursions and integration.',
     'home.cta.contact': 'Contact Us',
     'home.cta.learn': 'Learn More',

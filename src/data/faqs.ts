@@ -42,7 +42,7 @@ export const faqs: Record<'es' | 'en', FaqSection[]> = {
         {
           question: '¿Es seguro participar en ceremonias de ayahuasca?',
           answer: safetyEs,
-          html: `${safetyEs} El detalle está en la <a href="/safety" class="text-[#B8854A] underline">página de seguridad</a>.`,
+          html: `${safetyEs} El detalle está en la <a href="/safety/" class="text-[#B8854A] underline">página de seguridad</a>.`,
         },
         {
           question: '¿Quién puede participar en los retiros?',
@@ -63,7 +63,7 @@ export const faqs: Record<'es' | 'en', FaqSection[]> = {
           question: '¿Cómo debo prepararme antes del retiro?',
           answer:
             'Durante al menos dos semanas antes de llegar puedes comer pescado fresco, pollo, arroz integral, quinoa, avena, fruta, verduras, agua e infusiones suaves. Evita carne roja, lácteos, alcohol, drogas, sal en exceso, azúcar refinada, comida procesada, condimentos fuertes, café, té negro, chocolate y fermentados. Pedimos abstinencia sexual 3 días antes y 3 días después de la ceremonia.',
-          html: `Durante al menos dos semanas antes de llegar puedes comer pescado fresco, pollo, arroz integral, quinoa, avena, fruta, verduras, agua e infusiones suaves. Evita carne roja, lácteos, alcohol, drogas, sal en exceso, azúcar refinada, comida procesada, condimentos fuertes, café, té negro, chocolate y fermentados. Pedimos abstinencia sexual 3 días antes y 3 días después de la ceremonia. La lista está en la <a href="/diet" class="text-[#B8854A] underline">página de dieta</a>.`,
+          html: `Durante al menos dos semanas antes de llegar puedes comer pescado fresco, pollo, arroz integral, quinoa, avena, fruta, verduras, agua e infusiones suaves. Evita carne roja, lácteos, alcohol, drogas, sal en exceso, azúcar refinada, comida procesada, condimentos fuertes, café, té negro, chocolate y fermentados. Pedimos abstinencia sexual 3 días antes y 3 días después de la ceremonia. La lista está en la <a href="/diet/" class="text-[#B8854A] underline">página de dieta</a>.`,
         },
         {
           question: '¿Qué medicamentos debo suspender?',
@@ -93,7 +93,7 @@ export const faqs: Record<'es' | 'en', FaqSection[]> = {
         {
           question: '¿Dónde se realizan las ceremonias? ¿Es en la selva?',
           answer: excursionsEs,
-          html: `No. Casa del Jaguar está en una zona urbana de la ciudad de Iquitos, a pocos minutos del aeropuerto, y las ceremonias se realizan en nuestra maloca dentro del centro. No es un lodge remoto en la selva. Lo hacemos así porque clínicas y hospitales quedan cerca, hay electricidad y agua estables, y hay menos exposición a mosquitos y a condiciones extremas. La selva la vives con nosotros en <a href="/excursions" class="text-[#B8854A] underline">excursiones guiadas</a> durante tus días de integración.`,
+          html: `No. Casa del Jaguar está en una zona urbana de la ciudad de Iquitos, a pocos minutos del aeropuerto, y las ceremonias se realizan en nuestra maloca dentro del centro. No es un lodge remoto en la selva. Lo hacemos así porque clínicas y hospitales quedan cerca, hay electricidad y agua estables, y hay menos exposición a mosquitos y a condiciones extremas. La selva la vives con nosotros en <a href="/excursions/" class="text-[#B8854A] underline">excursiones guiadas</a> durante tus días de integración.`,
         },
         {
           question: '¿Qué incluye el alojamiento?',
@@ -103,7 +103,7 @@ export const faqs: Record<'es' | 'en', FaqSection[]> = {
         {
           question: '¿Hay actividades adicionales durante el retiro?',
           answer: activitiesEs,
-          html: `Sí. Hay yoga matutino, meditación grupal, talleres de integración y círculos para compartir. El retiro incluye <a href="/excursions" class="text-[#B8854A] underline">2 excursiones amazónicas guiadas</a> (río Amazonas y delfines, mercado de Belén, comunidades nativas, plantas medicinales), siempre en días sin ceremonia. Hay excursiones extra, con costo aparte.`,
+          html: `Sí. Hay yoga matutino, meditación grupal, talleres de integración y círculos para compartir. El retiro incluye <a href="/excursions/" class="text-[#B8854A] underline">2 excursiones amazónicas guiadas</a> (río Amazonas y delfines, mercado de Belén, comunidades nativas, plantas medicinales), siempre en días sin ceremonia. Hay excursiones extra, con costo aparte.`,
         },
       ],
     },
@@ -119,7 +119,7 @@ export const faqs: Record<'es' | 'en', FaqSection[]> = {
           question: '¿Cuál es la política de cancelación?',
           answer:
             'Si rechazamos la solicitud por seguridad, o si la retiras antes de que confirmemos la plaza, devolvemos el depósito de $100 USD. Después de confirmar: más de 60 días, reembolso del 90%; entre 30 y 60 días, reembolso del 50%; menos de 30 días, sin reembolso, y puedes pasar la reserva a otra fecha sin costo. Una emergencia médica documentada se revisa caso por caso.',
-          html: `Si rechazamos la solicitud por seguridad, o si la retiras antes de que confirmemos la plaza, devolvemos el depósito de $100 USD. Después de confirmar: más de 60 días, reembolso del 90%; entre 30 y 60 días, reembolso del 50%; menos de 30 días, sin reembolso, y puedes pasar la reserva a otra fecha sin costo. Una emergencia médica documentada se revisa caso por caso. Está escrito en la <a href="/cancellation" class="text-[#B8854A] underline">página de cancelación</a>.`,
+          html: `Si rechazamos la solicitud por seguridad, o si la retiras antes de que confirmemos la plaza, devolvemos el depósito de $100 USD. Después de confirmar: más de 60 días, reembolso del 90%; entre 30 y 60 días, reembolso del 50%; menos de 30 días, sin reembolso, y puedes pasar la reserva a otra fecha sin costo. Una emergencia médica documentada se revisa caso por caso. Está escrito en la <a href="/cancellation/" class="text-[#B8854A] underline">página de cancelación</a>.`,
         },
       ],
     },
@@ -136,7 +136,7 @@ export const faqs: Record<'es' | 'en', FaqSection[]> = {
         {
           question: 'Is it safe to participate in ayahuasca ceremonies?',
           answer: safetyEn,
-          html: `${safetyEn} The detail is on the <a href="/en/safety" class="text-[#B8854A] underline">safety page</a>.`,
+          html: `${safetyEn} The detail is on the <a href="/en/safety/" class="text-[#B8854A] underline">safety page</a>.`,
         },
         {
           question: 'Who can participate in the retreats?',
@@ -157,7 +157,7 @@ export const faqs: Record<'es' | 'en', FaqSection[]> = {
           question: 'How should I prepare before the retreat?',
           answer:
             'For at least two weeks before arrival you can eat fresh fish, chicken, brown rice, quinoa, oats, fruit, vegetables, water, and mild herbal teas. Avoid red meat, dairy, alcohol, drugs, too much salt, refined sugar, processed food, strong spices, coffee, black tea, chocolate, and fermented foods. We ask for sexual abstinence for 3 days before and 3 days after the ceremony.',
-          html: `For at least two weeks before arrival you can eat fresh fish, chicken, brown rice, quinoa, oats, fruit, vegetables, water, and mild herbal teas. Avoid red meat, dairy, alcohol, drugs, too much salt, refined sugar, processed food, strong spices, coffee, black tea, chocolate, and fermented foods. We ask for sexual abstinence for 3 days before and 3 days after the ceremony. The list is on the <a href="/en/diet" class="text-[#B8854A] underline">diet page</a>.`,
+          html: `For at least two weeks before arrival you can eat fresh fish, chicken, brown rice, quinoa, oats, fruit, vegetables, water, and mild herbal teas. Avoid red meat, dairy, alcohol, drugs, too much salt, refined sugar, processed food, strong spices, coffee, black tea, chocolate, and fermented foods. We ask for sexual abstinence for 3 days before and 3 days after the ceremony. The list is on the <a href="/en/diet/" class="text-[#B8854A] underline">diet page</a>.`,
         },
         {
           question: 'What medications should I discontinue?',
@@ -187,7 +187,7 @@ export const faqs: Record<'es' | 'en', FaqSection[]> = {
         {
           question: 'Where do the ceremonies take place? Is it in the jungle?',
           answer: excursionsEn,
-          html: `No. Casa del Jaguar is in an urban area of the city of Iquitos, minutes from the airport, and ceremonies take place in our maloca at the center. It is not a remote jungle lodge. We work this way because clinics and hospitals are close, electricity and water are stable, and there is less exposure to mosquitoes and extreme conditions. You see the jungle with us on <a href="/en/excursions" class="text-[#B8854A] underline">guided excursions</a> during integration days.`,
+          html: `No. Casa del Jaguar is in an urban area of the city of Iquitos, minutes from the airport, and ceremonies take place in our maloca at the center. It is not a remote jungle lodge. We work this way because clinics and hospitals are close, electricity and water are stable, and there is less exposure to mosquitoes and extreme conditions. You see the jungle with us on <a href="/en/excursions/" class="text-[#B8854A] underline">guided excursions</a> during integration days.`,
         },
         {
           question: 'What does the accommodation include?',
@@ -197,7 +197,7 @@ export const faqs: Record<'es' | 'en', FaqSection[]> = {
         {
           question: 'Are there additional activities during the retreat?',
           answer: activitiesEn,
-          html: `Yes. There is morning yoga, group meditation, integration workshops, and sharing circles. The retreat includes <a href="/en/excursions" class="text-[#B8854A] underline">2 guided Amazon excursions</a> (Amazon River and dolphins, Belén market, native communities, medicinal plants), always on days without a ceremony. Extra excursions are available at a separate cost.`,
+          html: `Yes. There is morning yoga, group meditation, integration workshops, and sharing circles. The retreat includes <a href="/en/excursions/" class="text-[#B8854A] underline">2 guided Amazon excursions</a> (Amazon River and dolphins, Belén market, native communities, medicinal plants), always on days without a ceremony. Extra excursions are available at a separate cost.`,
         },
       ],
     },
@@ -213,7 +213,7 @@ export const faqs: Record<'es' | 'en', FaqSection[]> = {
           question: 'What is the cancellation policy?',
           answer:
             'If we decline the application for safety, or if you withdraw it before we confirm the place, we refund the $100 USD deposit. After confirmation: more than 60 days, 90% refund; between 30 and 60 days, 50% refund; less than 30 days, no refund, and you can move the booking to another date at no cost. A documented medical emergency is reviewed case by case.',
-          html: `If we decline the application for safety, or if you withdraw it before we confirm the place, we refund the $100 USD deposit. After confirmation: more than 60 days, 90% refund; between 30 and 60 days, 50% refund; less than 30 days, no refund, and you can move the booking to another date at no cost. A documented medical emergency is reviewed case by case. It is written on the <a href="/en/cancellation" class="text-[#B8854A] underline">cancellation page</a>.`,
+          html: `If we decline the application for safety, or if you withdraw it before we confirm the place, we refund the $100 USD deposit. After confirmation: more than 60 days, 90% refund; between 30 and 60 days, 50% refund; less than 30 days, no refund, and you can move the booking to another date at no cost. A documented medical emergency is reviewed case by case. It is written on the <a href="/en/cancellation/" class="text-[#B8854A] underline">cancellation page</a>.`,
         },
       ],
     },

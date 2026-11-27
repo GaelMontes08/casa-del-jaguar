@@ -1,5 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import AnswerBlocks from '@/components/AnswerBlocks.astro';
+import { answerBlocks } from '@/data/answers';
 import { useTranslations } from '@/i18n/utils';
 
 export async function getStaticPaths() {
@@ -43,7 +45,7 @@ const pageKeywords = lang === 'en'
     </div>
     <div class="relative z-10 text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-4xl md:text-6xl font-bold mb-6 scroll-animate font-georgia">
-        {lang === 'en' ? 'Casa del Jaguar' : 'Casa del Jaguar'}
+        Casa del Jaguar – Ayahuasca Iquitos
       </h1>
       <p class="text-xl md:text-2xl mb-8 leading-relaxed scroll-animate font-gotham">
         {lang === 'en' 
@@ -53,6 +55,8 @@ const pageKeywords = lang === 'en'
       </p>
     </div>
   </section>
+
+  <AnswerBlocks items={[...answerBlocks.en.about]} />
 
   <main>
     <section class="py-16 bg-white scroll-animate">
@@ -70,8 +74,8 @@ const pageKeywords = lang === 'en'
             </p>
             <p class="text-gray-600 mb-4 text-lg leading-relaxed font-gotham">
               {lang === 'en'
-                ? 'Dan Reynolds founded Casa del Jaguar in 2009 and led the ceremonies until 2014. He died in 2021. Since 2014, Denis Montes has led the ceremonies together with indigenous shamans. Ceremonies are in English, and Denis translates.'
-                : 'Dan Reynolds fundó Casa del Jaguar en 2009 y guió las ceremonias hasta 2014. Falleció en 2021. Desde 2014, Denis Montes guía las ceremonias junto con chamanes indígenas. Las ceremonias son en inglés y Denis traduce.'
+                ? 'Dan Reynolds founded Casa del Jaguar in 2008 and led the ceremonies until 2014. He died in 2021. Since 2014, Denis Montes has led the ceremonies together with indigenous shamans. Ceremonies are in English, and Denis translates.'
+                : 'Dan Reynolds fundó Casa del Jaguar en 2008 y guió las ceremonias hasta 2014. Falleció en 2021. Desde 2014, Denis Montes guía las ceremonias junto con chamanes indígenas. Las ceremonias son en inglés y Denis traduce.'
               }
             </p>
             <p class="text-gray-600 text-lg leading-relaxed font-gotham">
@@ -130,12 +134,12 @@ const pageKeywords = lang === 'en'
         <div class="max-w-4xl mx-auto">
           <div class="bg-white p-8 rounded-lg shadow-lg mb-8">
             <h3 class="text-2xl font-semibold mb-4 text-gray-900 font-georgia">
-              {lang === 'en' ? 'Since 2009' : 'Desde 2009'}
+              {lang === 'en' ? 'Since 2008' : 'Desde 2008'}
             </h3>
             <p class="text-gray-600 mb-4 text-lg leading-relaxed font-gotham">
               {lang === 'en' 
-                ? 'Dan Reynolds founded the centre in 2009 and led the ceremonies from 2009 to 2014. He died in 2021. Since 2014, Maestro Denis Montes has led the ceremonies together with indigenous shamans.'
-                : 'Dan Reynolds fundó la casa en 2009 y guió las ceremonias de 2009 a 2014. Falleció en 2021. Desde 2014, el Maestro Denis Montes guía las ceremonias junto con chamanes indígenas.'
+                ? 'Dan Reynolds founded the centre in 2008 and led the ceremonies from 2008 to 2014. He died in 2021. Since 2014, Maestro Denis Montes has led the ceremonies together with indigenous shamans.'
+                : 'Dan Reynolds fundó la casa en 2008 y guió las ceremonias de 2008 a 2014. Falleció en 2021. Desde 2014, el Maestro Denis Montes guía las ceremonias junto con chamanes indígenas.'
               }
             </p>
             <p class="text-gray-600 text-lg leading-relaxed font-gotham">

@@ -22,11 +22,23 @@ export function getStaticPaths() {
   ];
 }
 
+function withTrailingSlash(path: string): string {
+  if (!path || path === '/') return '/';
+  const hash = path.includes('#') ? path.slice(path.indexOf('#')) : '';
+  const bare = hash ? path.slice(0, path.indexOf('#')) : path;
+  if (bare === '/' || bare.endsWith('/')) return `${bare}${hash}`;
+  const last = bare.split('/').pop() ?? '';
+  if (last.includes('.')) return path;
+  return `${bare}/${hash}`;
+}
+
 export function translatePath(path: string, lang: string): string {
+  const slashed = withTrailingSlash(path);
   if (lang === defaultLang) {
-    return path;
+    return slashed;
   }
-  return `/${lang}${path}`;
+  if (slashed === '/') return `/${lang}/`;
+  return `/${lang}${slashed.startsWith('/') ? slashed : `/${slashed}`}`;
 }
 
 export function getLocalizedPath(path: string, currentLang: string, targetLang: string): string {
@@ -37,8 +49,10 @@ export function getLocalizedPath(path: string, currentLang: string, targetLang: 
   }
   
   // Add target language prefix if needed
+  const slashed = withTrailingSlash(cleanPath || '/');
   if (targetLang === defaultLang) {
-    return cleanPath;
+    return slashed;
   }
-  return `/${targetLang}${cleanPath}`;
+  if (slashed === '/') return `/${targetLang}/`;
+  return `/${targetLang}${slashed.startsWith('/') ? slashed : `/${slashed}`}`;
 }

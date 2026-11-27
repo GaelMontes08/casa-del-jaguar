@@ -1,5 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import AnswerBlocks from '@/components/AnswerBlocks.astro';
+import { answerBlocks } from '@/data/answers';
 import { useTranslations } from '@/i18n/utils';
 
 const t = useTranslations('es'); // Default Spanish for root pages
@@ -19,13 +21,15 @@ export const prerender = true;
     </div>
     <div class="relative z-10 text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-4xl md:text-6xl font-bold mb-6 scroll-animate font-georgia">
-        Casa del Jaguar
+        Casa del Jaguar – Ayahuasca Iquitos
       </h1>
       <p class="text-xl md:text-2xl mb-8 leading-relaxed scroll-animate font-gotham">
         Donde la sabiduría ancestral se fusiona con la ciencia moderna en la búsqueda del bienestar físico, mental y emocional.
       </p>
     </div>
   </section>
+
+  <AnswerBlocks items={[...answerBlocks.es.about]} />
 
   <main>
 
@@ -38,7 +42,7 @@ export const prerender = true;
               En Casa del Jaguar acompañamos a adultos que quieren trabajar algo personal con la ayahuasca: un duelo, un hábito, una pregunta de dirección. No es un tratamiento médico ni sustituye a un psiquiatra.
             </p>
             <p class="text-gray-600 mb-4 text-lg leading-relaxed font-gotham">
-              Dan Reynolds fundó Casa del Jaguar en 2009 y guió las ceremonias hasta 2014. Falleció en 2021. Desde 2014, Denis Montes guía las ceremonias junto con chamanes indígenas. Las ceremonias son en inglés y Denis traduce.
+              Dan Reynolds fundó Casa del Jaguar en 2008 y guió las ceremonias hasta 2014. Falleció en 2021. Desde 2014, Denis Montes guía las ceremonias junto con chamanes indígenas. Las ceremonias son en inglés y Denis traduce.
             </p>
             <p class="text-gray-600 text-lg leading-relaxed font-gotham">
               <strong>El trabajo es ceremonial.</strong> Si tomas medicación, la decisión de suspenderla es entre tú y tu médico. La plaza se confirma después de leer tu solicitud de salud.
@@ -88,9 +92,9 @@ export const prerender = true;
         <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12 font-georgia">Nuestro Camino</h2>
         <div class="max-w-4xl mx-auto">
           <div class="bg-white p-8 rounded-lg shadow-lg mb-8">
-            <h3 class="text-2xl font-semibold mb-4 text-gray-900 font-georgia">Desde 2009</h3>
+            <h3 class="text-2xl font-semibold mb-4 text-gray-900 font-georgia">Desde 2008</h3>
             <p class="text-gray-600 mb-4 text-lg leading-relaxed font-gotham">
-              Dan Reynolds fundó la casa en 2009 y guió las ceremonias de 2009 a 2014. Falleció en 2021. Desde 2014, el Maestro Denis Montes guía las ceremonias junto con chamanes indígenas.
+              Dan Reynolds fundó la casa en 2008 y guió las ceremonias de 2008 a 2014. Falleció en 2021. Desde 2014, el Maestro Denis Montes guía las ceremonias junto con chamanes indígenas.
             </p>
             <p class="text-gray-600 text-lg leading-relaxed font-gotham">
               Para nosotros, las plantas maestras Ayahuasca y la Huachuma no son solo plantas: son una poderosa herramienta para la transformación interior y la sanación.

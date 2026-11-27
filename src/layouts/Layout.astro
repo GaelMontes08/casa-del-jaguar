@@ -1,6 +1,7 @@
 ---
 import { getLangFromUrl } from '@/i18n/utils';
-import { canonicalUrl, GOOGLE_LISTING_URL, GOOGLE_MAPS_URL, languageAlternates, OG_IMAGE_URL, SITE_ORIGIN, STREET_ADDRESS } from '@/i18n/urls';
+import { blogMeta } from '@/data/blog-meta';
+import { BRAND_NAME, canonicalUrl, GOOGLE_LISTING_URL, GOOGLE_MAPS_URL, languageAlternates, LOGO_URL, OG_IMAGE_URL, RETREATSMAP_PLACE_URL, SITE_ORIGIN, STREET_ADDRESS } from '@/i18n/urls';
 import DiscountBanner from '@/components/DiscountBanner.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
@@ -11,52 +12,116 @@ export interface Props {
   keywords: string;
 }
 
-const { title, description = "Casa del Jaguar - Medicina Ayahuasca", keywords } = Astro.props;
+const { title, description = "Casa del Jaguar – Ayahuasca Iquitos", keywords } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
+const pageTitle = /iquitos/i.test(title) ? title : `${title} | Casa del Jaguar Iquitos`;
 const canonical = canonicalUrl(Astro.url.pathname);
 const alternates = languageAlternates(Astro.url.pathname);
 const businessDescription = lang === 'en'
-  ? 'Casa del Jaguar was founded in 2009 by Dan Reynolds, who led the ceremonies until 2014. Since 2014, Maestro Denis Montes has led them with indigenous shamans. It is a 7-day, 6-night retreat in Iquitos for up to 8 guests, at $2,800 USD. Ceremonies are in English and Denis translates.'
-  : 'Dan Reynolds fundó Casa del Jaguar en 2009 y guió las ceremonias hasta 2014. Desde 2014 las guía el Maestro Denis Montes junto con chamanes indígenas. Es un retiro de 7 días y 6 noches en Iquitos, para un máximo de 8 personas, a $2,800 USD. Las ceremonias son en inglés y Denis traduce.';
+  ? 'Casa del Jaguar was founded in 2008 by Dan Reynolds, who led the ceremonies until 2014. Since 2014, Maestro Denis Montes has led them with indigenous shamans. It is a 7-day, 6-night retreat in Iquitos for up to 8 guests, at $2,800 USD. Ceremonies are in English and Denis translates.'
+  : 'Dan Reynolds fundó Casa del Jaguar en 2008 y guió las ceremonias hasta 2014. Desde 2014 las guía el Maestro Denis Montes junto con chamanes indígenas. Es un retiro de 7 días y 6 noches en Iquitos, para un máximo de 8 personas, a $2,800 USD. Las ceremonias son en inglés y Denis traduce.';
+const businessId = `${SITE_ORIGIN}/#casa-del-jaguar`;
+const slug = Astro.url.pathname.replace(/\/$/, '').split('/').filter(Boolean).pop() ?? '';
+const post = blogMeta[slug];
+const graph: Record<string, unknown>[] = [
+  {
+    '@type': ['LocalBusiness', 'TouristAttraction', 'Organization'],
+    '@id': businessId,
+    name: BRAND_NAME,
+    alternateName: ['Casa del Jaguar', 'Casa del Jaguar Iquitos'],
+    disambiguatingDescription: 'Ayahuasca retreat centre in the city of Iquitos, Peru; not affiliated with any hotel of the same name.',
+    url: `${SITE_ORIGIN}/`,
+    logo: LOGO_URL,
+    image: OG_IMAGE_URL,
+    telephone: '+51917811803',
+    email: 'info@casadeljaguariquitos.com',
+    description: businessDescription,
+    priceRange: '$2,800 USD',
+    foundingDate: '2008',
+    currenciesAccepted: 'USD',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: STREET_ADDRESS,
+      addressLocality: 'Iquitos',
+      addressRegion: 'Loreto',
+      addressCountry: 'PE',
+    },
+    hasMap: GOOGLE_MAPS_URL,
+    sameAs: [GOOGLE_LISTING_URL, GOOGLE_MAPS_URL, RETREATSMAP_PLACE_URL],
+    knowsAbout: ['Ayahuasca', 'Ayahuasca retreats in Iquitos', 'Hemi-Sync', 'Amazonian plant medicine'],
+    makesOffer: {
+      '@type': 'Offer',
+      name: lang === 'en' ? '7-day, 6-night ayahuasca retreat' : 'Retiro de ayahuasca de 7 días y 6 noches',
+      price: '2800',
+      priceCurrency: 'USD',
+      url: `${SITE_ORIGIN}/pricing/`,
+      availability: 'https://schema.org/InStock',
+      eligibleQuantity: { '@type': 'QuantitativeValue', 'maxValue': 8 },
+    },
+    areaServed: 'Iquitos',
+    knowsLanguage: ['es', 'en'],
+    founder: {
+      '@type': 'Person',
+      name: 'Dan Reynolds',
+      deathDate: '2021',
+      description: lang === 'en'
+        ? 'Founded Casa del Jaguar in 2008 and led the ceremonies until 2014. He died in 2021.'
+        : 'Fundó Casa del Jaguar en 2008 y guió las ceremonias hasta 2014. Falleció en 2021.',
+    },
+    employee: {
+      '@type': 'Person',
+      name: 'Denis Montes',
+      jobTitle: lang === 'en'
+        ? 'Has led the ceremonies since 2014, together with indigenous shamans. Ceremonies are in English and he translates.'
+        : 'Guía las ceremonias desde 2014, junto con chamanes indígenas. Las ceremonias son en inglés y él traduce.',
+    },
+  },
+  {
+    '@type': 'WebSite',
+    '@id': `${SITE_ORIGIN}/#website`,
+    url: `${SITE_ORIGIN}/`,
+    name: BRAND_NAME,
+    inLanguage: ['es', 'en'],
+    publisher: { '@id': businessId },
+  },
+];
+const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/en/';
+if (!isHome) {
+  graph.push({
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: lang === 'en' ? 'Home' : 'Inicio',
+        item: lang === 'en' ? `${SITE_ORIGIN}/en/` : `${SITE_ORIGIN}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: pageTitle.split('|')[0].trim(),
+        item: canonical,
+      },
+    ],
+  });
+}
+if (post) {
+  graph.push({
+    '@type': 'BlogPosting',
+    headline: pageTitle.split('|')[0].trim(),
+    datePublished: post.date,
+    dateModified: post.date,
+    description,
+    image: new URL(post.image, SITE_ORIGIN).href,
+    author: { '@type': 'Person', name: 'Denis Montes' },
+    publisher: { '@id': businessId },
+    mainEntityOfPage: canonical,
+    inLanguage: lang,
+  });
+}
 const businessJsonLd = JSON.stringify({
   '@context': 'https://schema.org',
-  '@type': ['LocalBusiness', 'TouristAttraction', 'Organization'],
-  '@id': `${SITE_ORIGIN}/#casa-del-jaguar`,
-  name: 'Casa del Jaguar',
-  url: `${SITE_ORIGIN}/`,
-  image: OG_IMAGE_URL,
-  telephone: '+51917811803',
-  email: 'info@casadeljaguariquitos.com',
-  description: businessDescription,
-  priceRange: '$2,800 USD',
-  foundingDate: '2009',
-  currenciesAccepted: 'USD',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: STREET_ADDRESS,
-    addressLocality: 'Iquitos',
-    addressRegion: 'Loreto',
-    addressCountry: 'PE',
-  },
-  hasMap: GOOGLE_MAPS_URL,
-  sameAs: [GOOGLE_LISTING_URL, GOOGLE_MAPS_URL],
-  areaServed: 'Iquitos',
-  knowsLanguage: ['es', 'en'],
-  founder: {
-    '@type': 'Person',
-    name: 'Dan Reynolds',
-    deathDate: '2021',
-    description: lang === 'en'
-      ? 'Founded Casa del Jaguar in 2009 and led the ceremonies from 2009 to 2014. He died in 2021.'
-      : 'Fundó Casa del Jaguar en 2009 y guió las ceremonias de 2009 a 2014. Falleció en 2021.',
-  },
-  employee: {
-    '@type': 'Person',
-    name: 'Denis Montes',
-    jobTitle: lang === 'en'
-      ? 'Has led the ceremonies since 2014, together with indigenous shamans. Ceremonies are in English and he translates.'
-      : 'Guía las ceremonias desde 2014, junto con chamanes indígenas. Las ceremonias son en inglés y él traduce.',
-  },
+  '@graph': graph,
 }).replace(/</g, '\\u003c');
 
 import '@/styles/global.css';
@@ -110,20 +175,20 @@ import { SEO } from 'astro-seo';
     </style>
     
     <SEO
-      title={title}
+      title={pageTitle}
       description={description}
       canonical={canonical}
       languageAlternates={alternates}
       openGraph={{
         basic: {
-          title: title,
+          title: pageTitle,
           type: "website",
           image: OG_IMAGE_URL,
           url: canonical,
         },
         optional: {
           description,
-          siteName: "Casa del Jaguar",
+          siteName: "Casa del Jaguar Iquitos",
           locale: lang === 'en' ? 'en_US' : 'es_PE',
           localeAlternate: lang === 'en' ? ['es_PE'] : ['en_US'],
         },
@@ -139,7 +204,7 @@ import { SEO } from 'astro-seo';
       twitter={{
         card: "summary_large_image",
         creator: "@casadeljaguar",
-        title,
+        title: pageTitle,
         description,
         image: OG_IMAGE_URL,
         imageAlt: lang === 'en'
