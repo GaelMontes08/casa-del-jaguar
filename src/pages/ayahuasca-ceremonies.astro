@@ -1,5 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import AnswerBlocks from '@/components/AnswerBlocks.astro';
+import { answerBlocks } from '@/data/answers';
 import Separator from '@/components/Separator.astro';
 import { useTranslations } from '@/i18n/utils';
 
@@ -27,7 +29,7 @@ const pageKeywords = "ceremonias ayahuasca, medicina ancestral, chamanes amazón
 
     <div class="relative z-10 max-w-6xl mx-auto px-4 md:px-8 text-center">
       <h1 class="scroll-animate text-5xl md:text-7xl font-bold text-white font-georgia mb-8 leading-tight">
-        Ceremonias de <br/><span class="text-brand-primary">Ayahuasca</span>
+        Casa del Jaguar – Ayahuasca Iquitos
       </h1>
       
       <p class="scroll-animate text-xl md:text-[19px] text-white brand-cream mb-12 max-w-4xl mx-auto font-gotham leading-relaxed">
@@ -35,6 +37,8 @@ const pageKeywords = "ceremonias ayahuasca, medicina ancestral, chamanes amazón
       </p>
     </div>
   </section>
+
+  <AnswerBlocks items={[...answerBlocks.es.ceremonies]} />
 
   <Separator />
 

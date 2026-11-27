@@ -1,5 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import AnswerBlocks from '@/components/AnswerBlocks.astro';
+import { answerBlocks } from '@/data/answers';
 import Separator from '@/components/Separator.astro';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
@@ -59,6 +61,8 @@ const pageKeywords = lang === 'en'
       </p>
     </div>
   </section>
+
+  <AnswerBlocks items={[...answerBlocks.en.ceremonies]} />
 
   <Separator />
 

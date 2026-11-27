@@ -1,0 +1,21 @@
+---
+interface Item {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  items: Item[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="mx-auto max-w-3xl px-4 py-14 sm:px-6">
+  {items.map((item) => (
+    <article class="mb-12">
+      <h2 class="font-georgia text-3xl font-bold leading-tight text-brand-dark">{item.q}</h2>
+      <p class="mt-4 font-gotham text-lg leading-relaxed text-brand-dark/90">{item.a}</p>
+    </article>
+  ))}
+</section>

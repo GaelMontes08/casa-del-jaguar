@@ -1,5 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import AnswerBlocks from '@/components/AnswerBlocks.astro';
+import { answerBlocks } from '@/data/answers';
 import PolicyArticle from '@/components/PolicyArticle.astro';
 import { policies } from '@/data/policies';
 
@@ -10,5 +12,6 @@ const page = policies.es.diet;
 <Layout title={`${page.title} | Casa del Jaguar`} description={page.description} keywords="dieta ayahuasca, preparación retiro Iquitos, Casa del Jaguar">
   <main class="bg-[#fffcf6] -mt-16 pt-24">
     <PolicyArticle page={page} />
+    <AnswerBlocks items={[...answerBlocks.es.diet]} />
   </main>
 </Layout>
