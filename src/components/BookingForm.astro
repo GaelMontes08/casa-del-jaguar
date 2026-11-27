@@ -7,6 +7,8 @@ export interface Props {
   subtitle?: string;
   buttonText?: string;
   className?: string;
+  /** Load the PayPal SDK only when this form is the booking page. */
+  showPayPal?: boolean;
   labels?: {
     firstName: string;
     lastName: string;
@@ -26,6 +28,7 @@ const {
   subtitle = "La plaza no queda reservada al enviar este formulario. La confirmamos después de leer tus respuestas.",
   buttonText = "Enviar solicitud",
   className = "",
+  showPayPal = false,
   labels = {
     firstName: "Nombre *",
     lastName: "Apellido *", 
@@ -260,9 +263,11 @@ const dateLabels = lang === 'en' ? {
       </div>
     </fieldset>
 
-    <div class="mb-6">
-      <PayPalDeposit lang={lang === 'en' ? 'en' : 'es'} />
-    </div>
+    {showPayPal && (
+      <div class="mb-6">
+        <PayPalDeposit lang={lang === 'en' ? 'en' : 'es'} />
+      </div>
+    )}
 
     <!-- Loading and Success States -->
     <div id="loadingState" class="text-center hidden mb-6">
