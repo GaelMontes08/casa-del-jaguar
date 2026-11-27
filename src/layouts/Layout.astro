@@ -78,10 +78,6 @@ import { SEO } from 'astro-seo';
       
       .hero-section {
         position: relative;
-        height: 665px;
-        margin-top: -4rem;
-        padding-top: 4rem;
-        overflow: hidden;
       }
       
       h1, h2, h3, h4, h5, h6 {
@@ -169,7 +165,7 @@ import { SEO } from 'astro-seo';
       });
     </script>
   </head>
-  <body class="bg-white text-gray-900 w-full max-w-[1920px] mx-auto">
+  <body class="bg-white text-gray-900 w-full max-w-[1920px] mx-auto pb-24">
     <DiscountBanner />
     <Header />
     <slot />
@@ -177,6 +173,7 @@ import { SEO } from 'astro-seo';
 
     <!-- Floating WhatsApp Button -->
     <a
+      id="whatsapp-float"
       href="https://wa.me/51917811803"
       target="_blank"
       rel="noopener noreferrer"
@@ -209,7 +206,28 @@ import { SEO } from 'astro-seo';
         transform: scale(1.1);
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
       }
+      .whatsapp-float.is-shifted {
+        opacity: 0;
+        pointer-events: none;
+      }
     </style>
+    <script is:inline>
+      (function () {
+        var button = document.getElementById('whatsapp-float');
+        if (!button) return;
+        function fieldFocused(target) {
+          return target && target.closest && target.closest('input, textarea, select');
+        }
+        document.addEventListener('focusin', function (event) {
+          if (fieldFocused(event.target)) button.classList.add('is-shifted');
+        });
+        document.addEventListener('focusout', function () {
+          setTimeout(function () {
+            if (!fieldFocused(document.activeElement)) button.classList.remove('is-shifted');
+          }, 0);
+        });
+      })();
+    </script>
 
     <script defer src="/js/scroll-animations.js"></script>
   </body>

@@ -5,7 +5,6 @@ import PhoneCodeSelect from '@/components/PhoneCodeSelect.astro';
 import { useTranslations } from '@/i18n/utils';
 import GoogleReviews from '@/components/GoogleReviews.astro';
 import Services from '@/components/Services.astro';
-import TestimonialVideos from '@/components/TestimonialVideos.astro';
 import ValueOffer from '@/components/ValueOffer.astro';
 import LocationClarity from '@/components/LocationClarity.astro';
 
@@ -38,13 +37,14 @@ const pageKeywords = lang === 'en'
   description={pageDescription}
   keywords={pageKeywords}
 >
-  <section class="hero relative h-[500px] -mt-16 pt-16 flex items-center justify-center overflow-hidden">
+  <section class="hero relative min-h-[28rem] -mt-16 pt-24 pb-12 flex items-center justify-center">
     <div class="absolute inset-0 z-0">
       <img 
         src="/img/centro-pasadiso.webp" width="1448" height="1086" 
         alt={lang === 'en' ? "Casa del Jaguar - Ancestral medicine retreat" : "Casa del Jaguar - Retiro de medicina ancestral"}
         class="w-full h-full object-cover"
       />
+    <div class="photo-scrim" aria-hidden="true"></div>
     </div>
 
     <div class="relative z-10 max-w-6xl mx-auto px-4 md:px-8 text-center">
@@ -509,40 +509,6 @@ const pageKeywords = lang === 'en'
     <ValueOffer />
 
     <LocationClarity />
-
-    <TestimonialVideos 
-      title={lang === 'en' ? "Transform your Life at Casa del Jaguar" : "Transforma tu Vida en Casa del Jaguar"}
-      videos={[
-        {
-          id: "dQw4w9WgXcQ",
-          title: lang === 'en' ? "Transformational Experience" : "Experiencia Transformadora",
-          description: lang === 'en' 
-            ? "María González shares her healing experience at Casa del Jaguar"
-            : "María González comparte su experiencia de sanación en Casa del Jaguar"
-        },
-        {
-          id: "9bZkp7q19f0",
-          title: lang === 'en' ? "A Journey of Self-Discovery" : "Un Viaje de Autodescubrimiento",
-          description: lang === 'en' 
-            ? "Carlos Mendoza about his personal healing process"
-            : "Carlos Mendoza sobre su proceso de sanación personal"
-        },
-        {
-          id: "GtL1huin9EE",
-          title: lang === 'en' ? "Sacred Ceremony" : "Ceremonia Sagrada",
-          description: lang === 'en' 
-            ? "Ana Rodríguez reflects on the ayahuasca ceremony"
-            : "Ana Rodríguez reflexiona sobre la ceremonia de ayahuasca"
-        },
-        {
-          id: "jNQXAC9IVRw",
-          title: lang === 'en' ? "Deep Healing" : "Sanación Profunda",
-          description: lang === 'en' 
-            ? "Luis Torres about his emotional healing process"
-            : "Luis Torres sobre su proceso de sanación emocional"
-        }
-      ]}
-    />
 
 </Layout>
 

@@ -74,6 +74,20 @@ h1, h2, h3, h4, h5, h6 {
   border-color: var(--color-brand-gold);
 }
 
+/* Dark layer so type on photographs stays readable. */
+.photo-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(24, 12, 8, 0.55) 0%,
+    rgba(24, 12, 8, 0.38) 42%,
+    rgba(24, 12, 8, 0.68) 100%
+  );
+}
+
 /* Scroll animations must not hide content before JavaScript runs. */
 .scroll-animate {
   opacity: 1;

@@ -3,62 +3,70 @@ import { getLangFromUrl, translatePath, useTranslations } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const es = lang !== 'en';
 ---
 
-<section class="hero-section relative h-[665px] -mt-16 pt-16 overflow-hidden">
+<section class="hero-section relative -mt-16">
   <img
     src="/img/maloca-ceremonial.webp"
-    alt={lang === 'es' ? 'Maloca ceremonial de Casa del Jaguar en Iquitos' : 'Casa del Jaguar ceremonial maloca in Iquitos'}
+    alt={es ? 'Maloca ceremonial de Casa del Jaguar en Iquitos' : 'Casa del Jaguar ceremonial maloca in Iquitos'}
     width="942"
     height="628"
-    class="hero-video"
+    class="hero-media"
     fetchpriority="high"
     decoding="async"
   />
+  <div class="photo-scrim" aria-hidden="true"></div>
   <video
     id="hero-video"
-    class="hero-video hidden"
+    class="hero-media hidden"
     muted
     loop
     playsinline
     preload="none"
     poster="/img/maloca-ceremonial.webp"
-    aria-label={lang === 'es' ? 'Video de presentación de Casa del Jaguar' : 'Casa del Jaguar presentation video'}
+    aria-label={es ? 'Video de presentación de Casa del Jaguar' : 'Casa del Jaguar presentation video'}
   ></video>
 
-  <div class="relative z-20 flex items-center justify-center h-full">
-    <div class="text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-georgia leading-tight">
-        {lang === 'es' 
-          ? <>Retiro de Ayahuasca en Iquitos: <span class="text-brand-gold">7 días para sanar y renacer</span></>
-          : <>Ayahuasca Retreat in Iquitos: <span class="text-brand-gold">7 Days to Heal and Be Reborn</span></>
-        }
+  <div class="relative z-20 w-full max-w-[1500px] mx-auto px-5 sm:px-8 lg:px-12 pt-28 pb-12 md:pt-36 md:pb-20">
+    <div class="max-w-3xl lg:max-w-[46rem]">
+      <h1 class="text-[clamp(1.65rem,2.3vw,3rem)] leading-[1.15] font-bold font-georgia text-white">
+        {es ? (
+          <>
+            <span class="md:whitespace-nowrap">Retiro de Ayahuasca en Iquitos:</span>
+            <span class="mt-1 block text-brand-gold text-balance md:whitespace-nowrap">7 días para sanar y renacer</span>
+          </>
+        ) : (
+          <>
+            <span class="md:whitespace-nowrap">Ayahuasca Retreat in Iquitos:</span>
+            <span class="mt-1 block text-brand-gold text-balance md:whitespace-nowrap">7 Days to Heal and Be Reborn</span>
+          </>
+        )}
       </h1>
 
-      <p class="text-lg md:text-xl lg:text-2xl mb-8 font-gotham leading-relaxed opacity-90">
-        {lang === 'es' 
-          ? 'Ábrete a los milagros. Casa del Jaguar es un retiro de medicina ancestral todo incluido, guiado por el Maestro Denis Montes, con la seguridad de la ciudad y la Amazonía a un paso.' 
-          : 'Awaken to miracles. Casa del Jaguar is an all-inclusive plant medicine retreat guided by Master Denis Montes, with the safety of the city and the Amazon one step away.'
-        }
+      <p class="mt-5 text-base sm:text-lg md:text-xl font-gotham leading-relaxed text-white/95 max-w-xl">
+        {es
+          ? 'Ábrete a los milagros. Casa del Jaguar es un retiro de medicina ancestral todo incluido, guiado por el Maestro Denis Montes, con la seguridad de la ciudad y la Amazonía a un paso.'
+          : 'Awaken to miracles. Casa del Jaguar is an all-inclusive plant medicine retreat guided by Master Denis Montes, with the safety of the city and the Amazon one step away.'}
       </p>
 
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <a 
-          href={translatePath('/booking', lang)} 
-          class="book-now bg-brand-gold text-brand-dark px-8 py-4 rounded-lg font-bold text-lg hover:scale-101 hover:shadow-lg transition-all duration-300 font-gotham shadow-lg uppercase"
+      <div class="mt-6 flex flex-col items-stretch gap-3 pr-16 sm:pr-0 sm:flex-row sm:flex-wrap sm:items-center">
+        <a
+          href={translatePath('/booking', lang)}
+          class="book-now bg-brand-gold text-brand-dark px-6 py-3.5 rounded-lg font-bold text-base sm:text-lg text-center font-gotham shadow-lg uppercase"
         >
-          {lang === 'es' ? 'Reserva Ahora' : 'Book Now'}
+          {es ? 'Reserva Ahora' : 'Book Now'}
         </a>
-        
-        <button 
+        <button
           id="watch-video-btn"
-          class="text-brand-dark bg-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-[#402A1E] hover:scale-101 hover:shadow-lg transition-all duration-300 font-gotham flex items-center gap-2 uppercase"
-          aria-label={lang === 'es' ? 'Reproducir video de presentación de Casa del Jaguar' : 'Play Casa del Jaguar presentation video'}
+          type="button"
+          class="inline-flex items-center justify-center gap-2 bg-white text-brand-dark px-6 py-3.5 rounded-lg font-semibold text-base sm:text-lg font-gotham uppercase"
+          aria-label={es ? 'Reproducir video de presentación de Casa del Jaguar' : 'Play Casa del Jaguar presentation video'}
         >
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+          <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
           </svg>
-          {lang === 'es' ? 'Mira el video' : 'Watch the Video'}
+          {es ? 'Mira el video' : 'Watch the Video'}
         </button>
       </div>
     </div>
@@ -86,38 +94,25 @@ const t = useTranslations(lang);
 <style>
   .hero-section {
     position: relative;
-    width: 100%;
-    height: 550px;
-    overflow: hidden;
+    min-height: calc(100svh - 3.25rem);
+    display: flex;
+    align-items: flex-end;
   }
 
-  .hero-video {
+  @media (min-width: 768px) {
+    .hero-section {
+      align-items: center;
+      min-height: 42rem;
+    }
+  }
+
+  .hero-media {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: 1;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .hero-content {
-    animation: fadeInUp 1s ease-out;
-  }
-
-  #watch-video-btn:hover {
-    color: white;
+    z-index: 0;
   }
 
   .book-now:hover {
