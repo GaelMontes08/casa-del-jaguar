@@ -21,7 +21,7 @@ export default defineConfig({
   output: 'server',
   adapter: vercel(),
   site: 'https://casadeljaguariquitos.com',
-  trailingSlash: 'always',
+  trailingSlash: 'ignore',
   integrations: [
     sitemap({
       filter: (page) => {
@@ -29,7 +29,10 @@ export default defineConfig({
         return path !== '/es' && !path.startsWith('/es/');
       },
       serialize(item) {
-        const slug = new URL(item.url).pathname.replace(/\/$/, '').split('/').pop();
+        const url = new URL(item.url);
+        if (!url.pathname.endsWith('/')) url.pathname = `${url.pathname}/`;
+        item.url = url.href;
+        const slug = url.pathname.replace(/\/$/, '').split('/').pop();
         item.lastmod = (slug && POST_DATES[slug]) || BUILD_DATE;
         return item;
       },
