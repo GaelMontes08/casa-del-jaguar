@@ -2,5 +2,10 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "astro",
-  "devCommand": "npm run dev"
+  "devCommand": "npm run dev",
+  "redirects": [
+    { "source": "/es", "destination": "/", "permanent": true },
+    { "source": "/es/", "destination": "/", "permanent": true },
+    { "source": "/es/:path*", "destination": "/:path*", "permanent": true }
+  ]
 }

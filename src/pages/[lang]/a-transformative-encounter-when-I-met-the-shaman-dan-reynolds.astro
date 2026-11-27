@@ -4,7 +4,6 @@ import Layout from '@/layouts/Layout.astro';
 export function getStaticPaths() {
   return [
     { params: { lang: 'en' } },
-    { params: { lang: 'es' } }
   ];
 }
 
@@ -31,9 +30,9 @@ const article = {
   <main>
     <article class="max-w-4xl mx-auto px-4 md:px-8 py-16 -mt-16 pt-24">
       <nav class="text-sm text-gray-600 mb-8">
-        <a href="/" class="hover:text-brand-primary transition-colors">Inicio</a>
+        <a href="/en" class="hover:text-brand-primary transition-colors">Home</a>
         <span class="mx-2">›</span>
-        <a href="/blog" class="hover:text-brand-primary transition-colors">Blog</a>
+        <a href="/en/blog" class="hover:text-brand-primary transition-colors">Blog</a>
         <span class="mx-2">›</span>
         <span class="text-brand-dark">{article.category}</span>
       </nav>
@@ -71,6 +70,8 @@ const article = {
       <div class="mb-12">
         <img 
           src={article.image}
+                  width="1200"
+                  height="675"
           alt={article.title}
           class="w-full h-98 object-cover rounded-xl shadow-lg"
         />
@@ -372,8 +373,6 @@ const article = {
 
 <style>
   .scroll-animate {
-    opacity: 0;
-    transform: translateY(20px);
     transition: all 0.6s ease-out;
   }
   

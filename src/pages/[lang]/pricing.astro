@@ -12,7 +12,6 @@ import LocationClarity from '@/components/LocationClarity.astro';
 export async function getStaticPaths() {
   return [
     { params: { lang: 'en' } },
-    { params: { lang: 'es' } }
   ];
 }
 
@@ -42,7 +41,7 @@ const pageKeywords = lang === 'en'
   <section class="hero relative h-[500px] -mt-16 pt-16 flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
       <img 
-        src="/img/centro-pasadiso.webp" 
+        src="/img/centro-pasadiso.webp" width="1448" height="1086" 
         alt={lang === 'en' ? "Casa del Jaguar - Ancestral medicine retreat" : "Casa del Jaguar - Retiro de medicina ancestral"}
         class="w-full h-full object-cover"
       />

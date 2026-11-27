@@ -18,7 +18,6 @@ export function useTranslations(lang: keyof typeof ui) {
 
 export function getStaticPaths() {
   return [
-    { params: { lang: 'es' } },
     { params: { lang: 'en' } },
   ];
 }

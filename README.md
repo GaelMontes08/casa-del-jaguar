@@ -46,10 +46,10 @@ El sitio web soporta múltiples idiomas:
 - **English (en)** - Inglés (con prefijo `/en/` en URL)
 
 ### URLs de ejemplo:
-- Español: `https://casadeljaguar.com/` (página principal)
-- Inglés: `https://casadeljaguar.com/en/` (página principal en inglés)
-- Español: `https://casadeljaguar.com/about` (página "nosotros")
-- Inglés: `https://casadeljaguar.com/en/about` (página "about")
+- Español: `https://casadeljaguariquitos.com/` (página principal)
+- Inglés: `https://casadeljaguariquitos.com/en/` (página principal en inglés)
+- Español: `https://casadeljaguariquitos.com/about` (página "nosotros")
+- Inglés: `https://casadeljaguariquitos.com/en/about` (página "about")
 
 ### Agregar traducciones:
 1. Edita `src/i18n/ui.ts` para agregar nuevas claves de traducción

@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl } from '@/i18n/utils';
+import { canonicalUrl, languageAlternates, OG_IMAGE_URL, SITE_ORIGIN } from '@/i18n/urls';
 import DiscountBanner from '@/components/DiscountBanner.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
@@ -12,6 +13,32 @@ export interface Props {
 
 const { title, description = "Casa del Jaguar - Medicina Ayahuasca", keywords } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
+const canonical = canonicalUrl(Astro.url.pathname);
+const alternates = languageAlternates(Astro.url.pathname);
+const businessDescription = lang === 'en'
+  ? '7-day, 6-night all-inclusive ayahuasca retreat in the city of Iquitos. 4 ceremonies guided by Master Denis Montes, private accommodation, Amazon excursions and integration.'
+  : 'Retiro de ayahuasca de 7 días y 6 noches todo incluido en la ciudad de Iquitos. 4 ceremonias guiadas por el Maestro Denis Montes, alojamiento privado, excursiones amazónicas e integración.';
+const businessJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': ['LocalBusiness', 'TouristAttraction'],
+  '@id': `${SITE_ORIGIN}/#casa-del-jaguar`,
+  name: 'Casa del Jaguar',
+  url: `${SITE_ORIGIN}/`,
+  image: OG_IMAGE_URL,
+  telephone: '+51917811803',
+  email: 'info@casadeljaguariquitos.com',
+  description: businessDescription,
+  priceRange: 'From $2,800 USD',
+  currenciesAccepted: 'USD',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Iquitos',
+    addressRegion: 'Loreto',
+    addressCountry: 'PE',
+  },
+  areaServed: 'Iquitos',
+  knowsLanguage: ['es', 'en'],
+}).replace(/</g, '\\u003c');
 
 import '@/styles/global.css';
 import { SEO } from 'astro-seo';
@@ -45,14 +72,8 @@ import { SEO } from 'astro-seo';
       }
       
       .scroll-animate {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      }
-      
-      .scroll-animate.animate-in {
         opacity: 1;
-        transform: translateY(0);
+        transform: none;
       }
       
       .hero-section {
@@ -76,15 +97,39 @@ import { SEO } from 'astro-seo';
     <SEO
       title={title}
       description={description}
+      canonical={canonical}
+      languageAlternates={alternates}
       openGraph={{
         basic: {
           title: title,
           type: "website",
-          image: "/og-image.jpg",
-        }
+          image: OG_IMAGE_URL,
+          url: canonical,
+        },
+        optional: {
+          description,
+          siteName: "Casa del Jaguar",
+          locale: lang === 'en' ? 'en_US' : 'es_PE',
+          localeAlternate: lang === 'en' ? ['es_PE'] : ['en_US'],
+        },
+        image: {
+          alt: lang === 'en'
+            ? 'Casa del Jaguar, ayahuasca retreat in Iquitos, Peru'
+            : 'Casa del Jaguar, retiro de ayahuasca en Iquitos, Perú',
+          width: 1200,
+          height: 630,
+          type: 'image/jpeg',
+        },
       }}
       twitter={{
-        creator: "@casadeljaguar"
+        card: "summary_large_image",
+        creator: "@casadeljaguar",
+        title,
+        description,
+        image: OG_IMAGE_URL,
+        imageAlt: lang === 'en'
+          ? 'Casa del Jaguar in Iquitos, Peru'
+          : 'Casa del Jaguar en Iquitos, Perú',
       }}
       extend={{
         link: [
@@ -98,19 +143,21 @@ import { SEO } from 'astro-seo';
         ],
       }}
     />
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GX0T60THW9"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
-      gtag('config', 'G-GX0T60THW9');
-      
-      window.gtag = gtag;
-    </script>
+    <script type="application/ld+json" set:html={businessJsonLd} />
 
     <script is:inline>
+      window.addEventListener('load', function () {
+        var analytics = document.createElement('script');
+        analytics.src = 'https://www.googletagmanager.com/gtag/js?id=G-GX0T60THW9';
+        analytics.async = true;
+        document.head.appendChild(analytics);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', 'G-GX0T60THW9');
+
         (function(h,o,t,j,a,r){
             h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
             h._hjSettings={hjid:6527991,hjsv:6};
@@ -119,6 +166,7 @@ import { SEO } from 'astro-seo';
             r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+      });
     </script>
   </head>
   <body class="bg-white text-gray-900 w-full max-w-[1920px] mx-auto">

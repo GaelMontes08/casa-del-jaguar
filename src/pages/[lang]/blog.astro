@@ -5,7 +5,6 @@ import { useTranslations } from '@/i18n/utils';
 export function getStaticPaths() {
   return [
     { params: { lang: 'en' } },
-    { params: { lang: 'es' } }
   ];
 }
 
@@ -92,7 +91,7 @@ const blogPosts = [
     <section class="hero relative h-[500px] -mt-16 pt-16 flex items-center justify-center overflow-hidden">
       <div class="absolute inset-0 z-0">
         <img 
-          src="/img/centro-pasadiso.webp" 
+          src="/img/centro-pasadiso.webp" width="1448" height="1086" 
           alt="Casa del Jaguar Blog - Ancestral Wisdom"
           class="w-full h-full object-cover"
         />
@@ -118,6 +117,8 @@ const blogPosts = [
               <div class="relative overflow-hidden">
                 <img 
                   src={post.image}
+                  width="1200"
+                  height="675"
                   alt={post.title}
                   class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                 />

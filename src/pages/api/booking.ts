@@ -1,111 +1,22 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
 import { formatRetreatDate, getDepartureDate, isValidArrival } from '@/utils/retreat-dates';
+import { escapeHtml } from '@/utils/html';
 
 export const prerender = false;
 
-// Simple in-memory rate limiting storage
-// In production, consider using Redis or a database
-const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
+// In-memory rate limits do not hold on Vercel: each serverless instance has
+// its own memory and a cold start clears it, so a "3 per day" promise was false.
+// Honeypot and field checks stay. A real shared limit needs a store such as
+// Upstash Redis (free tier) or Vercel KV. Neither is wired up here.
 
-const RATE_LIMIT = {
-  maxRequests: 3,
-  windowMs: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
-};
-
-function getRealIP(request: Request): string {
-  // Try to get real IP from common headers (for production behind proxy/CDN)
-  const forwardedFor = request.headers.get('x-forwarded-for');
-  const realIP = request.headers.get('x-real-ip');
-  const cfConnectingIP = request.headers.get('cf-connecting-ip'); // Cloudflare
-  
-  if (forwardedFor) {
-    // x-forwarded-for can contain multiple IPs, get the first one
-    return forwardedFor.split(',')[0].trim();
-  }
-  
-  if (realIP) return realIP;
-  if (cfConnectingIP) return cfConnectingIP;
-  
-  // Fallback for development
-  return 'unknown-ip';
-}
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const userLimit = rateLimitStore.get(ip);
-  
-  if (!userLimit) {
-    // First request from this IP
-    rateLimitStore.set(ip, { count: 1, resetTime: now + RATE_LIMIT.windowMs });
-    return false;
-  }
-  
-  // Check if the time window has expired
-  if (now > userLimit.resetTime) {
-    // Reset the limit
-    rateLimitStore.set(ip, { count: 1, resetTime: now + RATE_LIMIT.windowMs });
-    return false;
-  }
-  
-  // Check if under the limit
-  if (userLimit.count < RATE_LIMIT.maxRequests) {
-    userLimit.count++;
-    return false;
-  }
-  
-  // Over the limit
-  return true;
-}
-
-function getResetTimeRemaining(ip: string): number {
-  const userLimit = rateLimitStore.get(ip);
-  if (!userLimit) return 0;
-  
-  const remaining = Math.max(0, userLimit.resetTime - Date.now());
-  return Math.ceil(remaining / 1000); // Return seconds
-}
-
-// Clean up old entries periodically (basic cleanup)
-setInterval(() => {
-  const now = Date.now();
-  for (const [ip, data] of rateLimitStore.entries()) {
-    if (now > data.resetTime) {
-      rateLimitStore.delete(ip);
-    }
-  }
-}, 60 * 60 * 1000); // Clean up every hour
+const BUSINESS_PHONE_TEL = '+51917811803';
 
 const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
 
 const resend = RESEND_API_KEY ? new Resend(RESEND_API_KEY) : null;
 
 export const POST: APIRoute = async ({ request }) => {
-  // Get client IP and check rate limit
-  const clientIP = getRealIP(request);
-  
-  if (isRateLimited(clientIP)) {
-    const resetTimeRemaining = getResetTimeRemaining(clientIP);
-    const hoursRemaining = Math.floor(resetTimeRemaining / 3600);
-    const minutesRemaining = Math.floor((resetTimeRemaining % 3600) / 60);
-    
-    return new Response(JSON.stringify({
-      success: false,
-      error: 'Límite de solicitudes excedido. Has alcanzado el máximo de 3 solicitudes por día.',
-      rateLimitExceeded: true,
-      resetTime: `${hoursRemaining}h ${minutesRemaining}m`,
-      message: `Podrás enviar nuevas solicitudes en ${hoursRemaining > 0 ? hoursRemaining + ' horas y ' : ''}${minutesRemaining} minutos.`
-    }), {
-      status: 429, // Too Many Requests
-      headers: {
-        'Content-Type': 'application/json',
-        'X-RateLimit-Limit': RATE_LIMIT.maxRequests.toString(),
-        'X-RateLimit-Remaining': '0',
-        'X-RateLimit-Reset': Math.ceil(Date.now() / 1000 + resetTimeRemaining).toString(),
-      },
-    });
-  }
-  
   try {
     // Check if Resend is properly configured
     if (!resend) {
@@ -143,8 +54,8 @@ export const POST: APIRoute = async ({ request }) => {
     const preferredDatesHtml = typeof arrivalDate === 'string' && arrivalDate
       ? `<div style="background: #fffbf0; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
           <strong>Fechas preferidas (sujetas a confirmación):</strong>
-          <p>Llegada: ${formatRetreatDate(arrivalDate, 'es')}<br>
-          Salida: ${formatRetreatDate(getDepartureDate(arrivalDate), 'es')}<br>
+          <p>Llegada: ${escapeHtml(formatRetreatDate(arrivalDate, 'es'))}<br>
+          Salida: ${escapeHtml(formatRetreatDate(getDepartureDate(arrivalDate), 'es'))}<br>
           7 días y 6 noches</p>
         </div>`
       : '';
@@ -209,6 +120,10 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const fullPhone = `${countryCode}${phone}`;
+    const safeFirstName = escapeHtml(firstName);
+    const safeLastName = escapeHtml(lastName);
+    const safeEmail = escapeHtml(email);
+    const safePhone = escapeHtml(fullPhone);
 
     // Variables to store email IDs
     let notificationEmailId = null;
@@ -239,18 +154,18 @@ export const POST: APIRoute = async ({ request }) => {
             <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
               <tr style="border-bottom: 1px solid #e2e8f0;">
                 <td style="padding: 12px 0; color: #4A5568; font-weight: 600; width: 30%;">Nombre:</td>
-                <td style="padding: 12px 0; color: #2D3748;">${firstName} ${lastName}</td>
+                <td style="padding: 12px 0; color: #2D3748;">${safeFirstName} ${safeLastName}</td>
               </tr>
               <tr style="border-bottom: 1px solid #e2e8f0;">
                 <td style="padding: 12px 0; color: #4A5568; font-weight: 600;">Email:</td>
                 <td style="padding: 12px 0; color: #2D3748;">
-                  <a href="mailto:${email}" style="color: #D99D55; text-decoration: none;">${email}</a>
+                  <a href="mailto:${safeEmail}" style="color: #D99D55; text-decoration: none;">${safeEmail}</a>
                 </td>
               </tr>
               <tr style="border-bottom: 1px solid #e2e8f0;">
                 <td style="padding: 12px 0; color: #4A5568; font-weight: 600;">Teléfono:</td>
                 <td style="padding: 12px 0; color: #2D3748;">
-                  <a href="tel:${fullPhone}" style="color: #D99D55; text-decoration: none;">${fullPhone}</a>
+                  <a href="tel:${safePhone}" style="color: #D99D55; text-decoration: none;">${safePhone}</a>
                 </td>
               </tr>
               <tr>
@@ -274,7 +189,7 @@ export const POST: APIRoute = async ({ request }) => {
             </div>
             
             <div style="text-align: center; margin-top: 30px;">
-              <a href="mailto:${email}" style="background: #D99D55; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 600; display: inline-block;">
+              <a href="mailto:${safeEmail}" style="background: #D99D55; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 600; display: inline-block;">
                 Responder al Huésped
               </a>
             </div>
@@ -312,7 +227,7 @@ export const POST: APIRoute = async ({ request }) => {
           
           <div style="background: white; padding: 30px; border-radius: 0 0 10px 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
             <h2 style="color: #2D3748; margin-bottom: 20px; font-size: 22px;">
-              ¡Gracias por tu interés, ${firstName}!
+              ¡Gracias por tu interés, ${safeFirstName}!
             </h2>
             
             <p style="color: #4A5568; line-height: 1.6; margin-bottom: 20px;">
@@ -349,7 +264,7 @@ export const POST: APIRoute = async ({ request }) => {
               <p style="color: #4A5568; margin-bottom: 20px;">
                 Si tenés alguna pregunta urgente, no dudes en contactarnos:
               </p>
-              <a href="tel:${fullPhone}" style="background: #D99D55; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 600; display: inline-block; margin-right: 10px;">
+              <a href="tel:${BUSINESS_PHONE_TEL}" style="background: #D99D55; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 600; display: inline-block; margin-right: 10px;">
                 📞 Llamanos
               </a>
               <a href="mailto:info@casadeljaguariquitos.com" style="background: #2D3748; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 600; display: inline-block;">
@@ -386,10 +301,6 @@ export const POST: APIRoute = async ({ request }) => {
       }
     }
 
-    // Get current rate limit status for headers
-    const currentLimit = rateLimitStore.get(clientIP);
-    const remaining = currentLimit ? Math.max(0, RATE_LIMIT.maxRequests - currentLimit.count) : RATE_LIMIT.maxRequests - 1;
-
     return new Response(JSON.stringify({
       success: true,
       message: 'Booking request sent successfully',
@@ -399,9 +310,6 @@ export const POST: APIRoute = async ({ request }) => {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
-        'X-RateLimit-Limit': RATE_LIMIT.maxRequests.toString(),
-        'X-RateLimit-Remaining': remaining.toString(),
-        'X-RateLimit-Reset': currentLimit ? Math.ceil(currentLimit.resetTime / 1000).toString() : Math.ceil((Date.now() + RATE_LIMIT.windowMs) / 1000).toString(),
       },
     });
 

@@ -1,25 +1,30 @@
 ---
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import { getLangFromUrl, translatePath, useTranslations } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <section class="hero-section relative h-[665px] -mt-16 pt-16 overflow-hidden">
-  <video 
-    id="hero-video"
+  <img
+    src="/img/maloca-ceremonial.webp"
+    alt={lang === 'es' ? 'Maloca ceremonial de Casa del Jaguar en Iquitos' : 'Casa del Jaguar ceremonial maloca in Iquitos'}
+    width="942"
+    height="628"
     class="hero-video"
-    autoplay 
-    muted 
+    fetchpriority="high"
+    decoding="async"
+  />
+  <video
+    id="hero-video"
+    class="hero-video hidden"
+    muted
     loop
     playsinline
     preload="none"
     poster="/img/maloca-ceremonial.webp"
     aria-label={lang === 'es' ? 'Video de presentación de Casa del Jaguar' : 'Casa del Jaguar presentation video'}
-  >
-    <source src="/hero.mp4" type="video/mp4">
-    <img src="/img/maloca-ceremonial.webp" alt="Casa del Jaguar Hero" class="w-full h-full object-cover">
-  </video>
+  ></video>
 
   <div class="relative z-20 flex items-center justify-center h-full">
     <div class="text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -39,7 +44,7 @@ const t = useTranslations(lang);
 
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
         <a 
-          href="/booking" 
+          href={translatePath('/booking', lang)} 
           class="book-now bg-brand-gold text-brand-dark px-8 py-4 rounded-lg font-bold text-lg hover:scale-101 hover:shadow-lg transition-all duration-300 font-gotham shadow-lg uppercase"
         >
           {lang === 'es' ? 'Reserva Ahora' : 'Book Now'}
@@ -62,12 +67,19 @@ const t = useTranslations(lang);
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const video = document.getElementById('hero-video') as HTMLVideoElement;
-    if (video) {
+    const button = document.getElementById('watch-video-btn');
+    const video = document.getElementById('hero-video') as HTMLVideoElement | null;
+    if (!button || !video) return;
+
+    button.addEventListener('click', function() {
+      if (!video.getAttribute('src')) {
+        video.src = '/hero.mp4';
+      }
+      video.classList.remove('hidden');
       video.play().catch(function() {
-        // Autoplay is not supported in some browsers; the video remains available for manual playback.
+        // Playback can fail if the browser blocks it; the poster stays visible.
       });
-    }
+    });
   });
 </script>
 
